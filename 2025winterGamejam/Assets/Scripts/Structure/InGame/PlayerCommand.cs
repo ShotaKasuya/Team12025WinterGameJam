@@ -1,0 +1,11 @@
+namespace Structure.InGame
+{
+    public struct PlayerCommand
+    {
+        
+    }
+
+    public enum CardType
+    {
+    }
+}
