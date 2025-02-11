@@ -1,5 +1,8 @@
 namespace Structure.InGame
 {
+    /// <summary>
+    /// トランプのカード
+    /// </summary>
     public struct Card
     {
         public Card
@@ -40,7 +43,7 @@ namespace Structure.InGame
         Queen,
         King,
     }
-
+    
     public static class CardExtension
     {
     }
