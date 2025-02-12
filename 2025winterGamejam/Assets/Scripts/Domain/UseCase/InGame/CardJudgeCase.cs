@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Domain.IModel.InGame;
 using Domain.IView.InGame;
 using Structure.InGame;
@@ -7,48 +9,39 @@ namespace Domain.UseCase.InGame
     /// <summary>
     /// 勝敗をジャッジする
     /// </summary>
-    public class CardJudgeCase
+    public class CardJudgeCase: IDisposable
     {
         public CardJudgeCase
         (
-            IPlayerDecision playerDecision,
-            IScoreModel scoreModel,
-            IMatchScoreModel matchScoreModel
+            IDecisionView decisionView,
+            IJudgeResultModel judgeResultModel
         )
         {
-            playerDecision.CardDecisionEvent += OnDecision;
+            decisionView.CardDecisionEvent += OnDecision;
 
-            PlayerDecision = playerDecision;
-            ScoreModel = scoreModel;
-            MatchScoreModel = matchScoreModel;
+            DecisionView = decisionView;
+            JudgeResultModel = judgeResultModel;
         }
 
-        private void OnDecision((Card, Card) playerCard)
+        private void OnDecision(List<Card> playerCard)
         {
-            var result = Judge();
+            var result = Judge(playerCard);
 
-            if (result != -1)
-            {
-                ScoreModel.AddScore(result, MatchScoreModel.WinnerScore);
-            }
-            // todo: 引き分け
+            JudgeResultModel.StoreJudgeResult(result);
         }
 
-        private enum Result
-        {
-            Win,
-            Draw,
-            Lose,
-        }
-
-        private int Judge()
+        private BattleResult Judge(List<Card> playerCard)
         {
             // todo: 勝敗
-            return -1;
+            return BattleResult.Draw(playerCard);
         }
 
-        private IPlayerDecision PlayerDecision { get; }
-        private IScoreModel ScoreModel { get; }
-        private IMatchScoreModel MatchScoreModel { get; }
+        private IDecisionView DecisionView { get; }
+        private IJudgeResultModel JudgeResultModel { get; }
+
+        public void Dispose()
+        {
+            DecisionView.CardDecisionEvent -= OnDecision;
+        }
     }
 }
