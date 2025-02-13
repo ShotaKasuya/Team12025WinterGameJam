@@ -34,7 +34,6 @@ namespace Structure.InGame
 
     public enum Rank
     {
-        Ace = 1,
         Two,
         Three,
         Four,
@@ -47,6 +46,7 @@ namespace Structure.InGame
         Jack,
         Queen,
         King,
+        Ace,
     }
     
     public static class CardExtension
