@@ -43,13 +43,19 @@ namespace Tests.EditModeTest.InGame
         }
 
         [TestCase(Rank.Two, Rank.Ace)]
-        public void Player0WinTest(Rank winCard, Rank loseCard)
+        [TestCase(Rank.Four, Rank.Three)]
+        [TestCase(Rank.Six, Rank.Five)]
+        [TestCase(Rank.Eight, Rank.Seven)]
+        [TestCase(Rank.Ten, Rank.Nine)]
+        [TestCase(Rank.Queen, Rank.Jack)]
+        [TestCase(Rank.King, Rank.Queen)]
+        public void NumberGreaterTest(Rank winCard, Rank loseCard)
         {
             var cards = new List<Card> { new(Suit.Clubs, winCard), new(Suit.Clubs, loseCard) };
             _mockDecisionView.TriggerCardDecisionEvent(cards);
 
             var result = _mockJudgeResultModel.StoredResult;
-            
+
             Assert.IsNotNull(result);
             Assert.AreEqual(BattleResult.Result(0, cards), result);
         }
