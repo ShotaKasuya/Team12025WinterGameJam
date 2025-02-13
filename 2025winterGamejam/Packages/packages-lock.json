@@ -292,6 +292,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "jp.co.cyberagent.nova": {
+      "version": "https://github.com/CyberAgentGameEntertainment/NovaShader.git?path=/Assets/Nova",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "75359352ba04042816822a8ef05e0d5d211c45ba"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
