@@ -33,12 +33,15 @@ namespace Domain.UseCase.InGame
         private BattleResult Judge(List<Card> playerCard)
         {
             // todo: 勝敗
-            if(playerCard[0].IsGreater(playerCard[1]))
+            if (playerCard[0].Rank == Rank.Two && playerCard[1].Rank == Rank.Ace)
                 return BattleResult.Result(0, playerCard);
-            else if (playerCard[1].IsGreater(playerCard[0]))
-                return BattleResult.Result(1, playerCard);
             else
-                return BattleResult.Draw(playerCard);
+                if(playerCard[0].IsGreater(playerCard[1]))
+                    return BattleResult.Result(0, playerCard);
+                else if (playerCard[1].IsGreater(playerCard[0]))
+                    return BattleResult.Result(1, playerCard);
+                else
+                    return BattleResult.Draw(playerCard);
         }
 
         private IDecisionView DecisionView { get; }
