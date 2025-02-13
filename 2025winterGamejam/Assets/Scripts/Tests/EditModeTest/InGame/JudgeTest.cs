@@ -42,7 +42,7 @@ namespace Tests.EditModeTest.InGame
             }
         }
 
-        [TestCase(Rank.Two, Rank.Ace)]
+        [TestCase(Rank.Three, Rank.Two)]
         [TestCase(Rank.Four, Rank.Three)]
         [TestCase(Rank.Six, Rank.Five)]
         [TestCase(Rank.Eight, Rank.Seven)]
@@ -52,6 +52,30 @@ namespace Tests.EditModeTest.InGame
         public void NumberGreaterTest(Rank winCard, Rank loseCard)
         {
             var cards = new List<Card> { new(Suit.Clubs, winCard), new(Suit.Clubs, loseCard) };
+            _mockDecisionView.TriggerCardDecisionEvent(cards);
+
+            var result = _mockJudgeResultModel.StoredResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(BattleResult.Result(0, cards), result);
+        }
+        
+        [Test]
+        public void AceWinsOther()
+        {
+            var cards = new List<Card> { new(Suit.Clubs, Rank.Ace), new(Suit.Clubs, Rank.King) };
+            _mockDecisionView.TriggerCardDecisionEvent(cards);
+
+            var result = _mockJudgeResultModel.StoredResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(BattleResult.Result(0, cards), result);
+        }
+
+        [Test]
+        public void TwoWinsAce()
+        {
+            var cards = new List<Card> { new(Suit.Clubs, Rank.Two), new(Suit.Clubs, Rank.Ace) };
             _mockDecisionView.TriggerCardDecisionEvent(cards);
 
             var result = _mockJudgeResultModel.StoredResult;
