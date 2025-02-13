@@ -5,6 +5,11 @@ namespace Structure.InGame
     /// </summary>
     public struct Card
     {
+        public bool IsGreater(Card other)
+        {
+            return Rank > other.Rank;
+        }
+            
         public Card
         (
             Suit suit,
