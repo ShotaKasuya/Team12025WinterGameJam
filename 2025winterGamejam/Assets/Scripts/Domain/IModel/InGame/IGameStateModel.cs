@@ -11,4 +11,19 @@ namespace Domain.IModel.InGame
     {
         Action GameDrawCardEvent{get;set;}
     }
+    
+    public class MockStateEventModel: IGameStartEventModel, IDrawCardEventModel
+    {
+        public Action GameStartEvent { get; set; }
+        public Action GameDrawCardEvent { get; set; }
+
+        public void InvokeGameStart()
+        {
+            GameStartEvent?.Invoke();
+        }
+        public void InvokeDrawCard()
+        {
+            GameDrawCardEvent?.Invoke();
+        }
+    }
 }
