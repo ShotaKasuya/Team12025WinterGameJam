@@ -5,9 +5,33 @@ namespace Structure.InGame
     /// </summary>
     public struct Card
     {
+        private int _buffDebuff;
+
+        public void SetBuff(int x)
+        {
+            _buffDebuff = x;
+        }
+
+        public void SetDebuff(int x)
+        {
+            _buffDebuff = -x;
+        }
+
+        public Rank BuffRank()
+        {
+            if ((int)Rank < - _buffDebuff)
+            {
+                return 0;
+            }
+            else
+            {
+                return (Rank)((int)Rank + _buffDebuff); 
+            }
+        }
+        
         public bool IsGreater(Card other)
         {
-            return Rank > other.Rank;
+            return BuffRank() > other.BuffRank();
         }
             
         public Card
@@ -18,6 +42,7 @@ namespace Structure.InGame
         {
             Suit = suit;
             Rank = rank;
+            _buffDebuff = 0;
         }
 
         public Suit Suit { get; }

@@ -14,13 +14,15 @@ namespace Domain.UseCase.InGame
         public CardJudgeCase
         (
             IDecisionView decisionView,
-            IJudgeResultModel judgeResultModel
+            IJudgeResultModel judgeResultModel,
+            IPlayerConditionModel playerConditionModel
         )
         {
             decisionView.CardDecisionEvent += OnDecision;
 
             DecisionView = decisionView;
             JudgeResultModel = judgeResultModel;
+            PlayerConditionModel = playerConditionModel;
         }
 
         private void OnDecision(List<Card> playerCard)
@@ -33,6 +35,9 @@ namespace Domain.UseCase.InGame
         private BattleResult Judge(List<Card> playerCard)
         {
             // todo: 勝敗
+            
+            if ()
+                
             if (playerCard[0].Rank == Rank.Two && playerCard[1].Rank == Rank.Ace)
                 return BattleResult.Result(0, playerCard);
             else
@@ -46,6 +51,7 @@ namespace Domain.UseCase.InGame
 
         private IDecisionView DecisionView { get; }
         private IJudgeResultModel JudgeResultModel { get; }
+        private IPlayerConditionModel PlayerConditionModel { get; }
 
         public void Dispose()
         {
