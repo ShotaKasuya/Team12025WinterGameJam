@@ -15,7 +15,8 @@ namespace Tests.EditModeTest.InGame
         {
             _mockDecisionView = new MockDecisionView();
             _mockJudgeResultModel = new MockJudgeResultModel();
-            _judgeCase = new CardJudgeCase(_mockDecisionView, _mockJudgeResultModel);
+            _mockConditionModel = new MockConditionModel();
+            _judgeCase = new CardJudgeCase(_mockDecisionView, _mockJudgeResultModel, _mockConditionModel);
         }
 
         [TearDown]
@@ -27,6 +28,7 @@ namespace Tests.EditModeTest.InGame
         private CardJudgeCase _judgeCase;
         private MockDecisionView _mockDecisionView;
         private MockJudgeResultModel _mockJudgeResultModel;
+        private MockConditionModel _mockConditionModel;
 
         [Test]
         public void ReturnDrawTest()
