@@ -13,14 +13,14 @@ namespace Domain.UseCase.InGame
     {
         public CardJudgeCase
         (
-            IDecisionView decisionView,
+            ISelectionView selectionView,
             IJudgeResultModel judgeResultModel,
             IPlayerConditionModel playerConditionModel
         )
         {
-            decisionView.CardDecisionEvent += OnDecision;
+            selectionView.CardDecisionEvent += OnDecision;
 
-            DecisionView = decisionView;
+            SelectionView = selectionView;
             JudgeResultModel = judgeResultModel;
             PlayerConditionModel = playerConditionModel;
         }
@@ -54,13 +54,13 @@ namespace Domain.UseCase.InGame
                     return BattleResult.Draw(playerCard);
         }
 
-        private IDecisionView DecisionView { get; }
+        private ISelectionView SelectionView { get; }
         private IJudgeResultModel JudgeResultModel { get; }
         private IPlayerConditionModel PlayerConditionModel { get; }
 
         public void Dispose()
         {
-            DecisionView.CardDecisionEvent -= OnDecision;
+            SelectionView.CardDecisionEvent -= OnDecision;
         }
     }
 }

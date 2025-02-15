@@ -9,7 +9,7 @@ namespace Domain.UseCase.InGame
         public DrawCardCase
         (
             IDeckModel deckModel,
-            IHandCard handCard,
+            IHandCardModel handCardModel,
             IGameStartEventModel gameStartEventModel,
             IDrawCardEventModel drawCardEventModel
         )//=public DrawCardCase(IDeckModel DeckModel,IHandCard HandCard, IGameStartEventModel GameStartEventModel, IDrawCardEventModel DrawCardEventModel)
@@ -17,7 +17,7 @@ namespace Domain.UseCase.InGame
 
 
             DeckModel = deckModel;
-            HandCard = handCard;
+            HandCardModel = handCardModel;
             GameStartEventModel = gameStartEventModel;
             DrawCardEventModel = drawCardEventModel; 
         }
@@ -27,7 +27,7 @@ namespace Domain.UseCase.InGame
         }
 
         private IDeckModel DeckModel{get;}
-        private IHandCard HandCard{get;}
+        private IHandCardModel HandCardModel{get;}
         private IGameStartEventModel GameStartEventModel{get;}
         private IDrawCardEventModel DrawCardEventModel{get;}
     }

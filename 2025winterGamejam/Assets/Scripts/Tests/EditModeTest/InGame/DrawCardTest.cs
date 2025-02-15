@@ -12,7 +12,7 @@ namespace Tests.EditModeTest.InGame
         public void SetUp()
         {
             _deckModel = new MockDeckModel();
-            _handCard = new MockHandCardModel();
+            _handCard = new MockHandCardModelModel();
             var stateModel = new MockStateEventModel();
             _gameStartEventModel = stateModel;
             _drawCardCase = new DrawCardCase(_deckModel, _handCard, _gameStartEventModel, _gameStartEventModel);
@@ -25,7 +25,7 @@ namespace Tests.EditModeTest.InGame
 
         private DrawCardCase _drawCardCase;
         private MockDeckModel _deckModel;
-        private MockHandCardModel _handCard;
+        private MockHandCardModelModel _handCard;
         private MockStateEventModel _gameStartEventModel;
 
         [Test]

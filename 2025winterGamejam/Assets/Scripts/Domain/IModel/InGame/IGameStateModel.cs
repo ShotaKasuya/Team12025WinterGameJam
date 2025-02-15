@@ -1,18 +1,23 @@
 using System;
+using Structure.InGame;
 
 namespace Domain.IModel.InGame
 {
+    public interface IMutGameStateModel
+    {
+        public void SetGameState(GameStateType gameState);
+    }
     public interface IGameStartEventModel
     {
-        Action GameStartEvent{get;set;}
+        Action GameStartEvent { get; set; }
     }
 
     public interface IDrawCardEventModel
     {
-        Action GameDrawCardEvent{get;set;}
+        Action GameDrawCardEvent { get; set; }
     }
-    
-    public class MockStateEventModel: IGameStartEventModel, IDrawCardEventModel
+
+    public class MockStateEventModel : IGameStartEventModel, IDrawCardEventModel
     {
         public Action GameStartEvent { get; set; }
         public Action GameDrawCardEvent { get; set; }
@@ -21,6 +26,7 @@ namespace Domain.IModel.InGame
         {
             GameStartEvent?.Invoke();
         }
+
         public void InvokeDrawCard()
         {
             GameDrawCardEvent?.Invoke();

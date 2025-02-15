@@ -13,10 +13,10 @@ namespace Tests.EditModeTest.InGame
         [SetUp]
         public void SetUp()
         {
-            _mockDecisionView = new MockDecisionView();
+            _mockSelectionView = new MockSelectionView();
             _mockJudgeResultModel = new MockJudgeResultModel();
             _mockConditionModel = new MockConditionModel();
-            _judgeCase = new CardJudgeCase(_mockDecisionView, _mockJudgeResultModel, _mockConditionModel);
+            _judgeCase = new CardJudgeCase(_mockSelectionView, _mockJudgeResultModel, _mockConditionModel);
         }
 
         [TearDown]
@@ -26,7 +26,7 @@ namespace Tests.EditModeTest.InGame
         }
 
         private CardJudgeCase _judgeCase;
-        private MockDecisionView _mockDecisionView;
+        private MockSelectionView _mockSelectionView;
         private MockJudgeResultModel _mockJudgeResultModel;
         private MockConditionModel _mockConditionModel;
 
@@ -36,7 +36,7 @@ namespace Tests.EditModeTest.InGame
             foreach (Rank rank in Enum.GetValues(typeof(Rank)))
             {
                 var cards = new List<Card> { new(Suit.Clubs, rank), new(Suit.Clubs, rank) };
-                _mockDecisionView.TriggerCardDecisionEvent(cards);
+                _mockSelectionView.TriggerCardDecisionEvent(cards);
 
                 var result = _mockJudgeResultModel.StoredResult;
                 Assert.IsNotNull(result);
@@ -54,7 +54,7 @@ namespace Tests.EditModeTest.InGame
         public void NumberGreaterTest(Rank winCard, Rank loseCard)
         {
             var cards = new List<Card> { new(Suit.Clubs, winCard), new(Suit.Clubs, loseCard) };
-            _mockDecisionView.TriggerCardDecisionEvent(cards);
+            _mockSelectionView.TriggerCardDecisionEvent(cards);
 
             var result = _mockJudgeResultModel.StoredResult;
 
@@ -66,7 +66,7 @@ namespace Tests.EditModeTest.InGame
         public void AceWinsOther()
         {
             var cards = new List<Card> { new(Suit.Clubs, Rank.Ace), new(Suit.Clubs, Rank.King) };
-            _mockDecisionView.TriggerCardDecisionEvent(cards);
+            _mockSelectionView.TriggerCardDecisionEvent(cards);
 
             var result = _mockJudgeResultModel.StoredResult;
 
@@ -78,7 +78,7 @@ namespace Tests.EditModeTest.InGame
         public void TwoWinsAce()
         {
             var cards = new List<Card> { new(Suit.Clubs, Rank.Two), new(Suit.Clubs, Rank.Ace) };
-            _mockDecisionView.TriggerCardDecisionEvent(cards);
+            _mockSelectionView.TriggerCardDecisionEvent(cards);
 
             var result = _mockJudgeResultModel.StoredResult;
 

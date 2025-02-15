@@ -12,7 +12,7 @@ namespace Domain.IModel.InGame
     }
 
     /// <summary>
-    /// 
+    /// 勝敗結果を保存するモデル
     /// </summary>
     public interface IJudgeResultModel
     {
