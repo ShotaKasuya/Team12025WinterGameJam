@@ -1,12 +1,12 @@
+using System;
+
 namespace Structure.InGame
 {
-    public struct PlayerCondition
+    [Flags]
+    public enum Condition
     {
-        public enum Condition
-        {
-            Normal = 1,
-            Five = 2,
-            Six = 4,
-        }
+        Normal = 0,
+        Five = 1,
+        Six = 2,
     }
 }

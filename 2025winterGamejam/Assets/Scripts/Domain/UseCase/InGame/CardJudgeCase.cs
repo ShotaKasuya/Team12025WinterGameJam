@@ -27,6 +27,14 @@ namespace Domain.UseCase.InGame
 
         private void OnDecision(List<Card> playerCard)
         {
+            for (int i = 0; i < playerCard.Count; i++)
+            {
+                var condition = PlayerConditionModel.PlayerConditions[i];
+                if ((condition & Condition.Five) != 0)
+                {
+                    playerCard[i].SetDebuff(5);
+                }
+            }
             var result = Judge(playerCard);
 
             JudgeResultModel.StoreJudgeResult(result);
@@ -35,9 +43,6 @@ namespace Domain.UseCase.InGame
         private BattleResult Judge(List<Card> playerCard)
         {
             // todo: 勝敗
-            
-            if ()
-                
             if (playerCard[0].Rank == Rank.Two && playerCard[1].Rank == Rank.Ace)
                 return BattleResult.Result(0, playerCard);
             else
