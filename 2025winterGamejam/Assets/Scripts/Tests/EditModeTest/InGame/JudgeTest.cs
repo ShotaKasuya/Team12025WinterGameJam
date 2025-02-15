@@ -83,5 +83,41 @@ namespace Tests.EditModeTest.InGame
             Assert.IsNotNull(result);
             Assert.AreEqual(BattleResult.Result(0, cards), result);
         }
+
+        [TestCase(Rank.Three, Rank.Two)]
+        [TestCase(Rank.Four, Rank.Three)]
+        [TestCase(Rank.Six, Rank.Five)]
+        [TestCase(Rank.Eight, Rank.Seven)]
+        [TestCase(Rank.Ten, Rank.Nine)]
+        [TestCase(Rank.Queen, Rank.Jack)]
+        [TestCase(Rank.King, Rank.Queen)]
+        public void DebuffTest(Rank winCard, Rank loseCard)
+        {
+            var cards = new List<Card> { new(Suit.Clubs, winCard), new(Suit.Clubs, loseCard) };
+            _mockDecisionView.TriggerCardDecisionEvent(cards);
+
+            var result = _mockJudgeResultModel.StoredResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(BattleResult.Result(1, cards), result);
+        }
+        
+        [TestCase(Rank.Three, Rank.Two)]
+        [TestCase(Rank.Four, Rank.Three)]
+        [TestCase(Rank.Six, Rank.Five)]
+        [TestCase(Rank.Eight, Rank.Seven)]
+        [TestCase(Rank.Ten, Rank.Nine)]
+        [TestCase(Rank.Queen, Rank.Jack)]
+        [TestCase(Rank.King, Rank.Queen)]
+        public void DebuffTest2(Rank winCard, Rank loseCard)
+        {
+            var cards = new List<Card> { new(Suit.Clubs, winCard), new(Suit.Clubs, loseCard) };
+            _mockDecisionView.TriggerCardDecisionEvent(cards);
+
+            var result = _mockJudgeResultModel.StoredResult;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(BattleResult.Result(0, cards), result);
+        }
     }
 }
