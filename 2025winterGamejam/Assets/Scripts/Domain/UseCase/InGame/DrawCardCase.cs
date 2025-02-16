@@ -27,7 +27,7 @@ namespace Domain.UseCase.InGame
             for (int i = 0; i < DeckModel.Decks.Count; i++)
             {
                 var deck = DeckModel.Decks[i];
-                var handCard = HandCard.HandCards[i];
+                var handCard = HandCardModel.HandCards[i];
 
                 Draw(deck, handCard);
             }
@@ -42,7 +42,7 @@ namespace Domain.UseCase.InGame
         }
 
         private IDeckModel DeckModel { get; }
-        private IHandCard HandCard { get; }
+        private IHandCardModel HandCardModel { get; }
         private IGameStartEventModel GameStartEventModel { get; }
         private IDrawCardEventModel DrawCardEventModel { get; }
 

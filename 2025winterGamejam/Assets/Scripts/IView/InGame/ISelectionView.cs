@@ -20,6 +20,12 @@ namespace IView.InGame
 
     public abstract class FactorableCardView : MonoBehaviour, IHandCardView, ICardView
     {
+        private void Awake()
+        {
+            ModelTransform = transform;
+        }
+
+        public Transform ModelTransform { get; private set; }
         public Action<PlayerHandCard> SelectionEvent { get; set; }
         protected PlayerHandCard Card { get; private set; }
         private Action<FactorableCardView> _dispose;

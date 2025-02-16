@@ -96,7 +96,7 @@ namespace Tests.EditModeTest.InGame
         public void DebuffTest(Rank winCard, Rank loseCard)
         {
             var cards = new List<Card> { new(Suit.Clubs, winCard), new(Suit.Clubs, loseCard) };
-            _mockDecisionView.TriggerCardDecisionEvent(cards);
+            _mockSelectionView.TriggerCardDecisionEvent(cards);
 
             var result = _mockJudgeResultModel.StoredResult;
 
@@ -114,7 +114,7 @@ namespace Tests.EditModeTest.InGame
         public void DebuffTest2(Rank winCard, Rank loseCard)
         {
             var cards = new List<Card> { new(Suit.Clubs, winCard), new(Suit.Clubs, loseCard) };
-            _mockDecisionView.TriggerCardDecisionEvent(cards);
+            _mockSelectionView.TriggerCardDecisionEvent(cards);
 
             var result = _mockJudgeResultModel.StoredResult;
 

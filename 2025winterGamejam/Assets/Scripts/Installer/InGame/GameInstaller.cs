@@ -25,6 +25,7 @@ namespace Installer.InGame
             
             // Presenter
             var cardSelectionPresenter = new PlayerSelectionPresenter();
+            // var cardPresenter = new CardPresenter();
             
             // Adapter
             var cardFactory = new CardFactory(factorableCardView, new ICardReceivable[] { cardSelectionPresenter });
