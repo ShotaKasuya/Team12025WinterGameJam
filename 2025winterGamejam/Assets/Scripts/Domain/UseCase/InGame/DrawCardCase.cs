@@ -1,34 +1,54 @@
-using System.Collections.Generic;
+using System;
 using Domain.IModel.InGame;
 using Structure.InGame;
+
 namespace Domain.UseCase.InGame
 {
-    public class DrawCardCase
+    public class DrawCardCase: IDisposable
     {
-        
         public DrawCardCase
         (
             IDeckModel deckModel,
             IHandCardModel handCardModel,
             IGameStartEventModel gameStartEventModel,
             IDrawCardEventModel drawCardEventModel
-        )//=public DrawCardCase(IDeckModel DeckModel,IHandCard HandCard, IGameStartEventModel GameStartEventModel, IDrawCardEventModel DrawCardEventModel)
+        )
         {
-
-
             DeckModel = deckModel;
             HandCardModel = handCardModel;
             GameStartEventModel = gameStartEventModel;
-            DrawCardEventModel = drawCardEventModel; 
-        }
-        private void DrawCrad(List<Deck> deck,List<HandCard> handCard)
-        {
-            //handCard.Cards
+            DrawCardEventModel = drawCardEventModel;
+
+            drawCardEventModel.GameDrawCardEvent += OnDraw;
         }
 
-        private IDeckModel DeckModel{get;}
-        private IHandCardModel HandCardModel{get;}
-        private IGameStartEventModel GameStartEventModel{get;}
-        private IDrawCardEventModel DrawCardEventModel{get;}
+        private void OnDraw()
+        {
+            for (int i = 0; i < DeckModel.Decks.Count; i++)
+            {
+                var deck = DeckModel.Decks[i];
+                var handCard = HandCard.HandCards[i];
+
+                Draw(deck, handCard);
+            }
+        }
+
+        private void Draw(Deck deck, HandCard handCard)
+        {
+            if (deck.Cards.TryPop(out var card))
+            {
+                handCard.Cards.Add(card);
+            }
+        }
+
+        private IDeckModel DeckModel { get; }
+        private IHandCard HandCard { get; }
+        private IGameStartEventModel GameStartEventModel { get; }
+        private IDrawCardEventModel DrawCardEventModel { get; }
+
+        public void Dispose()
+        {
+            DrawCardEventModel.GameDrawCardEvent -= OnDraw;
+        }
     }
 }
