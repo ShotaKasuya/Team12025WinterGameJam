@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Domain.IModel.InGame;
-using Domain.IView.InGame;
+using IView.InGame;
 using Structure.InGame;
 
 namespace Domain.UseCase.InGame

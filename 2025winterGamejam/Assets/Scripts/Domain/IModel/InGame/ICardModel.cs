@@ -17,7 +17,7 @@ namespace Domain.IModel.InGame
     /// </summary>
     public interface IMutHandCardModel : IHandCardModel
     {
-        public void StoreNewCard(Card card);
+        public void StoreNewCard(int playerId, Card card);
     }
     public interface IHandCardModel
     {

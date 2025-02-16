@@ -1,4 +1,4 @@
-using Domain.IView.InGame;
+using IView.InGame;
 
 namespace View.InGame
 {

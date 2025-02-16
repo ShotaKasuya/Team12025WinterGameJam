@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Domain.IModel.InGame;
-using Domain.IView.InGame;
 using Domain.UseCase.InGame;
+using IView.InGame;
 using NUnit.Framework;
 using Structure.InGame;
 
