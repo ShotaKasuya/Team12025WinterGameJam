@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace IView.InGame
 {
-    public interface ICardPositionView
+    public interface ICardPositionsView
     {
         public IReadOnlyList<Pose> CardPositions { get; }
     }

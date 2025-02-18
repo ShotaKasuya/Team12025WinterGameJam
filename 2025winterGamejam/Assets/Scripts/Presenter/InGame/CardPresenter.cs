@@ -8,21 +8,27 @@ namespace Presenter.InGame
     {
         public CardPresenter
         (
-            ICardPositionView cardPositionView
+            List<ICardPositionsView> cardPositionsView
         )
         {
-            CardPositionView = cardPositionView;
+            CardPositionsView = cardPositionsView;
         }
 
         public void ReceiveCard(ICardView cardView)
         {
-            CardViews.Add(cardView);
+            var playerId = cardView.Card.PlayerId;
+            if (CardViews.Capacity < cardView.Card.PlayerId - 1)
+            {
+                CardViews.Capacity = playerId;
+            }
+
+            CardViews[cardView.Card.PlayerId].Add(cardView);
             FixPosition();
         }
 
         public void ReleaseCard(ICardView cardView)
         {
-            CardViews.Remove(cardView);
+            CardViews[cardView.Card.PlayerId].Remove(cardView);
             FixPosition();
         }
 
@@ -30,14 +36,26 @@ namespace Presenter.InGame
         {
             for (int i = 0; i < CardViews.Count; i++)
             {
-                var view = CardViews[i];
-                var point = CardPositionView.CardPositions[i];
+                var views = CardViews[i];
+                var positions = CardPositionsView[i].CardPositions;
+                for (int j = 0; j < views.Count; j++)
+                {
+                    var view = views[j];
+                    var position = positions[j];
 
-                view.ModelTransform.position = point.position;
+                    view.ModelTransform.position = position.position;
+                }
             }
+            // for (int i = 0; i < CardViews.Count; i++)
+            // {
+            //     var view = CardViews[i];
+            //     var point = CardPositionsView.CardPositions[i];
+            //
+            //     view.ModelTransform.position = point.position;
+            // }
         }
 
-        private List<ICardView> CardViews { get; } = new List<ICardView>();
-        private ICardPositionView CardPositionView { get; }
+        private List<List<ICardView>> CardViews { get; } = new();
+        private List<ICardPositionsView> CardPositionsView { get; }
     }
 }

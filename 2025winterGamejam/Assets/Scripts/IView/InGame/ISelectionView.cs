@@ -12,13 +12,14 @@ namespace IView.InGame
 
     public interface IHandCardView
     {
+        public PlayerHandCard Card { get; }
         /// <summary>
         /// 手札が選択されたイベント
         /// </summary>
         public Action<PlayerHandCard> SelectionEvent { get; set; }
     }
 
-    public abstract class FactorableCardView : MonoBehaviour, IHandCardView, ICardView
+    public abstract class FactorableCardView : MonoBehaviour, ICardView
     {
         private void Awake()
         {
@@ -27,7 +28,7 @@ namespace IView.InGame
 
         public Transform ModelTransform { get; private set; }
         public Action<PlayerHandCard> SelectionEvent { get; set; }
-        protected PlayerHandCard Card { get; private set; }
+        public PlayerHandCard Card { get; private set; }
         private Action<FactorableCardView> _dispose;
         public void InitHandCard(PlayerHandCard id, Action<FactorableCardView> disposable)
         {
