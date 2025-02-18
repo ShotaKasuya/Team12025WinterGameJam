@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Adapter.InGame;
 using Domain.IPresenter.InGame;
 using Domain.UseCase.InGame;
 using IView.InGame;

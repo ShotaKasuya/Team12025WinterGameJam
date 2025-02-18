@@ -12,7 +12,8 @@ namespace Installer.InGame
             // UseCase
             // カードの選択をモデルに反映
             // カードをドロー
-            // 
+            // ドローされたカードの表示
+            // スコアの加算
         }
     }
 }

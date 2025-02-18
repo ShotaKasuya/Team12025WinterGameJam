@@ -1,11 +1,18 @@
-using System;
+using Module.Option;
+using R3;
 using Structure.InGame;
 
-namespace Domain.IPresenter.InGame
+namespace Domain.IPresenter.InGame.Player
 {
+    public interface IHandCardEventPresenter
+    {
+        public ReadOnlyReactiveProperty<Option<HandCardDesc>> OnSelectCard { get; set; }
+    }
+
     public interface IHandCardPresenter
     {
-        Action<HandCardDesc> OnSelectCard { get; set; }
+        public void ShowNewCard(Card card);
+        public void DeleteCard(Card card);
     }
 
     public struct HandCardDesc

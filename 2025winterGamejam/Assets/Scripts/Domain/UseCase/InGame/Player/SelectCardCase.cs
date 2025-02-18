@@ -1,6 +1,9 @@
 using System;
 using Domain.IModel.InGame.Player;
-using Domain.IPresenter.InGame;
+using Domain.IPresenter.InGame.Player;
+using Module.Option;
+using R3;
+using Structure.InGame;
 
 namespace Domain.UseCase.InGame.Player
 {
@@ -11,27 +14,35 @@ namespace Domain.UseCase.InGame.Player
     {
         public SelectCardCase
         (
-            IHandCardPresenter handCardPresenter,
+            IHandCardEventPresenter handCardPresenter,
             IMutSelectedCardModel selectedCardModel
         )
         {
-            HandCardPresenter = handCardPresenter;
             SelectedCardModel = selectedCardModel;
 
-            handCardPresenter.OnSelectCard += OnSelect;
+            var disposable = handCardPresenter.OnSelectCard
+                .Subscribe(
+                    OnSelect
+                );
+
+            Disposable = disposable;
         }
 
-        private void OnSelect(HandCardDesc handCardDesc)
+        private void OnSelect(Option<HandCardDesc> handCardDesc)
         {
-            SelectedCardModel.SelectedCard.Value = handCardDesc.Card;
+            if (handCardDesc.TryGetValue(out var desc))
+            {
+                SelectedCardModel.SelectedCard.Value = Option<Card>.Some(desc.Card);
+            }
+            SelectedCardModel.SelectedCard.Value = Option<Card>.None();
         }
-        
-        private IHandCardPresenter HandCardPresenter { get; }
+
         private IMutSelectedCardModel SelectedCardModel { get; }
+        private IDisposable Disposable { get; }
 
         public void Dispose()
         {
-            HandCardPresenter.OnSelectCard -= OnSelect;
+            Disposable?.Dispose();
         }
     }
 }

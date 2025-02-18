@@ -5,7 +5,8 @@
         "IPresenter",
         "IView",
         "Structure",
-        "Module"
+        "Module",
+        "IModel"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
