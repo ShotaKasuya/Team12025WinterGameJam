@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Domain.IModel.InGame;
-using Structure.InGame;
+using Utility.Structure.InGame;
 
 namespace Model.InGame
 {
@@ -14,7 +14,7 @@ namespace Model.InGame
         public void StoreNewCard(int playerId, Card card)
         {
             HandCards[playerId].Cards.Add(card);
-            AddNewCardEvent?.Invoke(new PlayerHandCard(playerId, card));
+            // AddNewCardEvent?.Invoke(new PlayerHandCard(playerId, card));
         }
     }
 }

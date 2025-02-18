@@ -1,7 +1,8 @@
-using System;
 using Domain.IModel.InGame;
-using Structure.InGame;
 using Domain.IModel.InGame.Player;
+using Utility.Structure.InGame;
+using IHandCardModel = Domain.IModel.InGame.Player.IHandCardModel;
+
 namespace Domain.UseCase.InGame.Player
 {
     /// <summary>
@@ -12,7 +13,7 @@ namespace Domain.UseCase.InGame.Player
         public DrawCardCase
         (
             IDeckModelPlayer deckModel,
-            IHandCardModelPlayer handCardModel,
+            IHandCardModel handCardModel,
             IGameStartEventModel gameStartEventModel,
             IDrawCardEventModel drawCardEventModel
         )
@@ -28,12 +29,12 @@ namespace Domain.UseCase.InGame.Player
         {
             if(DeckModel.Deck.Cards.TryPop(out Card card))
             {
-                HandCardModel.HandCards.Cards.Add(card);
+                HandCardModel.HandCards.Add(card);
             }
         }
 
         private IDeckModelPlayer DeckModel { get; }
-        private IHandCardModelPlayer HandCardModel { get; }
+        private IHandCardModel HandCardModel { get; }
         private IGameStartEventModel GameStartEventModel { get; }
         private IDrawCardEventModel DrawCardEventModel { get; }
 

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Structure.InGame;
 using UnityEngine;
+using Utility.Structure.InGame;
 
 namespace IView.InGame
 {

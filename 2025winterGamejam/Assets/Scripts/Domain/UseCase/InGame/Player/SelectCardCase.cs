@@ -1,9 +1,9 @@
 using System;
 using Domain.IModel.InGame.Player;
 using Domain.IPresenter.InGame.Player;
-using Module.Option;
 using R3;
-using Structure.InGame;
+using Utility.Module.Option;
+using Utility.Structure.InGame;
 
 namespace Domain.UseCase.InGame.Player
 {
@@ -28,11 +28,11 @@ namespace Domain.UseCase.InGame.Player
             Disposable = disposable;
         }
 
-        private void OnSelect(Option<HandCardDesc> handCardDesc)
+        private void OnSelect(Option<Card> handCardDesc)
         {
             if (handCardDesc.TryGetValue(out var desc))
             {
-                SelectedCardModel.SelectedCard.Value = Option<Card>.Some(desc.Card);
+                SelectedCardModel.SelectedCard.Value = Option<Card>.Some(desc);
             }
             SelectedCardModel.SelectedCard.Value = Option<Card>.None();
         }

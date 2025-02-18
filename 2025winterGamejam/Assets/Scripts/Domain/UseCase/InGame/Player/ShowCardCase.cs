@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using Domain.IModel.InGame.Player;
 using Domain.IPresenter.InGame.Player;
 using ObservableCollections;
-using Structure.InGame;
+using Utility.Structure.InGame;
 
 namespace Domain.UseCase.InGame.Player
 {

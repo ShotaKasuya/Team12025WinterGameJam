@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Module.Option;
-using Structure.InGame;
+using Utility.Module.Option;
+using Utility.Structure.InGame;
 
 namespace Domain.IModel.InGame
 {

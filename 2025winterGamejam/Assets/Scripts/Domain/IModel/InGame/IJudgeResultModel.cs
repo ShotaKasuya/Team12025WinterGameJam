@@ -1,5 +1,5 @@
 using System;
-using Structure.InGame;
+using Utility.Structure.InGame;
 
 namespace Domain.IModel.InGame
 {

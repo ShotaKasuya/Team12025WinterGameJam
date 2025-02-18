@@ -1,6 +1,6 @@
-using Module.Option;
 using R3;
-using Structure.InGame;
+using Utility.Module.Option;
+using Utility.Structure.InGame;
 
 namespace Domain.IModel.InGame.Player
 {

@@ -1,7 +1,7 @@
 using System;
 using Domain.IPresenter.InGame;
 using IView.InGame;
-using Structure.InGame;
+using Utility.Structure.InGame;
 
 namespace Presenter.InGame
 {

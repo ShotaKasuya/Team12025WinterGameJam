@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Domain.IModel.InGame;
 using Domain.UseCase.InGame;
 using NUnit.Framework;
-using Structure.InGame;
+using Utility.Structure.InGame;
 
 namespace Tests.EditModeTest.InGame
 {

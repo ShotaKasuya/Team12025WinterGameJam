@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain.IModel.InGame;
-using Module.Option;
-using Structure.InGame;
+using Utility.Module.Option;
+using Utility.Structure.InGame;
 
 namespace Model.InGame
 {

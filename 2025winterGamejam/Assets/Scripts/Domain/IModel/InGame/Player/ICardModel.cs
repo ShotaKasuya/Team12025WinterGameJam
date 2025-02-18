@@ -1,21 +1,25 @@
-using System.Collections.Generic;
-using Structure.InGame;
 using System;
+using ObservableCollections;
+using Utility.Structure.InGame;
 
 
 namespace Domain.IModel.InGame.Player
 {
+    public interface IDeckInitializable
+    {
+        public void InitDeck(Deck deck);
+    }
     public interface IDeckModelPlayer
     {
         public Deck Deck{get;}
     }
     public interface IMutHandCardModel : IHandCardModel
     {
-        public void StoreNewCard(int playerId, Card card);
+        public void StoreNewCard(Card card);
     }
-    public interface IHandCardModelPlayer
+    public interface IHandCardModel
     {
-        public HandCard HandCards { get; }
+        public ObservableList<Card> HandCards { get; }
     }
     public interface IHandCardEventModel
     {

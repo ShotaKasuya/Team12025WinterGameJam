@@ -1,6 +1,6 @@
 using System;
 using Domain.IModel.InGame;
-using Structure.InGame;
+using Utility.Structure.InGame;
 
 namespace Model.InGame
 {

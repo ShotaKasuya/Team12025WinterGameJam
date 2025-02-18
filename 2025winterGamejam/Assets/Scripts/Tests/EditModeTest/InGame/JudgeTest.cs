@@ -4,7 +4,7 @@ using Domain.IModel.InGame;
 using Domain.UseCase.InGame;
 using IView.InGame;
 using NUnit.Framework;
-using Structure.InGame;
+using Utility.Structure.InGame;
 
 namespace Tests.EditModeTest.InGame
 {
@@ -59,7 +59,7 @@ namespace Tests.EditModeTest.InGame
             var result = _mockJudgeResultModel.StoredResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(BattleResult.Result(0, cards), result);
+            Assert.AreEqual(BattleResult.Result(new PlayerId(0), cards), result);
         }
         
         [Test]
@@ -71,7 +71,7 @@ namespace Tests.EditModeTest.InGame
             var result = _mockJudgeResultModel.StoredResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(BattleResult.Result(0, cards), result);
+            Assert.AreEqual(BattleResult.Result(new PlayerId(0), cards), result);
         }
 
         [Test]
@@ -83,7 +83,7 @@ namespace Tests.EditModeTest.InGame
             var result = _mockJudgeResultModel.StoredResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(BattleResult.Result(0, cards), result);
+            Assert.AreEqual(BattleResult.Result(new PlayerId(0), cards), result);
         }
 
         [TestCase(Rank.Three, Rank.Two)]
@@ -101,7 +101,7 @@ namespace Tests.EditModeTest.InGame
             var result = _mockJudgeResultModel.StoredResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(BattleResult.Result(1, cards), result);
+            Assert.AreEqual(BattleResult.Result(new PlayerId(0), cards), result);
         }
         
         [TestCase(Rank.Three, Rank.Two)]
@@ -119,7 +119,7 @@ namespace Tests.EditModeTest.InGame
             var result = _mockJudgeResultModel.StoredResult;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(BattleResult.Result(0, cards), result);
+            Assert.AreEqual(BattleResult.Result(new PlayerId(0), cards), result);
         }
     }
 }

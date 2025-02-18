@@ -4,9 +4,9 @@ using Domain.IPresenter.InGame;
 using Domain.UseCase.InGame;
 using IView.InGame;
 using Model.InGame;
-using Module.Installer;
 using Presenter.InGame;
 using UnityEngine;
+using Utility.Module.Installer;
 using View.InGame;
 
 namespace Installer.InGame
