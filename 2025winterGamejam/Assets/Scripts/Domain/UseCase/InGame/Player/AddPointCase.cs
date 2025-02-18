@@ -1,11 +1,11 @@
 using System;
 using Domain.IModel.InGame;
-using Structure.InGame;
 using Domain.IModel.InGame.Player;
-using R3;
+using Utility.Structure.InGame;
+
 namespace Domain.UseCase.InGame.Player
 {
-    public class AddPointCase:IDisposable
+    public class AddPointCase : IDisposable
     {
         public AddPointCase
         (
@@ -23,17 +23,15 @@ namespace Domain.UseCase.InGame.Player
 
         private void AddPoint(BattleResult battleResult)
         {
-            
         }
 
-        private IScoreModelPlayer ScoreModelPlayer{get;}
-        private IPlayerIdModel PlayerIdModel{get;}
-        private IJudgeEventModel JudgeEventModel{get;}
-        
+        private IScoreModelPlayer ScoreModelPlayer { get; }
+        private IPlayerIdModel PlayerIdModel { get; }
+        private IJudgeEventModel JudgeEventModel { get; }
+
         public void Dispose()
         {
             JudgeEventModel.JudgeEndEvent -= AddPoint;
         }
     }
-
 }
