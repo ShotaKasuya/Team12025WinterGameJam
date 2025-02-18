@@ -1,3 +1,4 @@
+using System;
 using Domain.IModel.InGame.Player;
 using ObservableCollections;
 using R3;
@@ -6,7 +7,7 @@ using Utility.Structure.InGame;
 
 namespace Model.InGame.Player
 {
-    public class PlayerHandCardModel: IMutHandCardModel, IMutSelectedCardModel
+    public class PlayerHandCardModel: IMutHandCardModel, IMutSelectedCardModel, IDisposable
     {
         public ReactiveProperty<Option<Card>> SelectedCard { get; } =
             new ReactiveProperty<Option<Card>>(Option<Card>.None());
@@ -14,6 +15,11 @@ namespace Model.InGame.Player
         public void StoreNewCard(Card card)
         {
             HandCards.Add(card);
+        }
+
+        public void Dispose()
+        {
+            SelectedCard?.Dispose();
         }
     }
 }

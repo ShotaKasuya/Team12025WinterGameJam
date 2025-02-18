@@ -32,12 +32,6 @@ namespace Presenter.InGame.Player
 
             SynchronizedView = handCardModel.HandCards
                 .CreateView(CreateCardView);
-            SynchronizedView.ObserveRemove()
-                .Subscribe(x =>
-                {
-                    var (_, cardView) = x.Value;
-                    DeleteCardView(cardView);
-                });
         }
 
         private FactorableCardView CreateCardView(Card card)

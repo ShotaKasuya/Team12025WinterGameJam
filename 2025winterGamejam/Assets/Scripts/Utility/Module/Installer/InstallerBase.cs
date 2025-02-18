@@ -8,7 +8,7 @@ namespace Utility.Module.Installer
     {
         private InstallerStateType _stateType = InstallerStateType.NotConfigured;
 
-        private void Awake()
+        private void Start()
         {
             Configure();
         }

@@ -1,3 +1,4 @@
+using System;
 using Domain.IModel.InGame;
 using Domain.IModel.InGame.Player;
 using Utility.Structure.InGame;
@@ -8,7 +9,7 @@ namespace Domain.UseCase.InGame.Player
     /// <summary>
     /// プレイヤーがカードをドローする処理
     /// </summary>
-    public class DrawCardCase
+    public class DrawCardCase: IDisposable
     {
         public DrawCardCase
         (
