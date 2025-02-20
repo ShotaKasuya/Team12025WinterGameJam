@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using Domain.IModel.InGame.Player;
-using ObservableCollections;
 using R3;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
@@ -13,7 +13,10 @@ namespace Model.InGame.Player
             new ReactiveProperty<Option<Card>>(Option<Card>.None());
 
         public ReadOnlyReactiveProperty<Option<Card>> OnSelected => SelectedCard;
-        public ObservableList<Card> HandCards { get; } = new ObservableList<Card>();
+        public IReadOnlyList<Card> HandCardsReader => HandCards;
+        private List<Card> HandCards { get; } = new List<Card>();
+        public Action<Card> OnAddHandCards { get; set; }
+
         public void StoreNewCard(Card card)
         {
             HandCards.Add(card);

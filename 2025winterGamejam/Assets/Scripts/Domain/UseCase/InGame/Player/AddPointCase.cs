@@ -22,31 +22,31 @@ namespace Domain.UseCase.InGame.Player
             JudgeEventModel.JudgeEndEvent += AddPoint;
         }
 
-        private void AddPoint(IJudgeModel judgeModel)
+        private void AddPoint(ResultAndDrawCount resultAndDrawCount)
         {
-            if (judgeModel.BattleResult.Winner.TryGetValue(out PlayerId winner))
+            if (resultAndDrawCount.BattleResult.Winner.TryGetValue(out PlayerId winner))
             {
                 if (PlayerIdModel.PlayerId.Equals(winner))
                 {
-                    switch (judgeModel.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank)
+                    switch (resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank)
                     {
                         case Rank.Seven:
-                            ScoreModelPlayer.AddScore(2 * (judgeModel.DrawCount + 1));
+                            ScoreModelPlayer.AddScore(2 * (resultAndDrawCount.DrawCount + 1));
                             break;
                         case Rank.Nine:
-                            ScoreModelPlayer.AddScore(2 * (judgeModel.DrawCount + 1) + 2);
+                            ScoreModelPlayer.AddScore(2 * (resultAndDrawCount.DrawCount + 1) + 2);
                             break;
                         case Rank.Jack:
-                            ScoreModelPlayer.AddScore(2 * (judgeModel.DrawCount + 1) + 4);
+                            ScoreModelPlayer.AddScore(2 * (resultAndDrawCount.DrawCount + 1) + 4);
                             break;
                         default:
-                            ScoreModelPlayer.AddScore(2 * (judgeModel.DrawCount + 1));
+                            ScoreModelPlayer.AddScore(2 * (resultAndDrawCount.DrawCount + 1));
                             break;
                     }
                 }
                 else
                 {
-                    if (judgeModel.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank == Rank.Jack)
+                    if (resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank == Rank.Jack)
                     {
                         ScoreModelPlayer.AddScore(-4);
                     }
@@ -54,12 +54,12 @@ namespace Domain.UseCase.InGame.Player
             }
         }
 
-        private int DefferentRank(IJudgeModel judgeModel)
+        private int DefferentRank(ResultAndDrawCount resultAndDrawCount)
         {
-            var myRank = judgeModel.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank;
+            var myRank = resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank;
 
             return (int)myRank -
-                   (int)judgeModel.BattleResult.Cards
+                   (int)resultAndDrawCount.BattleResult.Cards
                        .Select(x => x.Rank)
                        .Where(x => x != myRank)
                        .Max();

@@ -8,11 +8,11 @@ namespace Domain.IModel.InGame
     /// </summary>
     public interface IJudgeEventModel
     {
-        Action<IJudgeModel> JudgeEndEvent { get; set; }
+        Action<ResultAndDrawCount> JudgeEndEvent { get; set; }
     }
-    public struct IJudgeModel
+    public struct ResultAndDrawCount
     {
-        public IJudgeModel(int drawCount,BattleResult battleResult)
+        public ResultAndDrawCount(int drawCount,BattleResult battleResult)
         {
             DrawCount = drawCount;
             BattleResult = battleResult;

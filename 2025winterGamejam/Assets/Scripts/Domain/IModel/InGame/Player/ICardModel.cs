@@ -20,7 +20,7 @@ namespace Domain.IModel.InGame.Player
     }
     public interface IHandCardModel
     {
-        public IReadOnlyList<Card> HandCards { get; }
+        public IReadOnlyList<Card> HandCardsReader { get; }
         public Action<Card> OnAddHandCards { get; set; }
     }
     public interface IHandCardEventModel
