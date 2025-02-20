@@ -50,7 +50,6 @@ namespace Presenter.InGame.Player
             cardView.SelectionEvent -= handCard => SetSelectedCard(handCard.CardDesc);
             Products.Remove(cardView);
             Object.Destroy(cardView.gameObject);
-            FixPosition();
         }
 
         private void FixPosition()

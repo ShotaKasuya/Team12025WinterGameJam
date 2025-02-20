@@ -16,9 +16,17 @@ namespace Installer.InGame.Player
     {
         [SerializeField] private FactorableCardView factorableCardView;
 
-        [HideInInspector] public IPlayerIdModel PlayerIdModel;
-        [HideInInspector] public GameStateModel GameStateModel;
-        [HideInInspector] public HandCardPositionsView handCardPositionsView;
+        private IPlayerIdModel _playerIdModel;
+        private GameStateModel _gameStateModel;
+        private HandCardPositionsView _handCardPositionsView;
+
+        public void Inject(IPlayerIdModel playerIdModel, GameStateModel gameStateModel,
+            HandCardPositionsView handCardPositionsView)
+        {
+            _playerIdModel = playerIdModel;
+            _gameStateModel = gameStateModel;
+            _handCardPositionsView = handCardPositionsView;
+        }
 
         protected override void CustomConfigure()
         {
@@ -29,21 +37,21 @@ namespace Installer.InGame.Player
 
             // Presenter
             var cardPresenter =
-                new CardPresenter(PlayerIdModel, handCardModel, handCardPositionsView, factorableCardView);
+                new CardPresenter(_playerIdModel, handCardModel, _handCardPositionsView, factorableCardView);
             RegisterEntryPoints(cardPresenter);
 
             // UseCase
             var selectCardCase = new SelectCardCase(cardPresenter, handCardModel);
-            var drawCardCase = new DrawCardCase(deckModel, handCardModel, GameStateModel, GameStateModel);
+            var drawCardCase = new DrawCardCase(deckModel, handCardModel, _gameStateModel, _gameStateModel);
             // スコアの加算
             RegisterEntryPoints(selectCardCase);
             RegisterEntryPoints(drawCardCase);
 
-            deckModel.InitDeck(Deck.SortedDeck(new List<Suit>() { Suit.Clubs, Suit.Diamonds }));
-            GameStateModel.SetGameState(GameStateType.DrawCard);
-            GameStateModel.SetGameState(GameStateType.DrawCard);
-            GameStateModel.SetGameState(GameStateType.DrawCard);
-            GameStateModel.SetGameState(GameStateType.DrawCard);
+            deckModel.InitDeck(Deck.SortedDeck(new List<Suit> { Suit.Clubs, Suit.Diamonds }));
+            _gameStateModel.SetGameState(GameStateType.DrawCard);
+            _gameStateModel.SetGameState(GameStateType.DrawCard);
+            _gameStateModel.SetGameState(GameStateType.DrawCard);
+            _gameStateModel.SetGameState(GameStateType.DrawCard);
         }
     }
 }
