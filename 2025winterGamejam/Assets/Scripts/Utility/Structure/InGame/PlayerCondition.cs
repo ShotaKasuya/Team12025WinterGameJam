@@ -8,5 +8,6 @@ namespace Utility.Structure.InGame
         Normal = 0,
         Five = 1,
         Six = 2,
+        Ten = 3 
     }
 }
