@@ -1,3 +1,4 @@
+
 namespace Utility.Structure.InGame
 {
     public struct PlayerId

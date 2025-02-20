@@ -38,7 +38,7 @@ namespace IView.InGame
 
         private void OnDestroy()
         {
-            _dispose.Invoke(this);
+            _dispose?.Invoke(this);
         }
     }
 

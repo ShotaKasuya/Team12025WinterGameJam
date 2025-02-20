@@ -2,7 +2,7 @@ using System;
 using Domain.IModel.InGame;
 using Domain.IModel.InGame.Player;
 using Utility.Structure.InGame;
-using IHandCardModel = Domain.IModel.InGame.Player.IHandCardModel;
+using IMutHandCardModel = Domain.IModel.InGame.Player.IMutHandCardModel;
 
 namespace Domain.UseCase.InGame.Player
 {
@@ -14,7 +14,7 @@ namespace Domain.UseCase.InGame.Player
         public DrawCardCase
         (
             IDeckModelPlayer deckModel,
-            IHandCardModel handCardModel,
+            IMutHandCardModel handCardModel,
             IGameStartEventModel gameStartEventModel,
             IDrawCardEventModel drawCardEventModel
         )
@@ -30,12 +30,12 @@ namespace Domain.UseCase.InGame.Player
         {
             if(DeckModel.Deck.Cards.TryPop(out Card card))
             {
-                HandCardModel.HandCards.Add(card);
+                HandCardModel.StoreNewCard(card);
             }
         }
 
         private IDeckModelPlayer DeckModel { get; }
-        private IHandCardModel HandCardModel { get; }
+        private IMutHandCardModel HandCardModel { get; }
         private IGameStartEventModel GameStartEventModel { get; }
         private IDrawCardEventModel DrawCardEventModel { get; }
 

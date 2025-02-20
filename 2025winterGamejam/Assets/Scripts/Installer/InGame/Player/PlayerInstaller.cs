@@ -6,15 +6,18 @@ using Model.InGame;
 using Model.InGame.Player;
 using Presenter.InGame.Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utility.Module.Installer;
 using Utility.Structure.InGame;
 using View.InGame;
+using View.InGame.Player;
 
 namespace Installer.InGame.Player
 {
     public class PlayerInstaller : InstallerBase
     {
         [SerializeField] private FactorableCardView factorableCardView;
+        [SerializeField] private ProductCardView productCardView;
 
         private IPlayerIdModel _playerIdModel;
         private GameStateModel _gameStateModel;
@@ -30,6 +33,9 @@ namespace Installer.InGame.Player
 
         protected override void CustomConfigure()
         {
+            // Factory
+            var cardFactory = new CardFactory(productCardView);
+            
             // Model
             var handCardModel = new PlayerHandCardModel();
             var deckModel = new PlayerDeckModel();
@@ -37,14 +43,13 @@ namespace Installer.InGame.Player
 
             // Presenter
             var cardPresenter =
-                new CardPresenter(_playerIdModel, handCardModel, _handCardPositionsView, factorableCardView);
+                new NewCardPresenter(cardFactory, handCardModel, _handCardPositionsView);
             RegisterEntryPoints(cardPresenter);
+            // var selectedCardPresenter = new SelectedCardPresenter(handCardModel);
 
             // UseCase
-            var selectCardCase = new SelectCardCase(cardPresenter, handCardModel);
             var drawCardCase = new DrawCardCase(deckModel, handCardModel, _gameStateModel, _gameStateModel);
             // スコアの加算
-            RegisterEntryPoints(selectCardCase);
             RegisterEntryPoints(drawCardCase);
 
             deckModel.InitDeck(Deck.SortedDeck(new List<Suit> { Suit.Clubs, Suit.Diamonds }));

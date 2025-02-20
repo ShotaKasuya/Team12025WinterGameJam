@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ObservableCollections;
 using Utility.Structure.InGame;
 
@@ -19,7 +20,8 @@ namespace Domain.IModel.InGame.Player
     }
     public interface IHandCardModel
     {
-        public ObservableList<Card> HandCards { get; }
+        public IReadOnlyList<Card> HandCards { get; }
+        public Action<Card> OnAddHandCards { get; set; }
     }
     public interface IHandCardEventModel
     {

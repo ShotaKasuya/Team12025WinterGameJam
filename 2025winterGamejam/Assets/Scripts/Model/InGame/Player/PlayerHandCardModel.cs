@@ -11,6 +11,8 @@ namespace Model.InGame.Player
     {
         public ReactiveProperty<Option<Card>> SelectedCard { get; } =
             new ReactiveProperty<Option<Card>>(Option<Card>.None());
+
+        public ReadOnlyReactiveProperty<Option<Card>> OnSelected => SelectedCard;
         public ObservableList<Card> HandCards { get; } = new ObservableList<Card>();
         public void StoreNewCard(Card card)
         {
@@ -21,5 +23,6 @@ namespace Model.InGame.Player
         {
             SelectedCard?.Dispose();
         }
+
     }
 }

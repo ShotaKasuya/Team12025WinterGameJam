@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e3a708fc80493084dcd80bef0950a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCardPositionsView: {fileID: 0}
   factorableCardView: {fileID: 4938966265700367182, guid: 222d3b9115998ec18b698f1cd7738deb, type: 3}
+  factoryProductCardView: {fileID: -354559185206843246, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
