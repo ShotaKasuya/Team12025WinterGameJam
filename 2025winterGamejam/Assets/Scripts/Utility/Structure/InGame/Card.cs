@@ -1,4 +1,3 @@
-
 namespace Utility.Structure.InGame
 {
     /// <summary>
@@ -20,21 +19,21 @@ namespace Utility.Structure.InGame
 
         public Rank BuffRank()
         {
-            if ((int)Rank < - _buffDebuff)
+            if ((int)Rank < -_buffDebuff)
             {
                 return 0;
             }
             else
             {
-                return (Rank)((int)Rank + _buffDebuff); 
+                return (Rank)((int)Rank + _buffDebuff);
             }
         }
-        
+
         public bool IsGreater(Card other)
         {
             return BuffRank() > other.BuffRank();
         }
-            
+
         public Card
         (
             Suit suit,
@@ -57,10 +56,10 @@ namespace Utility.Structure.InGame
 
     public enum Suit
     {
-        Spades,     // ♠
-        Hearts,     // ♥
-        Diamonds,   // ♦
-        Clubs,      // ♣
+        Spades, // ♠
+        Hearts, // ♥
+        Diamonds, // ♦
+        Clubs, // ♣
     }
 
     public enum Rank
@@ -79,7 +78,7 @@ namespace Utility.Structure.InGame
         King,
         Ace,
     }
-    
+
     public static class CardExtension
     {
     }

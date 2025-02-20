@@ -14,7 +14,6 @@ namespace Installer.InGame
     public class GameInstaller : InstallerBase
     {
         [SerializeField] private List<HandCardPositionsView> cardPositionsView;
-        [SerializeField] private FactorableCardView factorableCardView;
 
         protected override void CustomConfigure()
         {
