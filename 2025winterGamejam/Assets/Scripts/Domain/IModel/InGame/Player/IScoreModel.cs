@@ -2,6 +2,6 @@ namespace Domain.IModel.InGame.Player
 {
     public interface IScoreModelPlayer
     {
-                public void AddScore(int score);
+        public void AddScore(int score);
     }
 }
