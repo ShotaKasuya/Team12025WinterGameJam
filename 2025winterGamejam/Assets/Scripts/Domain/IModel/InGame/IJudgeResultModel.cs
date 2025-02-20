@@ -20,6 +20,10 @@ namespace Domain.IModel.InGame
         public int DrawCount {get;}
         public BattleResult BattleResult{get;}
     }
+    public class MocJudgeEventModel : IJudgeEventModel
+    {
+        public Action<ResultAndDrawCount> JudgeEndEvent { get; set; }
+    }
 
     /// <summary>
     /// 勝敗結果を保存するモデル
