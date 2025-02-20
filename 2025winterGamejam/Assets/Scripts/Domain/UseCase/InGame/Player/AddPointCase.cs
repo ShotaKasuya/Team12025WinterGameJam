@@ -24,39 +24,46 @@ namespace Domain.UseCase.InGame.Player
 
         private void AddPoint(IJudgeModel judgeModel)
         {
-            if(judgeModel.BattleResult.Winner.TryGetValue(out PlayerId winner))
+            if (judgeModel.BattleResult.Winner.TryGetValue(out PlayerId winner))
             {
-                if(PlayerIdModel.PlayerId.Equals(winner))
+                if (PlayerIdModel.PlayerId.Equals(winner))
                 {
-                    switch(judgeModel.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank)
+                    switch (judgeModel.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank)
                     {
                         case Rank.Seven:
-                        ScoreModelPlayer.AddScore(2*(judgeModel.DrawCount+1));
-                        break;
+                            ScoreModelPlayer.AddScore(2 * (judgeModel.DrawCount + 1));
+                            break;
                         case Rank.Nine:
-                        ScoreModelPlayer.AddScore(2*(judgeModel.DrawCount+1)+2);
-                        break;
+                            ScoreModelPlayer.AddScore(2 * (judgeModel.DrawCount + 1) + 2);
+                            break;
                         case Rank.Jack:
-                        ScoreModelPlayer.AddScore(2*(judgeModel.DrawCount+1)+4);
-                        break;
+                            ScoreModelPlayer.AddScore(2 * (judgeModel.DrawCount + 1) + 4);
+                            break;
                         default:
-                        ScoreModelPlayer.AddScore(2*(judgeModel.DrawCount+1));
-                        break;
+                            ScoreModelPlayer.AddScore(2 * (judgeModel.DrawCount + 1));
+                            break;
                     }
                 }
                 else
                 {
-                    if(judgeModel.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank==Rank.Jack)
+                    if (judgeModel.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank == Rank.Jack)
                     {
                         ScoreModelPlayer.AddScore(-4);
                     }
                 }
             }
         }
-        // private int DefferentRank(IJudgeModel judgeModel)
-        // {
-        //     return (int)judgeModel.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank - (int)judgeModel.BattleResult.Cards[].Rank;
-        // }
+
+        private int DefferentRank(IJudgeModel judgeModel)
+        {
+            var myRank = judgeModel.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank;
+
+            return (int)myRank -
+                   (int)judgeModel.BattleResult.Cards
+                       .Select(x => x.Rank)
+                       .Where(x => x != myRank)
+                       .Max();
+        }
 
         private IScoreModelPlayer ScoreModelPlayer { get; }
         private IPlayerIdModel PlayerIdModel { get; }
