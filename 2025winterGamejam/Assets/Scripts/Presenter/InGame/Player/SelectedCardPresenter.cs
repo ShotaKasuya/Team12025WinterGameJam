@@ -1,7 +1,5 @@
 using Domain.IModel.InGame.Player;
 using IView.InGame;
-using R3;
-using UnityEngine;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
 
@@ -15,36 +13,61 @@ namespace Presenter.InGame.Player
         public SelectedCardPresenter
         (
             ICardFactory cardFactory,
-            ISelectedCardModel selectedCardModel
+            IMutSelectedCardModel selectedCardModel
         )
         {
             CardFactory = cardFactory;
             SelectedCardModel = selectedCardModel;
 
-            SelectedCardModel.OnSelected
-                .Subscribe(x =>
-                {
-                    Log(x);
-                });
             cardFactory.OnCreateView += AddView;
         }
 
-        private void Log(Option<Card> card)
+        private void ApplyView(Option<Card> card)
         {
-            Debug.Log("VAR");
-        }
+            var views = CardFactory.Products;
+            for (int i = 0; i < views.Count; i++)
+            {
+                var view = views[i];
 
-        private void AddView(ProductCardView cardView)
-        {
-            
+                if (card.TryGetValue(out var value))
+                {
+                    if (value.IsEqual(view.Card))
+                    {
+                        view.TurnOn();
+                    }
+                    else
+                    {
+                        view.TurnOff();
+                    }
+                }
+                else
+                {
+                    view.TurnOff();
+                }
+            }
         }
 
         private void OnSelect(Card card)
         {
-            
+            var apply = Option<Card>.Some(card);
+            var currentSelect = SelectedCardModel.OnSelected.CurrentValue;
+            if (currentSelect.TryGetValue(out var value))
+            {
+                if (card.IsEqual(value))
+                {
+                    apply=Option<Card>.None();
+                }
+            }
+            ApplyView(apply);
+            SelectedCardModel.SelectedCard.Value = apply;
         }
-        
+
+        private void AddView(ProductCardView cardView)
+        {
+            cardView.SelectionEvent += OnSelect;
+        }
+
         private ICardFactory CardFactory { get; }
-        private ISelectedCardModel SelectedCardModel { get; }
+        private IMutSelectedCardModel SelectedCardModel { get; }
     }
 }

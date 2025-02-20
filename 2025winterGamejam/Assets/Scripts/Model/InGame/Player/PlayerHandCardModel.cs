@@ -20,6 +20,7 @@ namespace Model.InGame.Player
         public void StoreNewCard(Card card)
         {
             HandCards.Add(card);
+            OnAddHandCards?.Invoke(card);
         }
 
         public void Dispose()

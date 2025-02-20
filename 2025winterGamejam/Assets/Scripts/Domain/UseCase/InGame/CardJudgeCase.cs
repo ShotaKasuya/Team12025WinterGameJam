@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using Domain.IModel.InGame;
-using IView.InGame;
 using Utility.Structure.InGame;
 
 namespace Domain.UseCase.InGame
@@ -9,18 +7,14 @@ namespace Domain.UseCase.InGame
     /// <summary>
     /// 勝敗をジャッジする
     /// </summary>
-    public class CardJudgeCase: IDisposable
+    public class CardJudgeCase
     {
         public CardJudgeCase
         (
-            ISelectionView selectionView,
             IJudgeResultModel judgeResultModel,
             IPlayerConditionModel playerConditionModel
         )
         {
-            selectionView.CardDecisionEvent += OnDecision;
-
-            SelectionView = selectionView;
             JudgeResultModel = judgeResultModel;
             PlayerConditionModel = playerConditionModel;
         }
@@ -54,13 +48,8 @@ namespace Domain.UseCase.InGame
                     return BattleResult.Draw(playerCard);
         }
 
-        private ISelectionView SelectionView { get; }
         private IJudgeResultModel JudgeResultModel { get; }
         private IPlayerConditionModel PlayerConditionModel { get; }
 
-        public void Dispose()
-        {
-            SelectionView.CardDecisionEvent -= OnDecision;
-        }
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7271515919637024999}
   - component: {fileID: -354559185206843246}
   m_Layer: 0
-  m_Name: 9-Sliced 1
+  m_Name: HandCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3f6942f1364cddad61382207136455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultScale: {x: 1, y: 1, z: 1}
+  selectedScale: {x: 2, y: 2, z: 2}

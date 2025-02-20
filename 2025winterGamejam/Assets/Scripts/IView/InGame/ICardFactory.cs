@@ -13,20 +13,19 @@ namespace IView.InGame
         public Action<ProductCardView> OnCreateView { get; set; }
     }
 
-    public interface ICardProduct: ISelectionView, ITransformableView
+    public interface ICardProduct: IHandCardView, ITransformableView
     {
         public void Inject(Card card, Action<ProductCardView> disposable);
     }
 
     public abstract class ProductCardView: MonoBehaviour, ICardProduct
     {
-        private void Awake()
-        {
-            ModelTransform = transform;
-        }
         public Transform ModelTransform { get; private set; }
-        public Action<List<Card>> CardDecisionEvent { get; set; }
-        protected Card Card { get; private set; }
+        public Action<Card> SelectionEvent { get; set; }
+        public abstract void TurnOn();
+        public abstract void TurnOff();
+
+        public Card Card { get; private set; }
         private Action<ProductCardView> _disposable;
         public void Inject(Card card, Action<ProductCardView> disposable)
         {
@@ -34,10 +33,13 @@ namespace IView.InGame
             _disposable = disposable;
         }
 
+        private void Awake()
+        {
+            ModelTransform = transform;
+        }
         private void OnDestroy()
         {
             _disposable.Invoke(this);
         }
-
     }
 }

@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   factorableCardView: {fileID: 4938966265700367182, guid: 222d3b9115998ec18b698f1cd7738deb, type: 3}
-  factoryProductCardView: {fileID: -354559185206843246, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
+  productCardView: {fileID: -354559185206843246, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}

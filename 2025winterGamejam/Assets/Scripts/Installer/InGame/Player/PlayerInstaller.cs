@@ -6,7 +6,6 @@ using Model.InGame;
 using Model.InGame.Player;
 using Presenter.InGame.Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utility.Module.Installer;
 using Utility.Structure.InGame;
 using View.InGame;
@@ -16,7 +15,6 @@ namespace Installer.InGame.Player
 {
     public class PlayerInstaller : InstallerBase
     {
-        [SerializeField] private FactorableCardView factorableCardView;
         [SerializeField] private ProductCardView productCardView;
 
         private IPlayerIdModel _playerIdModel;
@@ -45,7 +43,7 @@ namespace Installer.InGame.Player
             var cardPresenter =
                 new NewCardPresenter(cardFactory, handCardModel, _handCardPositionsView);
             RegisterEntryPoints(cardPresenter);
-            // var selectedCardPresenter = new SelectedCardPresenter(handCardModel);
+            var selectedCardPresenter = new SelectedCardPresenter(cardFactory, handCardModel);
 
             // UseCase
             var drawCardCase = new DrawCardCase(deckModel, handCardModel, _gameStateModel, _gameStateModel);
