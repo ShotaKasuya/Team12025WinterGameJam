@@ -8,5 +8,10 @@ namespace Utility.Structure.InGame
             Id = id;
         }
         public int Id { get; }
+
+        public bool Equals(PlayerId other)
+        {
+            return Id==other.Id;
+        }
     }
 }
