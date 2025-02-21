@@ -1,10 +1,10 @@
 using System;
 using Domain.IModel.InGame.Player;
-using IView.InGame;
+using Domain.IView.InGame;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
 
-namespace Presenter.InGame.Player
+namespace Domain.Presenter.InGame.Player
 {
     /// <summary>
     /// カードの選択を反映する

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IView.Utility
+namespace Domain.IView.Utility
 {
     public interface ITransformableView
     {

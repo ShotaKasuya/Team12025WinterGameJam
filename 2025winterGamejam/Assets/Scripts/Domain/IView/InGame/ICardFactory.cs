@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using IView.Utility;
+using Domain.IView.Utility;
 using UnityEngine;
 using Utility.Structure.InGame;
 
-namespace IView.InGame
+namespace Domain.IView.InGame
 {
     public interface ICardFactory
     {

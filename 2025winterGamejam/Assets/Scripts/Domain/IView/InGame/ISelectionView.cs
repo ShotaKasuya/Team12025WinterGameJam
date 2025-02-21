@@ -1,7 +1,7 @@
 using System;
 using Utility.Structure.InGame;
 
-namespace IView.InGame
+namespace Domain.IView.InGame
 {
     public interface IHandCardView
     {

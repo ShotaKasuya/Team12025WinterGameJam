@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace IView.InGame
+namespace Domain.IView.InGame
 {
     public interface ICardPositionsView
     {

@@ -1,6 +1,6 @@
-using IView.Utility;
+using Domain.IView.Utility;
 
-namespace IView.InGame
+namespace Domain.IView.InGame
 {
     public interface ICardView: IHandCardView, ITransformableView
     {

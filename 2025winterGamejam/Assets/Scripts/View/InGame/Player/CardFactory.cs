@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using IView.InGame;
+using Domain.IView.InGame;
 using Utility.Structure.InGame;
 using Object = UnityEngine.Object;
 

@@ -5,6 +5,10 @@ namespace Model.InGame.Player
 {
     public class PlayerDeckModel: IDeckModelPlayer, IDeckInitializable
     {
+        public PlayerDeckModel(Deck deck)
+        {
+            Deck = deck;
+        }
         public Deck Deck { get; private set; }
         public void InitDeck(Deck deck)
         {

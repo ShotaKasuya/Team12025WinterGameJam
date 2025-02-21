@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Domain.IModel.InGame.Player;
+using Domain.IView.InGame;
 using Domain.UseCase.InGame;
 using Installer.InGame.Player;
-using IView.InGame;
 using Model.InGame;
 using Model.InGame.Player;
 using UnityEngine;

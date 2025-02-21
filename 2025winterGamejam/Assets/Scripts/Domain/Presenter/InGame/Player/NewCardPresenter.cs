@@ -1,9 +1,9 @@
 using System;
 using Domain.IModel.InGame.Player;
-using IView.InGame;
+using Domain.IView.InGame;
 using Utility.Structure.InGame;
 
-namespace Presenter.InGame.Player
+namespace Domain.Presenter.InGame.Player
 {
     /// <summary>
     /// 手札の変化を画面に反映する

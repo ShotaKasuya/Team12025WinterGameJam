@@ -1,13 +1,11 @@
-using System.Collections.Generic;
 using Domain.IModel.InGame.Player;
+using Domain.IView.InGame;
+using Domain.Presenter.InGame.Player;
 using Domain.UseCase.InGame.Player;
-using IView.InGame;
 using Model.InGame;
 using Model.InGame.Player;
-using Presenter.InGame.Player;
 using UnityEngine;
 using Utility.Module.Installer;
-using Utility.Module.Logging;
 using Utility.Structure.InGame;
 using View.InGame.Player;
 using PlayerConditionModel = Model.InGame.Player.PlayerConditionModel;
@@ -44,13 +42,12 @@ namespace Installer.InGame.Player
 
             // Model
             var handCardModel = new PlayerHandCardModel();
-            var deckModel = new PlayerDeckModel();
+            var deckModel = new PlayerDeckModel(_deck);
             var conditionModel = new PlayerConditionModel();
             RegisterEntryPoints(handCardModel);
             RegisterInstance<ISelectedCardModel, PlayerHandCardModel>(handCardModel);
             RegisterInstance<IConditionModel, PlayerConditionModel>(conditionModel);
             
-
             // Presenter
             var cardPresenter =
                 new NewCardPresenter(cardFactory, handCardModel, _handCardPositionsView);
@@ -62,8 +59,6 @@ namespace Installer.InGame.Player
             var drawCardCase = new DrawCardCase(deckModel, handCardModel, _gameStateModel, _gameStateModel);
             // スコアの加算
             RegisterEntryPoints(drawCardCase);
-
-            deckModel.InitDeck(Deck.SortedDeck(new List<Suit> { Suit.Clubs, Suit.Diamonds }));
         }
     }
 }

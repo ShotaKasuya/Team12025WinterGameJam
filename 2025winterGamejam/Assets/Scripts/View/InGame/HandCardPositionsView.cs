@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using IView.InGame;
+using Domain.IView.InGame;
 using UnityEngine;
 
 namespace View.InGame
