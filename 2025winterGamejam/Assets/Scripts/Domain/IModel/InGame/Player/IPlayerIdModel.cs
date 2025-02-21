@@ -13,5 +13,6 @@ namespace Domain.IModel.InGame.Player
         {
             PlayerId = playerId;
         }
+
     }
 }
