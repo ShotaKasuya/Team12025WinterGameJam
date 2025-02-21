@@ -39,7 +39,10 @@ namespace Tests.EditModeTest.InGame
             var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
             _mockPlayerIdModel.SetUpId(PlayerId.StorePlayerId(id));
             _mockConditionModel.SetCondition(id,Condition.Normal);
-            //_mockJudgeEventModel.
+
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
+            _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
 
             var result = _mockScoreModelPlayer.addscore;
 

@@ -23,6 +23,11 @@ namespace Domain.IModel.InGame
     public class MockJudgeEventModel : IJudgeEventModel
     {
         public Action<ResultAndDrawCount> JudgeEndEvent { get; set; }
+
+        public void InvokeJudgeEndEvent(ResultAndDrawCount resultAndDrawCount)
+        {
+            JudgeEndEvent.Invoke(resultAndDrawCount);
+        }
     }
 
     /// <summary>
