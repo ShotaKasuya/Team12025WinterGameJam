@@ -25,6 +25,7 @@ namespace Domain.UseCase.InGame.Player
             JudgeEventModel.JudgeEndEvent += AddPoint;
         }
 
+        //点数計算
         private void AddPoint(ResultAndDrawCount resultAndDrawCount)
         {
             if (resultAndDrawCount.BattleResult.Winner.TryGetValue(out PlayerId winner))
@@ -32,10 +33,12 @@ namespace Domain.UseCase.InGame.Player
                 if (PlayerIdModel.PlayerId.Equals(winner))
                 {
                     int AddScoreDebuff = 1;
+                    //自身が弱体化しているかの確認
                     if(PlayerConditionModel.PlayerConditions[PlayerIdModel.PlayerId.Id]==Condition.Ten)
                     {
                         AddScoreDebuff = 2;
                     }
+                    //特殊効果が無効化されているときの処理
                     if(PlayerConditionModel.PlayerConditions[PlayerIdModel.PlayerId.Id]==Condition.Six)
                     {
                         ScoreModelPlayer.AddScore(2 * (resultAndDrawCount.DrawCount + 1)/AddScoreDebuff);
@@ -61,6 +64,7 @@ namespace Domain.UseCase.InGame.Player
                 }
                 else
                 {
+                    //Jで負けた時の-4される処理
                     if (resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank == Rank.Jack)
                     {
                         ScoreModelPlayer.AddScore(-4);
@@ -69,6 +73,7 @@ namespace Domain.UseCase.InGame.Player
             }
         }
 
+        //7勝利時の相手とのランク差を計算する処理
         private int DefferentRank(ResultAndDrawCount resultAndDrawCount)
         {
             var myRank = resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank;

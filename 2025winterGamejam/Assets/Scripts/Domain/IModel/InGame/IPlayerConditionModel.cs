@@ -10,7 +10,7 @@ namespace Domain.IModel.InGame
 
     public class MockConditionModel: IPlayerConditionModel
     {
-        public List<Condition> PlayerConditions { get; } = new List<Condition>();
+        public List<Condition> PlayerConditions { get; } = new List<Condition>(new Condition[4]);
 
         public void SetCondition(int playerId, Condition condition)
         {
