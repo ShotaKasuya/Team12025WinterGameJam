@@ -6,14 +6,12 @@ namespace Domain.IModel.InGame.Player
     {
         public PlayerId PlayerId { get; }
     }
-    public class MockPlayerModel : IPlayerIdModel
+    public class MockPlayerIdModel : IPlayerIdModel
     {
         public PlayerId PlayerId { set; get; } = new PlayerId();
-
-        public void StorePlayerId(PlayerId playerId)
+        public void SetUpId(PlayerId playerId)
         {
             PlayerId = playerId;
         }
     }
-    
 }

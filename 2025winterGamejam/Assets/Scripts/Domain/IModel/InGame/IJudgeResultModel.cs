@@ -20,7 +20,7 @@ namespace Domain.IModel.InGame
         public int DrawCount {get;}
         public BattleResult BattleResult{get;}
     }
-    public class MocJudgeEventModel : IJudgeEventModel
+    public class MockJudgeEventModel : IJudgeEventModel
     {
         public Action<ResultAndDrawCount> JudgeEndEvent { get; set; }
     }

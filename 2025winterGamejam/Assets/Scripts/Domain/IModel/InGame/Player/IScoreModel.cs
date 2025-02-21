@@ -5,7 +5,7 @@ namespace Domain.IModel.InGame.Player
         public void AddScore(int score);
     }
 
-    public class MocScoreModelPlayer : IScoreModelPlayer
+    public class MockScoreModelPlayer : IScoreModelPlayer
     {
         public int addscore {get;private set;}
 

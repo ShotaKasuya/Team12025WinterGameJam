@@ -13,5 +13,10 @@ namespace Utility.Structure.InGame
         {
             return Id==other.Id;
         }
+        public static PlayerId StorePlayerId(int id)
+        {
+            var Id = new PlayerId(id);
+            return Id;
+        }
     }
 }
