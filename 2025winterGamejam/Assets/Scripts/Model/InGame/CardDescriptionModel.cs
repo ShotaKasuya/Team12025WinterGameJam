@@ -11,6 +11,7 @@ namespace Model.InGame
     public class CardDescriptionModel : ScriptableObject, ICardDescription
     {
         [SerializeField]
+        [EnumList(typeof(Rank))]
         private MyList hoge;
 
         string ICardDescription.EffectName(Card card)

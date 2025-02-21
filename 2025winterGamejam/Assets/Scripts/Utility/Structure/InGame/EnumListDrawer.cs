@@ -21,17 +21,19 @@ public class EnumListDrawer : PropertyDrawer
             {
                 SerializedProperty element = listProperty.GetArrayElementAtIndex(i);
                 SerializedProperty element2 = listProperty2.GetArrayElementAtIndex(i);
-                
+
                 EditorGUI.PropertyField(
-                    new Rect(position.x, position.y + i * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight),
+                    new Rect(position.x, position.y + (i * 3) * EditorGUIUtility.singleLineHeight, position.width,
+                        EditorGUIUtility.singleLineHeight),
                     element,
-                    new GUIContent(enumNames[i]),
+                    new GUIContent(enumNames[i] + "Effect Name"),
                     true);
-                
+
                 EditorGUI.PropertyField(
-                    new Rect(position.x, position.y + i * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight),
+                    new Rect(position.x, position.y + (i * 3 + 1) * EditorGUIUtility.singleLineHeight, position.width,
+                        EditorGUIUtility.singleLineHeight * 2),
                     element2,
-                    new GUIContent(enumNames[i]),
+                    new GUIContent(enumNames[i] + "Description"),
                     true);
             }
         }
