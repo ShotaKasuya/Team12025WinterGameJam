@@ -1,7 +1,6 @@
 using System;
 using Domain.IModel.InGame.Player;
 using IView.InGame;
-using UnityEngine;
 using Utility.Structure.InGame;
 
 namespace Presenter.InGame.Player

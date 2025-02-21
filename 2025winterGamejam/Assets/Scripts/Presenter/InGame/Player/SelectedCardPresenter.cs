@@ -1,3 +1,4 @@
+using System;
 using Domain.IModel.InGame.Player;
 using IView.InGame;
 using Utility.Module.Option;
@@ -8,7 +9,7 @@ namespace Presenter.InGame.Player
     /// <summary>
     /// カードの選択を反映する
     /// </summary>
-    public class SelectedCardPresenter
+    public class SelectedCardPresenter: IDisposable
     {
         public SelectedCardPresenter
         (
@@ -69,5 +70,10 @@ namespace Presenter.InGame.Player
 
         private ICardFactory CardFactory { get; }
         private IMutSelectedCardModel SelectedCardModel { get; }
+
+        public void Dispose()
+        {
+            CardFactory.OnCreateView -= AddView;
+        }
     }
 }

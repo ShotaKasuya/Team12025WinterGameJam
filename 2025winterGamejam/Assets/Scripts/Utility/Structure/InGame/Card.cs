@@ -1,3 +1,5 @@
+using System;
+
 namespace Utility.Structure.InGame
 {
     /// <summary>
@@ -51,6 +53,26 @@ namespace Utility.Structure.InGame
         public bool IsEqual(Card other)
         {
             return Suit == other.Suit & Rank == other.Rank;
+        }
+
+        public static Card[] AllCards()
+        {
+            var suitNum = Enum.GetValues(typeof(Suit)).Length;
+            var rankNum = Enum.GetValues(typeof(Rank)).Length;
+            var totalNum = suitNum * rankNum;
+            
+            var cards = new Card[totalNum];
+            for (int i = 0; i < suitNum; i++)
+            {
+                var suit = (Suit)i;
+                for (int j = 0; j < rankNum; j++)
+                {
+                    var rank = (Rank)j;
+                    cards[i * suitNum + j] = new Card(suit, rank);
+                }
+            }
+
+            return cards;
         }
     }
 

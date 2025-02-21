@@ -1,12 +1,13 @@
 using System.Collections.Generic;
-using System.Linq;
-using Domain.IPresenter.InGame;
+using Domain.IModel.InGame.Player;
 using Domain.UseCase.InGame;
+using Installer.InGame.Player;
 using IView.InGame;
 using Model.InGame;
-using Presenter.InGame;
+using Model.InGame.Player;
 using UnityEngine;
 using Utility.Module.Installer;
+using Utility.Structure.InGame;
 using View.InGame;
 
 namespace Installer.InGame
@@ -14,28 +15,47 @@ namespace Installer.InGame
     public class GameInstaller : InstallerBase
     {
         [SerializeField] private List<HandCardPositionsView> cardPositionsView;
+        [SerializeField] private PlayerInstaller playerInstaller;
 
         protected override void CustomConfigure()
         {
             // Model
-            var deckModel = new PlayerCardModel();
             var gameStateModel = new GameStateModel();
             var judgeResultModel = new JudgeResultModel();
-            var playerConditionModel = new PlayerConditionModel();
 
-            // // Presenter
-            // var cardSelectionPresenter = new PlayerSelectionPresenter();
-            // var cardPresenter = new CardPresenter(cardPositionsView.Cast<ICardPositionsView>().ToList());
+            var selectedCardModels = new List<ISelectedCardModel>();
+            var playerConditionModel = new List<IConditionModel>();
 
-            // // Adapter
-            // var cardFactory = new CardFactory(factorableCardView,
-            //     new ICardReceivable[] { cardSelectionPresenter, cardPresenter });
+            var decks = Deck.RandomDecks(2);
+            for (int i = 0; i < 2; i++)
+            {
+                var player = CreatePlayer(new PlayerId(i), gameStateModel, cardPositionsView[i], decks[i]);
+                selectedCardModels.Add(player.GetInstance<ISelectedCardModel>());
+                playerConditionModel.Add(player.GetInstance<IConditionModel>());
+            }
 
             // UseCase
-            // var cardSelectedCase = new 
-            // var makeNewCardCase = new MakeNewCardCase(deckModel, cardFactory);
-            // var drawCardCase = new DrawCardCase(deckModel, deckModel, gameStateModel, gameStateModel);
-            // var cardJudgeCase = new CardJudgeCase(selectionView, judgeResultModel, playerConditionModel);
+            var cardJudgeCase = new CardJudgeCase(selectedCardModels.ToArray(), judgeResultModel,
+                playerConditionModel.ToArray());
+            RegisterEntryPoints(cardJudgeCase);
+
+            gameStateModel.SetGameState(GameStateType.DrawCard);
+            gameStateModel.SetGameState(GameStateType.DrawCard);
+            gameStateModel.SetGameState(GameStateType.DrawCard);
+            gameStateModel.SetGameState(GameStateType.DrawCard);
+        }
+
+        private PlayerInstaller CreatePlayer(PlayerId playerId, GameStateModel gameStateModel,
+            ICardPositionsView positionsView, Deck playerDeck)
+        {
+            var instance = Instantiate(playerInstaller);
+            instance.Inject(
+                new PlayerIdModel(playerId),
+                gameStateModel,
+                positionsView,
+                playerDeck
+            );
+            return instance;
         }
     }
 }
