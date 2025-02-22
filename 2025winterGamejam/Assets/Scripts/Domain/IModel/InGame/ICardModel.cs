@@ -19,10 +19,12 @@ namespace Domain.IModel.InGame
     {
         public void StoreNewCard(int playerId, Card card);
     }
+
     public interface IHandCardModel
     {
-        public List<HandCard> HandCards { get; }
+        public IReadOnlyList<HandCard> HandCards { get; }
     }
+
     public interface IHandCardEventModel
     {
         public Action<PlayerHandCard> AddNewCardEvent { get; set; }
@@ -40,7 +42,7 @@ namespace Domain.IModel.InGame
 
     public class MockHandCardModelModel : IHandCardModel
     {
-        public List<HandCard> HandCards { get; private set; } = new List<HandCard>();
+        public IReadOnlyList<HandCard> HandCards { get; private set; } = new List<HandCard>();
 
         public void SetUpHandCard(List<HandCard> handCards)
         {

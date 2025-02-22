@@ -20,7 +20,7 @@ namespace Domain.UseCase.InGame
         (
             IReadOnlyList<ISelectedCardModel> selectedCardModels,
             IJudgeResultModel judgeResultModel,
-            IReadOnlyList<IConditionModel> playerConditionModel
+            IReadOnlyList<IPlayerConditionModel> playerConditionModel
         )
         {
             SelectedCardModels = selectedCardModels;
@@ -59,7 +59,7 @@ namespace Domain.UseCase.InGame
         {
             for (int i = 0; i < playerCard.Count; i++)
             {
-                var condition = PlayerConditionModel[i].Condition;
+                var condition = PlayerConditionModel[i].PlayerCondition;
                 if ((condition & Condition.Five) != 0)
                 {
                     playerCard[i].SetDebuff(5);
@@ -85,7 +85,7 @@ namespace Domain.UseCase.InGame
 
         private IReadOnlyList<ISelectedCardModel> SelectedCardModels { get; }
         private IJudgeResultModel JudgeResultModel { get; }
-        private IReadOnlyList<IConditionModel> PlayerConditionModel { get; }
+        private IReadOnlyList<IPlayerConditionModel> PlayerConditionModel { get; }
         private CompositeDisposable Disposable { get; }
 
         public void Dispose()

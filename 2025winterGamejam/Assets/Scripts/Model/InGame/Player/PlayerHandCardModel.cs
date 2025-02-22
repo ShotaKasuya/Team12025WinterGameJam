@@ -1,25 +1,34 @@
 using System;
 using System.Collections.Generic;
+using Domain.IModel.InGame;
 using Domain.IModel.InGame.Player;
 using R3;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
+using IMutSelectedCardModel = Domain.IModel.InGame.Player.IMutSelectedCardModel;
 
 namespace Model.InGame.Player
 {
-    public class PlayerHandCardModel: IMutPlayerHandCardModel, IMutSelectedCardModel, IDisposable
+    public class PlayerHandCardModel : IMutPlayerHandCardModel, IMutSelectedCardModel, IDisposable
     {
-        public ReactiveProperty<Option<Card>> SelectedCard { get; } =
-            new ReactiveProperty<Option<Card>>(Option<Card>.None());
+        public PlayerHandCardModel
+        (
+            IPlayerIdModel playerIdModel,
+            IMutHandCardModel handCardModel
+        )
+        {
+            PlayerIdModel = playerIdModel;
+            HandCardModel = handCardModel;
+        }
 
+        public ReactiveProperty<Option<Card>> SelectedCard { get; } = new(Option<Card>.None());
         public ReadOnlyReactiveProperty<Option<Card>> OnSelected => SelectedCard;
-        public IReadOnlyList<Card> HandCardsReader => HandCards;
-        private List<Card> HandCards { get; } = new List<Card>();
+        public IReadOnlyList<Card> HandCardsReader => HandCardModel.HandCards[PlayerIdModel.PlayerId.Id].Cards;
         public Action<Card> OnAddHandCards { get; set; }
 
         public void StoreNewCard(Card card)
         {
-            HandCards.Add(card);
+            HandCardModel.StoreNewCard(PlayerIdModel.PlayerId.Id, card);
             OnAddHandCards?.Invoke(card);
         }
 
@@ -27,5 +36,8 @@ namespace Model.InGame.Player
         {
             SelectedCard?.Dispose();
         }
+
+        private IPlayerIdModel PlayerIdModel { get; }
+        private IMutHandCardModel HandCardModel { get; }
     }
 }

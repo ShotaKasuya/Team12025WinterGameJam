@@ -14,13 +14,13 @@ namespace Domain.UseCase.InGame.Player
             IPlayerScoreModel playerScoreModelModel,
             IPlayerIdModel playerIdModel,
             IJudgeEventModel judgeEventModel,
-            IConditionModel playerConditionModel
+            IPlayerConditionModel playerPlayerConditionModel
         )
         {
             PlayerScoreModel = playerScoreModelModel;
             PlayerIdModel = playerIdModel;
             JudgeEventModel = judgeEventModel;
-            PlayerConditionModel = playerConditionModel;
+            PlayerPlayerConditionModel = playerPlayerConditionModel;
         }
 
         public void Initialize()
@@ -37,13 +37,13 @@ namespace Domain.UseCase.InGame.Player
                 {
                     int addScoreDebuff = 1;
                     //自身が弱体化しているかの確認
-                    if (PlayerConditionModel.Condition == Condition.Ten)
+                    if (PlayerPlayerConditionModel.PlayerCondition == Condition.Ten)
                     {
                         addScoreDebuff = 2;
                     }
 
                     //特殊効果が無効化されているときの処理
-                    if (PlayerConditionModel.Condition == Condition.Six)
+                    if (PlayerPlayerConditionModel.PlayerCondition == Condition.Six)
                     {
                         PlayerScoreModel.AddScore(2 * (resultAndDrawCount.DrawCount + 1) / addScoreDebuff);
                     }
@@ -95,7 +95,7 @@ namespace Domain.UseCase.InGame.Player
         private IPlayerScoreModel PlayerScoreModel { get; }
         private IPlayerIdModel PlayerIdModel { get; }
         private IJudgeEventModel JudgeEventModel { get; }
-        private IConditionModel PlayerConditionModel { get; }
+        private IPlayerConditionModel PlayerPlayerConditionModel { get; }
 
         public void Dispose()
         {

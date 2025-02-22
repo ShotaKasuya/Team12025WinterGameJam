@@ -12,7 +12,6 @@ using Utility.Structure.InGame;
 using VContainer;
 using VContainer.Unity;
 using View.InGame;
-using PlayerConditionModel = Model.InGame.Player.PlayerConditionModel;
 
 namespace Installer.InGame
 {
@@ -30,6 +29,8 @@ namespace Installer.InGame
             builder.Register<IdProvideModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerCountModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<SelectedCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
+
+            builder.Register<PlayerCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
 
             builder.Register<PlayerScoreModel>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<PlayerHandCardModel>(Lifetime.Scoped).AsImplementedInterfaces();
