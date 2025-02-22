@@ -55,6 +55,11 @@ namespace Utility.Structure.InGame
             return Suit == other.Suit & Rank == other.Rank;
         }
 
+        public override string ToString()
+        {
+            return $"(suit, rank) => ({Suit}, {Rank})\n";
+        }
+
         public static Card[] AllCards()
         {
             var suitNum = Enum.GetValues(typeof(Suit)).Length;

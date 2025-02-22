@@ -13,15 +13,15 @@ namespace Domain.Presenter.InGame.Player
         public NewCardPresenter
         (
             ICardFactory cardFactory,
-            IHandCardModel handCardModel,
+            IPlayerHandCardModel playerHandCardModel,
             ICardPositionsView cardPositionsView
         )
         {
             CardFactory = cardFactory;
-            HandCardModel = handCardModel;
+            PlayerHandCardModel = playerHandCardModel;
             CardPositionsView = cardPositionsView;
 
-            handCardModel.OnAddHandCards += CreateCardView;
+            playerHandCardModel.OnAddHandCards += CreateCardView;
         }
 
         private void CreateCardView(Card card)
@@ -46,11 +46,11 @@ namespace Domain.Presenter.InGame.Player
 
         private ICardFactory CardFactory { get; }
         private ICardPositionsView CardPositionsView { get; }
-        private IHandCardModel HandCardModel { get; }
+        private IPlayerHandCardModel PlayerHandCardModel { get; }
         
         public void Dispose()
         {
-            HandCardModel.OnAddHandCards -= CreateCardView;
+            PlayerHandCardModel.OnAddHandCards -= CreateCardView;
         }
     }
 }

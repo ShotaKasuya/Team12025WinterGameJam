@@ -1,17 +1,17 @@
 namespace Domain.IModel.InGame.Player
 {
-    public interface IScoreModelPlayer
+    public interface IPlayerScoreModel
     {
         public void AddScore(int score);
     }
 
-    public class MockScoreModelPlayer : IScoreModelPlayer
+    public class MockPlayerScoreModel : IPlayerScoreModel
     {
-        public int addscore {get;private set;}
+        public int Addscore {get;private set;}
 
         public void AddScore(int score)
         {
-            addscore = score;
+            Addscore = score;
         }
     }
 }

@@ -1,27 +1,30 @@
 using System;
 using System.Linq;
-using Codice.Client.Common.GameUI;
 using Domain.IModel.InGame;
 using Domain.IModel.InGame.Player;
 using Utility.Structure.InGame;
+using VContainer.Unity;
 
 namespace Domain.UseCase.InGame.Player
 {
-    public class AddPointCase : IDisposable
+    public class AddPointCase : IInitializable, IDisposable
     {
         public AddPointCase
         (
-            IScoreModelPlayer scoreModelPlayerModel,
+            IPlayerScoreModel playerScoreModelModel,
             IPlayerIdModel playerIdModel,
             IJudgeEventModel judgeEventModel,
-            IPlayerConditionModel playerConditionModel
+            IConditionModel playerConditionModel
         )
         {
-            ScoreModelPlayer = scoreModelPlayerModel;
+            PlayerScoreModel = playerScoreModelModel;
             PlayerIdModel = playerIdModel;
             JudgeEventModel = judgeEventModel;
             PlayerConditionModel = playerConditionModel;
+        }
 
+        public void Initialize()
+        {
             JudgeEventModel.JudgeEndEvent += AddPoint;
         }
 
@@ -32,32 +35,36 @@ namespace Domain.UseCase.InGame.Player
             {
                 if (PlayerIdModel.PlayerId.Equals(winner))
                 {
-                    int AddScoreDebuff = 1;
+                    int addScoreDebuff = 1;
                     //自身が弱体化しているかの確認
-                    if(PlayerConditionModel.PlayerConditions[PlayerIdModel.PlayerId.Id]==Condition.Ten)
+                    if (PlayerConditionModel.Condition == Condition.Ten)
                     {
-                        AddScoreDebuff = 2;
+                        addScoreDebuff = 2;
                     }
+
                     //特殊効果が無効化されているときの処理
-                    if(PlayerConditionModel.PlayerConditions[PlayerIdModel.PlayerId.Id]==Condition.Six)
+                    if (PlayerConditionModel.Condition == Condition.Six)
                     {
-                        ScoreModelPlayer.AddScore(2 * (resultAndDrawCount.DrawCount + 1)/AddScoreDebuff);
+                        PlayerScoreModel.AddScore(2 * (resultAndDrawCount.DrawCount + 1) / addScoreDebuff);
                     }
                     else
                     {
                         switch (resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank)
                         {
                             case Rank.Seven:
-                                ScoreModelPlayer.AddScore(2 * (resultAndDrawCount.DrawCount + 1)*DefferentRank(resultAndDrawCount)/AddScoreDebuff);
+                                PlayerScoreModel.AddScore(2 * (resultAndDrawCount.DrawCount + 1) *
+                                    DefferentRank(resultAndDrawCount) / addScoreDebuff);
                                 break;
                             case Rank.Nine:
-                                ScoreModelPlayer.AddScore((2 * (resultAndDrawCount.DrawCount + 1) + 2)/AddScoreDebuff);
+                                PlayerScoreModel.AddScore((2 * (resultAndDrawCount.DrawCount + 1) + 2) /
+                                                          addScoreDebuff);
                                 break;
                             case Rank.Jack:
-                                ScoreModelPlayer.AddScore((2 * (resultAndDrawCount.DrawCount + 1) + 4)/AddScoreDebuff);
+                                PlayerScoreModel.AddScore((2 * (resultAndDrawCount.DrawCount + 1) + 4) /
+                                                          addScoreDebuff);
                                 break;
                             default:
-                                ScoreModelPlayer.AddScore(2 * (resultAndDrawCount.DrawCount + 1)/AddScoreDebuff);
+                                PlayerScoreModel.AddScore(2 * (resultAndDrawCount.DrawCount + 1) / addScoreDebuff);
                                 break;
                         }
                     }
@@ -67,7 +74,7 @@ namespace Domain.UseCase.InGame.Player
                     //Jで負けた時の-4される処理
                     if (resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank == Rank.Jack)
                     {
-                        ScoreModelPlayer.AddScore(-4);
+                        PlayerScoreModel.AddScore(-4);
                     }
                 }
             }
@@ -85,10 +92,10 @@ namespace Domain.UseCase.InGame.Player
                        .Max();
         }
 
-        private IScoreModelPlayer ScoreModelPlayer { get; }
+        private IPlayerScoreModel PlayerScoreModel { get; }
         private IPlayerIdModel PlayerIdModel { get; }
         private IJudgeEventModel JudgeEventModel { get; }
-        private IPlayerConditionModel PlayerConditionModel{ get; }
+        private IConditionModel PlayerConditionModel { get; }
 
         public void Dispose()
         {

@@ -7,7 +7,7 @@ using Utility.Structure.InGame;
 
 namespace Model.InGame.Player
 {
-    public class PlayerHandCardModel: IMutHandCardModel, IMutSelectedCardModel, IDisposable
+    public class PlayerHandCardModel: IMutPlayerHandCardModel, IMutSelectedCardModel, IDisposable
     {
         public ReactiveProperty<Option<Card>> SelectedCard { get; } =
             new ReactiveProperty<Option<Card>>(Option<Card>.None());
@@ -27,6 +27,5 @@ namespace Model.InGame.Player
         {
             SelectedCard?.Dispose();
         }
-
     }
 }

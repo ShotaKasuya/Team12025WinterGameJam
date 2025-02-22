@@ -2,40 +2,44 @@ using System;
 using Domain.IModel.InGame;
 using Domain.IModel.InGame.Player;
 using Utility.Structure.InGame;
-using IMutHandCardModel = Domain.IModel.InGame.Player.IMutHandCardModel;
+using VContainer.Unity;
 
 namespace Domain.UseCase.InGame.Player
 {
     /// <summary>
     /// プレイヤーがカードをドローする処理
     /// </summary>
-    public class DrawCardCase: IDisposable
+    public class DrawCardCase : IDisposable, IInitializable
     {
         public DrawCardCase
         (
-            IDeckModelPlayer deckModel,
-            IMutHandCardModel handCardModel,
+            IPlayerDeckModel playerDeckModel,
+            IMutPlayerHandCardModel playerHandCardModel,
             IGameStartEventModel gameStartEventModel,
             IDrawCardEventModel drawCardEventModel
         )
         {
-            DeckModel = deckModel;
-            HandCardModel = handCardModel;
+            PlayerDeckModel = playerDeckModel;
+            PlayerHandCardModel = playerHandCardModel;
             GameStartEventModel = gameStartEventModel;
             DrawCardEventModel = drawCardEventModel;
-
-            drawCardEventModel.GameDrawCardEvent += OnDraw;
         }
-         private void OnDraw()
+
+        public void Initialize()
         {
-            if(DeckModel.Deck.Cards.TryPop(out Card card))
+            DrawCardEventModel.GameDrawCardEvent += OnDraw;
+        }
+
+        private void OnDraw()
+        {
+            if (PlayerDeckModel.Deck.Cards.TryPop(out Card card))
             {
-                HandCardModel.StoreNewCard(card);
+                PlayerHandCardModel.StoreNewCard(card);
             }
         }
 
-        private IDeckModelPlayer DeckModel { get; }
-        private IMutHandCardModel HandCardModel { get; }
+        private IPlayerDeckModel PlayerDeckModel { get; }
+        private IMutPlayerHandCardModel PlayerHandCardModel { get; }
         private IGameStartEventModel GameStartEventModel { get; }
         private IDrawCardEventModel DrawCardEventModel { get; }
 

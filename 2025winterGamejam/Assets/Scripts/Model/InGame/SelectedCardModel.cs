@@ -7,7 +7,7 @@ using Utility.Structure.InGame;
 
 namespace Model.InGame
 {
-    public class SelectedCardModel: ISelectedCardModel, ISelectionEventModel
+    public class SelectedCardModel: IMutSelectedCardModel, ISelectedCardModel
     {
         public void StorePlayerSelection(int playerId, Option<Card> selection)
         {

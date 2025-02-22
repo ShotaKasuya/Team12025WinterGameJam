@@ -14,7 +14,6 @@ namespace Model.InGame
         public void StoreNewCard(int playerId, Card card)
         {
             HandCards[playerId].Cards.Add(card);
-            // AddNewCardEvent?.Invoke(new PlayerHandCard(playerId, card));
         }
     }
 }

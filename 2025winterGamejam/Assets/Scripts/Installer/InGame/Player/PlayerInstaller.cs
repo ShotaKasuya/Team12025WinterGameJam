@@ -1,64 +1,49 @@
+using Domain.IModel.InGame;
 using Domain.IModel.InGame.Player;
 using Domain.IView.InGame;
 using Domain.Presenter.InGame.Player;
 using Domain.UseCase.InGame.Player;
-using Model.InGame;
 using Model.InGame.Player;
 using UnityEngine;
-using Utility.Module.Installer;
-using Utility.Structure.InGame;
+using VContainer;
+using VContainer.Unity;
 using View.InGame.Player;
-using PlayerConditionModel = Model.InGame.Player.PlayerConditionModel;
 
 namespace Installer.InGame.Player
 {
-    public class PlayerInstaller : InstallerBase
+    public class PlayerInstaller : LifetimeScope
     {
         [SerializeField] private ProductCardView productCardView;
 
         private IPlayerIdModel _playerIdModel;
-        private GameStateModel _gameStateModel;
-        private ICardPositionsView _handCardPositionsView;
-        private Deck _deck;
 
-        public void Inject
-        (
-            IPlayerIdModel playerIdModel,
-            GameStateModel gameStateModel,
-            ICardPositionsView handCardPositionsView,
-            Deck deck
-        )
+        protected override void Configure(IContainerBuilder builder)
         {
-            _playerIdModel = playerIdModel;
-            _gameStateModel = gameStateModel;
-            _handCardPositionsView = handCardPositionsView;
-            _deck = deck;
-        }
-
-        protected override void CustomConfigure()
-        {
-            // Factory
-            var cardFactory = new CardFactory(productCardView);
-
-            // Model
-            var handCardModel = new PlayerHandCardModel();
-            var deckModel = new PlayerDeckModel(_deck);
-            var conditionModel = new PlayerConditionModel();
-            RegisterEntryPoints(handCardModel);
-            RegisterInstance<ISelectedCardModel, PlayerHandCardModel>(handCardModel);
-            RegisterInstance<IConditionModel, PlayerConditionModel>(conditionModel);
+            // View
+            builder.RegisterComponent(productCardView);
             
+            // Model
+            builder.RegisterInstance(_playerIdModel);
+
+            // Factory
+            builder.Register<CardFactory>(Lifetime.Singleton);
+
             // Presenter
-            var cardPresenter =
-                new NewCardPresenter(cardFactory, handCardModel, _handCardPositionsView);
-            var selectedCardPresenter = new SelectedCardPresenter(cardFactory, handCardModel);
-            RegisterEntryPoints(cardPresenter);
-            RegisterEntryPoints(selectedCardPresenter);
+            builder.Register<NewCardPresenter>(Lifetime.Singleton);
+            builder.Register<SelectedCardPresenter>(Lifetime.Singleton);
 
             // UseCase
-            var drawCardCase = new DrawCardCase(deckModel, handCardModel, _gameStateModel, _gameStateModel);
-            // スコアの加算
-            RegisterEntryPoints(drawCardCase);
+            builder.UseEntryPoints(pointsBuilder =>
+            {
+                pointsBuilder.Add<DrawCardCase>();
+                pointsBuilder.Add<AddPointCase>();
+            });
+        }
+
+        [Inject]
+        public void Inject(IIdProvideModel playerIdModel)
+        {
+            _playerIdModel = new PlayerIdModel(playerIdModel.GetId());
         }
     }
 }

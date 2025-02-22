@@ -50,7 +50,6 @@ namespace Utility.Module.Installer
 
             Debug.LogError($"Instance {typeof(T)} not found");
             
-            // 関数が死ぬとインスタンス登録漏れが1つしか出ないので実行を続ける
             return null;
         }
 

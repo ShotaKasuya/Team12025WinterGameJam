@@ -1,61 +1,68 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using Domain.IModel.Global;
 using Domain.IModel.InGame.Player;
-using Domain.IView.InGame;
 using Domain.UseCase.InGame;
 using Installer.InGame.Player;
+using Model.Global;
 using Model.InGame;
 using Model.InGame.Player;
 using UnityEngine;
-using Utility.Module.Installer;
 using Utility.Structure.InGame;
+using VContainer;
+using VContainer.Unity;
 using View.InGame;
+using PlayerConditionModel = Model.InGame.Player.PlayerConditionModel;
 
 namespace Installer.InGame
 {
-    public class GameInstaller : InstallerBase
+    public class GameInstaller : LifetimeScope
     {
         [SerializeField] private List<HandCardPositionsView> cardPositionsView;
         [SerializeField] private PlayerInstaller playerInstaller;
 
-        protected override void CustomConfigure()
+        protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterInstance(playerInstaller).As<MonoBehaviour>();
             // Model
-            var gameStateModel = new GameStateModel();
-            var judgeResultModel = new JudgeResultModel();
+            builder.Register<GameStateModel>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.Register<JudgeResultModel>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<IdProvideModel>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<PlayerCountModel>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<SelectedCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
 
-            var selectedCardModels = new List<ISelectedCardModel>();
-            var playerConditionModel = new List<IConditionModel>();
-
-            var decks = Deck.RandomDecks(2);
-            for (int i = 0; i < 2; i++)
-            {
-                var player = CreatePlayer(new PlayerId(i), gameStateModel, cardPositionsView[i], decks[i]);
-                selectedCardModels.Add(player.GetInstance<ISelectedCardModel>());
-                playerConditionModel.Add(player.GetInstance<IConditionModel>());
-            }
+            builder.Register<PlayerScoreModel>(Lifetime.Scoped).AsImplementedInterfaces();
+            builder.Register<PlayerHandCardModel>(Lifetime.Scoped).AsImplementedInterfaces();
+            builder.Register<PlayerDeckModel>(Lifetime.Scoped).AsImplementedInterfaces();
+            builder.Register<PlayerConditionModel>(Lifetime.Scoped).AsImplementedInterfaces();
 
             // UseCase
-            var cardJudgeCase = new CardJudgeCase(selectedCardModels.ToArray(), judgeResultModel,
-                playerConditionModel.ToArray());
-            RegisterEntryPoints(cardJudgeCase);
-
-            gameStateModel.SetGameState(GameStateType.DrawCard);
-            gameStateModel.SetGameState(GameStateType.DrawCard);
-            gameStateModel.SetGameState(GameStateType.DrawCard);
-            gameStateModel.SetGameState(GameStateType.DrawCard);
+            builder.UseEntryPoints(pointsBuilder =>
+            {
+                pointsBuilder.Add<CardJudgeCase>();
+                pointsBuilder.Add<AddPlayerCase>();
+            });
         }
 
-        private PlayerInstaller CreatePlayer(PlayerId playerId, GameStateModel gameStateModel,
-            ICardPositionsView positionsView, Deck playerDeck)
+        private async void Start()
         {
-            var instance = Instantiate(playerInstaller);
-            instance.Inject(
-                new PlayerIdModel(playerId),
-                gameStateModel,
-                positionsView,
-                playerDeck
-            );
-            return instance;
+            var playerCountModel = Container.Resolve<IPlayerCountModel>();
+            var deckModels = Container.Resolve<IReadOnlyList<IDeckInitializable>>();
+            var decks = Deck.RandomDecks(playerCountModel.PlayerCount);
+            Debug.Log(deckModels.Count);
+            for (int i = 0; i < playerCountModel.PlayerCount; i++)
+            {
+                Debug.Log($"deck : {string.Join(",", decks[i].Cards)}");
+                deckModels[i].InitDeck(decks[i]);
+            }
+
+            await UniTask.DelayFrame(1);
+
+            var gameStateModel = Container.Resolve<GameStateModel>();
+            gameStateModel.SetGameState(GameStateType.DrawCard);
+            gameStateModel.SetGameState(GameStateType.DrawCard);
+            gameStateModel.SetGameState(GameStateType.DrawCard);
+            gameStateModel.SetGameState(GameStateType.DrawCard);
         }
     }
 }

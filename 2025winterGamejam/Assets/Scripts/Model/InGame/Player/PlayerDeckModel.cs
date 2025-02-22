@@ -1,18 +1,29 @@
+using Domain.IModel.InGame;
 using Domain.IModel.InGame.Player;
 using Utility.Structure.InGame;
 
 namespace Model.InGame.Player
 {
-    public class PlayerDeckModel: IDeckModelPlayer, IDeckInitializable
+    public class PlayerDeckModel : IPlayerDeckModel, IDeckInitializable
     {
-        public PlayerDeckModel(Deck deck)
+        public PlayerDeckModel
+        (
+            IPlayerIdModel playerIdModel,
+            IDeckModel deckModel
+        )
         {
-            Deck = deck;
+            PlayerIdModel = playerIdModel;
+            DeckModel = deckModel;
         }
-        public Deck Deck { get; private set; }
+
+        public Deck Deck => DeckModel.Decks[PlayerIdModel.PlayerId.Id];
+
         public void InitDeck(Deck deck)
         {
-            Deck = deck;
+            throw new System.NotImplementedException();
         }
+        
+        private IPlayerIdModel PlayerIdModel { get; }
+        private IDeckModel DeckModel { get; }
     }
 }

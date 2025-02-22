@@ -4,7 +4,9 @@ using System.Linq;
 using Domain.IModel.InGame;
 using Domain.IModel.InGame.Player;
 using R3;
+using UnityEngine;
 using Utility.Structure.InGame;
+using VContainer.Unity;
 using ISelectedCardModel = Domain.IModel.InGame.Player.ISelectedCardModel;
 
 namespace Domain.UseCase.InGame
@@ -12,31 +14,36 @@ namespace Domain.UseCase.InGame
     /// <summary>
     /// 勝敗をジャッジする
     /// </summary>
-    public class CardJudgeCase : IDisposable
+    public class CardJudgeCase : IDisposable, IInitializable
     {
         public CardJudgeCase
         (
-            ISelectedCardModel[] selectedCardModels,
+            IReadOnlyList<ISelectedCardModel> selectedCardModels,
             IJudgeResultModel judgeResultModel,
-            IConditionModel[] playerConditionModel
+            IReadOnlyList<IConditionModel> playerConditionModel
         )
         {
             SelectedCardModels = selectedCardModels;
             JudgeResultModel = judgeResultModel;
             PlayerConditionModel = playerConditionModel;
             Disposable = new CompositeDisposable();
+        }
 
+        public void Initialize()
+        {
+            Debug.Log($"selected card model num : {SelectedCardModels.Count}");
             foreach (var selectedCardModel in SelectedCardModels)
             {
                 selectedCardModel.OnSelected
                     .Subscribe(_ => { CheckDecision(); })
                     .AddTo(Disposable);
             }
+            
         }
 
         private void CheckDecision()
         {
-            var length = SelectedCardModels.Length;
+            var length = SelectedCardModels.Count;
             var hasDecided = SelectedCardModels
                 .Count(x => x.OnSelected.CurrentValue.IsSome);
             if (length == hasDecided)
@@ -76,9 +83,9 @@ namespace Domain.UseCase.InGame
                 return BattleResult.Draw(playerCard);
         }
 
-        private ISelectedCardModel[] SelectedCardModels { get; }
+        private IReadOnlyList<ISelectedCardModel> SelectedCardModels { get; }
         private IJudgeResultModel JudgeResultModel { get; }
-        private IConditionModel[] PlayerConditionModel { get; }
+        private IReadOnlyList<IConditionModel> PlayerConditionModel { get; }
         private CompositeDisposable Disposable { get; }
 
         public void Dispose()

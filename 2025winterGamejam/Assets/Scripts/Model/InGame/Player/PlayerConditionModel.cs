@@ -11,4 +11,6 @@ namespace Model.InGame.Player
         }
         public Condition Condition { get; private set; }
     }
+    
+    
 }

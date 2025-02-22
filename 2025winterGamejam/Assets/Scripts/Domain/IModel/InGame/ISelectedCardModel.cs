@@ -5,12 +5,12 @@ using Utility.Structure.InGame;
 
 namespace Domain.IModel.InGame
 {
-    public interface ISelectedCardModel
+    public interface IMutSelectedCardModel
     {
         public void StorePlayerSelection(int playerId, Option<Card> selection);
     }
     
-    public interface ISelectionEventModel
+    public interface ISelectedCardModel
     {
         public Action<List<Card>> OnAllPlayerSelectedCard { get; set; }
     }

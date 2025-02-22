@@ -322,6 +322,13 @@
       "dependencies": {},
       "hash": "75359352ba04042816822a8ef05e0d5d211c45ba"
     },
+    "jp.hadashikick.vcontainer": {
+      "version": "1.16.8",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

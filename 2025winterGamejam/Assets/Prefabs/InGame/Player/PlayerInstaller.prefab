@@ -44,4 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e3a708fc80493084dcd80bef0950a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: Installer.InGame.GameInstaller
+  autoRun: 1
+  autoInjectGameObjects: []
   productCardView: {fileID: -354559185206843246, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
