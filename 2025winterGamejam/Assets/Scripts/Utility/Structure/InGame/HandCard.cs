@@ -4,7 +4,7 @@ namespace Utility.Structure.InGame
 {
     public struct HandCard
     {
-        public List<Card> Cards { get; }
+        public List<Card> Cards { get; set; }
 
         public HandCard(List<Card> cards)
         {

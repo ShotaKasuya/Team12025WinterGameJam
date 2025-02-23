@@ -6,20 +6,25 @@ using Utility.Structure.InGame;
 
 namespace Model.InGame.Judgement
 {
-    public class HandCardModel: IMutHandCardModel
+    public class HandCardModel : IMutHandCardModel
     {
         public HandCardModel(IPlayerCountModel playerCountModel)
         {
-            HandCards = new List<HandCard>(playerCountModel.PlayerCount);
+            HandCards = new HandCard[playerCountModel.PlayerCount];
+            for (int i = 0; i < playerCountModel.PlayerCount; i++)
+            {
+                HandCards[i] = new HandCard(new List<Card>());
+            }
         }
 
         public IReadOnlyList<HandCard> HandCardReader => HandCards;
+
         public void StoreNewCard(int playerId, Card card)
         {
             HandCards[playerId].Cards.Add(card);
         }
-        
-        private List<HandCard> HandCards { get; }
+
+        private HandCard[] HandCards { get; }
         public Action<PlayerHandCard> AddNewCardEvent { get; set; }
     }
 }

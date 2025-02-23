@@ -9,10 +9,10 @@ namespace Model.InGame.Judgement
     {
         public DeckModel(IPlayerCountModel playerCountModel)
         {
-            Decks = new List<Deck>(playerCountModel.PlayerCount);
+            Decks = new Deck[playerCountModel.PlayerCount];
         }
 
         public IReadOnlyList<Deck> DeckReader => Decks;
-        public List<Deck> Decks { get; }
+        public Deck[] Decks { get; }
     }
 }

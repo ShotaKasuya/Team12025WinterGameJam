@@ -3,13 +3,14 @@ using Domain.IModel.InGame.Player;
 using Domain.IView.InGame;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
+using VContainer.Unity;
 
 namespace Domain.Presenter.InGame.Player
 {
     /// <summary>
     /// カードの選択を反映する
     /// </summary>
-    public class SelectedCardPresenter: IDisposable
+    public class SelectedCardPresenter: IInitializable, IDisposable
     {
         public SelectedCardPresenter
         (
@@ -19,8 +20,11 @@ namespace Domain.Presenter.InGame.Player
         {
             CardFactory = cardFactory;
             SelectedCardModel = selectedCardModel;
+        }
 
-            cardFactory.OnCreateView += AddView;
+        public void Initialize()
+        {
+            CardFactory.OnCreateView += AddView;
         }
 
         private void ApplyView(Option<Card> card)

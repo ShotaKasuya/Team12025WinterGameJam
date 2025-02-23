@@ -1,14 +1,16 @@
 using System;
 using Domain.IModel.InGame.Player;
 using Domain.IView.InGame;
+using UnityEngine;
 using Utility.Structure.InGame;
+using VContainer.Unity;
 
 namespace Domain.Presenter.InGame.Player
 {
     /// <summary>
     /// 手札の変化を画面に反映する
     /// </summary>
-    public class NewCardPresenter : IDisposable
+    public class NewCardPresenter : IInitializable, IDisposable
     {
         public NewCardPresenter
         (
@@ -20,12 +22,16 @@ namespace Domain.Presenter.InGame.Player
             CardFactory = cardFactory;
             PlayerHandCardModel = playerHandCardModel;
             CardPositionsView = cardPositionsView;
+        }
 
-            playerHandCardModel.OnAddHandCards += CreateCardView;
+        public void Initialize()
+        {
+            PlayerHandCardModel.OnAddHandCards += CreateCardView;
         }
 
         private void CreateCardView(Card card)
         {
+            Debug.Log("onCreated");
             CardFactory.CreateCardView(card);
 
             FixPosition();

@@ -8,7 +8,7 @@ namespace Domain.IModel.InGame.Judgement
     /// </summary>
     public interface IMutDeckModel: IDeckModel
     {
-        public List<Deck> Decks { get; }
+        public Deck[] Decks { get; }
     }
     
     public interface IDeckModel
@@ -18,10 +18,10 @@ namespace Domain.IModel.InGame.Judgement
 
     public class MockDeckModel : IMutDeckModel
     {
-        public List<Deck> Decks { get; private set; } = new List<Deck>();
+        public Deck[] Decks { get; private set; }
         public IReadOnlyList<Deck> DeckReader => Decks;
 
-        public void SetUpDeck(List<Deck> decks)
+        public void SetUpDeck(Deck[] decks)
         {
             Decks = decks;
         }

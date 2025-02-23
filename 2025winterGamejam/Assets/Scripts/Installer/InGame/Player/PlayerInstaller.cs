@@ -7,6 +7,7 @@ using Model.InGame.Player;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using View.InGame;
 using View.InGame.Player;
 
 namespace Installer.InGame.Player
@@ -14,6 +15,7 @@ namespace Installer.InGame.Player
     public class PlayerInstaller : LifetimeScope
     {
         [SerializeField] private ProductCardView productCardView;
+        [SerializeField] private HandCardPositionsView handCardPositionsView;
 
         private IPlayerIdModel _playerIdModel;
 
@@ -21,20 +23,21 @@ namespace Installer.InGame.Player
         {
             // View
             builder.RegisterComponent(productCardView);
-            
+            builder.RegisterComponent(handCardPositionsView).AsImplementedInterfaces();
+
             // Model
             builder.RegisterInstance(_playerIdModel);
 
             // Factory
-            builder.Register<CardFactory>(Lifetime.Singleton);
+            builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
 
-            // Presenter
-            builder.Register<NewCardPresenter>(Lifetime.Singleton);
-            builder.Register<SelectedCardPresenter>(Lifetime.Singleton);
-
-            // UseCase
             builder.UseEntryPoints(pointsBuilder =>
             {
+                // Presenter
+                pointsBuilder.Add<NewCardPresenter>();
+                pointsBuilder.Add<SelectedCardPresenter>();
+
+                // UseCase
                 pointsBuilder.Add<DrawCardCase>();
                 pointsBuilder.Add<AddPointCase>();
             });
