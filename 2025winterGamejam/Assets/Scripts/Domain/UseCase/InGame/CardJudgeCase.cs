@@ -1,13 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Domain.IModel.InGame;
-using Domain.IModel.InGame.Player;
-using R3;
-using UnityEngine;
+using Domain.IModel.InGame.Judgement;
 using Utility.Structure.InGame;
 using VContainer.Unity;
-using ISelectedCardModel = Domain.IModel.InGame.Player.ISelectedCardModel;
 
 namespace Domain.UseCase.InGame
 {
@@ -18,48 +13,26 @@ namespace Domain.UseCase.InGame
     {
         public CardJudgeCase
         (
-            IReadOnlyList<ISelectedCardModel> selectedCardModels,
+            ISelectedCardModel selectedCardModels,
             IJudgeResultModel judgeResultModel,
-            IReadOnlyList<IPlayerConditionModel> playerConditionModel
+            IConditionModel playerConditionModel
         )
         {
             SelectedCardModels = selectedCardModels;
             JudgeResultModel = judgeResultModel;
             PlayerConditionModel = playerConditionModel;
-            Disposable = new CompositeDisposable();
         }
 
         public void Initialize()
         {
-            Debug.Log($"selected card model num : {SelectedCardModels.Count}");
-            foreach (var selectedCardModel in SelectedCardModels)
-            {
-                selectedCardModel.OnSelected
-                    .Subscribe(_ => { CheckDecision(); })
-                    .AddTo(Disposable);
-            }
-            
-        }
-
-        private void CheckDecision()
-        {
-            var length = SelectedCardModels.Count;
-            var hasDecided = SelectedCardModels
-                .Count(x => x.OnSelected.CurrentValue.IsSome);
-            if (length == hasDecided)
-            {
-                var playerCards = SelectedCardModels
-                    .Select(x => x.OnSelected.CurrentValue.Unwrap())
-                    .ToList();
-                OnDecision(playerCards);
-            }
+            SelectedCardModels.OnAllPlayerSelectedCard += OnDecision;
         }
 
         private void OnDecision(List<Card> playerCard)
         {
             for (int i = 0; i < playerCard.Count; i++)
             {
-                var condition = PlayerConditionModel[i].PlayerCondition;
+                var condition = PlayerConditionModel.ConditionReader[i];
                 if ((condition & Condition.Five) != 0)
                 {
                     playerCard[i].SetDebuff(5);
@@ -83,14 +56,13 @@ namespace Domain.UseCase.InGame
                 return BattleResult.Draw(playerCard);
         }
 
-        private IReadOnlyList<ISelectedCardModel> SelectedCardModels { get; }
+        private ISelectedCardModel SelectedCardModels { get; }
         private IJudgeResultModel JudgeResultModel { get; }
-        private IReadOnlyList<IPlayerConditionModel> PlayerConditionModel { get; }
-        private CompositeDisposable Disposable { get; }
+        private IConditionModel PlayerConditionModel { get; }
 
         public void Dispose()
         {
-            Disposable?.Dispose();
+            SelectedCardModels.OnAllPlayerSelectedCard += OnDecision;
         }
     }
 }

@@ -5,6 +5,9 @@ using Utility.Structure.InGame;
 
 namespace Domain.IModel.InGame.Player
 {
+    /// <summary>
+    /// デッキインターフェース
+    /// </summary>
     public interface IDeckInitializable
     {
         public void InitDeck(Deck deck);
@@ -13,6 +16,15 @@ namespace Domain.IModel.InGame.Player
     public interface IPlayerDeckModel
     {
         public Deck Deck { get; }
+    }
+
+    public class MockPlayerDeckModel: IPlayerDeckModel, IDeckInitializable
+    {
+        public void InitDeck(Deck deck)
+        {
+            Deck = deck;
+        }
+        public Deck Deck { get; private set; }
     }
 
     public interface IMutPlayerHandCardModel : IPlayerHandCardModel

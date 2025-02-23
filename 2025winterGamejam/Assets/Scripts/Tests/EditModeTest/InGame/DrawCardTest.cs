@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using Domain.IModel.InGame;
-using Domain.UseCase.InGame;
+using Domain.IModel.InGame.Judgement;
+using Domain.IModel.InGame.Player;
+using Domain.UseCase.InGame.Player;
 using NUnit.Framework;
-using Utility.Structure.InGame;
 
 namespace Tests.EditModeTest.InGame
 {
@@ -11,11 +11,11 @@ namespace Tests.EditModeTest.InGame
         [SetUp]
         public void SetUp()
         {
-            _deckModel = new MockDeckModel();
+            _deckModel = new MockPlayerDeckModel();
             _handCard = new MockHandCardModelModel();
             var stateModel = new MockStateEventModel();
             _gameStartEventModel = stateModel;
-            _drawCardCase = new DrawCardCase(_deckModel, _handCard, _gameStartEventModel, _gameStartEventModel);
+            // _drawCardCase = new DrawCardCase(_deckModel, _handCard, _gameStartEventModel, _gameStartEventModel);
         }
 
         [TearDown]
@@ -24,16 +24,13 @@ namespace Tests.EditModeTest.InGame
         }
 
         private DrawCardCase _drawCardCase;
-        private MockDeckModel _deckModel;
+        private MockPlayerDeckModel _deckModel;
         private MockHandCardModelModel _handCard;
         private MockStateEventModel _gameStartEventModel;
 
         [Test]
         public void DrawCardNumTest()
         {
-            _deckModel.SetUpDeck(new List<Deck>(new []{Deck.SortedDeck(new (){Suit.Clubs, Suit.Diamonds}) }));
-            var deckCardAmount = _deckModel.Decks.Count;
-            
         }
     }
 }

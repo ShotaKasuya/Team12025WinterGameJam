@@ -1,7 +1,7 @@
 using System;
 using Utility.Structure.InGame;
 
-namespace Domain.IModel.InGame
+namespace Domain.IModel.InGame.Judgement
 {
     /// <summary>
     /// カードに対する勝敗処理結果が保存された際のイベント

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
 
-namespace Domain.IModel.InGame
+namespace Domain.IModel.InGame.Judgement
 {
     public interface IMutSelectedCardModel
     {

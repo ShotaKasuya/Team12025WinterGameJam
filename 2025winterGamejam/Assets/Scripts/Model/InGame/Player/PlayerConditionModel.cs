@@ -1,4 +1,4 @@
-using Domain.IModel.InGame;
+using Domain.IModel.InGame.Judgement;
 using Domain.IModel.InGame.Player;
 using Utility.Structure.InGame;
 
@@ -9,7 +9,7 @@ namespace Model.InGame.Player
         public PlayerConditionModel
         (
             IPlayerIdModel playerIdModel,
-            IConditionModel conditionModel
+            IMutConditionModel conditionModel
         )
         {
             PlayerIdModel = playerIdModel;
@@ -23,6 +23,6 @@ namespace Model.InGame.Player
         public Condition PlayerCondition => ConditionModel.ConditionReader[PlayerIdModel.PlayerId.Id];
         
         private IPlayerIdModel PlayerIdModel { get; }
-        private IConditionModel ConditionModel { get; }
+        private IMutConditionModel ConditionModel { get; }
     }
 }

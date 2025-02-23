@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.IModel.InGame;
+using Domain.IModel.InGame.Judgement;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
 
-namespace Model.InGame
+namespace Model.InGame.Judgement
 {
     public class SelectedCardModel: IMutSelectedCardModel, ISelectedCardModel
     {

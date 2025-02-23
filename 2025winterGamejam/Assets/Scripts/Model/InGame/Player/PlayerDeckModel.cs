@@ -1,4 +1,4 @@
-using Domain.IModel.InGame;
+using Domain.IModel.InGame.Judgement;
 using Domain.IModel.InGame.Player;
 using Utility.Structure.InGame;
 
@@ -9,7 +9,7 @@ namespace Model.InGame.Player
         public PlayerDeckModel
         (
             IPlayerIdModel playerIdModel,
-            IDeckModel deckModel
+            IMutDeckModel deckModel
         )
         {
             PlayerIdModel = playerIdModel;
@@ -24,6 +24,6 @@ namespace Model.InGame.Player
         }
         
         private IPlayerIdModel PlayerIdModel { get; }
-        private IDeckModel DeckModel { get; }
+        private IMutDeckModel DeckModel { get; }
     }
 }

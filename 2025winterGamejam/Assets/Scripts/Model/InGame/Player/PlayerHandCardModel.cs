@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Domain.IModel.InGame;
+using Domain.IModel.InGame.Judgement;
 using Domain.IModel.InGame.Player;
 using R3;
 using Utility.Module.Option;
@@ -23,7 +23,7 @@ namespace Model.InGame.Player
 
         public ReactiveProperty<Option<Card>> SelectedCard { get; } = new(Option<Card>.None());
         public ReadOnlyReactiveProperty<Option<Card>> OnSelected => SelectedCard;
-        public IReadOnlyList<Card> HandCardsReader => HandCardModel.HandCards[PlayerIdModel.PlayerId.Id].Cards;
+        public IReadOnlyList<Card> HandCardsReader => HandCardModel.HandCardReader[PlayerIdModel.PlayerId.Id].Cards;
         public Action<Card> OnAddHandCards { get; set; }
 
         public void StoreNewCard(Card card)

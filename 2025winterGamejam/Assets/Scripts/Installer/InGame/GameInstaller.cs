@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Domain.IModel.Global;
-using Domain.IModel.InGame.Player;
+using Domain.IModel.InGame.Judgement;
 using Domain.UseCase.InGame;
 using Installer.InGame.Player;
 using Model.Global;
 using Model.InGame;
+using Model.InGame.Judgement;
 using Model.InGame.Player;
 using UnityEngine;
 using Utility.Structure.InGame;
@@ -28,10 +29,15 @@ namespace Installer.InGame
             builder.Register<JudgeResultModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IdProvideModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerCountModel>(Lifetime.Singleton).AsImplementedInterfaces();
+            
+            // Model for GameInstaller
             builder.Register<SelectedCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<ConditionModel>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<DeckModel>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<HandCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<ScoreModel>(Lifetime.Singleton).AsImplementedInterfaces();
 
-            builder.Register<PlayerCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
-
+            // Model for PlayerInstaller
             builder.Register<PlayerScoreModel>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<PlayerHandCardModel>(Lifetime.Scoped).AsImplementedInterfaces();
             builder.Register<PlayerDeckModel>(Lifetime.Scoped).AsImplementedInterfaces();
@@ -47,16 +53,16 @@ namespace Installer.InGame
 
         private async void Start()
         {
+            var deckModels = Container.Resolve<IMutDeckModel>();
             var playerCountModel = Container.Resolve<IPlayerCountModel>();
-            var deckModels = Container.Resolve<IReadOnlyList<IDeckInitializable>>();
             var decks = Deck.RandomDecks(playerCountModel.PlayerCount);
-            Debug.Log(deckModels.Count);
+            Debug.Log(deckModels.DeckReader.Count);
             for (int i = 0; i < playerCountModel.PlayerCount; i++)
             {
                 Debug.Log($"deck : {string.Join(",", decks[i].Cards)}");
-                deckModels[i].InitDeck(decks[i]);
+                deckModels.Decks[i] =decks[i];
             }
-
+            
             await UniTask.DelayFrame(1);
 
             var gameStateModel = Container.Resolve<GameStateModel>();

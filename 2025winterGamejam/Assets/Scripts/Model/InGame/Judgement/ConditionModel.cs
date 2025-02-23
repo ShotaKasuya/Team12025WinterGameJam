@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Domain.IModel.Global;
-using Domain.IModel.InGame;
+using Domain.IModel.InGame.Judgement;
 using Utility.Structure.InGame;
 
-namespace Model.InGame
+namespace Model.InGame.Judgement
 {
-    public class ConditionModel: IConditionModel
+    public class ConditionModel: IMutConditionModel
     {
         public ConditionModel(IPlayerCountModel playerCountModel)
         {

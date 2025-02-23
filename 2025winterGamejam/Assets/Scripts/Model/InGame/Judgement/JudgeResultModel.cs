@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Domain.IModel.InGame;
+using Domain.IModel.InGame.Judgement;
 using Utility.Structure.InGame;
 
-namespace Model.InGame
+namespace Model.InGame.Judgement
 {
     public class JudgeResultModel : IJudgeEventModel, IJudgeResultModel
     {

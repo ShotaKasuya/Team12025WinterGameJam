@@ -23,7 +23,6 @@ namespace Domain.UseCase.InGame
         {
             for (int i = 0; i < PlayerCountModel.PlayerCount; i++)
             {
-                Debug.Log("Player Add");
                 Container.Instantiate(PlayerInstaller);
             }
         }
