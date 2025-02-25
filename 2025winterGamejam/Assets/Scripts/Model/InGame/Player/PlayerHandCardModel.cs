@@ -5,30 +5,37 @@ using Domain.IModel.InGame.Player;
 using R3;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
-using IMutSelectedCardModel = Domain.IModel.InGame.Player.IMutSelectedCardModel;
 
 namespace Model.InGame.Player
 {
-    public class PlayerHandCardModel : IMutPlayerHandCardModel, IMutSelectedCardModel, IDisposable
+    public class PlayerHandCardModel : IMutPlayerHandCardModel, IMutPlayerSelectedCardModel, IDisposable
     {
         public PlayerHandCardModel
         (
-            IPlayerIdModel playerIdModel,
-            IMutHandCardModel handCardModel
+            PlayerId playerIdModel,
+            IMutHandCardModel handCardModel,
+            IMutSelectedCardModel selectedCardModel
         )
         {
             PlayerIdModel = playerIdModel;
             HandCardModel = handCardModel;
+            SelectedCardModel = selectedCardModel;
         }
 
-        public ReactiveProperty<Option<Card>> SelectedCard { get; } = new(Option<Card>.None());
+        private ReactiveProperty<Option<Card>> SelectedCard { get; } = new(Option<Card>.None());
         public ReadOnlyReactiveProperty<Option<Card>> OnSelected => SelectedCard;
-        public IReadOnlyList<Card> HandCardsReader => HandCardModel.HandCardReader[PlayerIdModel.PlayerId.Id].Cards;
+        public void SetSelectedCard(Option<Card> card)
+        {
+            SelectedCard.Value = card;
+            SelectedCardModel.StorePlayerSelection(PlayerIdModel.Id, card);
+        }
+
+        public IReadOnlyList<Card> HandCardsReader => HandCardModel.HandCardReader[PlayerIdModel.Id].Cards;
         public Action<Card> OnAddHandCards { get; set; }
 
         public void StoreNewCard(Card card)
         {
-            HandCardModel.StoreNewCard(PlayerIdModel.PlayerId.Id, card);
+            HandCardModel.StoreNewCard(PlayerIdModel.Id, card);
             OnAddHandCards?.Invoke(card);
         }
 
@@ -37,7 +44,8 @@ namespace Model.InGame.Player
             SelectedCard?.Dispose();
         }
 
-        private IPlayerIdModel PlayerIdModel { get; }
+        private PlayerId PlayerIdModel { get; }
         private IMutHandCardModel HandCardModel { get; }
+        private IMutSelectedCardModel SelectedCardModel { get; }
     }
 }

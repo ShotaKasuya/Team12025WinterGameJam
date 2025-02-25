@@ -6,7 +6,7 @@ namespace Model.Global
     {
         public PlayerCountModel()
         {
-            PlayerCount = 4;
+            PlayerCount = 2;
         }
         public int PlayerCount { get; private set; }
         public void SetPlayerCount(int playerCount)

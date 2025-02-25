@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Domain.IModel.Global;
 using Domain.IModel.InGame;
 
@@ -8,10 +7,10 @@ namespace Model.InGame
     {
         public ScoreModel(IPlayerCountModel playerCountModel)
         {
-            Scores = new List<int>(playerCountModel.PlayerCount);
+            Scores = new int[playerCountModel.PlayerCount];
         }
         
-        private List<int> Scores { get; }
+        private int[] Scores { get; }
         public int GetScore(int playerId)
         {
             return Scores[playerId];

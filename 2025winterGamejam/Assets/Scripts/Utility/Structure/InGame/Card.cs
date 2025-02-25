@@ -65,7 +65,7 @@ namespace Utility.Structure.InGame
             var suitNum = Enum.GetValues(typeof(Suit)).Length;
             var rankNum = Enum.GetValues(typeof(Rank)).Length;
             var totalNum = suitNum * rankNum;
-            
+
             var cards = new Card[totalNum];
             for (int i = 0; i < suitNum; i++)
             {
@@ -73,7 +73,7 @@ namespace Utility.Structure.InGame
                 for (int j = 0; j < rankNum; j++)
                 {
                     var rank = (Rank)j;
-                    cards[i * suitNum + j] = new Card(suit, rank);
+                    cards[i * rankNum + j] = new Card(suit, rank);
                 }
             }
 

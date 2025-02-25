@@ -1,47 +1,25 @@
 using System;
 using Domain.IModel.InGame;
+using R3;
 using Utility.Structure.InGame;
 
 namespace Model.InGame
 {
     public class GameStateModel: IMutGameStateModel, IGameStartEventModel, IDrawCardEventModel
     {
+        public GameStateModel()
+        {
+            GameStateType = new ReactiveProperty<GameStateType>();
+        }
         public void SetGameState(GameStateType gameState)
         {
-            switch (gameState)
-            {
-                case GameStateType.Start:
-                {
-                    GameStartEvent?.Invoke();
-                    break;
-                }
-                case GameStateType.DecisionCard:
-                {
-                    break;
-                }
-                case GameStateType.Judge:
-                {
-                    break;
-                }
-                case GameStateType.AddPoint:
-                {
-                    break;
-                }
-                case GameStateType.DrawCard:
-                {
-                    GameDrawCardEvent?.Invoke();
-                    break;
-                }
-                case GameStateType.End:
-                {
-                    break;
-                }
-            }
+            GameStateType.Value = gameState;
         }
         
+        private ReactiveProperty<GameStateType> GameStateType { get; }
+        public ReadOnlyReactiveProperty<GameStateType> GameState => GameStateType;
         public Action GameStartEvent { get; set; }
         public Action GameDrawCardEvent { get; set; }
         
-        private GameStateType _gameStateType;
     }
 }

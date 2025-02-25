@@ -1,11 +1,17 @@
 using System;
+using R3;
 using Utility.Structure.InGame;
 
 namespace Domain.IModel.InGame
 {
-    public interface IMutGameStateModel
+    public interface IMutGameStateModel: IGameStateModel
     {
         public void SetGameState(GameStateType gameState);
+    }
+
+    public interface IGameStateModel
+    {
+        public ReadOnlyReactiveProperty<GameStateType> GameState { get; }
     }
     public interface IGameStartEventModel
     {

@@ -31,7 +31,6 @@ namespace Domain.Presenter.InGame.Player
 
         private void CreateCardView(Card card)
         {
-            Debug.Log("onCreated");
             CardFactory.CreateCardView(card);
 
             FixPosition();

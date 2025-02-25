@@ -1,5 +1,7 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Domain.IModel.InGame.Judgement;
 using Utility.Structure.InGame;
 using VContainer.Unity;
@@ -9,30 +11,36 @@ namespace Domain.UseCase.InGame
     /// <summary>
     /// 勝敗をジャッジする
     /// </summary>
-    public class CardJudgeCase : IDisposable, IInitializable
+    public class CardJudgeCase : IAsyncStartable
     {
         public CardJudgeCase
         (
             ISelectedCardModel selectedCardModels,
             IJudgeResultModel judgeResultModel,
-            IConditionModel playerConditionModel
+            IConditionModel conditionModel
         )
         {
             SelectedCardModels = selectedCardModels;
             JudgeResultModel = judgeResultModel;
-            PlayerConditionModel = playerConditionModel;
+            ConditionModel = conditionModel;
         }
 
-        public void Initialize()
+        public async UniTask StartAsync(CancellationToken cancellation = new CancellationToken())
         {
-            SelectedCardModels.OnAllPlayerSelectedCard += OnDecision;
+            while (true)
+            {
+                await UniTask.WaitUntil(() => SelectedCardModels.SelectedCards.All(x => x.IsSome), cancellationToken: cancellation);
+                
+                var selectedCards = SelectedCardModels.SelectedCards.Select(x => x.Unwrap());
+                OnDecision(selectedCards.ToList());
+            }
         }
 
         private void OnDecision(List<Card> playerCard)
         {
             for (int i = 0; i < playerCard.Count; i++)
             {
-                var condition = PlayerConditionModel.ConditionReader[i];
+                var condition = ConditionModel.ConditionReader[i];
                 if ((condition & Condition.Five) != 0)
                 {
                     playerCard[i].SetDebuff(5);
@@ -58,11 +66,6 @@ namespace Domain.UseCase.InGame
 
         private ISelectedCardModel SelectedCardModels { get; }
         private IJudgeResultModel JudgeResultModel { get; }
-        private IConditionModel PlayerConditionModel { get; }
-
-        public void Dispose()
-        {
-            SelectedCardModels.OnAllPlayerSelectedCard += OnDecision;
-        }
+        private IConditionModel ConditionModel { get; }
     }
 }

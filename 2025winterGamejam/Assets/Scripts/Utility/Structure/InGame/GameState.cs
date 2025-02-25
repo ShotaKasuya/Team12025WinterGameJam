@@ -2,11 +2,11 @@ namespace Utility.Structure.InGame
 {
     public enum GameStateType
     {
-        Start,
+        Init,
         DecisionCard,
         Judge,
         AddPoint,
         DrawCard,
-        End
+        End,
     }
 }

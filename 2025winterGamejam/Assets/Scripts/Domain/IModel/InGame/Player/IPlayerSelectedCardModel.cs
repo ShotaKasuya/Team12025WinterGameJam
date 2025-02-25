@@ -4,12 +4,12 @@ using Utility.Structure.InGame;
 
 namespace Domain.IModel.InGame.Player
 {
-    public interface IMutSelectedCardModel: ISelectedCardModel
+    public interface IMutPlayerSelectedCardModel: IPlayerSelectedCardModel
     {
-        public ReactiveProperty<Option<Card>> SelectedCard { get; }
+        public void SetSelectedCard(Option<Card> card);
     }
 
-    public interface ISelectedCardModel
+    public interface IPlayerSelectedCardModel
     {
         public ReadOnlyReactiveProperty<Option<Card>> OnSelected { get; }
     }

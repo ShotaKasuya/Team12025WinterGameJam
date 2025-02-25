@@ -8,7 +8,7 @@ namespace Model.InGame.Player
     {
         public PlayerDeckModel
         (
-            IPlayerIdModel playerIdModel,
+            PlayerId playerIdModel,
             IMutDeckModel deckModel
         )
         {
@@ -16,14 +16,14 @@ namespace Model.InGame.Player
             DeckModel = deckModel;
         }
 
-        public Deck Deck => DeckModel.Decks[PlayerIdModel.PlayerId.Id];
+        public Deck Deck => DeckModel.Decks[PlayerIdModel.Id];
 
         public void InitDeck(Deck deck)
         {
             throw new System.NotImplementedException();
         }
         
-        private IPlayerIdModel PlayerIdModel { get; }
+        private PlayerId PlayerIdModel { get; }
         private IMutDeckModel DeckModel { get; }
     }
 }

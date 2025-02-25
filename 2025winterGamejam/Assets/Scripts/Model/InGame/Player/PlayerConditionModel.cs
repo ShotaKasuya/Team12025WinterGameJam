@@ -8,7 +8,7 @@ namespace Model.InGame.Player
     {
         public PlayerConditionModel
         (
-            IPlayerIdModel playerIdModel,
+            PlayerId playerIdModel,
             IMutConditionModel conditionModel
         )
         {
@@ -18,11 +18,11 @@ namespace Model.InGame.Player
         
         public void SetCondition(Condition condition)
         {
-            ConditionModel.SetCondition(PlayerIdModel.PlayerId.Id, condition);
+            ConditionModel.SetCondition(PlayerIdModel.Id, condition);
         }
-        public Condition PlayerCondition => ConditionModel.ConditionReader[PlayerIdModel.PlayerId.Id];
+        public Condition PlayerCondition => ConditionModel.ConditionReader[PlayerIdModel.Id];
         
-        private IPlayerIdModel PlayerIdModel { get; }
+        private PlayerId PlayerIdModel { get; }
         private IMutConditionModel ConditionModel { get; }
     }
 }

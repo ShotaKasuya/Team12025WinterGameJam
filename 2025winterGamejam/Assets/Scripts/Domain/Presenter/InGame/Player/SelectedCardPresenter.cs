@@ -10,16 +10,16 @@ namespace Domain.Presenter.InGame.Player
     /// <summary>
     /// カードの選択を反映する
     /// </summary>
-    public class SelectedCardPresenter: IInitializable, IDisposable
+    public class SelectedCardPresenter : IInitializable, IDisposable
     {
         public SelectedCardPresenter
         (
             ICardFactory cardFactory,
-            IMutSelectedCardModel selectedCardModel
+            IMutPlayerSelectedCardModel playerSelectedCardModel
         )
         {
             CardFactory = cardFactory;
-            SelectedCardModel = selectedCardModel;
+            PlayerSelectedCardModel = playerSelectedCardModel;
         }
 
         public void Initialize()
@@ -55,16 +55,17 @@ namespace Domain.Presenter.InGame.Player
         private void OnSelect(Card card)
         {
             var apply = Option<Card>.Some(card);
-            var currentSelect = SelectedCardModel.OnSelected.CurrentValue;
+            var currentSelect = PlayerSelectedCardModel.OnSelected.CurrentValue;
             if (currentSelect.TryGetValue(out var value))
             {
                 if (card.IsEqual(value))
                 {
-                    apply=Option<Card>.None();
+                    apply = Option<Card>.None();
                 }
             }
+
             ApplyView(apply);
-            SelectedCardModel.SelectedCard.Value = apply;
+            PlayerSelectedCardModel.SetSelectedCard(apply);
         }
 
         private void AddView(ProductCardView cardView)
@@ -73,7 +74,7 @@ namespace Domain.Presenter.InGame.Player
         }
 
         private ICardFactory CardFactory { get; }
-        private IMutSelectedCardModel SelectedCardModel { get; }
+        private IMutPlayerSelectedCardModel PlayerSelectedCardModel { get; }
 
         public void Dispose()
         {

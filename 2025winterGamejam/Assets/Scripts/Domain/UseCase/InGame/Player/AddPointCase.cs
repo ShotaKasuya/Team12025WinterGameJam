@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Domain.IModel.InGame;
 using Domain.IModel.InGame.Judgement;
 using Domain.IModel.InGame.Player;
 using Utility.Structure.InGame;
@@ -12,8 +11,8 @@ namespace Domain.UseCase.InGame.Player
     {
         public AddPointCase
         (
+            PlayerId playerIdModel,
             IPlayerScoreModel playerScoreModelModel,
-            IPlayerIdModel playerIdModel,
             IJudgeEventModel judgeEventModel,
             IPlayerConditionModel playerPlayerConditionModel
         )
@@ -34,7 +33,7 @@ namespace Domain.UseCase.InGame.Player
         {
             if (resultAndDrawCount.BattleResult.Winner.TryGetValue(out PlayerId winner))
             {
-                if (PlayerIdModel.PlayerId.Equals(winner))
+                if (PlayerIdModel.Equals(winner))
                 {
                     int addScoreDebuff = 1;
                     //自身が弱体化しているかの確認
@@ -50,7 +49,7 @@ namespace Domain.UseCase.InGame.Player
                     }
                     else
                     {
-                        switch (resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank)
+                        switch (resultAndDrawCount.BattleResult.Cards[PlayerIdModel.Id].Rank)
                         {
                             case Rank.Seven:
                                 PlayerScoreModel.AddScore(2 * (resultAndDrawCount.DrawCount + 1) *
@@ -73,7 +72,7 @@ namespace Domain.UseCase.InGame.Player
                 else
                 {
                     //Jで負けた時の-4される処理
-                    if (resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank == Rank.Jack)
+                    if (resultAndDrawCount.BattleResult.Cards[PlayerIdModel.Id].Rank == Rank.Jack)
                     {
                         PlayerScoreModel.AddScore(-4);
                     }
@@ -84,7 +83,7 @@ namespace Domain.UseCase.InGame.Player
         //7勝利時の相手とのランク差を計算する処理
         private int DefferentRank(ResultAndDrawCount resultAndDrawCount)
         {
-            var myRank = resultAndDrawCount.BattleResult.Cards[PlayerIdModel.PlayerId.Id].Rank;
+            var myRank = resultAndDrawCount.BattleResult.Cards[PlayerIdModel.Id].Rank;
 
             return (int)myRank -
                    (int)resultAndDrawCount.BattleResult.Cards
@@ -94,7 +93,7 @@ namespace Domain.UseCase.InGame.Player
         }
 
         private IPlayerScoreModel PlayerScoreModel { get; }
-        private IPlayerIdModel PlayerIdModel { get; }
+        private PlayerId PlayerIdModel { get; }
         private IJudgeEventModel JudgeEventModel { get; }
         private IPlayerConditionModel PlayerPlayerConditionModel { get; }
 

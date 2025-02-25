@@ -15,7 +15,6 @@ namespace Installer.InGame.Player
     public class PlayerInstaller : LifetimeScope
     {
         [SerializeField] private ProductCardView productCardView;
-        [SerializeField] private HandCardPositionsView handCardPositionsView;
 
         private IPlayerIdModel _playerIdModel;
 
@@ -23,10 +22,9 @@ namespace Installer.InGame.Player
         {
             // View
             builder.RegisterComponent(productCardView);
-            builder.RegisterComponent(handCardPositionsView).AsImplementedInterfaces();
 
             // Model
-            builder.RegisterInstance(_playerIdModel);
+            builder.RegisterInstance(_playerIdModel.PlayerId);
 
             // Factory
             builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
