@@ -31,23 +31,20 @@ namespace Domain.UseCase.InGame.Flow
 
         public async UniTask StartAsync(CancellationToken cancellation = new CancellationToken())
         {
-            while (true)
+            await UniTask.WaitUntil(() => GameStateModel.GameState.CurrentValue == GameStateType.AddPoint,
+                cancellationToken: cancellation);
+
+            GameStateType transitionTo;
+            if (HandCardModel.HandCardReader.All(x => x.Cards.Count == 0))
             {
-                await UniTask.WaitUntil(() => GameStateModel.GameState.CurrentValue == GameStateType.AddPoint,
-                    cancellationToken: cancellation);
-
-                GameStateType transitionTo;
-                if (HandCardModel.HandCardReader.All(x => x.Cards.Count == 0))
-                {
-                    transitionTo = GameStateType.End;
-                }
-                else
-                {
-                    transitionTo = GameStateType.DrawCard;
-                }
-
-                GameStateModel.SetGameState(transitionTo);
+                transitionTo = GameStateType.End;
             }
+            else
+            {
+                transitionTo = GameStateType.DrawCard;
+            }
+
+            GameStateModel.SetGameState(transitionTo);
         }
 
         private IDisposable _disposable;

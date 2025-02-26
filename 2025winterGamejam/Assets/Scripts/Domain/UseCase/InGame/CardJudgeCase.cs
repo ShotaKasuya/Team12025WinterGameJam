@@ -1,7 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using Domain.IModel.InGame.Judgement;
 using Utility.Structure.InGame;
 using VContainer.Unity;
@@ -11,7 +9,7 @@ namespace Domain.UseCase.InGame
     /// <summary>
     /// 勝敗をジャッジする
     /// </summary>
-    public class CardJudgeCase : IAsyncStartable
+    public class CardJudgeCase : IInitializable, IDisposable
     {
         public CardJudgeCase
         (
@@ -24,16 +22,10 @@ namespace Domain.UseCase.InGame
             JudgeResultModel = judgeResultModel;
             ConditionModel = conditionModel;
         }
-
-        public async UniTask StartAsync(CancellationToken cancellation = new CancellationToken())
+        
+        public void Initialize()
         {
-            while (true)
-            {
-                await UniTask.WaitUntil(() => SelectedCardModels.SelectedCards.All(x => x.IsSome), cancellationToken: cancellation);
-                
-                var selectedCards = SelectedCardModels.SelectedCards.Select(x => x.Unwrap());
-                OnDecision(selectedCards.ToList());
-            }
+            SelectedCardModels.OnSelectCompleted += OnDecision;
         }
 
         private void OnDecision(List<Card> playerCard)
@@ -67,5 +59,11 @@ namespace Domain.UseCase.InGame
         private ISelectedCardModel SelectedCardModels { get; }
         private IJudgeResultModel JudgeResultModel { get; }
         private IConditionModel ConditionModel { get; }
+
+
+        public void Dispose()
+        {
+            SelectedCardModels.OnSelectCompleted -= OnDecision;
+        }
     }
 }

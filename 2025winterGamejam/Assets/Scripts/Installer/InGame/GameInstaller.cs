@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.IView.InGame;
 using Domain.UseCase.InGame;
+using Domain.UseCase.InGame.Flow;
 using Installer.InGame.Player;
 using Model.Global;
 using Model.InGame;
@@ -53,6 +54,12 @@ namespace Installer.InGame
                 pointsBuilder.Add<InitDeckCase>();
                 pointsBuilder.Add<CardJudgeCase>();
                 pointsBuilder.Add<AddPlayerCase>();
+                
+                // Flow
+                pointsBuilder.Add<InitStateFlowCase>();
+                pointsBuilder.Add<DecisionCardStateFlowCase>();
+                pointsBuilder.Add<JudgeStateFlowCase>();
+                pointsBuilder.Add<AddPointStateFlowCase>();
             });
         }
     }

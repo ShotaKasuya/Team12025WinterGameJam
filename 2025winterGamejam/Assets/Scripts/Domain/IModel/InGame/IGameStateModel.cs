@@ -1,4 +1,3 @@
-using System;
 using R3;
 using Utility.Structure.InGame;
 
@@ -13,31 +12,24 @@ namespace Domain.IModel.InGame
     {
         public ReadOnlyReactiveProperty<GameStateType> GameState { get; }
     }
-    public interface IGameStartEventModel
+
+    public class MockStateEventModel : IMutGameStateModel
     {
-        Action GameStartEvent { get; set; }
-    }
-
-    public interface IDrawCardEventModel
-    {
-        Action GameDrawCardEvent { get; set; }
-    }
- 
-
-
-    public class MockStateEventModel : IGameStartEventModel, IDrawCardEventModel
-    {
-        public Action GameStartEvent { get; set; }
-        public Action GameDrawCardEvent { get; set; }
-
         public void InvokeGameStart()
         {
-            GameStartEvent?.Invoke();
+            SetGameState(GameStateType.Init);
         }
 
         public void InvokeDrawCard()
         {
-            GameDrawCardEvent?.Invoke();
+            SetGameState(GameStateType.DrawCard);
+        }
+
+        private ReactiveProperty<GameStateType> State { get; } = new ReactiveProperty<GameStateType>();
+        public ReadOnlyReactiveProperty<GameStateType> GameState => State;
+        public void SetGameState(GameStateType gameState)
+        {
+            State.Value = gameState;
         }
     }
 }

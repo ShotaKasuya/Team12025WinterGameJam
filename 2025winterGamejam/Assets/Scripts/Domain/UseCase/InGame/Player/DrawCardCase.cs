@@ -1,6 +1,7 @@
 using System;
 using Domain.IModel.InGame;
 using Domain.IModel.InGame.Player;
+using R3;
 using Utility.Structure.InGame;
 using VContainer.Unity;
 
@@ -15,19 +16,33 @@ namespace Domain.UseCase.InGame.Player
         (
             IPlayerDeckModel playerDeckModel,
             IMutPlayerHandCardModel playerHandCardModel,
-            IGameStartEventModel gameStartEventModel,
-            IDrawCardEventModel drawCardEventModel
+            IGameStateModel gameStateModel
         )
         {
             PlayerDeckModel = playerDeckModel;
             PlayerHandCardModel = playerHandCardModel;
-            GameStartEventModel = gameStartEventModel;
-            DrawCardEventModel = drawCardEventModel;
+            GameStateModel = gameStateModel;
         }
 
         public void Initialize()
         {
-            DrawCardEventModel.GameDrawCardEvent += OnDraw;
+            _disposable = GameStateModel.GameState
+                .Subscribe(state =>
+                {
+                    if (state == GameStateType.Init)
+                    {
+                        // FIXME
+                        for (int i = 0; i < 4; i++)
+                        {
+                            OnDraw();
+                        }
+                    }
+
+                    if (state == GameStateType.DrawCard)
+                    {
+                        OnDraw();
+                    }
+                });
         }
 
         private void OnDraw()
@@ -38,14 +53,14 @@ namespace Domain.UseCase.InGame.Player
             }
         }
 
+        private IDisposable _disposable;
         private IPlayerDeckModel PlayerDeckModel { get; }
         private IMutPlayerHandCardModel PlayerHandCardModel { get; }
-        private IGameStartEventModel GameStartEventModel { get; }
-        private IDrawCardEventModel DrawCardEventModel { get; }
+        private IGameStateModel GameStateModel { get; }
 
         public void Dispose()
         {
-            DrawCardEventModel.GameDrawCardEvent -= OnDraw;
+            _disposable.Dispose();
         }
     }
 }
