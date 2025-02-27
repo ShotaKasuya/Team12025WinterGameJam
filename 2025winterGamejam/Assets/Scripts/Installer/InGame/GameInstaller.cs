@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
-using Domain.IView.InGame;
+using Adapter.IView.InGame;
+using Adapter.Model.Global;
+using Adapter.Model.InGame;
+using Adapter.Model.InGame.Judgement;
+using Adapter.Model.InGame.Player;
+using Adapter.View.InGame;
+using Adapter.View.InGame.Player;
 using Domain.UseCase.InGame;
-using Domain.UseCase.InGame.Flow;
 using Installer.InGame.Player;
-using Model.Global;
-using Model.InGame;
-using Model.InGame.Judgement;
-using Model.InGame.Player;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using View.InGame;
-using View.InGame.Player;
 
 namespace Installer.InGame
 {
@@ -56,10 +55,6 @@ namespace Installer.InGame
                 pointsBuilder.Add<AddPlayerCase>();
                 
                 // Flow
-                pointsBuilder.Add<InitStateFlowCase>();
-                pointsBuilder.Add<DecisionCardStateFlowCase>();
-                pointsBuilder.Add<JudgeStateFlowCase>();
-                pointsBuilder.Add<AddPointStateFlowCase>();
             });
         }
     }

@@ -1,6 +1,6 @@
 using System;
-using Domain.IModel.InGame.Player;
-using Domain.IView.InGame;
+using Adapter.IModel.InGame.Player;
+using Adapter.IView.InGame;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
 using VContainer.Unity;

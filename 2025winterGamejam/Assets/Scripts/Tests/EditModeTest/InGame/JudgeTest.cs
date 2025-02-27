@@ -1,7 +1,6 @@
 
 using System;
 using System.Collections.Generic;
-using Domain.IModel.InGame;
 using Domain.UseCase.InGame;
 using NUnit.Framework;
 using Utility.Structure.InGame;

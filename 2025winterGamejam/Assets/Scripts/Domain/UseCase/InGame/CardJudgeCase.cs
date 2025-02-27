@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Domain.IModel.InGame.Judgement;
+using System.Linq;
+using Adapter.IModel.InGame.Judgement;
+using Domain.IUseCase.InGame;
 using Utility.Structure.InGame;
 using VContainer.Unity;
 
@@ -9,7 +11,7 @@ namespace Domain.UseCase.InGame
     /// <summary>
     /// 勝敗をジャッジする
     /// </summary>
-    public class CardJudgeCase : IInitializable, IDisposable
+    public class CardJudgeCase : IInitializable, IDisposable, IJudgeCase
     {
         public CardJudgeCase
         (
@@ -38,6 +40,8 @@ namespace Domain.UseCase.InGame
                     playerCard[i].SetDebuff(5);
                 }
             }
+            
+            SelectedCardModels.Clear();
 
             var result = Judge(playerCard);
 
@@ -64,6 +68,21 @@ namespace Domain.UseCase.InGame
         public void Dispose()
         {
             SelectedCardModels.OnSelectCompleted -= OnDecision;
+        }
+
+        public BattleResult Judge()
+        {
+            var selectedCards = SelectedCardModels.SelectedCards.Select(x => x.Unwrap()).ToList();
+            for (int i = 0; i < selectedCards.Count; i++)
+            {
+                var condition = ConditionModel.ConditionReader[i];
+                if ((condition & Condition.Five) != 0)
+                {
+                    selectedCards[i].SetDebuff(5);
+                }
+            }
+
+            return Judge(selectedCards);
         }
     }
 }

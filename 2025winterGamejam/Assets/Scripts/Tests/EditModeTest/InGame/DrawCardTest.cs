@@ -1,6 +1,6 @@
-using Domain.IModel.InGame;
-using Domain.IModel.InGame.Judgement;
-using Domain.IModel.InGame.Player;
+using Adapter.IModel.InGame;
+using Adapter.IModel.InGame.Judgement;
+using Adapter.IModel.InGame.Player;
 using Domain.UseCase.InGame.Player;
 using NUnit.Framework;
 

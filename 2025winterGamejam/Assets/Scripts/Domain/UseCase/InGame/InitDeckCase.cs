@@ -1,4 +1,4 @@
-using Domain.IModel.InGame.Judgement;
+using Adapter.IModel.InGame.Judgement;
 using Utility.Structure.InGame;
 using VContainer.Unity;
 

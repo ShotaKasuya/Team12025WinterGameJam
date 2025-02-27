@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Domain.IModel.InGame;
-using Domain.IModel.InGame.Player;
 using Domain.UseCase.InGame.Player;
 using NUnit.Framework;
 using Utility.Structure.InGame;

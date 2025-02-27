@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.IModel.InGame.Judgement;
-using Domain.IView.InGame;
+using Adapter.IModel.InGame.Judgement;
+using Adapter.IView.InGame;
 using VContainer.Unity;
 
 namespace Domain.Presenter.InGame

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using Domain.IModel.InGame.Judgement;
-using Domain.IModel.InGame.Player;
+using Adapter.IModel.InGame.Judgement;
+using Adapter.IModel.InGame.Player;
 using Utility.Structure.InGame;
 using VContainer.Unity;
 

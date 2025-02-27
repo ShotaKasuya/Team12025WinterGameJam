@@ -23,6 +23,7 @@ namespace Domain.Flow.InGame
 
         public void OnEnter(GameStateType prev)
         {
+            var _ = JudgeFlow();
         }
 
         public void OnExit(GameStateType next)

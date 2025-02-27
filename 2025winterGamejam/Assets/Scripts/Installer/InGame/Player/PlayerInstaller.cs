@@ -1,13 +1,13 @@
-using Domain.IModel.InGame;
-using Domain.IModel.InGame.Player;
-using Domain.IView.InGame;
+using Adapter.IModel.InGame;
+using Adapter.IModel.InGame.Player;
+using Adapter.IView.InGame;
+using Adapter.Model.InGame.Player;
+using Adapter.View.InGame.Player;
 using Domain.Presenter.InGame.Player;
 using Domain.UseCase.InGame.Player;
-using Model.InGame.Player;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using View.InGame.Player;
 
 namespace Installer.InGame.Player
 {
