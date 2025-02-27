@@ -10,15 +10,17 @@ namespace View.InGame.Player
     {
         public CardFactory
         (
-            ProductCardView productCardView
+            ProductCardView productCardView,
+            IGetPrefab iGetPrefab
         )
         {
             ProductCardView = productCardView;
+            IGetPrefab = iGetPrefab;
         }
         
         public ProductCardView CreateCardView(Card card)
         {
-            var instance = Object.Instantiate(ProductCardView);
+            var instance = Object.Instantiate(IGetPrefab.GetProductCardView(card));
             instance.Inject(card,DeleteCardView );
             FactoryProducts.Add(instance);
             OnCreateView?.Invoke(instance);
@@ -36,5 +38,6 @@ namespace View.InGame.Player
 
         private List<ProductCardView> FactoryProducts { get; } = new List<ProductCardView>();
         private ProductCardView ProductCardView { get; }
+        private IGetPrefab IGetPrefab {get;}
     }
 }
