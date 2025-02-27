@@ -12,6 +12,7 @@ namespace Model.InGame
         [EnumList(typeof(Rank))]
         private MyList hoge;
 
+        public bool a;
         string ICardDescription.EffectName(Card card)
         {
             return hoge.effectName[(int)card.Rank];

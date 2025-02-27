@@ -13,6 +13,11 @@ namespace Domain.IView.InGame
         public Action<ProductCardView> OnCreateView { get; set; }
     }
 
+    public interface ICardReleaseView
+    {
+        public void Release(PlayerId playerId, Card card);
+    }
+
     public interface ICardProduct: IHandCardView, ITransformableView
     {
         public void Inject(Card card, Action<ProductCardView> disposable);

@@ -14,10 +14,12 @@ namespace Domain.Presenter.InGame.Player
     {
         public SelectedCardPresenter
         (
+            PlayerId playerId,
             ICardFactory cardFactory,
             IMutPlayerSelectedCardModel playerSelectedCardModel
         )
         {
+            PlayerId = playerId;
             CardFactory = cardFactory;
             PlayerSelectedCardModel = playerSelectedCardModel;
         }
@@ -73,6 +75,7 @@ namespace Domain.Presenter.InGame.Player
             cardView.SelectionEvent += OnSelect;
         }
 
+        private PlayerId PlayerId { get; }
         private ICardFactory CardFactory { get; }
         private IMutPlayerSelectedCardModel PlayerSelectedCardModel { get; }
 

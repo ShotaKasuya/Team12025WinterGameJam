@@ -1,7 +1,6 @@
 using System;
 using Domain.IModel.InGame.Player;
 using Domain.IView.InGame;
-using UnityEngine;
 using Utility.Structure.InGame;
 using VContainer.Unity;
 

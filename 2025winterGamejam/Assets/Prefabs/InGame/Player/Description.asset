@@ -12,3 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf50aff6c67424e9915c312fcbab80a, type: 3}
   m_Name: Description
   m_EditorClassIdentifier: 
+  hoge:
+    description:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    effectName:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  a: 0

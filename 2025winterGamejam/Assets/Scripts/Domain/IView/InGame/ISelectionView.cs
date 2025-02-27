@@ -11,5 +11,6 @@ namespace Domain.IView.InGame
         public Action<Card> SelectionEvent { get; set; }
         public void TurnOn();
         public void TurnOff();
+        
     }
 }

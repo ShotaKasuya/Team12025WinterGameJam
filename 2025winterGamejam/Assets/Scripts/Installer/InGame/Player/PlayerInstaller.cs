@@ -7,7 +7,6 @@ using Model.InGame.Player;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using View.InGame;
 using View.InGame.Player;
 
 namespace Installer.InGame.Player
