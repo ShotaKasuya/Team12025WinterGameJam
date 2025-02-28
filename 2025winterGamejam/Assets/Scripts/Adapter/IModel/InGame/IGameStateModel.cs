@@ -1,5 +1,6 @@
 using R3;
 using Utility.Structure.InGame;
+using Utility.Structure.InGame.StateMachine;
 
 namespace Adapter.IModel.InGame
 {

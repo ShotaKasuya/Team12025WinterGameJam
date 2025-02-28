@@ -4,6 +4,7 @@ using Adapter.IModel.InGame;
 using Adapter.IModel.InGame.Player;
 using R3;
 using Utility.Structure.InGame;
+using Utility.Structure.InGame.StateMachine;
 using VContainer.Unity;
 
 namespace Domain.UseCase.InGame.Player

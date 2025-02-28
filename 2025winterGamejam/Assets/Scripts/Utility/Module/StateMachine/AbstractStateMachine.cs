@@ -3,15 +3,12 @@ using System.Collections.Generic;
 
 namespace Utility.Module.StateMachine
 {
-    public abstract class AbstractStateMachine<TState>: IDisposable where TState: struct, Enum
+    public abstract class AbstractStateMachine<TState> where TState: struct, Enum
     {
-        protected AbstractStateMachine(IState<TState> state, List<IStateBehaviour<TState>> behaviourEntities)
+        protected AbstractStateMachine(IMutState<TState> state, IReadOnlyList<IStateBehaviour<TState>> behaviourEntities)
         {
             State = state;
             StateBehaviourEntities = behaviourEntities;
-
-            State.OnChangeState += OnChangeState;
-            CallOnEnter(default);
         }
         
         public void Tick(float deltaTime)
@@ -28,10 +25,11 @@ namespace Utility.Module.StateMachine
             }
         }
 
-        private void OnChangeState(StatePair<TState> statePair)
+        public virtual void ChangeState(TState newState)
         {
-            CallOnExit(statePair.NextState);
-            CallOnEnter(statePair.PrevState);
+            CallOnExit(newState);
+            CallOnEnter(State.State);
+            State.ChangeState(newState);
         }
 
         private static bool IsEqual(TState lhs, TState rhs)
@@ -39,8 +37,8 @@ namespace Utility.Module.StateMachine
             return Convert.ToInt32(lhs) == Convert.ToInt32(rhs);
         }
         
-        private IState<TState> State { get; }
-        private List<IStateBehaviour<TState>> StateBehaviourEntities { get; }
+        private IMutState<TState> State { get; }
+        private IReadOnlyList<IStateBehaviour<TState>> StateBehaviourEntities { get; }
 
         private void CallOnEnter(TState prev)
         {
@@ -63,11 +61,6 @@ namespace Utility.Module.StateMachine
                     behaviour.OnExit(next);
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            State.OnChangeState -= OnChangeState;
         }
     }
 }

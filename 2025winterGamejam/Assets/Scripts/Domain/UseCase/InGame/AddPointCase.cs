@@ -13,7 +13,7 @@ namespace Domain.UseCase.InGame
         (
             IPlayerCountModel playerCountModel,
             IScoreModel scoreModel,
-            ITmpJudgeResultModel judgeResultModel,
+            IJudgeResultModel judgeResultModel,
             IConditionModel conditionModel
         )
         {
@@ -93,7 +93,7 @@ namespace Domain.UseCase.InGame
 
         private IPlayerCountModel PlayerCountModel { get; }
         private IScoreModel ScoreModel { get; }
-        private ITmpJudgeResultModel JudgeResultModel { get; }
+        private IJudgeResultModel JudgeResultModel { get; }
         private IConditionModel ConditionModel { get; }
     }
 }

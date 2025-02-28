@@ -7,13 +7,13 @@ namespace Adapter.IModel.InGame.Judgement
 {
     public interface IMutSelectedCardModel
     {
-        public void StorePlayerSelection(int playerId, Option<Card> selection);
+        public void StorePlayerSelection(int playerId, Option<PlayerCard> selection);
     }
     
     public interface ISelectedCardModel
     {
-        public Action<List<Card>> OnSelectCompleted { get; set; }
-        public Option<Card>[] SelectedCards { get; }
+        public Action<List<PlayerCard>> OnSelectCompleted { get; set; }
+        public Option<PlayerCard>[] SelectedCards { get; }
 
         public void Clear();
     }

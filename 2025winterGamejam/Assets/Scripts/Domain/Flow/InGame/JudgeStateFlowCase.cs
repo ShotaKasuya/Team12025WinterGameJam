@@ -4,6 +4,7 @@ using Domain.IPresenter.InGame;
 using Domain.IUseCase.InGame;
 using Utility.Module.StateMachine;
 using Utility.Structure.InGame;
+using Utility.Structure.InGame.StateMachine;
 
 namespace Domain.Flow.InGame
 {

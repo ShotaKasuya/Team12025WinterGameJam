@@ -116,5 +116,12 @@ namespace Utility.Structure.InGame
         
         public PlayerId PlayerId { get; }
         public Card Card { get; }
+        public Rank Rank => Card.Rank;
+        public Suit Suit => Card.Suit;
+
+        public bool IsGreater(PlayerCard other)
+        {
+            return Card.IsGreater(other.Card);
+        }
     }
 }

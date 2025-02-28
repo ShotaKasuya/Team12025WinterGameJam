@@ -5,21 +5,21 @@ namespace Utility.Structure.InGame
 {
     public readonly struct BattleResult
     {
-        public static BattleResult Result(PlayerId winner, List<Card> userCards)
+        public static BattleResult Result(PlayerId winner, List<PlayerCard> userCards)
         {
             return new BattleResult(Option<PlayerId>.Some(winner), userCards);
         }
 
-        public static BattleResult Draw(List<Card> userCards)
+        public static BattleResult Draw(List<PlayerCard> userCards)
         {
             return new BattleResult(Option<PlayerId>.None(), userCards);
         }
         
         public Option<PlayerId> Winner { get; }
-        public IReadOnlyList<Card> Cards => UserCards;
-        private List<Card> UserCards { get; }
+        public IReadOnlyList<PlayerCard> Cards => UserCards;
+        private List<PlayerCard> UserCards { get; }
 
-        private BattleResult(Option<PlayerId> winner, List<Card> userCards)
+        private BattleResult(Option<PlayerId> winner, List<PlayerCard> userCards)
         {
             Winner = winner;
             UserCards = userCards;

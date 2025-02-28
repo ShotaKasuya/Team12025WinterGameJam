@@ -2,37 +2,28 @@ using Cysharp.Threading.Tasks;
 using Domain.IPresenter.InGame;
 using Domain.IUseCase.InGame;
 using Utility.Module.StateMachine;
-using Utility.Structure.InGame;
+using Utility.Structure.InGame.StateMachine;
 
 namespace Domain.Flow.InGame
 {
-    public class AddPointStateFlow : IStateBehaviour<GameStateType>
+    public class AddPointStateFlow : StateBehaviour<GameStateType>
     {
         public AddPointStateFlow
         (
             IIsGameEndCase isGameEndCase,
             IAddPointCase addPointCase,
             IAddPointPresenter addPointPresenter,
-            IMutState<GameStateType> state
-        )
+            IMutState<GameStateType> gameState
+        ) : base(GameStateType.AddPoint, gameState)
         {
             IsGameEndCase = isGameEndCase;
             AddPointCase = addPointCase;
             AddPointPresenter = addPointPresenter;
-            GameState = state;
         }
 
-        public void OnEnter(GameStateType prev)
+        public override void OnEnter(GameStateType prev)
         {
             var _ = AddPointFlow();
-        }
-
-        public void OnExit(GameStateType next)
-        {
-        }
-
-        public void StateUpdate(float deltaTime)
-        {
         }
 
         private async UniTask AddPointFlow()
@@ -50,13 +41,11 @@ namespace Domain.Flow.InGame
                 transitionTo = GameStateType.DrawCard;
             }
 
-            GameState.ChangeState(transitionTo);
+            StateEntity.ChangeState(transitionTo);
         }
 
-        public GameStateType TargetStateMask { get; } = GameStateType.AddPoint;
         private IIsGameEndCase IsGameEndCase { get; }
         private IAddPointCase AddPointCase { get; }
         private IAddPointPresenter AddPointPresenter { get; }
-        private IMutState<GameStateType> GameState { get; }
     }
 }

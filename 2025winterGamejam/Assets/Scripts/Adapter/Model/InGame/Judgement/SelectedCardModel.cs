@@ -12,10 +12,10 @@ namespace Adapter.Model.InGame.Judgement
     {
         public SelectedCardModel(IPlayerCountModel playerCountModel)
         {
-            SelectedCards = new Option<Card>[playerCountModel.PlayerCount];
+            SelectedCards = new Option<PlayerCard>[playerCountModel.PlayerCount];
         }
 
-        public void StorePlayerSelection(int playerId, Option<Card> selection)
+        public void StorePlayerSelection(int playerId, Option<PlayerCard> selection)
         {
             SelectedCards[playerId] = selection;
             if (SelectedCards.All(x => x.IsSome))
@@ -28,11 +28,11 @@ namespace Adapter.Model.InGame.Judgement
         {
             for (int i = 0; i < SelectedCards.Length; i++)
             {
-                SelectedCards[i]=Option<Card>.None();
+                SelectedCards[i] = Option<PlayerCard>.None();
             }
         }
 
-        public Option<Card>[] SelectedCards { get; }
-        public Action<List<Card>> OnSelectCompleted { get; set; }
+        public Option<PlayerCard>[] SelectedCards { get; }
+        public Action<List<PlayerCard>> OnSelectCompleted { get; set; }
     }
 }

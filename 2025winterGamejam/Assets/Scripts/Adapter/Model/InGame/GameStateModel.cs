@@ -2,6 +2,7 @@ using Adapter.IModel.InGame;
 using R3;
 using UnityEngine;
 using Utility.Structure.InGame;
+using Utility.Structure.InGame.StateMachine;
 
 namespace Adapter.Model.InGame
 {

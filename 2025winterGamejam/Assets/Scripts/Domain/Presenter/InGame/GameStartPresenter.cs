@@ -8,16 +8,9 @@ namespace Domain.Presenter.InGame
     /// </summary>
     public class GameStartPresenter: IGameStartPresenter
     {
-        public GameStartPresenter
-        (
-        )
+        public UniTask GameStart()
         {
-            
-        }
-        
-        public async UniTask GameStart()
-        {
-            
+            return UniTask.CompletedTask;
         }
     }
 }

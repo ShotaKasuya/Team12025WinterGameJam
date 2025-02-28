@@ -4,16 +4,16 @@ using VContainer.Unity;
 
 namespace Domain.UseCase.InGame
 {
-    public class InitDeckCase: IInitializable
+    public class InitDeckCase : IInitializable
     {
         public InitDeckCase
-            (
-                IMutDeckModel deckModel
-                )
+        (
+            IMutDeckModel deckModel
+        )
         {
             DeckModel = deckModel;
         }
-        
+
         public void Initialize()
         {
             var len = DeckModel.Decks.Length;
@@ -24,7 +24,7 @@ namespace Domain.UseCase.InGame
                 DeckModel.Decks[i] = decks[i];
             }
         }
-        
+
         private IMutDeckModel DeckModel { get; }
     }
 }
