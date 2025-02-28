@@ -7,4 +7,9 @@ namespace Adapter.IView.InGame
     {
         public IReadOnlyList<Pose> CardPositions { get; }
     }
+    
+    public interface ICardGeneratePointView
+    {
+        public Pose GeneratePoint { get; }
+    }
 }

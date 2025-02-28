@@ -20,7 +20,6 @@ namespace Adapter.IView.InGame
 
     public interface ICardProduct: IHandCardView, ITransformableView
     {
-        public void Inject(Card card, Action<ProductCardView> disposable);
     }
 
     public abstract class ProductCardView: MonoBehaviour, ICardProduct
@@ -45,6 +44,32 @@ namespace Adapter.IView.InGame
         private void OnDestroy()
         {
             _disposable.Invoke(this);
+        }
+    }
+    
+    /// <summary>
+    /// カードのファクトリ
+    /// </summary>
+    public interface INewCardFactory
+    {
+        public NewProductCardView CreateCardView(PlayerCard playerCard);
+    }
+    public abstract class NewProductCardView: MonoBehaviour, ICardProduct
+    {
+        public Transform ModelTransform { get; private set; }
+        public Action<Card> SelectionEvent { get; set; }
+        public abstract void TurnOn();
+        public abstract void TurnOff();
+
+        public PlayerCard Card { get; private set; }
+        public void Inject(PlayerCard card)
+        {
+            Card = card;
+        }
+
+        private void Awake()
+        {
+            ModelTransform = transform;
         }
     }
 }

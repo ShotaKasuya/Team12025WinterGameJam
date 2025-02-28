@@ -106,7 +106,15 @@ namespace Utility.Structure.InGame
         Ace,
     }
 
-    public static class CardExtension
+    public readonly struct PlayerCard
     {
+        public PlayerCard(PlayerId playerId, Card card)
+        {
+            PlayerId = playerId;
+            Card = card;
+        }
+        
+        public PlayerId PlayerId { get; }
+        public Card Card { get; }
     }
 }
