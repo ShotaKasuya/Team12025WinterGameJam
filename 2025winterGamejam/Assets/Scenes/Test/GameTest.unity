@@ -856,8 +856,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerPosition: {x: 0, y: 0, z: 0}
-  moveDuration: 1
-  fadeDuration: 1
+  moveDuration: 2
+  fadeDuration: 2
 --- !u!114 &1380479460
 MonoBehaviour:
   m_ObjectHideFlags: 0
