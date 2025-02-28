@@ -3,11 +3,11 @@ using Domain.IPresenter.InGame;
 using Adapter.IView.InGame.Ui;
 using DG.Tweening;
 
-// <summary>
-// 加点時演出
-// </summary>
 namespace Domain.Presenter.InGame
 {
+    // <summary>
+    // 加点時演出
+    // </summary>
     public class AddPointPresenter : IAddPointPresenter
     {
         public AddPointPresenter

@@ -28,7 +28,9 @@ namespace Domain.Flow.InGame
         private async UniTask DecisionCardFlow()
         {
             await UniTask.WaitUntil(() => IsReadyJudgeCase.IsReady);
-            await DecisionPresenter.PresentDecision();
+            var selectedCards = IsReadyJudgeCase.SelectedCards;
+            
+            await DecisionPresenter.PresentDecision(selectedCards);
 
             GameState.ChangeState(GameStateType.Judge);
         }

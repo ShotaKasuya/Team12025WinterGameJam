@@ -1,5 +1,4 @@
 using System.Linq;
-using Adapter.IModel.InGame.Judgement;
 using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
 using Domain.IPresenter.InGame;
@@ -11,13 +10,11 @@ namespace Domain.Presenter.InGame
     {
         public JudgeResultPresenter
         (
-            IJudgeEventModel judgeEventModel,
             IDrawCardPoolView drawCardPoolView,
             IWinCardPoolView winCardPoolView,
             IHandCardPoolView handCardPoolView
         )
         {
-            JudgeEventModel = judgeEventModel;
             DrawCardPoolView = drawCardPoolView;
             WinCardPoolView = winCardPoolView;
             HandCardPoolView = handCardPoolView;
@@ -31,7 +28,12 @@ namespace Domain.Presenter.InGame
             {
                 foreach (var cardView in views)
                 {
-                    await WinCardPoolView.StoreNewCard(id, cardView);
+                    await WinCardPoolView.StoreNewCard(cardView);
+                }
+
+                foreach (var cardView in DrawCardPoolView.PopAllCardViews())
+                {
+                    await WinCardPoolView.StoreNewCard(cardView);
                 }
 
                 return;
@@ -44,7 +46,6 @@ namespace Domain.Presenter.InGame
             }
         }
 
-        private IJudgeEventModel JudgeEventModel { get; }
         private IDrawCardPoolView DrawCardPoolView { get; }
         private IWinCardPoolView WinCardPoolView { get; }
         private IHandCardPoolView HandCardPoolView { get; }

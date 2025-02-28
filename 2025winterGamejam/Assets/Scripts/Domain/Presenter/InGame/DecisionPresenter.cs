@@ -1,8 +1,7 @@
-using System.Linq;
-using Adapter.IModel.InGame.Judgement;
 using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
 using Domain.IPresenter.InGame;
+using Utility.Structure.InGame;
 
 namespace Domain.Presenter.InGame
 {
@@ -10,29 +9,27 @@ namespace Domain.Presenter.InGame
     {
         public DecisionPresenter
         (
-            ISelectedCardModel selectedCardModel,
             IHandCardPoolView handCardPoolView,
             ISelectedCardPoolView selectedCardPoolView
         )
         {
-            SelectedCardModel = selectedCardModel;
             HandCardPoolView = handCardPoolView;
             SelectedCardPoolView = selectedCardPoolView;
         }
 
-        public async UniTask PresentDecision()
+        public async UniTask PresentDecision(PlayerCard[] cards)
         {
-            var selectedCards = SelectedCardModel.SelectedCards
-                .Select(x => x.Unwrap());
-            foreach (var selectedCardInfo in selectedCards)
+            foreach (var selectedCardInfo in cards)
             {
                 var handCard = HandCardPoolView.PopCardView(selectedCardInfo);
 
-                await SelectedCardPoolView.StoreNewCard(handCard);
+                var storeTask = SelectedCardPoolView.StoreNewCard(handCard);
+                var fixPositionTask = HandCardPoolView.FixPosition();
+
+                await UniTask.WhenAll(storeTask, fixPositionTask);
             }
         }
 
-        private ISelectedCardModel SelectedCardModel { get; }
         private IHandCardPoolView HandCardPoolView { get; }
         private ISelectedCardPoolView SelectedCardPoolView { get; }
     }

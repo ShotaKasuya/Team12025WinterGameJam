@@ -1,12 +1,18 @@
 using System;
+using UnityEngine;
 
 namespace Utility.Structure.InGame
 {
     /// <summary>
     /// トランプのカード
     /// </summary>
+    [Serializable]
     public struct Card: IEquatable<Card>
     {
+        [SerializeField] private Suit suit;
+        [SerializeField] private Rank rank;
+        public Suit Suit => suit;
+        public Rank Rank => rank;
         private int _buffDebuff;
 
         public void SetBuff(int x)
@@ -42,13 +48,10 @@ namespace Utility.Structure.InGame
             Rank rank
         )
         {
-            Suit = suit;
-            Rank = rank;
+            this.suit = suit;
+            this.rank = rank;
             _buffDebuff = 0;
         }
-
-        public Suit Suit { get; }
-        public Rank Rank { get; }
 
         public bool IsEqual(Card other)
         {
@@ -131,16 +134,19 @@ namespace Utility.Structure.InGame
         Ace,
     }
 
-    public readonly struct PlayerCard
+    [Serializable]
+    public struct PlayerCard
     {
         public PlayerCard(PlayerId playerId, Card card)
         {
-            PlayerId = playerId;
-            Card = card;
+            this.playerId = playerId;
+            this.card = card;
         }
-        
-        public PlayerId PlayerId { get; }
-        public Card Card { get; }
+
+        [SerializeField] private PlayerId playerId;
+        [SerializeField] private Card card;
+        public PlayerId PlayerId => playerId;
+        public Card Card => card;
         public Rank Rank => Card.Rank;
         public Suit Suit => Card.Suit;
 
