@@ -5,7 +5,7 @@ namespace Utility.Structure.InGame
     /// <summary>
     /// トランプのカード
     /// </summary>
-    public struct Card
+    public struct Card: IEquatable<Card>
     {
         private int _buffDebuff;
 
@@ -79,6 +79,31 @@ namespace Utility.Structure.InGame
 
             return cards;
         }
+
+        public bool Equals(Card other)
+        {
+            return Suit == other.Suit && Rank == other.Rank;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Card other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine((int)Suit, (int)Rank);
+        }
+
+        public static bool operator ==(Card left, Card right)
+        {
+            return left.Equals(right);
+        }
+        public static bool operator !=(Card left, Card right)
+        {
+            return !(left == right);
+        }
+            
     }
 
     public enum Suit

@@ -26,7 +26,7 @@ namespace Domain.Presenter.InGame
             {
                 var id = new PlayerId(i);
                 var card = CardFactory.CreateCardView(new PlayerCard(id, cards[i]));
-                await HandCardPoolView.StoreNewCard(id, card);
+                await HandCardPoolView.StoreNewCard(card);
             }
         }
 

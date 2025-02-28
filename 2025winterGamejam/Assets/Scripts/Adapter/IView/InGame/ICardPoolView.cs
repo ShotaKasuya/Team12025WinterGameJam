@@ -5,6 +5,21 @@ using Utility.Structure.InGame;
 namespace Adapter.IView.InGame
 {
     /// <summary>
+    /// ジャッジに向けて、選択されたカードが置かれる場所
+    /// </summary>
+    public interface ISelectedCardPoolView
+    {
+        public UniTask StoreNewCard(NewProductCardView transformableView);
+
+        /// <summary>
+        /// カードをすべて取り出す
+        /// その際、内部で保持されているカードはすべて消える
+        /// </summary>
+        /// <returns>取り出されたカード</returns>
+        public IReadOnlyList<NewProductCardView> PopAllCardViews(PlayerId playerId);
+    }
+    
+    /// <summary>
     /// 引き分けのカードを置く場所
     /// </summary>
     public interface IDrawCardPoolView
@@ -39,7 +54,7 @@ namespace Adapter.IView.InGame
     /// </summary>
     public interface IHandCardPoolView
     {
-        public UniTask StoreNewCard(PlayerId playerId, NewProductCardView transformableView);
+        public UniTask StoreNewCard(NewProductCardView transformableView);
 
         /// <summary>
         /// 指定したカードを取り出す
