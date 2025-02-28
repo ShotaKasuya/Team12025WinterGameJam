@@ -5,6 +5,7 @@ using Adapter.Model.InGame.Judgement;
 using Adapter.View.CardPrefabdb;
 using Adapter.View.InGame;
 using Adapter.View.InGame.CardPool;
+using Adapter.View.InGame.Ui;
 using Domain.Flow.InGame;
 using Domain.Presenter.InGame;
 using Domain.UseCase.InGame;
@@ -17,6 +18,7 @@ namespace Installer.InGame
 {
     public class GameInstaller : LifetimeScope
     {
+        [SerializeField] private StartTextView startTextView;
         [SerializeField] private List<HandCardPositionsView> cardPositionsView;
 
         protected override void Configure(IContainerBuilder builder)
@@ -24,6 +26,7 @@ namespace Installer.InGame
             Debug.Log("configure");
             
             // View
+            builder.RegisterComponent(startTextView).AsImplementedInterfaces();
             builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<HandCardPoolView>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<DrawCardPoolView>(Lifetime.Singleton).AsImplementedInterfaces();
@@ -39,7 +42,6 @@ namespace Installer.InGame
             builder.Register<DeckModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<HandCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<ScoreModel>(Lifetime.Singleton).AsImplementedInterfaces();
-
 
             // Presenter
             builder.Register<DrawPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
