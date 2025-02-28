@@ -4,6 +4,7 @@ using Domain.IPresenter.InGame;
 using Domain.IUseCase.InGame;
 using Utility.Module.StateMachine;
 using Utility.Structure.InGame;
+using Utility.Structure.InGame.StateMachine;
 
 namespace Domain.Flow.InGame
 {
@@ -23,6 +24,7 @@ namespace Domain.Flow.InGame
 
         public void OnEnter(GameStateType prev)
         {
+            var _ = JudgeFlow();
         }
 
         public void OnExit(GameStateType next)

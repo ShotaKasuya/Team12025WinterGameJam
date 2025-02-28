@@ -31,4 +31,27 @@ namespace Utility.Module.StateMachine
         /// <param name="deltaTime">Time.deltaTime</param>
         public void StateUpdate(float deltaTime);
     }
+
+    public abstract class StateBehaviour<TState>: IStateBehaviour<TState> where TState: struct , Enum
+    {
+        protected StateBehaviour(TState state, IMutState<TState> stateEntity)
+        {
+            TargetStateMask = state;
+            StateEntity = stateEntity;
+        }
+        public TState TargetStateMask { get; }
+        public IMutState<TState> StateEntity { get; }
+        
+        public virtual void OnEnter(TState prev)
+        {
+        }
+
+        public virtual void OnExit(TState next)
+        {
+        }
+
+        public virtual void StateUpdate(float deltaTime)
+        {
+        }
+    }
 }

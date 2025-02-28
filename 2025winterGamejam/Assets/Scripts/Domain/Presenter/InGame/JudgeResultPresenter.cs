@@ -1,65 +1,52 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using Domain.IModel.InGame.Judgement;
-using Domain.IView.InGame;
-using VContainer.Unity;
+using Adapter.IModel.InGame.Judgement;
+using Adapter.IView.InGame;
+using Cysharp.Threading.Tasks;
+using Domain.IPresenter.InGame;
+using Utility.Structure.InGame;
 
 namespace Domain.Presenter.InGame
 {
-    public class JudgeResultPresenter : IInitializable, IDisposable
+    public class JudgeResultPresenter : IJudgeResultPresenter
     {
         public JudgeResultPresenter
         (
             IJudgeEventModel judgeEventModel,
-            ISelectedCardModel selectedCardModel,
-            IDrawCardPoolView cardPoolView,
-            IHandCardInstanceView handCardInstanceView
+            IDrawCardPoolView drawCardPoolView,
+            IWinCardPoolView winCardPoolView,
+            IHandCardPoolView handCardPoolView
         )
         {
             JudgeEventModel = judgeEventModel;
-            SelectedCardModel = selectedCardModel;
-            DrawCardPoolView = cardPoolView;
-            HandCardInstanceView = handCardInstanceView;
+            DrawCardPoolView = drawCardPoolView;
+            WinCardPoolView = winCardPoolView;
+            HandCardPoolView = handCardPoolView;
         }
-
-        public void Initialize()
+        
+        public async UniTask PresentResult(BattleResult result)
         {
-            JudgeEventModel.JudgeEndEvent += OnJudge;
-        }
-
-        private void OnJudge(ResultAndDrawCount result)
-        {
-            var views = result.BattleResult.Cards.Select(x => HandCardInstanceView.GetInstance(x)).ToList();
-            if (result.BattleResult.Winner.IsSome)
+            var views = result.Cards.Select(x => HandCardPoolView.PopCardView(new PlayerCard())).ToList();
+            // 勝者あり
+            if (result.Winner.TryGetValue(out var id))
             {
-                OnResult(views);
+                foreach (var cardView in views)
+                {
+                    await WinCardPoolView.StoreNewCard(id, cardView);
+                }
+
                 return;
             }
 
-            OnDraw(views);
-        }
-
-        private void OnDraw(IReadOnlyList<ProductCardView> selectedCards)
-        {
-            foreach (var cardView in selectedCards)
+            // 引き分け
+            foreach (var cardView in views)
             {
-                DrawCardPoolView.StoreNewCard(cardView);
+                await DrawCardPoolView.StoreNewCard(id, cardView);
             }
         }
 
-        private void OnResult(IReadOnlyList<ProductCardView> selectedCards)
-        {
-        }
-
         private IJudgeEventModel JudgeEventModel { get; }
-        private ISelectedCardModel SelectedCardModel { get; }
         private IDrawCardPoolView DrawCardPoolView { get; }
-        private IHandCardInstanceView HandCardInstanceView { get; }
-
-        public void Dispose()
-        {
-            JudgeEventModel.JudgeEndEvent -= OnJudge;
-        }
+        private IWinCardPoolView WinCardPoolView { get; }
+        private IHandCardPoolView HandCardPoolView { get; }
     }
 }

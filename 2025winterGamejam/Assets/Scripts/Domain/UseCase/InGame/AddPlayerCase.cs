@@ -1,4 +1,4 @@
-using Domain.IModel.Global;
+using Adapter.IModel.Global;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

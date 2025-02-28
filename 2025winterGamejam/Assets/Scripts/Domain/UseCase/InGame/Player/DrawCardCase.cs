@@ -1,8 +1,10 @@
 using System;
-using Domain.IModel.InGame;
-using Domain.IModel.InGame.Player;
+using Adapter.IModel.Global;
+using Adapter.IModel.InGame;
+using Adapter.IModel.InGame.Player;
 using R3;
 using Utility.Structure.InGame;
+using Utility.Structure.InGame.StateMachine;
 using VContainer.Unity;
 
 namespace Domain.UseCase.InGame.Player
@@ -14,6 +16,7 @@ namespace Domain.UseCase.InGame.Player
     {
         public DrawCardCase
         (
+            IPlayerCountModel playerCountModel,
             IPlayerDeckModel playerDeckModel,
             IMutPlayerHandCardModel playerHandCardModel,
             IGameStateModel gameStateModel
@@ -54,6 +57,7 @@ namespace Domain.UseCase.InGame.Player
         }
 
         private IDisposable _disposable;
+        private IPlayerCountModel PlayerCountModel { get; }
         private IPlayerDeckModel PlayerDeckModel { get; }
         private IMutPlayerHandCardModel PlayerHandCardModel { get; }
         private IGameStateModel GameStateModel { get; }

@@ -12,10 +12,6 @@ namespace Utility.Module.StateMachine
         /// そのステートであるなら`true`
         /// </summary>
         public bool IsInState(TState state);
-        /// <summary>
-        /// ステートが変化した際のイベント
-        /// </summary>
-        public Action<StatePair<TState>> OnChangeState { get; set; }
     }
 
     public struct StatePair<TState> where TState: struct, Enum

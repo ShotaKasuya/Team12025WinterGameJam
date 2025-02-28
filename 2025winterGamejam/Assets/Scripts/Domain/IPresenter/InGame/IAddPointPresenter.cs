@@ -4,6 +4,6 @@ namespace Domain.IPresenter.InGame
 {
     public interface IAddPointPresenter
     {
-        public UniTask AddPoint();
+        public UniTask PresentAddPoint(int[] points);
     }
 }

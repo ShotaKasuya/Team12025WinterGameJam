@@ -2,11 +2,13 @@
     "name": "Presenter",
     "rootNamespace": "",
     "references": [
+        "IPresenter",
         "IView",
+        "IModel",
         "Structure",
         "Module",
-        "IModel",
-        "VContainer"
+        "VContainer",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

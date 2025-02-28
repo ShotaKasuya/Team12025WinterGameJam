@@ -1,52 +1,46 @@
-using System;
 using System.Collections.Generic;
-using Domain.IModel.InGame.Judgement;
+using System.Linq;
+using Adapter.IModel.InGame.Judgement;
+using Domain.IUseCase.InGame;
 using Utility.Structure.InGame;
-using VContainer.Unity;
 
 namespace Domain.UseCase.InGame
 {
     /// <summary>
     /// 勝敗をジャッジする
     /// </summary>
-    public class CardJudgeCase : IInitializable, IDisposable
+    public class CardJudgeCase : IJudgeCase
     {
         public CardJudgeCase
         (
             ISelectedCardModel selectedCardModels,
-            IJudgeResultModel judgeResultModel,
             IConditionModel conditionModel
         )
         {
             SelectedCardModels = selectedCardModels;
-            JudgeResultModel = judgeResultModel;
             ConditionModel = conditionModel;
         }
-        
-        public void Initialize()
-        {
-            SelectedCardModels.OnSelectCompleted += OnDecision;
-        }
 
-        private void OnDecision(List<Card> playerCard)
+        public BattleResult Judge()
         {
-            for (int i = 0; i < playerCard.Count; i++)
+            var selectedCards = SelectedCardModels.SelectedCards.Select(x => x.Unwrap()).ToList();
+            SelectedCardModels.Clear();
+            
+            for (var i = 0; i < selectedCards.Count; i++)
             {
                 var condition = ConditionModel.ConditionReader[i];
                 if ((condition & Condition.Five) != 0)
                 {
-                    playerCard[i].SetDebuff(5);
+                    selectedCards[i].Card.SetDebuff(5);
                 }
             }
 
-            var result = Judge(playerCard);
-
-            JudgeResultModel.StoreJudgeResult(result);
+            return Judge(selectedCards);
         }
 
-        private BattleResult Judge(List<Card> playerCard)
+        private BattleResult Judge(List<PlayerCard> playerCard)
         {
-            if (playerCard[0].Rank == Rank.Two && playerCard[1].Rank == Rank.Ace)
+            if (playerCard[0].Card.Rank == Rank.Two && playerCard[1].Card.Rank == Rank.Ace)
                 return BattleResult.Result(new PlayerId(0), playerCard);
             else if (playerCard[0].IsGreater(playerCard[1]))
                 return BattleResult.Result(new PlayerId(0), playerCard);
@@ -57,13 +51,6 @@ namespace Domain.UseCase.InGame
         }
 
         private ISelectedCardModel SelectedCardModels { get; }
-        private IJudgeResultModel JudgeResultModel { get; }
         private IConditionModel ConditionModel { get; }
-
-
-        public void Dispose()
-        {
-            SelectedCardModels.OnSelectCompleted -= OnDecision;
-        }
     }
 }
