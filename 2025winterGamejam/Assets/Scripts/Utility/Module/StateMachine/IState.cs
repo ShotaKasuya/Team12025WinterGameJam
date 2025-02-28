@@ -12,6 +12,8 @@ namespace Utility.Module.StateMachine
         /// そのステートであるなら`true`
         /// </summary>
         public bool IsInState(TState state);
+        
+        public Action<StatePair<TState>> OnStateChange { get; set; }
     }
 
     public struct StatePair<TState> where TState: struct, Enum
@@ -33,5 +35,17 @@ namespace Utility.Module.StateMachine
         /// </summary>
         /// <param name="next">次のステート</param>
         public void ChangeState(TState next);
+    }
+    public abstract class AbstractState<TState>:IMutState<TState> where TState : struct, Enum
+    {
+        public TState State { get; private set; }
+        public abstract bool IsInState(TState state);
+        public Action<StatePair<TState>> OnStateChange { get; set; }
+
+        public void ChangeState(TState next)
+        {
+            OnStateChange?.Invoke(new StatePair<TState>(State, next));
+            State = next;
+        }
     }
 }

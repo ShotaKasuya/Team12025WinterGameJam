@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace Utility.Structure.InGame.StateMachine
 {
-    public class InGameStateMachine : AbstractStateMachine<GameStateType>, IInitializable, ITickable
+    public class InGameStateMachine : AbstractStateMachine<GameStateType>, IStartable, ITickable
     {
         public InGameStateMachine
         (
@@ -15,15 +15,15 @@ namespace Utility.Structure.InGame.StateMachine
         {
         }
 
-        public void Initialize()
+        public void Start()
         {
-            ChangeState(GameStateType.Init);
+            Init(GameStateType.Init);
         }
 
-        public override void ChangeState(GameStateType newState)
+        protected override void OnChangeState(StatePair<GameStateType> statePair)
         {
-            Debug.Log($"on state change: {newState}");
-            base.ChangeState(newState);
+            Debug.Log($"state change: (prev, next) => ({statePair.PrevState}, {statePair.NextState})");
+            base.OnChangeState(statePair);
         }
 
         public void Tick()
@@ -32,18 +32,11 @@ namespace Utility.Structure.InGame.StateMachine
         }
     }
     
-    public class GameState: IMutState<GameStateType>
+    public class GameState: AbstractState<GameStateType>
     {
-        public GameStateType State { get; private set; } = GameStateType.None;
-        
-        public bool IsInState(GameStateType state)
+        public override bool IsInState(GameStateType state)
         {
             return State == state;
-        }
-
-        public void ChangeState(GameStateType next)
-        {
-            State = next;
         }
     }
 }
