@@ -25,7 +25,7 @@ namespace Domain.Presenter.InGame
         
         public async UniTask PresentResult(BattleResult result)
         {
-            var views = result.Cards.Select(x => HandCardPoolView.PopCardView(new PlayerCard())).ToList();
+            var views = result.Cards.Select(x => HandCardPoolView.PopCardView(x)).ToList();
             // 勝者あり
             if (result.Winner.TryGetValue(out var id))
             {

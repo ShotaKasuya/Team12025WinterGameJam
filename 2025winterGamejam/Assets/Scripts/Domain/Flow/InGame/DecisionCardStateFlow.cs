@@ -13,7 +13,7 @@ namespace Domain.Flow.InGame
             IIsReadyJudgeCase isReadyJudgeCase,
             IDecisionPresenter decisionPresenter,
             IMutState<GameStateType> gameState
-        ): base(GameStateType.DecisionCard, gameState)
+        ) : base(GameStateType.DecisionCard, gameState)
         {
             IsReadyJudgeCase = isReadyJudgeCase;
             DecisionPresenter = decisionPresenter;
