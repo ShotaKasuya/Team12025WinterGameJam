@@ -7,12 +7,12 @@ namespace Adapter.View.InGame.CardPool
 {
     public class DrawCardPoolView: IDrawCardPoolView
     {
-        public UniTask StoreNewCard(PlayerId playerId, NewProductCardView transformableView)
+        public UniTask StoreNewCard(PlayerId playerId, NewProductCardView cardView)
         {
             return UniTask.CompletedTask;
         }
 
-        public IReadOnlyList<NewProductCardView> PopAllCardViews(PlayerId playerId)
+        public IReadOnlyList<NewProductCardView> PopAllCardViews()
         {
             return null;
         }

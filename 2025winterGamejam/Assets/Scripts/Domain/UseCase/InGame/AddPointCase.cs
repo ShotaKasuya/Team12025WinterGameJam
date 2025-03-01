@@ -39,7 +39,7 @@ namespace Domain.UseCase.InGame
 
         private int CalcPoint(int target, ResultAndDrawCount resultAndDrawCount)
         {
-            var basePoint = 2 * (resultAndDrawCount.DrawCount + 1);
+            var basePoint = 2 * (resultAndDrawCount.DrawCount + 1);     // カードの枚数
             var targetCondition = ConditionModel.ConditionReader[target];
             var targetCard = resultAndDrawCount.BattleResult.Cards[target];
 

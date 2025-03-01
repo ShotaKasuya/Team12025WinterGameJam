@@ -9,7 +9,7 @@ namespace Adapter.IView.InGame
     /// </summary>
     public interface ISelectedCardPoolView
     {
-        public UniTask StoreNewCard(NewProductCardView transformableView);
+        public UniTask StoreNewCard(NewProductCardView cardView);
 
         /// <summary>
         /// カードをすべて取り出す
@@ -24,14 +24,14 @@ namespace Adapter.IView.InGame
     /// </summary>
     public interface IDrawCardPoolView
     {
-        public UniTask StoreNewCard(PlayerId playerId, NewProductCardView transformableView);
+        public UniTask StoreNewCard(PlayerId playerId, NewProductCardView cardView);
 
         /// <summary>
         /// カードをすべて取り出す
         /// その際、内部で保持されているカードはすべて消える
         /// </summary>
         /// <returns>取り出されたカード</returns>
-        public IReadOnlyList<NewProductCardView> PopAllCardViews(PlayerId playerId);
+        public IReadOnlyList<NewProductCardView> PopAllCardViews();
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ namespace Adapter.IView.InGame
     /// </summary>
     public interface IWinCardPoolView
     {
-        public UniTask StoreNewCard(PlayerId playerId, NewProductCardView transformableView);
+        public UniTask StoreNewCard(NewProductCardView cardView);
 
         /// <summary>
         /// カードをすべて取り出す
@@ -54,7 +54,8 @@ namespace Adapter.IView.InGame
     /// </summary>
     public interface IHandCardPoolView
     {
-        public UniTask StoreNewCard(NewProductCardView transformableView);
+        public UniTask FixPosition();
+        public UniTask StoreNewCard(NewProductCardView cardView);
 
         /// <summary>
         /// 指定したカードを取り出す

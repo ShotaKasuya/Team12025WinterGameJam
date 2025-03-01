@@ -13,7 +13,7 @@ namespace Domain.Flow.InGame
             IIsReadyJudgeCase isReadyJudgeCase,
             IDecisionPresenter decisionPresenter,
             IMutState<GameStateType> gameState
-        ): base(GameStateType.DecisionCard, gameState)
+        ) : base(GameStateType.DecisionCard, gameState)
         {
             IsReadyJudgeCase = isReadyJudgeCase;
             DecisionPresenter = decisionPresenter;
@@ -28,7 +28,9 @@ namespace Domain.Flow.InGame
         private async UniTask DecisionCardFlow()
         {
             await UniTask.WaitUntil(() => IsReadyJudgeCase.IsReady);
-            await DecisionPresenter.PresentDecision();
+            var selectedCards = IsReadyJudgeCase.SelectedCards;
+            
+            await DecisionPresenter.PresentDecision(selectedCards);
 
             GameState.ChangeState(GameStateType.Judge);
         }

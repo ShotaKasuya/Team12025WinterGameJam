@@ -1,15 +1,18 @@
 using System;
+using UnityEngine;
 
 namespace Utility.Structure.InGame
 {
+    [Serializable]
     public struct PlayerId: IEquatable<PlayerId>
     {
         public PlayerId(int id)
         {
-            Id = id;
+            this.id = id;
         }
 
-        public int Id { get; }
+        [SerializeField] private int id;
+        public int Id => id;
 
         public bool Equals(PlayerId other)
         {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6410745754541233082}
   - component: {fileID: 5288122878947223817}
   - component: {fileID: 7271515919637024999}
-  - component: {fileID: -354559185206843246}
+  - component: {fileID: -2849189603017906112}
   m_Layer: 0
   m_Name: HandCard
   m_TagString: Untagged
@@ -107,7 +107,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-354559185206843246
+--- !u!114 &-2849189603017906112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,8 +116,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8722494538431194638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b3f6942f1364cddad61382207136455, type: 3}
+  m_Script: {fileID: 11500000, guid: f42a2fed785844e9aa2fa08a9257877c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultScale: {x: 1, y: 1, z: 1}
-  selectedScale: {x: 2, y: 2, z: 2}

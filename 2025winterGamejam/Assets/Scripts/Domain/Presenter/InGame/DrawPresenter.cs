@@ -22,12 +22,15 @@ namespace Domain.Presenter.InGame
 
         public async UniTask PresentDraw(Card[] cards)
         {
+            var lastTask = UniTask.CompletedTask;
             for (var i = 0; i < cards.Length; i++)
             {
                 var id = new PlayerId(i);
                 var card = CardFactory.CreateCardView(new PlayerCard(id, cards[i]));
-                await HandCardPoolView.StoreNewCard(card);
+                lastTask= HandCardPoolView.StoreNewCard(card);
             }
+
+            await lastTask;
         }
 
         private INewCardFactory CardFactory { get; }

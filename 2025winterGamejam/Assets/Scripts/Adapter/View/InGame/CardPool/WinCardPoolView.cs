@@ -7,7 +7,7 @@ namespace Adapter.View.InGame.CardPool
 {
     public class WinCardPoolView: IWinCardPoolView
     {
-        public UniTask StoreNewCard(PlayerId playerId, NewProductCardView transformableView)
+        public UniTask StoreNewCard(NewProductCardView cardView)
         {
             return UniTask.CompletedTask;
         }

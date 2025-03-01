@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -10,35 +11,36 @@ namespace Adapter.View.InGame
 {
     public class HandCardPositionsView : MonoBehaviour, ICardPositionsView
     {
+        [SerializeField] private float fixPositionTime;
         [SerializeField] private List<Transform> cardPositions;
 
-        public async UniTask StoreNewCard(NewProductCardView productCardView)
+        public void StoreNewCard(NewProductCardView productCardView)
         {
-            _cardViews.Add(productCardView);
-            await FixPosition();
+            CardViews.Add(productCardView);
         }
 
-        public async UniTask<NewProductCardView> PopCardView(Card playerCard)
+        public NewProductCardView PopCardView(Card playerCard)
         {
-            var cardView = _cardViews.FirstOrDefault(x => x.Card.Card == playerCard);
-            _cardViews.Remove(cardView);
-            await FixPosition();
+            var cardView = CardViews.FirstOrDefault(x => x.Card.Card == playerCard);
+            CardViews.Remove(cardView);
             return cardView;
         }
 
-        private async UniTask FixPosition()
+        public async UniTask FixPosition()
         {
-            for (int i = 0; i < _cardViews.Count; i++)
+            var lastTask = Task.CompletedTask;
+            for (int i = 0; i < CardViews.Count; i++)
             {
-                // FIXME : duration
-                await _cardViews[i].ModelTransform
-                    .DOMove(cardPositions[i].position, 1)
+                lastTask = CardViews[i].ModelTransform
+                    .DOMove(cardPositions[i].position, fixPositionTime)
                     .AsyncWaitForCompletion();
             }
+
+            await lastTask;
         }
-            
+
         public IReadOnlyList<Pose> CardPositions { get; private set; }
-        private List<NewProductCardView> _cardViews = new ();
+        private List<NewProductCardView> CardViews { get; } = new();
 
         private void Awake()
         {
