@@ -1,20 +1,35 @@
+using System;
 using System.Collections.Generic;
 using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
 using Utility.Structure.InGame;
+using UnityEngine;
+using System.Threading.Tasks;
+using DG.Tweening;
 
 namespace Adapter.View.InGame.CardPool
 {
-    public class DrawCardPoolView: IDrawCardPoolView
+    public class DrawCardPoolView: MonoBehaviour,IDrawCardPoolView
     {
-        public UniTask StoreNewCard(PlayerId playerId, NewProductCardView cardView)
+        public Vector3 DrawCardsPosition => drawCardsPosition;
+        public float MoveDuration => moveDuration;
+        [SerializeField] private Vector3 drawCardsPosition;
+        [SerializeField] private float moveDuration;
+        public List<NewProductCardView> DrawCards {get; private set;}
+        public List<NewProductCardView> DrawCardsSwap{get; private set;}
+        public async UniTask StoreNewCard(NewProductCardView cardView)
         {
-            return UniTask.CompletedTask;
+            DrawCards.Add(cardView);
+            await cardView.ModelTransform.DOMove(DrawCardsPosition, MoveDuration).AsyncWaitForCompletion();
         }
 
         public IReadOnlyList<NewProductCardView> PopAllCardViews()
         {
-            return null;
+            var tmp = DrawCards;
+            DrawCardsSwap.Clear();
+            DrawCards = DrawCardsSwap;
+            DrawCardsSwap = tmp;
+            return DrawCardsSwap;
         }
     }
 }

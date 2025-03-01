@@ -23,6 +23,8 @@ namespace Installer.InGame
         [SerializeField] private AddPointTextView addPointTextView;
         [SerializeField] private HandCardPoolView cardPositionsView;
         [SerializeField] private SelectedCardPoolView selectedCardPoolView;
+        [SerializeField] private WinCardPoolView winCardPoolView;
+        [SerializeField] private DrawCardPoolView drawCardPoolView;
 
         [SerializeField] private SettingModel settingModel;
 
@@ -31,6 +33,8 @@ namespace Installer.InGame
             Debug.Log("configure");
             
             // View
+            builder.RegisterComponent(drawCardPoolView).AsImplementedInterfaces();
+            builder.RegisterComponent(winCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(cardView).AsImplementedInterfaces();
             builder.RegisterComponent(startTextView).AsImplementedInterfaces();
             builder.RegisterComponent(addPointTextView).AsImplementedInterfaces();
