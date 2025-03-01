@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
 using Domain.IPresenter.InGame;
@@ -19,15 +20,18 @@ namespace Domain.Presenter.InGame
 
         public async UniTask PresentDecision(PlayerCard[] cards)
         {
+            var tasks = new List<UniTask>();
             foreach (var selectedCardInfo in cards)
             {
                 var handCard = HandCardPoolView.PopCardView(selectedCardInfo);
 
                 var storeTask = SelectedCardPoolView.StoreNewCard(handCard);
                 var fixPositionTask = HandCardPoolView.FixPosition();
-
-                await UniTask.WhenAll(storeTask, fixPositionTask);
+                tasks.Add(storeTask);
+                tasks.Add(fixPositionTask);
             }
+
+            await UniTask.WhenAll(tasks);
         }
 
         private IHandCardPoolView HandCardPoolView { get; }

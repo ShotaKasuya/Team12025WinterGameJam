@@ -9,14 +9,6 @@ namespace Adapter.View.InGame.CardPool
     {
         [SerializeField] private HandCardPositionsView[] handCardPositionsViews;
 
-        public async UniTask FixPosition()
-        {
-            foreach (var handCardPositionsView in handCardPositionsViews)
-            {
-                await handCardPositionsView.FixPosition();
-            }
-        }
-
         public async UniTask StoreNewCard(NewProductCardView cardView)
         {
             var targetPlayer = cardView.Card.PlayerId.Id;
@@ -28,6 +20,14 @@ namespace Adapter.View.InGame.CardPool
         public NewProductCardView PopCardView(PlayerCard playerCard)
         {
             return handCardPositionsViews[playerCard.PlayerId.Id].PopCardView(playerCard.Card);
+        }
+
+        public async UniTask FixPosition()
+        {
+            foreach (var handCardPositionsView in handCardPositionsViews)
+            {
+                await handCardPositionsView.FixPosition();
+            }
         }
     }
 }

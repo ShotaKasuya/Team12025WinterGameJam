@@ -1,9 +1,8 @@
-using System.Collections.Generic;
+using Adapter.IView.InGame;
 using Adapter.Model.Global;
 using Adapter.Model.InGame;
 using Adapter.Model.InGame.Judgement;
 using Adapter.View.CardPrefabdb;
-using Adapter.View.InGame;
 using Adapter.View.InGame.CardPool;
 using Adapter.View.InGame.Ui;
 using Domain.Flow.InGame;
@@ -18,19 +17,23 @@ namespace Installer.InGame
 {
     public class GameInstaller : LifetimeScope
     {
+        [SerializeField] private NewProductCardView cardView;
         [SerializeField] private StartTextView startTextView;
         [SerializeField] private AddPointTextView addPointTextView;
-        [SerializeField] private List<HandCardPositionsView> cardPositionsView;
+        [SerializeField] private HandCardPoolView cardPositionsView;
+        [SerializeField] private SelectedCardPoolView selectedCardPoolView;
 
         protected override void Configure(IContainerBuilder builder)
         {
             Debug.Log("configure");
             
             // View
+            builder.RegisterComponent(cardView).AsImplementedInterfaces();
             builder.RegisterComponent(startTextView).AsImplementedInterfaces();
             builder.RegisterComponent(addPointTextView).AsImplementedInterfaces();
+            builder.RegisterComponent(cardPositionsView).AsImplementedInterfaces();
+            builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
             builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
-            builder.Register<HandCardPoolView>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<DrawCardPoolView>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<WinCardPoolView>(Lifetime.Singleton).AsImplementedInterfaces();
             

@@ -34,15 +34,15 @@ namespace Installer.InGame.Mock
 
         private async void Start()
         {
-            var task = UniTask.CompletedTask;
+            var lastTask = UniTask.CompletedTask;
             var factory = Container.Resolve<CardFactory>();
             foreach (var card in cards)
             {
                 var instance = factory.CreateCardView(card);
-                task = handCardPoolView.StoreNewCard(instance);
+                lastTask = handCardPoolView.StoreNewCard(instance);
             }
 
-            await task;
+            await lastTask;
 
             var presenter = Container.Resolve<DecisionPresenter>();
             await presenter.PresentDecision(new[] { selection0, selection1 });

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -27,12 +28,15 @@ namespace Adapter.View.InGame
 
         public async UniTask FixPosition()
         {
+            var lastTask = Task.CompletedTask;
             for (int i = 0; i < CardViews.Count; i++)
             {
-                await CardViews[i].ModelTransform
+                lastTask = CardViews[i].ModelTransform
                     .DOMove(cardPositions[i].position, fixPositionTime)
                     .AsyncWaitForCompletion();
             }
+
+            await lastTask;
         }
 
         public IReadOnlyList<Pose> CardPositions { get; private set; }
