@@ -27,7 +27,7 @@ namespace Adapter.View.InGame.CardPool
             _cardViews[playerId.Id] = cardView;
         }
 
-        public IReadOnlyList<NewProductCardView> PopAllCardViews(PlayerId playerId)
+        public IReadOnlyList<NewProductCardView> PopAllCardViews()
         {
             var cards = _cardViews.ToList();
             for (int i = 0; i < _cardViews.Length; i++)

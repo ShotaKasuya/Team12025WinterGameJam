@@ -12,17 +12,17 @@ namespace Domain.Presenter.InGame
         (
             IDrawCardPoolView drawCardPoolView,
             IWinCardPoolView winCardPoolView,
-            IHandCardPoolView handCardPoolView
+            ISelectedCardPoolView selectedCardPoolView
         )
         {
             DrawCardPoolView = drawCardPoolView;
             WinCardPoolView = winCardPoolView;
-            HandCardPoolView = handCardPoolView;
+            SelectedCardPoolView = selectedCardPoolView;
         }
         
         public async UniTask PresentResult(BattleResult result)
         {
-            var views = result.Cards.Select(x => HandCardPoolView.PopCardView(x)).ToList();
+            var views = SelectedCardPoolView.PopAllCardViews();
             // 勝者あり
             if (result.Winner.TryGetValue(out var id))
             {
@@ -42,12 +42,12 @@ namespace Domain.Presenter.InGame
             // 引き分け
             foreach (var cardView in views)
             {
-                await DrawCardPoolView.StoreNewCard(id, cardView);
+                await DrawCardPoolView.StoreNewCard(cardView);
             }
         }
 
         private IDrawCardPoolView DrawCardPoolView { get; }
         private IWinCardPoolView WinCardPoolView { get; }
-        private IHandCardPoolView HandCardPoolView { get; }
+        private ISelectedCardPoolView SelectedCardPoolView { get; }
     }
 }

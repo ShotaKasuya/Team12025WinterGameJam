@@ -16,7 +16,7 @@ namespace Adapter.IView.InGame
         /// その際、内部で保持されているカードはすべて消える
         /// </summary>
         /// <returns>取り出されたカード</returns>
-        public IReadOnlyList<NewProductCardView> PopAllCardViews(PlayerId playerId);
+        public IReadOnlyList<NewProductCardView> PopAllCardViews();
     }
     
     /// <summary>
@@ -24,7 +24,7 @@ namespace Adapter.IView.InGame
     /// </summary>
     public interface IDrawCardPoolView
     {
-        public UniTask StoreNewCard(PlayerId playerId, NewProductCardView cardView);
+        public UniTask StoreNewCard( NewProductCardView cardView);
 
         /// <summary>
         /// カードをすべて取り出す
