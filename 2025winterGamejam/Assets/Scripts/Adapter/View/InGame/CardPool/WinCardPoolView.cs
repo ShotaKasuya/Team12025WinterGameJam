@@ -7,18 +7,19 @@ using Utility.Structure.InGame;
 
 namespace Adapter.View.InGame.CardPool
 {
-    public class WinCardPoolView:MonoBehaviour, IWinCardPoolView
+    public class WinCardPoolView : MonoBehaviour, IWinCardPoolView
     {
-        public List<NewProductCardView> NewProductCardViews {get;private set;}
-        public List<NewProductCardView> NewProductCardViewsSwap {get;private set;}
-        public Vector3 NewProductCardsViewsPosition => newProductCardsViewsPosition;
+        public List<NewProductCardView> NewProductCardViews { get; private set; }
+        public List<NewProductCardView> NewProductCardViewsSwap { get; private set; }
+        public Vector3 NewProductCardsViewsPosition => newProductCardsViewsPosition.position;
         public float MoveDuration => moveDuration;
-        [SerializeField] private Vector3 newProductCardsViewsPosition;
+        [SerializeField] private Transform newProductCardsViewsPosition;
         [SerializeField] private float moveDuration;
+
         public async UniTask StoreNewCard(NewProductCardView cardView)
         {
             NewProductCardViews.Add(cardView);
-            await cardView.ModelTransform.DOMove(NewProductCardsViewsPosition,MoveDuration).AsyncWaitForCompletion();
+            await cardView.ModelTransform.DOMove(NewProductCardsViewsPosition, MoveDuration).AsyncWaitForCompletion();
         }
 
         public IReadOnlyList<NewProductCardView> PopAllCardViews(PlayerId playerId)

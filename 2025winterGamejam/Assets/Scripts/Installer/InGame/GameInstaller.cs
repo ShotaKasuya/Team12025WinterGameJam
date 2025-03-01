@@ -41,8 +41,6 @@ namespace Installer.InGame
             builder.RegisterComponent(cardPositionsView).AsImplementedInterfaces();
             builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
             builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
-            builder.Register<DrawCardPoolView>(Lifetime.Singleton).AsImplementedInterfaces();
-            builder.Register<WinCardPoolView>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // Model
             builder.RegisterInstance(settingModel).AsImplementedInterfaces();

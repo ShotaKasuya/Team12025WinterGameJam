@@ -281,6 +281,52 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &334029372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334029374}
+  - component: {fileID: 334029373}
+  m_Layer: 0
+  m_Name: DrawCardPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &334029373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334029372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86118690f1542d587acf72d400f8c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawCardsPosition: {fileID: 334029374}
+  moveDuration: 1
+--- !u!4 &334029374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334029372}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.75, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &682287397
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +644,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e7a56a53df4c48ae82b850ad38e060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1553521217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1553521219}
+  - component: {fileID: 1553521218}
+  m_Layer: 0
+  m_Name: WinCardPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1553521218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553521217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818d2afbc3df4b87b7f81c4711653219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newProductCardsViewsPosition: {fileID: 0}
+  moveDuration: 1
+--- !u!4 &1553521219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553521217}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.91, y: -3.68, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1883035238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -756,9 +848,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1380479459}
     - target: {fileID: 5856252925802007490, guid: 7b00da07c2c443a7783693baf4a53003, type: 3}
+      propertyPath: winCardPoolView
+      value: 
+      objectReference: {fileID: 1553521218}
+    - target: {fileID: 5856252925802007490, guid: 7b00da07c2c443a7783693baf4a53003, type: 3}
       propertyPath: addPointTextView
       value: 
       objectReference: {fileID: 1350709107}
+    - target: {fileID: 5856252925802007490, guid: 7b00da07c2c443a7783693baf4a53003, type: 3}
+      propertyPath: drawCardPoolView
+      value: 
+      objectReference: {fileID: 334029373}
     - target: {fileID: 5856252925802007490, guid: 7b00da07c2c443a7783693baf4a53003, type: 3}
       propertyPath: cardPositionsView
       value: 
@@ -899,3 +999,5 @@ SceneRoots:
   - {fileID: 682287400}
   - {fileID: 734250099}
   - {fileID: 919054427}
+  - {fileID: 1553521219}
+  - {fileID: 334029374}
