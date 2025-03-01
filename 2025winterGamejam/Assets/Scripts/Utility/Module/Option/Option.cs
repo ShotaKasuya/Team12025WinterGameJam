@@ -1,8 +1,10 @@
 using System;
+using UnityEngine;
 
 namespace Utility.Module.Option
 {
-    public readonly struct Option<T>
+    [Serializable]
+    public struct Option<T>
     {
         public static Option<T> Some(T value)
         {
@@ -14,9 +16,11 @@ namespace Utility.Module.Option
             return new Option<T>(false, default);
         }
 
-        public bool IsSome { get; }
-        public bool IsNone => !IsSome;
-        private T Value { get; }
+        [SerializeField] private bool innerIsSome;
+        [SerializeField] private T innerValue;
+        public bool IsSome => innerIsSome;
+        public bool IsNone => !innerIsSome;
+        private T Value => innerValue;
 
         public bool TryGetValue(out T value)
         {
@@ -46,8 +50,8 @@ namespace Utility.Module.Option
 
         private Option(bool isSome, T value)
         {
-            IsSome = isSome;
-            Value = value;
+            innerIsSome = isSome;
+            innerValue = value;
         }
     }
 }
