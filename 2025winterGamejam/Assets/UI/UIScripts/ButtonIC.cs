@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using KanKikuchi.AudioManager;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,8 @@ public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Image buttonImage;
     private Sprite normalSprite; // ボタンの通常の画像
 
+    public UnityEvent onClickEvents;
+
     void Start()
     {
         buttonImage = GetComponent<Image>(); // 修正: 型を明示
@@ -21,7 +24,10 @@ public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Button button = GetComponent<Button>();
         if (button != null)
         {
-            button.onClick.AddListener(OnButtonClick);
+            button.onClick.AddListener(() =>
+            {
+                onClickEvents.Invoke(); // Inspector で設定したイベントを実行
+            });
         }
     }
 
@@ -39,9 +45,14 @@ public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     // ボタンがクリックされたときの処理
-    public void OnButtonClick()
+    public void OnDecideButtonClick()
     {
         SEManager.Instance.Play(SEPath.DECISION_SE, 0.3f);
+    }
+
+    public void OnCancelButtonClick()
+    {
+        SEManager.Instance.Play(SEPath.CANCEL_SE2);
     }
 
 }

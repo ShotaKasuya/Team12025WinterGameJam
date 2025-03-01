@@ -179,7 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c0a9fc0589559647a197cd81dc04e6b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ab390bed1ae97c46beb61ae162bda3b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 230572469}
   - component: {fileID: 230572468}
   - component: {fileID: 230572467}
+  - component: {fileID: 230572470}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
@@ -299,7 +300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b70fe8f9890b4ed4ca59254898c634d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 936dcf1f214364d4a94225dd237dafeb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -317,6 +318,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230572465}
   m_CullTransparentMesh: 1
+--- !u!114 &230572470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230572465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4a719f25fa76f4b982924845df94f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedSprite: {fileID: 21300000, guid: b70fe8f9890b4ed4ca59254898c634d3, type: 3}
+  onClickEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 230572470}
+        m_TargetAssemblyTypeName: ButtonIC, Assembly-CSharp
+        m_MethodName: OnCancelButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &359000691
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +397,7 @@ GameObject:
   - component: {fileID: 541699673}
   - component: {fileID: 541699672}
   - component: {fileID: 541699671}
+  - component: {fileID: 541699674}
   m_Layer: 5
   m_Name: NextPageButton
   m_TagString: Untagged
@@ -437,7 +467,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 541699672}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 541699674}
+        m_TargetAssemblyTypeName: ButtonIC, Assembly-CSharp
+        m_MethodName: OnDecideButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &541699672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,6 +518,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541699669}
   m_CullTransparentMesh: 1
+--- !u!114 &541699674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541699669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4a719f25fa76f4b982924845df94f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedSprite: {fileID: 21300000, guid: abd25c5f707c0884ab7368e3494931bf, type: 3}
+  onClickEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &637168292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,6 +1184,7 @@ GameObject:
   - component: {fileID: 1773924043}
   - component: {fileID: 1773924042}
   - component: {fileID: 1773924041}
+  - component: {fileID: 1773924044}
   m_Layer: 5
   m_Name: LastPageButton
   m_TagString: Untagged
@@ -1195,7 +1254,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1773924042}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1773924044}
+        m_TargetAssemblyTypeName: ButtonIC, Assembly-CSharp
+        m_MethodName: OnCancelButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1773924042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,6 +1305,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773924039}
   m_CullTransparentMesh: 1
+--- !u!114 &1773924044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773924039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4a719f25fa76f4b982924845df94f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedSprite: {fileID: 21300000, guid: 86664928be33c3c4fb9390297d8f6e22, type: 3}
+  onClickEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1825381634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1333,7 @@ GameObject:
   - component: {fileID: 1825381638}
   - component: {fileID: 1825381637}
   - component: {fileID: 1825381636}
+  - component: {fileID: 1825381639}
   m_Layer: 5
   m_Name: BackPageButton
   m_TagString: Untagged
@@ -1354,6 +1442,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825381634}
   m_CullTransparentMesh: 1
+--- !u!114 &1825381639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825381634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4a719f25fa76f4b982924845df94f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedSprite: {fileID: 21300000, guid: 642d4d62d6361894c9c2e8d15ff40c2a, type: 3}
+  onClickEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1825381639}
+        m_TargetAssemblyTypeName: ButtonIC, Assembly-CSharp
+        m_MethodName: OnDecideButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1907779576
 GameObject:
   m_ObjectHideFlags: 0
