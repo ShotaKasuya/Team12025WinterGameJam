@@ -1,6 +1,6 @@
-<mxfile host="drawio-plugin" modified="2025-02-28T13:44:44.027Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="sgFHcEdC16meCvxTi0a7" version="22.1.22" type="embed">
+<mxfile host="drawio-plugin" modified="2025-03-01T08:25:04.613Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="Y86KTNim6htu83uh-gSq" version="22.1.22" type="embed">
   <diagram id="23iRSUPoRavnBvh4doch" name="Page-1">
-    <mxGraphModel dx="2410" dy="3486" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1919" dy="3130" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -277,7 +277,7 @@
           <mxGeometry x="1120" y="-1420" width="160" height="60" as="geometry" />
         </mxCell>
         <mxCell id="115" value="IView" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="1840" y="-1420" width="160" height="60" as="geometry" />
+          <mxGeometry x="1832" y="-1420" width="160" height="60" as="geometry" />
         </mxCell>
         <mxCell id="116" value="IModel" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="1832" y="-1580" width="160" height="60" as="geometry" />
@@ -317,6 +317,15 @@
         </mxCell>
         <mxCell id="138" value="Installer" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="1550" y="-1870" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="145" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="144" target="116" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="146" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;" parent="1" source="144" target="115" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="144" value="Link" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="1832" y="-1500" width="160" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

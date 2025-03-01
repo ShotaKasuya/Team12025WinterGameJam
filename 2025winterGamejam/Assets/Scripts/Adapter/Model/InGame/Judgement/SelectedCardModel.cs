@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Adapter.IModel.Global;
 using Adapter.IModel.InGame.Judgement;
 using Utility.Module.Option;
@@ -18,10 +15,11 @@ namespace Adapter.Model.InGame.Judgement
         public void StorePlayerSelection(int playerId, Option<PlayerCard> selection)
         {
             SelectedCards[playerId] = selection;
-            if (SelectedCards.All(x => x.IsSome))
-            {
-                OnSelectCompleted?.Invoke(SelectedCards.Select(x => x.Unwrap()).ToList());
-            }
+        }
+
+        public Option<PlayerCard> GetSelection(PlayerId playerId)
+        {
+            return SelectedCards[playerId.Id];
         }
 
         public void Clear()
@@ -33,6 +31,5 @@ namespace Adapter.Model.InGame.Judgement
         }
 
         public Option<PlayerCard>[] SelectedCards { get; }
-        public Action<List<PlayerCard>> OnSelectCompleted { get; set; }
     }
 }

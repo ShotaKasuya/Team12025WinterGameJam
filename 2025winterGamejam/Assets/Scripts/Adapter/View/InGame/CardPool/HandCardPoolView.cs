@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -15,11 +17,19 @@ namespace Adapter.View.InGame.CardPool
             handCardPositionsViews[targetPlayer].StoreNewCard(cardView);
 
             await handCardPositionsViews[targetPlayer].FixPosition();
+            OnStore?.Invoke(cardView);
+        }
+
+        public IReadOnlyList<NewProductCardView> GetViewList(PlayerId playerId)
+        {
+            return handCardPositionsViews[playerId.Id].CardViewList;
         }
 
         public NewProductCardView PopCardView(PlayerCard playerCard)
         {
-            return handCardPositionsViews[playerCard.PlayerId.Id].PopCardView(playerCard.Card);
+            var popCardView = handCardPositionsViews[playerCard.PlayerId.Id].PopCardView(playerCard.Card);
+            OnPop?.Invoke(popCardView);
+            return popCardView;
         }
 
         public async UniTask FixPosition()
@@ -29,5 +39,8 @@ namespace Adapter.View.InGame.CardPool
                 await handCardPositionsView.FixPosition();
             }
         }
+
+        public Action<NewProductCardView> OnStore { get; set; }
+        public Action<NewProductCardView> OnPop { get; set; }
     }
 }

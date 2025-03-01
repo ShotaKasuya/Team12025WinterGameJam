@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Utility.Structure.InGame;
@@ -56,6 +57,7 @@ namespace Adapter.IView.InGame
     {
         public UniTask FixPosition();
         public UniTask StoreNewCard(NewProductCardView cardView);
+        public IReadOnlyList<NewProductCardView> GetViewList(PlayerId playerId);
 
         /// <summary>
         /// 指定したカードを取り出す
@@ -63,5 +65,8 @@ namespace Adapter.IView.InGame
         /// </summary>
         /// <returns>取り出されたカード</returns>
         public NewProductCardView PopCardView(PlayerCard playerCard);
+        
+        public Action<NewProductCardView> OnStore { get; set; }
+        public Action<NewProductCardView> OnPop { get; set; }
     }
 }

@@ -6,4 +6,9 @@ namespace Domain.IUseCase.InGame
     {
         public Card[] DrawCard();
     }
+
+    public interface IInitHandCardCase
+    {
+        public HandCard[] InitHand();
+    }
 }

@@ -7,4 +7,8 @@ namespace Domain.IPresenter.InGame
     {
         public UniTask PresentDraw(Card[] cards);
     }
+    public interface IInitHandPresenter
+    {
+        public UniTask PresentInitHand(HandCard[] cards);
+    }
 }

@@ -8,7 +8,7 @@ namespace Adapter.IView.InGame
         /// <summary>
         /// 手札が選択されたイベント
         /// </summary>
-        public Action<Card> SelectionEvent { get; set; }
+        public Action<PlayerCard> SelectionEvent { get; set; }
         public void TurnOn();
         public void TurnOff();
     }

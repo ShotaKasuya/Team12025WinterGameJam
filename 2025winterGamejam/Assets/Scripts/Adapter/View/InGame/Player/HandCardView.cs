@@ -10,7 +10,7 @@ namespace Adapter.View.InGame.Player
 
         private void OnMouseDown()
         {
-            SelectionEvent?.Invoke(Card);
+            // SelectionEvent?.Invoke(Card);
         }
 
         public override void TurnOn()

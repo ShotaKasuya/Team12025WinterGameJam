@@ -8,7 +8,7 @@ namespace Domain.Presenter.InGame
     /// <summary>
     /// デッキからカードを引く演出
     /// </summary>
-    public class DrawPresenter : IDrawPresenter
+    public class DrawPresenter : IDrawPresenter, IInitHandPresenter
     {
         public DrawPresenter
         (
@@ -25,12 +25,31 @@ namespace Domain.Presenter.InGame
             var lastTask = UniTask.CompletedTask;
             for (var i = 0; i < cards.Length; i++)
             {
-                var id = new PlayerId(i);
-                var card = CardFactory.CreateCardView(new PlayerCard(id, cards[i]));
-                lastTask= HandCardPoolView.StoreNewCard(card);
+                lastTask = Draw(new PlayerCard(new PlayerId(i), cards[i]));
             }
 
             await lastTask;
+        }
+
+        public async UniTask PresentInitHand(HandCard[] cards)
+        {
+            for (int i = 0; i < cards.Length; i++)
+            {
+                var handCard = cards[i].Cards;
+                var lastTask = UniTask.CompletedTask;
+                for (int j = 0; j < handCard.Count; j++)
+                {
+                    lastTask = Draw(new PlayerCard(new PlayerId(i), handCard[j]));
+                }
+
+                await lastTask;
+            }
+        }
+
+        private UniTask Draw(PlayerCard playerCard)
+        {
+            var card = CardFactory.CreateCardView(playerCard);
+            return HandCardPoolView.StoreNewCard(card);
         }
 
         private INewCardFactory CardFactory { get; }

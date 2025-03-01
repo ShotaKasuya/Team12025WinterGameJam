@@ -41,6 +41,7 @@ namespace Adapter.View.InGame
 
         public IReadOnlyList<Pose> CardPositions { get; private set; }
         private List<NewProductCardView> CardViews { get; } = new();
+        public IReadOnlyList<NewProductCardView> CardViewList => CardViews;
 
         private void Awake()
         {

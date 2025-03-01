@@ -44,5 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec57b41d2df3435aa709a8128f230c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPositionsView: []
-  playerInstaller: {fileID: 6864899462444398045, guid: 1bbd1058c2ee33b969441b016de3575b, type: 3}
+  parentReference:
+    TypeName: 
+  autoRun: 1
+  autoInjectGameObjects: []
+  cardView: {fileID: 0}
+  startTextView: {fileID: 0}
+  addPointTextView: {fileID: 0}
+  cardPositionsView: {fileID: 0}
+  selectedCardPoolView: {fileID: 0}
+  settingModel: {fileID: 11400000, guid: a884ea915dfa1a76192da4b69d9036e1, type: 2}

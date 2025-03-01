@@ -1,12 +1,12 @@
 using Adapter.IModel.InGame.Judgement;
+using Domain.IUseCase.InGame;
 using Utility.Structure.InGame;
-using VContainer.Unity;
 
 namespace Domain.UseCase.InGame
 {
-    public class InitDeckCase : IInitializable
+    public class DeckHandCardInitialize : IDeckInitCase
     {
-        public InitDeckCase
+        public DeckHandCardInitialize
         (
             IMutDeckModel deckModel
         )
@@ -14,7 +14,7 @@ namespace Domain.UseCase.InGame
             DeckModel = deckModel;
         }
 
-        public void Initialize()
+        public void DeckInitialize()
         {
             var len = DeckModel.Decks.Length;
             var decks = Deck.RandomDecks(len);

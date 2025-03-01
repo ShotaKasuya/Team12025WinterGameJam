@@ -1,4 +1,5 @@
 using Adapter.IView.InGame;
+using Adapter.Linker.InGame;
 using Adapter.Model.Global;
 using Adapter.Model.InGame;
 using Adapter.Model.InGame.Judgement;
@@ -23,6 +24,8 @@ namespace Installer.InGame
         [SerializeField] private HandCardPoolView cardPositionsView;
         [SerializeField] private SelectedCardPoolView selectedCardPoolView;
 
+        [SerializeField] private SettingModel settingModel;
+
         protected override void Configure(IContainerBuilder builder)
         {
             Debug.Log("configure");
@@ -38,6 +41,7 @@ namespace Installer.InGame
             builder.Register<WinCardPoolView>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // Model
+            builder.RegisterInstance(settingModel).AsImplementedInterfaces();
             builder.Register<GameStateModel>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<JudgeResultModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IdProvideModel>(Lifetime.Singleton).AsImplementedInterfaces();
@@ -48,6 +52,9 @@ namespace Installer.InGame
             builder.Register<HandCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<ScoreModel>(Lifetime.Singleton).AsImplementedInterfaces();
 
+            // Linker
+            builder.RegisterEntryPoint<SelectionLinker>();
+
             // Presenter
             builder.Register<DrawPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<JudgeResultPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
@@ -56,6 +63,7 @@ namespace Installer.InGame
             builder.Register<GameStartPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // UseCase
+            builder.Register<DeckHandCardInitialize>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IsGameEndCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IsReadyJudgeCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<AddPointCase>(Lifetime.Singleton).AsImplementedInterfaces();

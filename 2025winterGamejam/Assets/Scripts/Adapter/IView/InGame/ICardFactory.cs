@@ -25,7 +25,7 @@ namespace Adapter.IView.InGame
     public abstract class ProductCardView: MonoBehaviour, ICardProduct
     {
         public Transform ModelTransform { get; private set; }
-        public Action<Card> SelectionEvent { get; set; }
+        public Action<PlayerCard> SelectionEvent { get; set; }
         public abstract void TurnOn();
         public abstract void TurnOff();
 
@@ -57,7 +57,7 @@ namespace Adapter.IView.InGame
     public abstract class NewProductCardView: MonoBehaviour, ICardProduct
     {
         public Transform ModelTransform { get; private set; }
-        public Action<Card> SelectionEvent { get; set; }
+        public Action<PlayerCard> SelectionEvent { get; set; }
         public abstract void TurnOn();
         public abstract void TurnOff();
 
