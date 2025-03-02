@@ -8,20 +8,21 @@ namespace Adapter.View.CardPrefabdb
     {
         public CardFactory
         (
-            ProductCardView productCardView
+            IGetPrefab getPrefab
         )
         {
-            ProductCardView = productCardView;
+            GetPrefab = getPrefab;
         }
 
         public ProductCardView CreateCardView(PlayerCard playerCard)
         {
-            var product = Object.Instantiate(ProductCardView);
+            var product = Object.Instantiate(GetPrefab.GetProductCardView(playerCard.Card));
             product.Inject(playerCard);
             
             return product;
         }
 
-        private ProductCardView ProductCardView { get; }
+        private IGetPrefab GetPrefab {get;}
+
     }
 }
