@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Adapter.IModel.InGame.Judgement;
+using UnityEngine;
 using Utility.Structure.InGame;
 
 namespace Adapter.Model.InGame.Judgement
@@ -45,6 +46,8 @@ namespace Adapter.Model.InGame.Judgement
             }
 
             BattleResults.Add(battleResult);
+
+            Debug.Log($"current : {battleResult}");
 
             JudgeEndEvent?.Invoke(new ResultAndDrawCount(drawCount, battleResult));
         }

@@ -28,5 +28,20 @@ namespace Utility.Structure.InGame
             this.winner = winner;
             this.userCards = userCards;
         }
+
+        public override string ToString()
+        {
+            var cards = "[\n";
+            foreach (var playerCard in userCards)
+            {
+                cards += playerCard;
+            }
+
+            cards += "]";
+            return "BattleResult (\n" +
+                   $"{winner}" +
+                   $"{cards}" +
+                   ")";
+        }
     }
 }

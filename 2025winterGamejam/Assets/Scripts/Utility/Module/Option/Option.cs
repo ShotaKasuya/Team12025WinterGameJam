@@ -53,5 +53,10 @@ namespace Utility.Module.Option
             innerIsSome = isSome;
             innerValue = value;
         }
+
+        public override string ToString()
+        {
+            return IsSome ? $"Some({Value})" : "None";
+        }
     }
 }
