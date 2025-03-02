@@ -120,4 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultScale: {x: 1, y: 1, z: 1}
-  selectedScale: {x: 2, y: 2, z: 1}
+  selectedScale: {x: 1.5, y: 1.5, z: 1}
