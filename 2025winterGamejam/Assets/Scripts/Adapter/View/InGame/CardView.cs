@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Adapter.View.InGame
 {
-    public class CardView: NewProductCardView
+    public class CardView: ProductCardView
     {
         [SerializeField] private Vector3 defaultScale;
         [SerializeField] private Vector3 selectedScale;

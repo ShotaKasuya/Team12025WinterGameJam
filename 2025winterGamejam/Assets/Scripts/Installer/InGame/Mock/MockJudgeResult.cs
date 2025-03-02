@@ -1,5 +1,4 @@
 using Adapter.View.InGame.CardPool;
-using Adapter.View.InGame.Ui;
 using Domain.Presenter.InGame;
 using UnityEngine;
 using Utility.Structure.InGame;
@@ -10,18 +9,20 @@ namespace Installer.InGame.Mock
 {
     public class MockJudgeResult:LifetimeScope
     {
-        [SerializeField] DrawCardPoolView drawCardPoolView;
-        [SerializeField] WinCardPoolView winCardPoolView;
-        [SerializeField] HandCardPoolView handCardPoolView;
-        [SerializeField] BattleResult battleResult0;
-        [SerializeField] BattleResult battleResult1;
-        [SerializeField] BattleResult battleResult2;
-        [SerializeField] BattleResult battleResult3;
+        [SerializeField] private DrawCardPoolView drawCardPoolView;
+        [SerializeField] private WinCardPoolView winCardPoolView;
+        [SerializeField] private SelectedCardPoolView selectedCardPoolView;
+        
+        [SerializeField] private BattleResult battleResult0;
+        [SerializeField] private BattleResult battleResult1;
+        [SerializeField] private BattleResult battleResult2;
+        [SerializeField] private BattleResult battleResult3;
+        
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(drawCardPoolView).AsImplementedInterfaces();
-            builder.RegisterComponent(handCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(winCardPoolView).AsImplementedInterfaces();
+            builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
 
             builder.Register<JudgeResultPresenter>(Lifetime.Singleton);
         }

@@ -14,12 +14,12 @@ namespace Adapter.View.InGame
         [SerializeField] private float fixPositionTime;
         [SerializeField] private List<Transform> cardPositions;
 
-        public void StoreNewCard(NewProductCardView productCardView)
+        public void StoreNewCard(ProductCardView productCardView)
         {
             CardViews.Add(productCardView);
         }
 
-        public NewProductCardView PopCardView(Card playerCard)
+        public ProductCardView PopCardView(Card playerCard)
         {
             var cardView = CardViews.FirstOrDefault(x => x.Card.Card == playerCard);
             CardViews.Remove(cardView);
@@ -40,8 +40,8 @@ namespace Adapter.View.InGame
         }
 
         public IReadOnlyList<Pose> CardPositions { get; private set; }
-        private List<NewProductCardView> CardViews { get; } = new();
-        public IReadOnlyList<NewProductCardView> CardViewList => CardViews;
+        private List<ProductCardView> CardViews { get; } = new();
+        public IReadOnlyList<ProductCardView> CardViewList => CardViews;
 
         private void Awake()
         {

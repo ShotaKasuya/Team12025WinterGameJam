@@ -23,7 +23,7 @@ namespace Installer.InGame.Mock
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterComponent(cardView).As<NewProductCardView>();
+            builder.RegisterComponent(cardView).As<ProductCardView>();
             builder.RegisterComponent(handCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
 

@@ -8,13 +8,13 @@ namespace Adapter.View.CardPrefabdb
     {
         public CardFactory
         (
-            NewProductCardView productCardView
+            ProductCardView productCardView
         )
         {
             ProductCardView = productCardView;
         }
 
-        public NewProductCardView CreateCardView(PlayerCard playerCard)
+        public ProductCardView CreateCardView(PlayerCard playerCard)
         {
             var product = Object.Instantiate(ProductCardView);
             product.Inject(playerCard);
@@ -22,6 +22,6 @@ namespace Adapter.View.CardPrefabdb
             return product;
         }
 
-        private NewProductCardView ProductCardView { get; }
+        private ProductCardView ProductCardView { get; }
     }
 }

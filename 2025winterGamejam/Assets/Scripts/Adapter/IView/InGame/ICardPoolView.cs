@@ -10,14 +10,14 @@ namespace Adapter.IView.InGame
     /// </summary>
     public interface ISelectedCardPoolView
     {
-        public UniTask StoreNewCard(NewProductCardView cardView);
+        public UniTask StoreNewCard(ProductCardView cardView);
 
         /// <summary>
         /// カードをすべて取り出す
         /// その際、内部で保持されているカードはすべて消える
         /// </summary>
         /// <returns>取り出されたカード</returns>
-        public IReadOnlyList<NewProductCardView> PopAllCardViews();
+        public IReadOnlyList<ProductCardView> PopAllCardViews();
     }
     
     /// <summary>
@@ -25,14 +25,14 @@ namespace Adapter.IView.InGame
     /// </summary>
     public interface IDrawCardPoolView
     {
-        public UniTask StoreNewCard( NewProductCardView cardView);
+        public UniTask StoreNewCard(ProductCardView cardView);
 
         /// <summary>
         /// カードをすべて取り出す
         /// その際、内部で保持されているカードはすべて消える
         /// </summary>
         /// <returns>取り出されたカード</returns>
-        public IReadOnlyList<NewProductCardView> PopAllCardViews();
+        public IReadOnlyList<ProductCardView> PopAllCardViews();
     }
 
     /// <summary>
@@ -40,14 +40,14 @@ namespace Adapter.IView.InGame
     /// </summary>
     public interface IWinCardPoolView
     {
-        public UniTask StoreNewCard(NewProductCardView cardView);
+        public UniTask StoreNewCard(ProductCardView cardView);
 
         /// <summary>
         /// カードをすべて取り出す
         /// その際、内部で保持されているカードはすべて消える
         /// </summary>
         /// <returns>取り出されたカード</returns>
-        public IReadOnlyList<NewProductCardView> PopAllCardViews(PlayerId playerId);
+        public IReadOnlyList<ProductCardView> PopAllCardViews(PlayerId playerId);
     }
 
     /// <summary>
@@ -56,17 +56,17 @@ namespace Adapter.IView.InGame
     public interface IHandCardPoolView
     {
         public UniTask FixPosition();
-        public UniTask StoreNewCard(NewProductCardView cardView);
-        public IReadOnlyList<NewProductCardView> GetViewList(PlayerId playerId);
+        public UniTask StoreNewCard(ProductCardView cardView);
+        public IReadOnlyList<ProductCardView> GetViewList(PlayerId playerId);
 
         /// <summary>
         /// 指定したカードを取り出す
         /// その際、内部で保持されているカードは消える
         /// </summary>
         /// <returns>取り出されたカード</returns>
-        public NewProductCardView PopCardView(PlayerCard playerCard);
+        public ProductCardView PopCardView(PlayerCard playerCard);
         
-        public Action<NewProductCardView> OnStore { get; set; }
-        public Action<NewProductCardView> OnPop { get; set; }
+        public Action<ProductCardView> OnStore { get; set; }
+        public Action<ProductCardView> OnPop { get; set; }
     }
 }

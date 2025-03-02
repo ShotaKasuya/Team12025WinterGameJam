@@ -13,16 +13,16 @@ namespace Adapter.View.InGame.CardPool
         
         private Vector3 DrawCardsPosition => drawCardsPosition.position;
         private float MoveDuration => moveDuration;
-        private List<NewProductCardView> drawCards  = new List<NewProductCardView>();
-        private List<NewProductCardView> swapDrawCards  = new List<NewProductCardView>();
+        private List<ProductCardView> drawCards  = new List<ProductCardView>();
+        private List<ProductCardView> swapDrawCards  = new List<ProductCardView>();
 
-        public async UniTask StoreNewCard(NewProductCardView cardView)
+        public async UniTask StoreNewCard(ProductCardView cardView)
         {
             drawCards.Add(cardView);
             await cardView.ModelTransform.DOMove(DrawCardsPosition, MoveDuration).AsyncWaitForCompletion();
         }
 
-        public IReadOnlyList<NewProductCardView> PopAllCardViews()
+        public IReadOnlyList<ProductCardView> PopAllCardViews()
         {
             var tmp = drawCards;
             swapDrawCards.Clear();

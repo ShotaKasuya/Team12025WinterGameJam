@@ -11,7 +11,7 @@ namespace Adapter.View.InGame.CardPool
     {
         [SerializeField] private HandCardPositionsView[] handCardPositionsViews;
 
-        public async UniTask StoreNewCard(NewProductCardView cardView)
+        public async UniTask StoreNewCard(ProductCardView cardView)
         {
             var targetPlayer = cardView.Card.PlayerId.Id;
             handCardPositionsViews[targetPlayer].StoreNewCard(cardView);
@@ -20,12 +20,12 @@ namespace Adapter.View.InGame.CardPool
             OnStore?.Invoke(cardView);
         }
 
-        public IReadOnlyList<NewProductCardView> GetViewList(PlayerId playerId)
+        public IReadOnlyList<ProductCardView> GetViewList(PlayerId playerId)
         {
             return handCardPositionsViews[playerId.Id].CardViewList;
         }
 
-        public NewProductCardView PopCardView(PlayerCard playerCard)
+        public ProductCardView PopCardView(PlayerCard playerCard)
         {
             var popCardView = handCardPositionsViews[playerCard.PlayerId.Id].PopCardView(playerCard.Card);
             OnPop?.Invoke(popCardView);
@@ -43,7 +43,7 @@ namespace Adapter.View.InGame.CardPool
             await lastTask;
         }
 
-        public Action<NewProductCardView> OnStore { get; set; }
-        public Action<NewProductCardView> OnPop { get; set; }
+        public Action<ProductCardView> OnStore { get; set; }
+        public Action<ProductCardView> OnPop { get; set; }
     }
 }

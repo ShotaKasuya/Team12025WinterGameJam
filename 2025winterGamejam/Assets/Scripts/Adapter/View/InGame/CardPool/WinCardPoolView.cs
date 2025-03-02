@@ -12,18 +12,18 @@ namespace Adapter.View.InGame.CardPool
         [SerializeField] private Transform newProductCardsViewsPosition;
         [SerializeField] private float moveDuration;
 
-        private List<NewProductCardView> winCardViews = new List<NewProductCardView>();
-        private List<NewProductCardView> swapWinCardViews = new List<NewProductCardView>();
+        private List<ProductCardView> winCardViews = new List<ProductCardView>();
+        private List<ProductCardView> swapWinCardViews = new List<ProductCardView>();
         private Vector3 NewProductCardsViewsPosition => newProductCardsViewsPosition.position;
         private float MoveDuration => moveDuration;
 
-        public async UniTask StoreNewCard(NewProductCardView cardView)
+        public async UniTask StoreNewCard(ProductCardView cardView)
         {
             winCardViews.Add(cardView);
             await cardView.ModelTransform.DOMove(NewProductCardsViewsPosition, MoveDuration).AsyncWaitForCompletion();
         }
 
-        public IReadOnlyList<NewProductCardView> PopAllCardViews(PlayerId playerId)
+        public IReadOnlyList<ProductCardView> PopAllCardViews(PlayerId playerId)
         {
             var tmp = winCardViews;
             swapWinCardViews.Clear();

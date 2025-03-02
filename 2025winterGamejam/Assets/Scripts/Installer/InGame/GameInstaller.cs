@@ -18,7 +18,7 @@ namespace Installer.InGame
 {
     public class GameInstaller : LifetimeScope
     {
-        [SerializeField] private NewProductCardView cardView;
+        [SerializeField] private ProductCardView cardView;
         [SerializeField] private StartTextView startTextView;
         [SerializeField] private AddPointTextView addPointTextView;
         [SerializeField] private HandCardPoolView cardPositionsView;

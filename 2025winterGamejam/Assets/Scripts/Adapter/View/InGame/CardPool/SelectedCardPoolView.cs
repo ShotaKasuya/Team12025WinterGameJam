@@ -14,9 +14,9 @@ namespace Adapter.View.InGame.CardPool
         [SerializeField] private float tweenTime;
         [SerializeField] private TransformableView[] transformableViews;
 
-        private NewProductCardView[] _cardViews;
+        private ProductCardView[] _cardViews;
 
-        public async UniTask StoreNewCard(NewProductCardView cardView)
+        public async UniTask StoreNewCard(ProductCardView cardView)
         {
             var playerId = cardView.Card.PlayerId;
             var storeTo = transformableViews[playerId.Id];
@@ -27,7 +27,7 @@ namespace Adapter.View.InGame.CardPool
             _cardViews[playerId.Id] = cardView;
         }
 
-        public IReadOnlyList<NewProductCardView> PopAllCardViews()
+        public IReadOnlyList<ProductCardView> PopAllCardViews()
         {
             var cards = _cardViews.ToList();
             for (int i = 0; i < _cardViews.Length; i++)
@@ -40,7 +40,7 @@ namespace Adapter.View.InGame.CardPool
 
         private void Awake()
         {
-            _cardViews = new NewProductCardView[transformableViews.Length];
+            _cardViews = new ProductCardView[transformableViews.Length];
         }
     }
 }

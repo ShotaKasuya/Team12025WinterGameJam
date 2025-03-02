@@ -25,12 +25,12 @@ namespace Adapter.Linker.InGame
             HandCardPoolView.OnPop += RemoveLinker;
         }
 
-        private void SetLinker(NewProductCardView view)
+        private void SetLinker(ProductCardView view)
         {
             view.SelectionEvent += OnSelect;
         }
 
-        private void RemoveLinker(NewProductCardView view)
+        private void RemoveLinker(ProductCardView view)
         {
             view.SelectionEvent -= OnSelect;
         }
