@@ -60,7 +60,7 @@ namespace Utility.Structure.InGame
 
         public override string ToString()
         {
-            return $"(suit, rank) => ({Suit}, {Rank})\n";
+            return $"(suit, rank) => ({Suit}, {Rank})";
         }
 
         public static Card[] AllCards()
@@ -153,6 +153,14 @@ namespace Utility.Structure.InGame
         public bool IsGreater(PlayerCard other)
         {
             return Card.IsGreater(other.Card);
+        }
+
+        public override string ToString()
+        {
+            return $"(\n" +
+                   $"{playerId}\n" +
+                   $"Card: {card}\n" +
+                   $")";
         }
     }
 }

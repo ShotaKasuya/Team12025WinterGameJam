@@ -93,5 +93,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerPosition: {x: 0, y: 0, z: 0}
-  moveDuration: 2
-  fadeDuration: 2
+  moveDuration: 0.5
+  fadeDuration: 0.5

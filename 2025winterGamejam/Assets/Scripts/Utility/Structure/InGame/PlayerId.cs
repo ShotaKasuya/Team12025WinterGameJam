@@ -38,5 +38,10 @@ namespace Utility.Structure.InGame
         {
             return !(left == right);
         }
+
+        public override string ToString()
+        {
+            return $"PlayerId: {Id}";
+        }
     }
 }

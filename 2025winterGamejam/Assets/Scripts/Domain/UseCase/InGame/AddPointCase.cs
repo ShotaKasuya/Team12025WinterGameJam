@@ -3,6 +3,7 @@ using Adapter.IModel.Global;
 using Adapter.IModel.InGame;
 using Adapter.IModel.InGame.Judgement;
 using Domain.IUseCase.InGame;
+using UnityEngine;
 using Utility.Structure.InGame;
 
 namespace Domain.UseCase.InGame
@@ -34,6 +35,8 @@ namespace Domain.UseCase.InGame
                 ScoreModel.AddScore(i, point);
             }
 
+            Debug.Log($"1: {points[0]}, 2: {points[1]}");
+
             return points;
         }
 
@@ -56,6 +59,8 @@ namespace Domain.UseCase.InGame
                 {
                     return -4;
                 }
+
+                return 0;
             }
 
             // 自身が弱体化しているかの確認

@@ -394,23 +394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86118690f1542d587acf72d400f8c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawCardsPosition: {fileID: 334029374}
-  moveDuration: 1
---- !u!4 &334029374
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 334029372}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.75, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &583896216 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7936789616404749388, guid: abbde1dbd8dc9143497d002f5f8df56d, type: 3}
@@ -767,7 +750,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1553521219}
-  - component: {fileID: 1553521218}
   m_Layer: 0
   m_Name: WinCardPool
   m_TagString: Untagged
@@ -775,7 +757,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1553521218
+--- !u!114 &1553521218 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1857860065379660400, guid: 73a1e8334be12afe688a6d72b081e2cf, type: 3}
   m_PrefabInstance: {fileID: 4201645329054932286}
@@ -786,6 +768,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818d2afbc3df4b87b7f81c4711653219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1553521219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553521217}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1883035238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1203,11 +1200,12 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1553521219}
   - {fileID: 258463418}
   - {fileID: 2874258899623969751}
   - {fileID: 682287400}
   - {fileID: 919054427}
-  - {fileID: 1553521219}
-  - {fileID: 334029374}
   - {fileID: 1156570721}
   - {fileID: 137322373}
+  - {fileID: 1409922346155908914}
+  - {fileID: 4201645329054932286}
