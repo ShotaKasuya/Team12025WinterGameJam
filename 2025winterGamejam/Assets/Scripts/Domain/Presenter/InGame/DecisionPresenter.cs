@@ -26,10 +26,9 @@ namespace Domain.Presenter.InGame
                 var handCard = HandCardPoolView.PopCardView(selectedCardInfo);
 
                 var storeTask = SelectedCardPoolView.StoreNewCard(handCard);
-                var fixPositionTask = HandCardPoolView.FixPosition();
                 tasks.Add(storeTask);
-                tasks.Add(fixPositionTask);
             }
+            tasks.Add(HandCardPoolView.FixPosition());
 
             await UniTask.WhenAll(tasks);
         }

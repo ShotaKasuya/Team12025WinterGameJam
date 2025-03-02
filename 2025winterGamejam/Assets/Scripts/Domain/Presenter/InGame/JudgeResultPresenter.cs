@@ -1,4 +1,3 @@
-using System.Linq;
 using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
 using Domain.IPresenter.InGame;
@@ -24,7 +23,7 @@ namespace Domain.Presenter.InGame
         {
             var views = SelectedCardPoolView.PopAllCardViews();
             // 勝者あり
-            if (result.Winner.TryGetValue(out var id))
+            if (result.Winner.IsSome)
             {
                 foreach (var cardView in views)
                 {

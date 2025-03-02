@@ -14,16 +14,19 @@ namespace Domain.UseCase.InGame
         public CardJudgeCase
         (
             ISelectedCardModel selectedCardModels,
-            IConditionModel conditionModel
+            IConditionModel conditionModel,
+            IMutJudgeResultModel judgeResultModel
         )
         {
             SelectedCardModels = selectedCardModels;
             ConditionModel = conditionModel;
+            JudgeResultModel = judgeResultModel;
         }
 
         public BattleResult Judge()
         {
-            var selectedCards = SelectedCardModels.SelectedCards.Select(x => x.Unwrap()).ToList();
+            var selectedCards = SelectedCardModels
+                .SelectedCards.Select(x => x.Unwrap()).ToList();
             SelectedCardModels.Clear();
             
             for (var i = 0; i < selectedCards.Count; i++)
@@ -35,7 +38,9 @@ namespace Domain.UseCase.InGame
                 }
             }
 
-            return Judge(selectedCards);
+            var result = Judge(selectedCards);
+            JudgeResultModel.StoreJudgeResult(result);
+            return result;
         }
 
         private BattleResult Judge(List<PlayerCard> playerCard)
@@ -52,5 +57,6 @@ namespace Domain.UseCase.InGame
 
         private ISelectedCardModel SelectedCardModels { get; }
         private IConditionModel ConditionModel { get; }
+        private IMutJudgeResultModel JudgeResultModel { get; }
     }
 }

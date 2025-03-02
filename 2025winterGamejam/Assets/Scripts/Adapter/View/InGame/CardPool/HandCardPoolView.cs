@@ -34,10 +34,13 @@ namespace Adapter.View.InGame.CardPool
 
         public async UniTask FixPosition()
         {
+            var lastTask = UniTask.CompletedTask;
             foreach (var handCardPositionsView in handCardPositionsViews)
             {
-                await handCardPositionsView.FixPosition();
+                lastTask = handCardPositionsView.FixPosition();
             }
+
+            await lastTask;
         }
 
         public Action<NewProductCardView> OnStore { get; set; }
