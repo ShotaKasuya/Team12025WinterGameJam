@@ -8,13 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5288122878947223817, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
+      propertyPath: m_Size.x
+      value: 1.9513016
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288122878947223817, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
+      propertyPath: m_Size.y
+      value: 2.7508616
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288122878947223817, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: beb518bd27a60f443bc34d20529c7bb9, type: 3}
     - target: {fileID: 6410745754541233082, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.014874433
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 6410745754541233082, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0040876865
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 6410745754541233082, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8722494538431194638, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
       propertyPath: m_Name
-      value: HandCard Variant
+      value: ClubsSeven
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
