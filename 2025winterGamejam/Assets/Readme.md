@@ -1,0 +1,34 @@
+# プログラム構成
+
+* Flow
+  * ゲームの流れの処理を持つ
+  * クラス名の最後にFlowをつける
+  * 関心
+    * UseCase
+    * Presenter
+* UseCase
+  * ロジック処理
+  * クラス名の最後にCaseをつける
+  * 関心
+    * Model
+* Presenter
+  * 見た目の大まかな処理
+  * クラス名の最後にPresenter
+  * 関心
+    * View
+* Linker
+  * Viewから入力を受取りModelに同期
+  * クラス名の最後にLinkerをつける
+  * 関心
+    * View
+    * Model
+* View
+  * 見た目を管理
+  * クラス名の最後にViewをつける
+  * 関心
+    * なし
+* Model
+  * データを管理する
+  * クラス名の最後にModelをつける
+  * 関心
+    * なし
