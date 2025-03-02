@@ -654,11 +654,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752393715137296487, guid: aa43797a60fc42ddba86c37db814988e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1752393715137296487, guid: aa43797a60fc42ddba86c37db814988e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1752393715137296487, guid: aa43797a60fc42ddba86c37db814988e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -678,23 +678,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752393715137296487, guid: aa43797a60fc42ddba86c37db814988e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1752393715137296487, guid: aa43797a60fc42ddba86c37db814988e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1752393715137296487, guid: aa43797a60fc42ddba86c37db814988e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1752393715137296487, guid: aa43797a60fc42ddba86c37db814988e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1177.3489
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1752393715137296487, guid: aa43797a60fc42ddba86c37db814988e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -459.54114
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1752393715137296487, guid: aa43797a60fc42ddba86c37db814988e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -826,10 +826,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameInstaller
       objectReference: {fileID: 0}
-    - target: {fileID: 5856252925802007490, guid: 7b00da07c2c443a7783693baf4a53003, type: 3}
-      propertyPath: cardView
-      value: 
-      objectReference: {fileID: -2849189603017906112, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
     - target: {fileID: 5856252925802007490, guid: 7b00da07c2c443a7783693baf4a53003, type: 3}
       propertyPath: startTextView
       value: 

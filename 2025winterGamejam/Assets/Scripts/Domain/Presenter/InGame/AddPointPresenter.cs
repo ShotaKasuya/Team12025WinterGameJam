@@ -23,6 +23,7 @@ namespace Domain.Presenter.InGame
             var fadeInDuration = AddPointTextView.FadeInDuration;
             var fadeOutDuration = AddPointTextView.FadeOutDuration;
             var pointText = AddPointTextView.Text;
+            pointText.text = "";
 
             for (int i = 0; i < points.Length; i++)
             {

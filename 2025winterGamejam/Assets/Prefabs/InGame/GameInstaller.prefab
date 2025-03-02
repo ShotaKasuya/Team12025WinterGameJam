@@ -48,9 +48,11 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  cardView: {fileID: 0}
+  cardView: {fileID: 11400000, guid: cb87bb1203a478947af838e931a8f980, type: 2}
   startTextView: {fileID: 0}
   addPointTextView: {fileID: 0}
   cardPositionsView: {fileID: 0}
   selectedCardPoolView: {fileID: 0}
+  winCardPoolView: {fileID: 0}
+  drawCardPoolView: {fileID: 0}
   settingModel: {fileID: 11400000, guid: a884ea915dfa1a76192da4b69d9036e1, type: 2}
