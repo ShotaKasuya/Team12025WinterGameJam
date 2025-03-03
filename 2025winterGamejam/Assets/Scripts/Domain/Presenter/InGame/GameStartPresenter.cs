@@ -2,6 +2,7 @@ using Adapter.IView.InGame.Ui;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Domain.IPresenter.InGame;
+using KanKikuchi.AudioManager;
 
 namespace Domain.Presenter.InGame
 {
@@ -12,23 +13,24 @@ namespace Domain.Presenter.InGame
     {
         public GameStartPresenter
         (
-            IStartTextView startTextView
+            IStartImageView startImageView
         )
         {
-            StartTextView = startTextView;
+            StartImageView = startImageView;
         }
 
         public async UniTask GameStart()
         {
-            var endPos = StartTextView.CenterPosition;
-            var moveDuration = StartTextView.MoveDuration;
-            var fadeDuration = StartTextView.FadeDuration;
+            var endPos = StartImageView.CenterPosition;
+            var moveDuration = StartImageView.MoveDuration;
+            var fadeDuration = StartImageView.FadeDuration;
 
-            await StartTextView.ModelTransform.DOMove(endPos, moveDuration).AsyncWaitForCompletion();
+            SEManager.Instance.Play(SEPath.GAME_START_SE, 0.2f);
 
-            await StartTextView.Text.DOFade(0, fadeDuration).AsyncWaitForCompletion();
+            await StartImageView.ModelTransform.DOMove(endPos, moveDuration).AsyncWaitForCompletion();
+            await StartImageView.Image.DOFade(0, fadeDuration).AsyncWaitForCompletion();
         }
 
-        private IStartTextView StartTextView { get; }
+        private IStartImageView StartImageView { get; }
     }
 }

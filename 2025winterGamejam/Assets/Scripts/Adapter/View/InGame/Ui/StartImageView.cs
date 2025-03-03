@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 namespace Adapter.View.InGame.Ui
 {
-    [RequireComponent(typeof(Text))]
-    public class StartTextView : MonoBehaviour, IStartTextView
+    [RequireComponent(typeof(Image))]
+    public class StartImageView : MonoBehaviour, IStartImageView
     {
         public Transform ModelTransform { get; private set; }
-        public Text Text { get; private set; }
+        public Image Image { get; private set; }
         public Vector3 CenterPosition => new Vector3(0, 0, 0);
         public float MoveDuration => moveDuration;
         public float FadeDuration => fadeDuration;
@@ -20,7 +20,7 @@ namespace Adapter.View.InGame.Ui
         private void Awake()
         {
             ModelTransform = transform;
-            Text = GetComponent<Text>();
+            Image = GetComponent<Image>();
         }
     }
 }

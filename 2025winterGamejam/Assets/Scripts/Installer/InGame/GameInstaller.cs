@@ -19,7 +19,7 @@ namespace Installer.InGame
     public class GameInstaller : LifetimeScope
     {
         [SerializeField] private NewProductCardView cardView;
-        [SerializeField] private StartTextView startTextView;
+        [SerializeField] private StartImageView startImageView;
         [SerializeField] private AddPointTextView addPointTextView;
         [SerializeField] private HandCardPoolView cardPositionsView;
         [SerializeField] private SelectedCardPoolView selectedCardPoolView;
@@ -36,7 +36,7 @@ namespace Installer.InGame
             builder.RegisterComponent(drawCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(winCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(cardView).AsImplementedInterfaces();
-            builder.RegisterComponent(startTextView).AsImplementedInterfaces();
+            builder.RegisterComponent(startImageView).AsImplementedInterfaces();
             builder.RegisterComponent(addPointTextView).AsImplementedInterfaces();
             builder.RegisterComponent(cardPositionsView).AsImplementedInterfaces();
             builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
