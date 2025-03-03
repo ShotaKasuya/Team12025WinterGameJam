@@ -1,11 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Utility.Structure.HttpClient.Client
+namespace Utility.Structure.HttpClient
 {
     /**
      * Useful utility to use REST access to server
@@ -64,15 +64,20 @@ namespace Utility.Structure.HttpClient.Client
         * Perform POST request to the path
         * You can specify parameter as dictioanry
         */
-        protected UniTask<T> Post<T>(string path, Dictionary<string, string> param = null)
+        protected async UniTask<TResponse> PostJson<TRequest, TResponse>(string path, TRequest data)
         {
-            if (param == null)
-            {
-                param = new Dictionary<string, string>();
-            }
+            var json = ToJson(data);
+            using var request = new UnityWebRequest(GetURL(path), "POST");
+            request.SetRequestHeader("Content-Type", "application/json");
 
-            var req = UnityWebRequest.Post(this.GetURL(path), param);
-            return ProcessRequest<T>(req);
+            var jsonBytes = Encoding.UTF8.GetBytes(json);
+            request.uploadHandler = new UploadHandlerRaw(jsonBytes);
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            await ProcessRequest<TResponse>(request);
+
+            var responseJson = request.downloadHandler.text;
+            return JsonUtility.FromJson<TResponse>(responseJson);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -97,6 +102,17 @@ namespace Utility.Structure.HttpClient.Client
         private string GetURL(string path)
         {
             return $"{HostName}{path}";
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static string ToJson<T>(T value)
+        {
+            if (!typeof(T).IsDefined(typeof(SerializableAttribute), false))
+            {
+                Debug.LogError($"{typeof(T).Name} is not defined serializable");
+            }
+
+            return JsonUtility.ToJson(value);
         }
     }
 }

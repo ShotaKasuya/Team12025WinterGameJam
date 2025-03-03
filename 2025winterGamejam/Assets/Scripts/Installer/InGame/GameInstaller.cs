@@ -9,6 +9,7 @@ using Domain.Flow.InGame;
 using Domain.Presenter.InGame;
 using Domain.UseCase.InGame;
 using UnityEngine;
+using Utility.Structure.InGame;
 using Utility.Structure.InGame.StateMachine;
 using VContainer;
 using VContainer.Unity;
@@ -42,6 +43,7 @@ namespace Installer.InGame
             builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // Model
+            builder.RegisterInstance(new PlayerIdModel(new PlayerId(0)));
             builder.RegisterInstance(settingModel).AsImplementedInterfaces();
             builder.Register<GameStateModel>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<JudgeResultModel>(Lifetime.Singleton).AsImplementedInterfaces();

@@ -18,9 +18,4 @@ namespace Adapter.IView.InGame
         public ProductCardView PopCardView(Card playerCard);
         public UniTask FixPosition();
     }
-    
-    public interface ICardGeneratePointView
-    {
-        public Pose GeneratePoint { get; }
-    }
 }

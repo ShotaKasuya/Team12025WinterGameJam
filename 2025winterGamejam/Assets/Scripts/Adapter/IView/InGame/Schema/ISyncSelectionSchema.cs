@@ -1,9 +1,10 @@
 using System;
+using Adapter.IView.OutGame.Schema;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Utility.Structure.InGame;
 
-namespace Utility.Structure.HttpClient.Schema
+namespace Adapter.IView.InGame.Schema
 {
     /// <summary>
     /// カード選択を同期するためのスキーマ
@@ -15,14 +16,14 @@ namespace Utility.Structure.HttpClient.Schema
         /// </summary>
         /// <param name="playerCard">選択したカード</param>
         /// <returns></returns>
-        UniTask PushSelection(ref PlayerCard playerCard);
+        UniTask PushSelection(PlayerCard playerCard);
 
         /// <summary>
         /// サーバーから他プレイヤーの選択したカードをポーリングする
         /// </summary>
         /// <param name="room"></param>
         /// <returns></returns>
-        UniTask<PlayerSelection> PollSelection(ref Room room);
+        UniTask<PlayerSelection> PollSelection(Room room);
     }
 
     [Serializable]

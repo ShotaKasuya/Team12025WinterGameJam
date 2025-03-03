@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Utility.Structure.HttpClient.Shared;
 using Utility.Structure.InGame;
 
-namespace Utility.Structure.HttpClient.Schema
+namespace Adapter.IView.OutGame.Schema
 {
     /// <summary>
     /// 入室処理に必要な通信スキーマ
@@ -16,18 +17,13 @@ namespace Utility.Structure.HttpClient.Schema
         /// </summary>
         /// <returns>部屋リスト</returns>
         UniTask<RoomList> GetRoomList();
-        /// <summary>
-        /// 名前を指定した部屋リストの取得
-        /// </summary>
-        /// <returns>部屋リスト</returns>
-        UniTask<RoomList> GetRoomListWhereName(string roomName);
 
         /// <summary>
         /// 新しい部屋を作成する
         /// </summary>
         /// <param name="roomName">部屋名</param>
         /// <returns></returns>
-        UniTask<PlayerId> MakeNewRoom(string roomName);
+        UniTask<PlayerId> MakeNewRoom(MakeNewRoomRequest roomName);
     }
 
     [Serializable]

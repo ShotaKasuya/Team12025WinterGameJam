@@ -17,7 +17,7 @@
   * 関心
     * View
 * Linker
-  * Viewから入力を受取りModelに同期
+  * ゲームの流れに囚われない
   * クラス名の最後にLinkerをつける
   * 関心
     * View
