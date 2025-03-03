@@ -40,7 +40,7 @@ namespace Utility.Module.StateMachine
             StateEntity = stateEntity;
         }
         public TState TargetStateMask { get; }
-        public IMutState<TState> StateEntity { get; }
+        protected IMutState<TState> StateEntity { get; }
         
         public virtual void OnEnter(TState prev)
         {

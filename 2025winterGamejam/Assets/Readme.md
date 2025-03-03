@@ -17,7 +17,7 @@
   * 関心
     * View
 * Linker
-  * ゲームの流れに囚われない
+  * 状態に依存せずViewとModelの通信を行う
   * クラス名の最後にLinkerをつける
   * 関心
     * View
