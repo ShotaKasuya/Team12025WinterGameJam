@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "C4JMKYCpiGRGVM+LO5XBS6/IcmnmewkvIXvpnecPNf4=",
+  "Source": "Gambit.Server",
+  "BasePath": "_content/Gambit.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
