@@ -1,5 +1,6 @@
+using Adapter.IModel.InGame.Player;
 using Adapter.IView.InGame;
-using Adapter.View.CardPrefabdb;
+using Adapter.Linker.InGame;
 using Adapter.View.InGame;
 using Adapter.View.InGame.CardPool;
 using Cysharp.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace Installer.InGame.Mock
             builder.RegisterComponent(cardView).As<ProductCardView>();
             builder.RegisterComponent(handCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
+            builder.RegisterInstance(new MockPlayerIdModel()).AsImplementedInterfaces();
 
             builder.Register<CardFactory>(Lifetime.Singleton);
 

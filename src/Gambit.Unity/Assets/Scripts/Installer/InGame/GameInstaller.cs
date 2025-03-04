@@ -18,7 +18,7 @@ namespace Installer.InGame
 {
     public class GameInstaller : LifetimeScope
     {
-        [SerializeField] private GetPrefab cardView;
+        [SerializeField] private CardSprites cardSprites;
         [SerializeField] private StartTextView startTextView;
         [SerializeField] private AddPointTextView addPointTextView;
         [SerializeField] private HandCardPoolView cardPositionsView;
@@ -35,7 +35,7 @@ namespace Installer.InGame
             // View
             builder.RegisterComponent(drawCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(winCardPoolView).AsImplementedInterfaces();
-            builder.RegisterComponent(cardView).AsImplementedInterfaces();
+            builder.RegisterComponent(cardSprites).AsImplementedInterfaces();
             builder.RegisterComponent(startTextView).AsImplementedInterfaces();
             builder.RegisterComponent(addPointTextView).AsImplementedInterfaces();
             builder.RegisterComponent(cardPositionsView).AsImplementedInterfaces();
@@ -43,7 +43,7 @@ namespace Installer.InGame
             builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // Model
-            builder.RegisterInstance(new PlayerIdModel(new PlayerId(0)));
+            builder.RegisterInstance(new PlayerIdModel(new PlayerId(0))).AsImplementedInterfaces();
             builder.RegisterInstance(settingModel).AsImplementedInterfaces();
             builder.Register<GameStateModel>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<JudgeResultModel>(Lifetime.Singleton).AsImplementedInterfaces();

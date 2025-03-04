@@ -12,7 +12,7 @@ namespace Domain.Presenter.InGame
     {
         public DrawPresenter
         (
-            INewCardFactory cardFactory,
+            ICardFactory cardFactory,
             IHandCardPoolView handCardPoolView
         )
         {
@@ -52,7 +52,7 @@ namespace Domain.Presenter.InGame
             return HandCardPoolView.StoreNewCard(card);
         }
 
-        private INewCardFactory CardFactory { get; }
+        private ICardFactory CardFactory { get; }
         private IHandCardPoolView HandCardPoolView { get; }
     }
 }

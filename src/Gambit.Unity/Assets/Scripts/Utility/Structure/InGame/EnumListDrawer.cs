@@ -12,10 +12,11 @@ namespace Utility.Structure.InGame
             EnumListAttribute enumListAttribute = (EnumListAttribute)attribute;
             System.Type enumType = enumListAttribute.EnumType;
 
-            if (enumType.IsEnum)
+            if (enumType.IsEnum && property.isArray)
             {
                 string[] enumNames = System.Enum.GetNames(enumType);
-                for (int i = 0; i < property.arraySize; i++)
+                property.arraySize = enumNames.Length;
+                for (int i = 0; i < enumNames.Length; i++)
                 {
                     var listElement = property.GetArrayElementAtIndex(i);
                     var enumName = enumNames[i];

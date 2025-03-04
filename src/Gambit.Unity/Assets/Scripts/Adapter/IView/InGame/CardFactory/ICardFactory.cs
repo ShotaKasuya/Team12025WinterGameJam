@@ -11,7 +11,7 @@ namespace Adapter.IView.InGame
     /// <summary>
     /// カードのファクトリ
     /// </summary>
-    public interface INewCardFactory
+    public interface ICardFactory
     {
         public ProductCardView CreateCardView(PlayerCard playerCard);
     }
@@ -28,7 +28,7 @@ namespace Adapter.IView.InGame
             Card = card;
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             ModelTransform = transform;
         }
