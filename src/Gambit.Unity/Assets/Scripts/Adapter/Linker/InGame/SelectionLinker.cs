@@ -1,5 +1,6 @@
 using System;
 using Adapter.IModel.InGame.Judgement;
+using Adapter.IModel.InGame.Player;
 using Adapter.IView.InGame;
 using Utility.Module.Option;
 using Utility.Structure.InGame;
@@ -11,10 +12,12 @@ namespace Adapter.Linker.InGame
     {
         public SelectionLinker
         (
+            IPlayerIdModel playerIdModel,
             IHandCardPoolView handCardPoolView,
             IMutSelectedCardModel selectedCardModel
         )
         {
+            PlayerIdModel = playerIdModel;
             HandCardPoolView = handCardPoolView;
             SelectedCardModel = selectedCardModel;
         }
@@ -39,6 +42,12 @@ namespace Adapter.Linker.InGame
         {
             var currentSelect = SelectedCardModel.GetSelection(selectedCard.PlayerId);
             var apply = Option<PlayerCard>.Some(selectedCard);
+
+            if (PlayerIdModel.PlayerId != selectedCard.PlayerId)
+            {
+                return;
+            }
+
             if (currentSelect.TryGetValue(out var card))
             {
                 if (card.Card == selectedCard.Card)
@@ -54,6 +63,7 @@ namespace Adapter.Linker.InGame
         private void ApplyView(PlayerId playerId, Option<PlayerCard> selected)
         {
             var views = HandCardPoolView.GetViewList(playerId);
+            
             foreach (var cardView in views)
             {
                 cardView.TurnOff();
@@ -71,8 +81,10 @@ namespace Adapter.Linker.InGame
             }
         }
 
+
         private IHandCardPoolView HandCardPoolView { get; }
         private IMutSelectedCardModel SelectedCardModel { get; }
+        private IPlayerIdModel PlayerIdModel { get; }
 
         public void Dispose()
         {
