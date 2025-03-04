@@ -24,5 +24,6 @@ namespace Adapter.View.CardPrefabdb
 
         private IGetPrefab GetPrefab {get;}
 
+        
     }
 }

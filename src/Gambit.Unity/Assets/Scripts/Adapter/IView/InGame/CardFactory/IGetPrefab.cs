@@ -5,5 +5,6 @@ namespace Adapter.IView.InGame
     public interface IGetPrefab
     {
         public ProductCardView GetProductCardView(Card card);
+        
     }
 }

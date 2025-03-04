@@ -8,6 +8,16 @@ namespace Adapter.View.InGame
         [SerializeField] private Vector3 defaultScale;
         [SerializeField] private Vector3 selectedScale;
 
+        public override void ShowFace()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void HideFace()
+        {
+            throw new System.NotImplementedException();
+        }
+
         private void OnMouseDown()
         {
             SelectionEvent?.Invoke(Card);

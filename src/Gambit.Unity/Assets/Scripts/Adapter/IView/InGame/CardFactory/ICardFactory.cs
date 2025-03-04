@@ -32,5 +32,9 @@ namespace Adapter.IView.InGame
         {
             ModelTransform = transform;
         }
+
+        public abstract void ShowFace();
+        public abstract void HideFace();
+    
     }
 }
