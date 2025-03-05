@@ -1,12 +1,13 @@
 using System;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IView.InGame;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Module.Utility.Module.Option;
 using Gambit.Unity.Structure.Utility.InGame;
-using Utility.Module.Option;
 using VContainer.Unity;
 
-namespace Gambit.Unity.Adapter.ILinker.InGame
+namespace Gambit.Unity.Adapter.Linker.InGame
 {
     public class SelectionLinker : IInitializable, IDisposable
     {

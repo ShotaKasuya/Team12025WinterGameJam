@@ -1,6 +1,6 @@
 {
     "name": "Presenter",
-    "rootNamespace": "",
+    "rootNamespace": "Gambit.Unity.Domain.Presenter",
     "references": [
         "IPresenter",
         "IView",

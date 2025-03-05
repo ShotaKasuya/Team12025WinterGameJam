@@ -1,6 +1,6 @@
 {
     "name": "Model",
-    "rootNamespace": "",
+    "rootNamespace": "Gambit.Unity.Adapter.Model",
     "references": [
         "GUID:5177cff2dbb36d7bb9dd1e7b76af830f",
         "GUID:d7cbd70c3c95f01ad8ae1d3052581f71",

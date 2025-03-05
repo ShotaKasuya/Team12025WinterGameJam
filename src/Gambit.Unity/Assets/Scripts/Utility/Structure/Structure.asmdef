@@ -1,6 +1,6 @@
 {
     "name": "Structure",
-    "rootNamespace": "",
+    "rootNamespace": "Gambit.Unity.Structure",
     "references": [
         "GUID:9482436bb96d1d2668638812aa46d700",
         "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",

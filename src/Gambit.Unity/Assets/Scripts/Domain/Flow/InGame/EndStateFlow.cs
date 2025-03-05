@@ -1,5 +1,5 @@
+using Gambit.Unity.Module.Utility.Module.StateMachine;
 using Gambit.Unity.Structure.Utility.InGame.StateMachine;
-using Utility.Module.StateMachine;
 
 namespace Gambit.Unity.Domain.Flow.InGame
 {

@@ -1,4 +1,4 @@
-namespace Tests.EditModeTest.InGame
+namespace Gambit.Unity.Test.EditMode.Tests.EditModeTest.InGame
 {
     public class JudgeTest
     {

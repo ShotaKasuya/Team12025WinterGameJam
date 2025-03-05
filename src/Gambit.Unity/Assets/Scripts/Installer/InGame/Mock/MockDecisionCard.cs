@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
-using Gambit.Unity.Adapter.ILinker.InGame;
 using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Adapter.Linker.InGame;
 using Gambit.Unity.Adapter.View.InGame;
 using Gambit.Unity.Adapter.View.InGame.CardPool;
 using Gambit.Unity.Domain.Presenter.InGame;

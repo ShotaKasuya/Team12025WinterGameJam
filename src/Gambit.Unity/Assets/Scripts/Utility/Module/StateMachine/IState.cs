@@ -1,6 +1,6 @@
 using System;
 
-namespace Utility.Module.StateMachine
+namespace Gambit.Unity.Module.Utility.Module.StateMachine
 {
     public interface IState<TState> where TState : struct, Enum
     {

@@ -1,6 +1,6 @@
 {
     "name": "Installer",
-    "rootNamespace": "",
+    "rootNamespace": "Gambit.Unity.Installer",
     "references": [
         "GUID:81c9d96952474f63b8a6b9282e184881",
         "GUID:f28afd6ca6f97335494225adf4c8ec48",

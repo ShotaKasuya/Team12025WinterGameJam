@@ -1,6 +1,6 @@
+using Gambit.Unity.Module.Utility.Module.Option;
 using Gambit.Unity.Structure.Utility.InGame;
 using R3;
-using Utility.Module.Option;
 
 namespace Gambit.Unity.Adapter.IModel.InGame.Player
 {

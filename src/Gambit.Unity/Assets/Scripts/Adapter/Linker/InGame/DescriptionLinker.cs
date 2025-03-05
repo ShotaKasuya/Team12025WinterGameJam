@@ -4,7 +4,7 @@ using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IView.InGame.Ui;
 using VContainer.Unity;
 
-namespace Gambit.Unity.Adapter.ILinker.InGame
+namespace Gambit.Unity.Adapter.Linker.InGame
 {
     public class DescriptionLinker : ITickable
     {

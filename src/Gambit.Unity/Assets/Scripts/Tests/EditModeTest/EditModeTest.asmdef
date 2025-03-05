@@ -1,6 +1,6 @@
 {
     "name": "EditModeTest",
-    "rootNamespace": "",
+    "rootNamespace": "Gambit.Unity.Test.EditMode",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",

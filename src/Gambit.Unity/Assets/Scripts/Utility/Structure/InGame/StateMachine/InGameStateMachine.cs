@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Gambit.Unity.Module.Utility.Module.StateMachine;
 using UnityEngine;
-using Utility.Module.StateMachine;
 using VContainer.Unity;
 
 namespace Gambit.Unity.Structure.Utility.InGame.StateMachine

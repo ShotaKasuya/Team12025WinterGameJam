@@ -4,7 +4,7 @@ using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Domain.UseCase.InGame.Player;
 using NUnit.Framework;
 
-namespace Tests.EditModeTest.InGame
+namespace Gambit.Unity.Test.EditMode.Tests.EditModeTest.InGame
 {
     public class DrawCardTest
     {

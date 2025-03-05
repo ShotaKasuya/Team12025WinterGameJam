@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Gambit.Unity.Module.Utility.Module.Option;
 using UnityEngine;
-using Utility.Module.Option;
 
 namespace Gambit.Unity.Structure.Utility.InGame
 {

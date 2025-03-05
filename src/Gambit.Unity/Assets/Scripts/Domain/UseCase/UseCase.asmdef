@@ -1,6 +1,6 @@
 {
     "name": "UseCase",
-    "rootNamespace": "",
+    "rootNamespace": "Gambit.Unity.Domain.UseCase",
     "references": [
         "GUID:a932ecb2b491449ca8f3512b3ba6a76a",
         "GUID:5177cff2dbb36d7bb9dd1e7b76af830f",

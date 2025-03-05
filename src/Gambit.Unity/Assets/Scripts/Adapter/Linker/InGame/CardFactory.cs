@@ -3,7 +3,7 @@ using Gambit.Unity.Adapter.IView.InGame.CardFactory;
 using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
 
-namespace Gambit.Unity.Adapter.ILinker.InGame
+namespace Gambit.Unity.Adapter.Linker.InGame
 {
     public class CardFactory: ICardFactory
     {

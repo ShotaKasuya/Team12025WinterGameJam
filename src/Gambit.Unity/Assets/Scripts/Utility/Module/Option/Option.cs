@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Utility.Module.Option
+namespace Gambit.Unity.Module.Utility.Module.Option
 {
     [Serializable]
     public struct Option<T>
