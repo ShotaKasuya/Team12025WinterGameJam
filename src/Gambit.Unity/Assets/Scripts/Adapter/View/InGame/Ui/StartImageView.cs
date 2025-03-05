@@ -6,7 +6,7 @@ using KanKikuchi.AudioManager;
 namespace Gambit.Unity.Adapter.View.InGame.Ui
 {
     [RequireComponent(typeof(Image))]
-    public class StartTImageView : MonoBehaviour, IStartImageView
+    public class StartImageView : MonoBehaviour, IStartImageView
     {
         public Transform ModelTransform { get; private set; }
         public Image Image { get; private set; }
