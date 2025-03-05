@@ -48,7 +48,7 @@ public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // ボタンがクリックされたときの処理
     public void OnDecideButtonClick()
     {
-        SEManager.Instance.Play(SEPath.DECISION_SE, 0.3f);
+        SEManager.Instance.Play(SEPath.DECISION_SE, 0.1f);
     }
 
     public void OnCancelButtonClick()
