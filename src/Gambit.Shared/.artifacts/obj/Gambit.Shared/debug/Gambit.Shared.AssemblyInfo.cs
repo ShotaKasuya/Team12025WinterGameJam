@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Gambit.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbe9f5682d383ad337695b3d233d1145a3badded")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+643c64ebd6ee17c12fbdc598a68511aebb8d22e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Gambit.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Gambit.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
