@@ -1,8 +1,8 @@
 using System.Linq;
-using Adapter.IModel.InGame.Judgement;
-using Domain.IUseCase.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Domain.IUseCase.InGame;
 
-namespace Domain.UseCase.InGame
+namespace Gambit.Unity.Domain.UseCase.InGame
 {
     public class IsGameEndCase: IIsGameEndCase
     {

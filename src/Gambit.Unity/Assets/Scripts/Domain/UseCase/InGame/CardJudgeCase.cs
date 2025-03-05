@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Adapter.IModel.InGame.Judgement;
-using Domain.IUseCase.InGame;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Domain.IUseCase.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Domain.UseCase.InGame
+namespace Gambit.Unity.Domain.UseCase.InGame
 {
     /// <summary>
     /// 勝敗をジャッジする

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Utility.Module.Option;
 
-namespace Utility.Structure.HttpClient.Shared
+namespace Gambit.Unity.Structure.Utility.HttpClient.Shared
 {
     [Serializable]
     public class ResponseOk

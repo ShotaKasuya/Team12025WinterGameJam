@@ -1,7 +1,7 @@
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine.UI;
-using Utility.Structure.InGame;
 
-namespace Adapter.IModel.InGame
+namespace Gambit.Unity.Adapter.IModel.InGame
 {
     public interface ICardDescriptionModel
     {

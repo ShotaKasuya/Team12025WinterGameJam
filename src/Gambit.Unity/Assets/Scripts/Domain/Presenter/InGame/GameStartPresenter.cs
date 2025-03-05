@@ -1,9 +1,9 @@
-using Adapter.IView.InGame.Ui;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Domain.IPresenter.InGame;
+using Gambit.Unity.Adapter.IView.InGame.Ui;
+using Gambit.Unity.Domain.IPresenter.InGame;
 
-namespace Domain.Presenter.InGame
+namespace Gambit.Unity.Domain.Presenter.InGame
 {
     /// <summary>
     /// ゲーム開始演出

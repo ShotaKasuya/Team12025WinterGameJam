@@ -1,4 +1,4 @@
-namespace Adapter.IModel.Global
+namespace Gambit.Unity.Adapter.IModel.Global
 {
     /// <summary>
     /// プレイヤー人数を持つモデル

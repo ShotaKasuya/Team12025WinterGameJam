@@ -1,7 +1,7 @@
-using Adapter.IModel.InGame;
-using Adapter.IModel.InGame.Judgement;
-using Adapter.IModel.InGame.Player;
-using Domain.UseCase.InGame.Player;
+using Gambit.Unity.Adapter.IModel.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Adapter.IModel.InGame.Player;
+using Gambit.Unity.Domain.UseCase.InGame.Player;
 using NUnit.Framework;
 
 namespace Tests.EditModeTest.InGame

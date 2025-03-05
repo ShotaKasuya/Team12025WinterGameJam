@@ -1,7 +1,7 @@
 using System;
-using Utility.Structure.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.IView.InGame
+namespace Gambit.Unity.Adapter.IView.InGame
 {
     public interface IHandCardView
     {

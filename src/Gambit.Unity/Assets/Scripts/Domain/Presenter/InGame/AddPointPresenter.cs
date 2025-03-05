@@ -1,9 +1,9 @@
 using Cysharp.Threading.Tasks;
-using Domain.IPresenter.InGame;
-using Adapter.IView.InGame.Ui;
 using DG.Tweening;
+using Gambit.Unity.Adapter.IView.InGame.Ui;
+using Gambit.Unity.Domain.IPresenter.InGame;
 
-namespace Domain.Presenter.InGame
+namespace Gambit.Unity.Domain.Presenter.InGame
 {
     // <summary>
     // 加点時演出

@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Gambit.Unity.Adapter.IView.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Adapter.View.InGame
+namespace Gambit.Unity.Adapter.View.InGame
 {
     public class HandCardPositionsView : MonoBehaviour, ICardPositionsView
     {

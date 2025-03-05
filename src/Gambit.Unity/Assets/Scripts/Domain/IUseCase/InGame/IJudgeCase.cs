@@ -1,6 +1,6 @@
-using Utility.Structure.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Domain.IUseCase.InGame
+namespace Gambit.Unity.Domain.IUseCase.InGame
 {
     public interface IJudgeCase
     {

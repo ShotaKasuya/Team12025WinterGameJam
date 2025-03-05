@@ -1,10 +1,10 @@
-using Adapter.IView.OutGame.Schema;
 using Cysharp.Threading.Tasks;
-using Utility.Structure.HttpClient;
-using Utility.Structure.HttpClient.Shared;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IView.OutGame.Schema;
+using Gambit.Unity.Structure.Utility.HttpClient;
+using Gambit.Unity.Structure.Utility.HttpClient.Shared;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.View.OutGame.Schema
+namespace Gambit.Unity.Adapter.View.OutGame.Schema
 {
     public class JoinRoomView: RestClient, IJoinRoom
     {

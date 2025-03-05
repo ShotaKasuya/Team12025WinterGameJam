@@ -1,10 +1,10 @@
 using Cysharp.Threading.Tasks;
-using Domain.IPresenter.InGame;
-using Domain.IUseCase.InGame;
+using Gambit.Unity.Domain.IPresenter.InGame;
+using Gambit.Unity.Domain.IUseCase.InGame;
+using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 using Utility.Module.StateMachine;
-using Utility.Structure.InGame.StateMachine;
 
-namespace Domain.Flow.InGame
+namespace Gambit.Unity.Domain.Flow.InGame
 {
     public class DecisionCardStateFlow : StateBehaviour<GameStateType>
     {

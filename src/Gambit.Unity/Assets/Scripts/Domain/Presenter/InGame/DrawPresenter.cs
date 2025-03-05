@@ -1,9 +1,10 @@
-using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
-using Domain.IPresenter.InGame;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IView.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Domain.IPresenter.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Domain.Presenter.InGame
+namespace Gambit.Unity.Domain.Presenter.InGame
 {
     /// <summary>
     /// デッキからカードを引く演出

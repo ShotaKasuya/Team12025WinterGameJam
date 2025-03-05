@@ -1,10 +1,10 @@
-using Adapter.View.InGame.Ui;
-using Domain.Presenter.InGame;
+using Gambit.Unity.Adapter.View.InGame.Ui;
+using Gambit.Unity.Domain.Presenter.InGame;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Installer.InGame.Mock
+namespace Gambit.Unity.Installer.InGame.Mock
 {
     public class MockAddPoint : LifetimeScope
     {

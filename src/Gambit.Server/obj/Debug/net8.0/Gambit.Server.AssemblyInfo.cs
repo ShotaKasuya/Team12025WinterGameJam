@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Gambit.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf9b0850b9aa7cf3188cb0fefc3e97e1d5e7ed29")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e5a2e39e71ac0454aff74afd561e9fe2b837d1f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Gambit.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Gambit.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

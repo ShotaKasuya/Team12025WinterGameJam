@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace Domain.IPresenter.InGame
+namespace Gambit.Unity.Domain.IPresenter.InGame
 {
     public interface IAddPointPresenter
     {

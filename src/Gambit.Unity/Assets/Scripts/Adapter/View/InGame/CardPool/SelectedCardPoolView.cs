@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using Adapter.IView.InGame;
-using Adapter.View.Utility;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Gambit.Unity.Adapter.IView.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Adapter.View.Utility;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Adapter.View.InGame.CardPool
+namespace Gambit.Unity.Adapter.View.InGame.CardPool
 {
     public class SelectedCardPoolView : MonoBehaviour, ISelectedCardPoolView
     {

@@ -1,6 +1,6 @@
-using Utility.Structure.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.IModel.InGame
+namespace Gambit.Unity.Adapter.IModel.InGame
 {
     public interface IIdProvideModel
     {

@@ -1,4 +1,4 @@
-namespace Utility.Structure.InGame.StateMachine
+namespace Gambit.Unity.Structure.Utility.InGame.StateMachine
 {
     public enum GameStateType
     {

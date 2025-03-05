@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Utility.Structure.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.IModel.InGame.Player
+namespace Gambit.Unity.Adapter.IModel.InGame.Player
 {
     /// <summary>
     /// デッキインターフェース

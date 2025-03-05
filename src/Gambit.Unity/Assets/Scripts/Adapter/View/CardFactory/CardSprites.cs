@@ -1,9 +1,9 @@
 using System;
-using Adapter.IView.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Adapter.View.CardPrefabdb
+namespace Gambit.Unity.Adapter.View.CardFactory
 {
     [CreateAssetMenu(fileName = "CardSprites", menuName = "CardSpritesAsset", order = 0)]
     public class CardSprites : ScriptableObject, ICardSprites
@@ -11,16 +11,16 @@ namespace Adapter.View.CardPrefabdb
         [SerializeField] private Sprite backSprite;
 
         [SerializeField, EnumList(typeof(Rank))]
-        private Sprite[] clubSprites;
+        private EnumArray<Sprite> clubSprites;
 
         [SerializeField, EnumList(typeof(Rank))]
-        private Sprite[] spadeSprites = new Sprite[Enum.GetValues(typeof(Rank)).Length];
+        private EnumArray<Sprite> spadeSprites;
 
         [SerializeField, EnumList(typeof(Rank))]
-        private Sprite[] heartSprites = new Sprite[Enum.GetValues(typeof(Rank)).Length];
+        private EnumArray<Sprite> heartSprites;
 
         [SerializeField, EnumList(typeof(Rank))]
-        private Sprite[] diamondSprites = new Sprite[Enum.GetValues(typeof(Rank)).Length];
+        private EnumArray<Sprite> diamondSprites;
 
         public Sprite CardBackSprite => backSprite;
 
@@ -29,10 +29,10 @@ namespace Adapter.View.CardPrefabdb
             var index = (int)card.Rank;
             return card.Suit switch
             {
-                Suit.Clubs => clubSprites[index],
-                Suit.Spades => spadeSprites[index],
-                Suit.Hearts => heartSprites[index],
-                Suit.Diamonds => diamondSprites[index],
+                Suit.Clubs => clubSprites.Array[index],
+                Suit.Spades => spadeSprites.Array[index],
+                Suit.Hearts => heartSprites.Array[index],
+                Suit.Diamonds => diamondSprites.Array[index],
                 _ => throw new ArgumentException()
             };
         }

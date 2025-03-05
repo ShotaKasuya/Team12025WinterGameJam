@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Utility.Structure.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.IModel.InGame.Judgement
+namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
 {
     /// <summary>
     /// カードに対する勝敗処理結果が保存された際のイベント

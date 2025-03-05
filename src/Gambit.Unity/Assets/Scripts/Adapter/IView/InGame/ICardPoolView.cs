@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.IView.InGame
+namespace Gambit.Unity.Adapter.IView.InGame
 {
     /// <summary>
     /// ジャッジに向けて、選択されたカードが置かれる場所

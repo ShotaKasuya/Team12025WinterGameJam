@@ -1,7 +1,7 @@
-using Adapter.IModel.InGame.Setting;
+using Gambit.Unity.Adapter.IModel.InGame.Setting;
 using UnityEngine;
 
-namespace Adapter.Model.InGame
+namespace Gambit.Unity.Adapter.Model.InGame
 {
     [CreateAssetMenu(menuName = "SettingModel", fileName = "GameSetting")]
     public class SettingModel: ScriptableObject, IHandCardSettingModel

@@ -1,8 +1,7 @@
+using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 using R3;
-using Utility.Structure.InGame;
-using Utility.Structure.InGame.StateMachine;
 
-namespace Adapter.IModel.InGame
+namespace Gambit.Unity.Adapter.IModel.InGame
 {
     public interface IMutGameStateModel: IGameStateModel
     {

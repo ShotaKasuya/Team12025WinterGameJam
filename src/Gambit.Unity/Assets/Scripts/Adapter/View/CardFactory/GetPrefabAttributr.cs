@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Adapter.View.CardPrefabdb
+namespace Gambit.Unity.Adapter.View.CardFactory
 {
     public class GetPrefabAttribute : PropertyAttribute
     {

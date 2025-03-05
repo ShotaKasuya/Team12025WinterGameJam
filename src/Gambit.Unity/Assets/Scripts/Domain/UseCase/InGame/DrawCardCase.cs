@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using Adapter.IModel.Global;
-using Adapter.IModel.InGame;
-using Adapter.IModel.InGame.Judgement;
-using Adapter.IModel.InGame.Setting;
-using Domain.IUseCase.InGame;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IModel.Global;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Adapter.IModel.InGame.Setting;
+using Gambit.Unity.Domain.IUseCase.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Domain.UseCase.InGame
+namespace Gambit.Unity.Domain.UseCase.InGame
 {
     public class DrawCardCase : IInitHandCardCase, IDrawCase
     {

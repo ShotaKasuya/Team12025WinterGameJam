@@ -1,8 +1,8 @@
-using Adapter.IView.InGame;
-using Adapter.View.CardPrefabdb;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Adapter.View.CardFactory;
 using UnityEngine;
 
-namespace Adapter.View.InGame
+namespace Gambit.Unity.Adapter.View.InGame
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class CardView: ProductCardView
@@ -10,18 +10,18 @@ namespace Adapter.View.InGame
         [SerializeField] private Vector3 defaultScale;
         [SerializeField] private Vector3 selectedScale;
         [SerializeField] private CardSprites cardSprites;
-        private Sprite _face;
-        private Sprite _back;
+        private Sprite Face => cardSprites.GetCardSprite(Card.Card);
+        private Sprite Back => cardSprites.CardBackSprite;
         private SpriteRenderer _renderer;
 
         public override void ShowFace()
         {
-            _renderer.sprite = _face;
+            _renderer.sprite = Face;
         }
 
         public override void HideFace()
         {
-            _renderer.sprite = _back;
+            _renderer.sprite = Back;
         }
 
         private void OnMouseDown()

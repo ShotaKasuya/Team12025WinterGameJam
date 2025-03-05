@@ -1,9 +1,9 @@
-using Adapter.IModel.Global;
-using Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Adapter.IModel.Global;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Structure.Utility.InGame;
 using Utility.Module.Option;
-using Utility.Structure.InGame;
 
-namespace Adapter.Model.InGame.Judgement
+namespace Gambit.Unity.Adapter.Model.InGame.Judgement
 {
     public class SelectedCardModel : IMutSelectedCardModel, ISelectedCardModel
     {

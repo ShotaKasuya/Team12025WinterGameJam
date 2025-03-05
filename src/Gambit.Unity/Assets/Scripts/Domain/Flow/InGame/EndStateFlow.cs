@@ -1,8 +1,7 @@
+using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 using Utility.Module.StateMachine;
-using Utility.Structure.InGame;
-using Utility.Structure.InGame.StateMachine;
 
-namespace Domain.Flow.InGame
+namespace Gambit.Unity.Domain.Flow.InGame
 {
     public class EndStateFlow: IStateBehaviour<GameStateType>
     {

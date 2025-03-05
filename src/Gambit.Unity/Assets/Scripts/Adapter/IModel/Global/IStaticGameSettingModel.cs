@@ -1,5 +1,5 @@
 
-namespace Adapter.IModel.Global
+namespace Gambit.Unity.Adapter.IModel.Global
 {
     public interface IHandCardNumModel
     {

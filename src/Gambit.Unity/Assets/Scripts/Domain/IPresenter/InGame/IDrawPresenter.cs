@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
-using Utility.Structure.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Domain.IPresenter.InGame
+namespace Gambit.Unity.Domain.IPresenter.InGame
 {
     public interface IDrawPresenter
     {

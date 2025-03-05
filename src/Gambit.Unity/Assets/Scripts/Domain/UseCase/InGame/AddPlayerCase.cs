@@ -1,9 +1,9 @@
-using Adapter.IModel.Global;
+using Gambit.Unity.Adapter.IModel.Global;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Domain.UseCase.InGame
+namespace Gambit.Unity.Domain.UseCase.InGame
 {
     public class AddPlayerCase: IStartable
     {

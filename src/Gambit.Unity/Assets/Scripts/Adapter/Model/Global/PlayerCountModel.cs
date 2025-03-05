@@ -1,6 +1,6 @@
-using Adapter.IModel.Global;
+using Gambit.Unity.Adapter.IModel.Global;
 
-namespace Adapter.Model.Global
+namespace Gambit.Unity.Adapter.Model.Global
 {
     public class PlayerCountModel: IMutPlayerCountModel
     {

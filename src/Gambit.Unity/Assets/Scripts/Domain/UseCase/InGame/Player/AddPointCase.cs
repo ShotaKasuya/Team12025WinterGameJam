@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using Adapter.IModel.InGame.Judgement;
-using Adapter.IModel.InGame.Player;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Adapter.IModel.InGame.Player;
+using Gambit.Unity.Structure.Utility.InGame;
 using VContainer.Unity;
 
-namespace Domain.UseCase.InGame.Player
+namespace Gambit.Unity.Domain.UseCase.InGame.Player
 {
     public class AddPointCase : IInitializable, IDisposable
     {

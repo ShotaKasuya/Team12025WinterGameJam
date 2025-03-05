@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Adapter.Model.InGame.Judgement
+namespace Gambit.Unity.Adapter.Model.InGame.Judgement
 {
     public class JudgeResultModel : IJudgeEventModel, IMutJudgeResultModel, IJudgeResultModel
     {

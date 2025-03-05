@@ -1,7 +1,7 @@
-using Adapter.IModel.InGame.Player;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Player;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.Model.InGame
+namespace Gambit.Unity.Adapter.Model.InGame
 {
     public class PlayerIdModel : IPlayerIdModel
     {

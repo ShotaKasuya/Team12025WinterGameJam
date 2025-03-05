@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-namespace Adapter.IView.InGame.Ui
+namespace Gambit.Unity.Adapter.IView.InGame.Ui
 {
     public interface ICardDescriptionView
     {

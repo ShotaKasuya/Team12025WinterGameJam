@@ -1,7 +1,7 @@
-using Adapter.IView.Utility;
+using Gambit.Unity.Adapter.IView.Utility;
 using UnityEngine;
 
-namespace Adapter.View.Utility
+namespace Gambit.Unity.Adapter.View.Utility
 {
     public class TransformableView : MonoBehaviour, ITransformableView
     {

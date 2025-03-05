@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Utility.Structure.InGame
+namespace Gambit.Unity.Structure.Utility.InGame
 {
     /// <summary>
     /// トランプのカード

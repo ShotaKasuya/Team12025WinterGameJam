@@ -1,7 +1,7 @@
-using Adapter.IModel.Global;
-using Adapter.IModel.InGame;
+using Gambit.Unity.Adapter.IModel.Global;
+using Gambit.Unity.Adapter.IModel.InGame;
 
-namespace Adapter.Model.InGame
+namespace Gambit.Unity.Adapter.Model.InGame
 {
     public class ScoreModel: IScoreModel
     {

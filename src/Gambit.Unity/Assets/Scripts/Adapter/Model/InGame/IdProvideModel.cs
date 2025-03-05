@@ -1,7 +1,7 @@
-using Adapter.IModel.InGame;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IModel.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.Model.InGame
+namespace Gambit.Unity.Adapter.Model.InGame
 {
     public class IdProvideModel: IIdProvideModel
     {

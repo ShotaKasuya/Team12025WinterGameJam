@@ -1,12 +1,12 @@
 using System.Linq;
-using Adapter.IModel.Global;
-using Adapter.IModel.InGame;
-using Adapter.IModel.InGame.Judgement;
-using Domain.IUseCase.InGame;
+using Gambit.Unity.Adapter.IModel.Global;
+using Gambit.Unity.Adapter.IModel.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Domain.IUseCase.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Domain.UseCase.InGame
+namespace Gambit.Unity.Domain.UseCase.InGame
 {
     public class AddPointCase : IAddPointCase
     {

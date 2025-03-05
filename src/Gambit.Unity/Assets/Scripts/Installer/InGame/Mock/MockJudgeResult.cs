@@ -1,11 +1,11 @@
-using Adapter.View.InGame.CardPool;
-using Domain.Presenter.InGame;
+using Gambit.Unity.Adapter.View.InGame.CardPool;
+using Gambit.Unity.Domain.Presenter.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 using VContainer;
 using VContainer.Unity;
 
-namespace Installer.InGame.Mock
+namespace Gambit.Unity.Installer.InGame.Mock
 {
     public class MockJudgeResult:LifetimeScope
     {

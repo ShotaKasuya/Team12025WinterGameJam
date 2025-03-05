@@ -2,53 +2,74 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Utility.Structure.InGame
+namespace Gambit.Unity.Structure.Utility.InGame
 {
     [CustomPropertyDrawer(typeof(EnumListAttribute))]
     public class EnumListDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EnumListAttribute enumListAttribute = (EnumListAttribute)attribute;
-            System.Type enumType = enumListAttribute.EnumType;
+            var enumListAttribute = (EnumListAttribute)attribute;
+            var enumType = enumListAttribute.EnumType;
+            var arrayProperty = property.FindPropertyRelative("array");
 
-            if (enumType.IsEnum && property.isArray)
+            var labelStyle = new GUIStyle(EditorStyles.boldLabel)
             {
-                string[] enumNames = System.Enum.GetNames(enumType);
-                property.arraySize = enumNames.Length;
-                for (int i = 0; i < enumNames.Length; i++)
-                {
-                    var listElement = property.GetArrayElementAtIndex(i);
-                    var enumName = enumNames[i];
+                normal = { textColor = Color.cyan }
+            };
+            EditorGUI.LabelField(
+                new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight),
+                property.name, labelStyle);
+            position.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
-                    EditorGUI.PropertyField(
-                        new Rect(position.x, position.y + i * EditorGUIUtility.singleLineHeight, position.width,
-                            EditorGUIUtility.singleLineHeight),
-                        listElement,
-                        new GUIContent(enumName),
-                        true);
-                }
-            }
-            else
+            if (!enumType.IsEnum)
             {
                 EditorGUI.LabelField(position, label.text, "Use EnumList with Enum type.");
+                return;
             }
+
+            if (!arrayProperty.isArray)
+            {
+                EditorGUI.LabelField(position, label.text, "Property is not an array.");
+                return;
+            }
+
+            var enumNames = System.Enum.GetNames(enumType);
+            arrayProperty.arraySize = enumNames.Length;
+
+            EditorGUI.BeginProperty(position, label, arrayProperty);
+
+            for (int i = 0; i < enumNames.Length; i++)
+            {
+                var listElement = arrayProperty.GetArrayElementAtIndex(i);
+                var enumName = enumNames[i];
+
+                Rect elementRect = new Rect(
+                    position.x,
+                    position.y + i * EditorGUIUtility.singleLineHeight,
+                    position.width,
+                    EditorGUIUtility.singleLineHeight
+                );
+
+                EditorGUI.PropertyField(elementRect, listElement, new GUIContent(enumName), true);
+            }
+
+            EditorGUI.EndProperty();
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            EnumListAttribute enumListAttribute = (EnumListAttribute)attribute;
-            System.Type enumType = enumListAttribute.EnumType;
+            var enumListAttribute = (EnumListAttribute)attribute;
+            var enumType = enumListAttribute.EnumType;
+            var arrayProperty = property.FindPropertyRelative("array");
 
-            if (enumType.IsEnum)
+            if (enumType.IsEnum && arrayProperty.isArray)
             {
-                int enumLength = System.Enum.GetNames(enumType).Length;
-                return enumLength * EditorGUIUtility.singleLineHeight;
+                var enumCount = System.Enum.GetNames(enumType).Length + 2;
+                return EditorGUIUtility.singleLineHeight * enumCount;
             }
-            else
-            {
-                return EditorGUIUtility.singleLineHeight;
-            }
+
+            return EditorGUIUtility.singleLineHeight;
         }
     }
 }

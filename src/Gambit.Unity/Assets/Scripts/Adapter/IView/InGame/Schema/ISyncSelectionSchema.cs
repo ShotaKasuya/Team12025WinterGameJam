@@ -1,10 +1,10 @@
 using System;
-using Adapter.IView.OutGame.Schema;
 using Cysharp.Threading.Tasks;
+using Gambit.Unity.Adapter.IView.OutGame.Schema;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Adapter.IView.InGame.Schema
+namespace Gambit.Unity.Adapter.IView.InGame.Schema
 {
     /// <summary>
     /// カード選択を同期するためのスキーマ

@@ -1,7 +1,7 @@
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Adapter.IView.InGame
+namespace Gambit.Unity.Adapter.IView.InGame.CardFactory
 {
     public interface ICardSprites
     {

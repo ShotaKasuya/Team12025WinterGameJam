@@ -1,11 +1,10 @@
-using Adapter.IModel.InGame;
-using Adapter.IModel.InGame.Judgement;
-using Adapter.IModel.InGame.Player;
-using Adapter.IView.InGame.Ui;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IModel.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Adapter.IModel.InGame.Player;
+using Gambit.Unity.Adapter.IView.InGame.Ui;
 using VContainer.Unity;
 
-namespace Adapter.Linker.InGame
+namespace Gambit.Unity.Adapter.ILinker.InGame
 {
     public class DescriptionLinker : ITickable
     {

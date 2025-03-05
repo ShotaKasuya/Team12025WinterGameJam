@@ -3,7 +3,7 @@ using UnityEngine;
 using Utility.Module.StateMachine;
 using VContainer.Unity;
 
-namespace Utility.Structure.InGame.StateMachine
+namespace Gambit.Unity.Structure.Utility.InGame.StateMachine
 {
     public class InGameStateMachine : AbstractStateMachine<GameStateType>, IStartable, ITickable
     {

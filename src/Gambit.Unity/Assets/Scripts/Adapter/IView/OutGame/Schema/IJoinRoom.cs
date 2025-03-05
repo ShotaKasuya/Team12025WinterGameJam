@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Gambit.Unity.Structure.Utility.HttpClient.Shared;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.HttpClient.Shared;
-using Utility.Structure.InGame;
 
-namespace Adapter.IView.OutGame.Schema
+namespace Gambit.Unity.Adapter.IView.OutGame.Schema
 {
     /// <summary>
     /// 入室処理に必要な通信スキーマ

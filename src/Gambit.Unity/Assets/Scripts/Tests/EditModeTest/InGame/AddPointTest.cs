@@ -1,8 +1,3 @@
-using System.Collections.Generic;
-using Domain.UseCase.InGame.Player;
-using NUnit.Framework;
-using Utility.Structure.InGame;
-
 namespace Tests.EditModeTest.InGame
 {
     // public class AddPointTest

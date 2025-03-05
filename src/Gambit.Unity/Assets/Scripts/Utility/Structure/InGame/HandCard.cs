@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Utility.Structure.InGame
+namespace Gambit.Unity.Structure.Utility.InGame
 {
     public struct HandCard
     {

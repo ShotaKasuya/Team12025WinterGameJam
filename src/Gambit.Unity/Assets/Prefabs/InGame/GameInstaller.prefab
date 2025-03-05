@@ -48,7 +48,8 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  cardView: {fileID: 11400000, guid: cb87bb1203a478947af838e931a8f980, type: 2}
+  baseCardView: {fileID: -2849189603017906112, guid: 0b2495f142e81e4d28567cc164c6c7bf, type: 3}
+  cardSprites: {fileID: 11400000, guid: 8c9f9aa62b3d195d78be4b56574a9c05, type: 2}
   startTextView: {fileID: 0}
   addPointTextView: {fileID: 0}
   cardPositionsView: {fileID: 0}

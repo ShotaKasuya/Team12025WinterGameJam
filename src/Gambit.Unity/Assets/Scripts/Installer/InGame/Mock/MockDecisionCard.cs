@@ -1,16 +1,16 @@
-using Adapter.IModel.InGame.Player;
-using Adapter.IView.InGame;
-using Adapter.Linker.InGame;
-using Adapter.View.InGame;
-using Adapter.View.InGame.CardPool;
 using Cysharp.Threading.Tasks;
-using Domain.Presenter.InGame;
+using Gambit.Unity.Adapter.ILinker.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Player;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Adapter.View.InGame;
+using Gambit.Unity.Adapter.View.InGame.CardPool;
+using Gambit.Unity.Domain.Presenter.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 using VContainer;
 using VContainer.Unity;
 
-namespace Installer.InGame.Mock
+namespace Gambit.Unity.Installer.InGame.Mock
 {
     public class MockDecisionCard : LifetimeScope
     {

@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Adapter.View.CardPrefabdb
+namespace Gambit.Unity.Adapter.View.CardFactory
 {
     [CustomPropertyDrawer(typeof(GetPrefabAttribute))]
     public class GetPrefabDrawer : PropertyDrawer

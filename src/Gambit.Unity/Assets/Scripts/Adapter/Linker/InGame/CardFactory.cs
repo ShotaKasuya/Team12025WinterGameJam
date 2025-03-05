@@ -1,9 +1,9 @@
-using Adapter.IModel.InGame.Player;
-using Adapter.IView.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Player;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Adapter.Linker.InGame
+namespace Gambit.Unity.Adapter.ILinker.InGame
 {
     public class CardFactory: ICardFactory
     {

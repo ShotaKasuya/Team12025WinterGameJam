@@ -1,6 +1,6 @@
 using System;
 
-namespace Utility.Structure.InGame
+namespace Gambit.Unity.Structure.Utility.InGame
 {
     [Flags]
     public enum Condition

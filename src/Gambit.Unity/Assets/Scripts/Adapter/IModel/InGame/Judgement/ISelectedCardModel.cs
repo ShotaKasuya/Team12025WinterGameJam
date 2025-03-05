@@ -1,7 +1,7 @@
+using Gambit.Unity.Structure.Utility.InGame;
 using Utility.Module.Option;
-using Utility.Structure.InGame;
 
-namespace Adapter.IModel.InGame.Judgement
+namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
 {
     public interface IMutSelectedCardModel: ISelectedCardModel
     {

@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Utility.Structure.HttpClient
+namespace Gambit.Unity.Structure.Utility.HttpClient
 {
     /**
      * Useful utility to use REST access to server

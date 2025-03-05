@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Adapter.IView.InGame;
 using Cysharp.Threading.Tasks;
+using Gambit.Unity.Adapter.IView.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Adapter.View.InGame.CardPool
+namespace Gambit.Unity.Adapter.View.InGame.CardPool
 {
     public class HandCardPoolView : MonoBehaviour, IHandCardPoolView
     {

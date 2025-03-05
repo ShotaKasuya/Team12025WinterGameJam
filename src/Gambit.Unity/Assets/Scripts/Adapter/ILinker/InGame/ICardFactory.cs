@@ -1,7 +1,7 @@
-using Adapter.IView.InGame;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.ILinker.InGame
+namespace Gambit.Unity.Adapter.ILinker.InGame
 {
     public interface ICardFactory
     {

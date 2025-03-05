@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
-namespace Adapter.IView.InGame
+namespace Gambit.Unity.Adapter.IView.InGame
 {
     public interface ICardPositionsView
     {

@@ -1,5 +1,5 @@
 
-namespace Adapter.IModel.InGame
+namespace Gambit.Unity.Adapter.IModel.InGame
 {
     public interface IScoreModel
     {

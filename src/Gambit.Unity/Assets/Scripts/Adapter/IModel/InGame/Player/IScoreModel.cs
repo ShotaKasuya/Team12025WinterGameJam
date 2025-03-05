@@ -1,4 +1,4 @@
-namespace Adapter.IModel.InGame.Player
+namespace Gambit.Unity.Adapter.IModel.InGame.Player
 {
     public interface IPlayerScoreModel
     {

@@ -1,13 +1,23 @@
+using System;
 using UnityEngine;
-namespace Utility.Structure.InGame
 
-{    public class EnumListAttribute : PropertyAttribute
+namespace Gambit.Unity.Structure.Utility.InGame
+
+{
+    public class EnumListAttribute : PropertyAttribute
     {
-        public System.Type EnumType { get; private set; }
+        public Type EnumType { get; private set; }
 
-        public EnumListAttribute(System.Type enumType)
+        public EnumListAttribute(Type enumType)
         {
             EnumType = enumType;
         }
+    }
+
+    [Serializable]
+    public class EnumArray<T>
+    {
+        [SerializeField] private T[] array;
+        public T[] Array => array;
     }
 }

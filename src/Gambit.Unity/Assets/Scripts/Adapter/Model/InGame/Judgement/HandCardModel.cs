@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Adapter.IModel.Global;
-using Adapter.IModel.InGame.Judgement;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IModel.Global;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Structure.Utility.InGame;
 
-namespace Adapter.Model.InGame.Judgement
+namespace Gambit.Unity.Adapter.Model.InGame.Judgement
 {
     public class HandCardModel : IMutHandCardModel
     {

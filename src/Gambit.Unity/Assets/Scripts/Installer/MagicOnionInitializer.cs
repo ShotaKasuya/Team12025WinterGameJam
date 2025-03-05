@@ -1,13 +1,13 @@
-using Cysharp.Net.Http;
-using Grpc.Net.Client;
-using UnityEngine;
-using MagicOnion.Unity;
 using System;
+using Cysharp.Net.Http;
+using Gambit.Shared;
+using Grpc.Net.Client;
 using MagicOnion;
 using MagicOnion.Client;
-using Gambit.Shared;
+using MagicOnion.Unity;
+using UnityEngine;
 
-namespace Installer
+namespace Gambit.Unity.Installer
 {
     public class MagicOnionInitializer : MonoBehaviour
     {

@@ -1,24 +1,25 @@
-using Adapter.Linker.InGame;
-using Adapter.Model.Global;
-using Adapter.Model.InGame;
-using Adapter.Model.InGame.Judgement;
-using Adapter.View.CardPrefabdb;
-using Adapter.View.InGame.CardPool;
-using Adapter.View.InGame.Ui;
-using Domain.Flow.InGame;
-using Domain.Presenter.InGame;
-using Domain.UseCase.InGame;
+using Gambit.Unity.Adapter.ILinker.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Adapter.Model.Global;
+using Gambit.Unity.Adapter.Model.InGame;
+using Gambit.Unity.Adapter.Model.InGame.Judgement;
+using Gambit.Unity.Adapter.View.InGame;
+using Gambit.Unity.Adapter.View.InGame.CardPool;
+using Gambit.Unity.Adapter.View.InGame.Ui;
+using Gambit.Unity.Domain.Flow.InGame;
+using Gambit.Unity.Domain.Presenter.InGame;
+using Gambit.Unity.Domain.UseCase.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 using UnityEngine;
-using Utility.Structure.InGame;
-using Utility.Structure.InGame.StateMachine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Installer.InGame
+namespace Gambit.Unity.Installer.InGame
 {
     public class GameInstaller : LifetimeScope
     {
-        [SerializeField] private CardSprites cardSprites;
+        [SerializeField] private CardView baseCardView;
         [SerializeField] private StartTextView startTextView;
         [SerializeField] private AddPointTextView addPointTextView;
         [SerializeField] private HandCardPoolView cardPositionsView;
@@ -33,9 +34,9 @@ namespace Installer.InGame
             Debug.Log("configure");
             
             // View
+            builder.RegisterComponent(baseCardView).As<ProductCardView>();
             builder.RegisterComponent(drawCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(winCardPoolView).AsImplementedInterfaces();
-            builder.RegisterComponent(cardSprites).AsImplementedInterfaces();
             builder.RegisterComponent(startTextView).AsImplementedInterfaces();
             builder.RegisterComponent(addPointTextView).AsImplementedInterfaces();
             builder.RegisterComponent(cardPositionsView).AsImplementedInterfaces();

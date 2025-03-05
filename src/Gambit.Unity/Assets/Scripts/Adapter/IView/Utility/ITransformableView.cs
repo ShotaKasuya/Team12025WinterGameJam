@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Adapter.IView.Utility
+namespace Gambit.Unity.Adapter.IView.Utility
 {
     public interface ITransformableView
     {

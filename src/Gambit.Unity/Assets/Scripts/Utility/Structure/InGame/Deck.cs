@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
 
-namespace Utility.Structure.InGame
+namespace Gambit.Unity.Structure.Utility.InGame
 {
     [Serializable]
     public struct Deck

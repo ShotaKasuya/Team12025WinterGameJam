@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utility.Module.Option;
 
-namespace Utility.Structure.InGame
+namespace Gambit.Unity.Structure.Utility.InGame
 {
     [Serializable]
     public struct BattleResult

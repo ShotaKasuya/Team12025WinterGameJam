@@ -1,12 +1,12 @@
-using Adapter.IView.InGame.Schema;
-using Adapter.IView.OutGame.Schema;
 using Cysharp.Threading.Tasks;
+using Gambit.Unity.Adapter.IView.InGame.Schema;
+using Gambit.Unity.Adapter.IView.OutGame.Schema;
+using Gambit.Unity.Structure.Utility.HttpClient;
+using Gambit.Unity.Structure.Utility.HttpClient.Shared;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.HttpClient;
-using Utility.Structure.HttpClient.Shared;
-using Utility.Structure.InGame;
 
-namespace Adapter.View.InGame
+namespace Gambit.Unity.Adapter.View.InGame
 {
     public class SyncSelectionView : RestClient, ISyncSelectionSchema
     {

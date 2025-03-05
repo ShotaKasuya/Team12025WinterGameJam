@@ -1,4 +1,4 @@
-namespace Utility.Structure.InGame.Command
+namespace Gambit.Unity.Structure.Utility.InGame.Command
 {
     public interface IExecutableCommand
     {

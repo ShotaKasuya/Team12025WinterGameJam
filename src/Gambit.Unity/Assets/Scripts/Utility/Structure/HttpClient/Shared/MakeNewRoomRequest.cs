@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Utility.Structure.HttpClient.Shared
+namespace Gambit.Unity.Structure.Utility.HttpClient.Shared
 {
     [Serializable]
     public struct MakeNewRoomRequest

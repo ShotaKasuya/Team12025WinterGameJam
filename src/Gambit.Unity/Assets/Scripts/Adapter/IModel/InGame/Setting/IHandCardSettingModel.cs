@@ -1,4 +1,4 @@
-namespace Adapter.IModel.InGame.Setting
+namespace Gambit.Unity.Adapter.IModel.InGame.Setting
 {
     public interface IHandCardSettingModel
     {

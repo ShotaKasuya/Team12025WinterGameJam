@@ -1,8 +1,8 @@
+using Gambit.Unity.Structure.Utility.InGame;
 using R3;
 using Utility.Module.Option;
-using Utility.Structure.InGame;
 
-namespace Adapter.IModel.InGame.Player
+namespace Gambit.Unity.Adapter.IModel.InGame.Player
 {
     public interface IMutPlayerSelectedCardModel: IPlayerSelectedCardModel
     {
