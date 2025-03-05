@@ -20,4 +20,4 @@ jobs:
          # SSH接続して、git pullする
          echo "${{ secrets.PRIVATE_KEY }}" > private_key
          chmod 600 private_key
-         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd ~/ && git fetch git@github.com:ShotaKasuya/Team12025WinterGameJam.git && git pull git@github.com:ShotaKasuya/Team12025WinterGameJam.git"
+         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd ~/Team12025WinterGameJam && git fetch git@github.com:ShotaKasuya/Team12025WinterGameJam.git && git pull git@github.com:ShotaKasuya/Team12025WinterGameJam.git"
