@@ -1,0 +1,19 @@
+{
+    "name": "Model",
+    "rootNamespace": "Gambit.Unity.Adapter.Model",
+    "references": [
+        "GUID:5177cff2dbb36d7bb9dd1e7b76af830f",
+        "GUID:d7cbd70c3c95f01ad8ae1d3052581f71",
+        "GUID:9482436bb96d1d2668638812aa46d700",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

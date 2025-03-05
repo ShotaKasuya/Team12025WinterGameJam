@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "2BKJ3JagvMY=",
+  "success": true,
+  "projectFilePath": "/home/sairas/デスクトップ/unity/Team12025WinterGameJam/src/Gambit.Server/Gambit.Server.csproj",
+  "expectedPackageFiles": [
+    "/home/sairas/.nuget/packages/grpc.aspnetcore.server/2.57.0/grpc.aspnetcore.server.2.57.0.nupkg.sha512",
+    "/home/sairas/.nuget/packages/grpc.core.api/2.57.0/grpc.core.api.2.57.0.nupkg.sha512",
+    "/home/sairas/.nuget/packages/grpc.net.common/2.57.0/grpc.net.common.2.57.0.nupkg.sha512",
+    "/home/sairas/.nuget/packages/magiconion.abstractions/7.0.2/magiconion.abstractions.7.0.2.nupkg.sha512",
+    "/home/sairas/.nuget/packages/magiconion.serialization.messagepack/7.0.2/magiconion.serialization.messagepack.7.0.2.nupkg.sha512",
+    "/home/sairas/.nuget/packages/magiconion.server/7.0.2/magiconion.server.7.0.2.nupkg.sha512",
+    "/home/sairas/.nuget/packages/magiconion.shared/7.0.2/magiconion.shared.7.0.2.nupkg.sha512",
+    "/home/sairas/.nuget/packages/messagepack/3.1.1/messagepack.3.1.1.nupkg.sha512",
+    "/home/sairas/.nuget/packages/messagepack.annotations/3.1.1/messagepack.annotations.3.1.1.nupkg.sha512",
+    "/home/sairas/.nuget/packages/messagepackanalyzer/3.1.1/messagepackanalyzer.3.1.1.nupkg.sha512",
+    "/home/sairas/.nuget/packages/microsoft.net.stringtools/17.11.4/microsoft.net.stringtools.17.11.4.nupkg.sha512",
+    "/home/sairas/.nuget/packages/multicaster/1.0.0/multicaster.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
