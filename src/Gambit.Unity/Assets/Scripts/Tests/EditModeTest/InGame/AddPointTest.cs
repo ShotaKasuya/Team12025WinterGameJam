@@ -1,415 +1,464 @@
-namespace Gambit.Unity.Test.EditMode.Tests.EditModeTest.InGame
+using System.Collections.Generic;
+using Gambit.Unity.Domain.UseCase.InGame;
+using NUnit.Framework;
+using Gambit.Unity.Adapter.IModel.Global;
+using Gambit.Unity.Adapter.IModel.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Structure.Utility.InGame;
+
+
+namespace Tests.EditModeTest.InGame
 {
-    // public class AddPointTest
-    // {
-    //     [SetUp]
-    //     public void SetUp()
-    //     {
-    //         _mockJudgeEventModel = new MockJudgeEventModel();
-    //         _mockPlayerIdModel = new MockPlayerIdModel();
-    //         _mockPlayerScoreModel = new MockPlayerScoreModel();
-    //         _mockConditionModel = new MockConditionModel[4];
-    //         _addPointCase = new AddPointCase(_mockPlayerScoreModel,_mockPlayerIdModel,_mockJudgeEventModel,_mockConditionModel);
-    //     }
-    //     [TearDown]
-    //     public void TearDown()
-    //     {
-    //         _addPointCase.Dispose();
-    //     }
-    //
-    //     private AddPointCase _addPointCase;
-    //     private MockPlayerScoreModel _mockPlayerScoreModel;
-    //     private MockPlayerIdModel _mockPlayerIdModel;
-    //     private MockJudgeEventModel _mockJudgeEventModel;
-    //     private MockConditionModel[] _mockConditionModel;
-    //
-    //     [TestCase(0,Rank.Ace,Rank.King)]
-    //     [TestCase(0,Rank.King,Rank.Queen)]
-    //     [TestCase(0,Rank.Queen,Rank.Jack)]
-    //     [TestCase(0,Rank.Ten,Rank.Nine)]
-    //     [TestCase(0,Rank.Eight,Rank.Seven)]
-    //     [TestCase(0,Rank.Six,Rank.Five)]
-    //     [TestCase(0,Rank.Five,Rank.Four)]
-    //     [TestCase(0,Rank.Three,Rank.Two)]
-    //     //通常時の勝利の得点加算テスト
-    //     public void AddPointWinTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel[id].SetCondition(,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(2,result);
-    //     }
-    //
-    //     [TestCase(1,Rank.King,Rank.Ace)]
-    //     [TestCase(1,Rank.Two,Rank.Three)]
-    //     //通常時の負けの得点加算テスト
-    //     public void AddPointLoseTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(0,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Jack,Rank.Nine)]
-    //     [TestCase(0,Rank.Jack,Rank.Seven)]
-    //     [TestCase(0,Rank.Jack,Rank.Five)]
-    //     [TestCase(0,Rank.Jack,Rank.Four)]
-    //     [TestCase(0,Rank.Jack,Rank.Two)]
-    //     //Jの勝利の得点加算テスト
-    //     public void AddPointWinJackTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(6,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Seven,Rank.Six)]
-    //     [TestCase(0,Rank.Seven,Rank.Five)]
-    //     [TestCase(0,Rank.Seven,Rank.Four)]
-    //     [TestCase(0,Rank.Seven,Rank.Three)]
-    //     [TestCase(0,Rank.Seven,Rank.Two)]
-    //     //7の勝利の得点加算テスト
-    //     public void AddPointWinSevenTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         int AddPoint=(int)winCard-(int)loseCard;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(2*AddPoint,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Nine,Rank.Eight)]
-    //     [TestCase(0,Rank.Nine,Rank.Seven)]
-    //     [TestCase(0,Rank.Nine,Rank.Two)]
-    //     //9の勝利の得点加算テスト
-    //     public void AddPointWinNineTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(4,result);
-    //     }
-    //
-    //
-    //     [TestCase(0,Rank.Ace,Rank.King)]
-    //     [TestCase(0,Rank.King,Rank.Queen)]
-    //     [TestCase(0,Rank.Queen,Rank.Jack)]
-    //     [TestCase(0,Rank.Ten,Rank.Nine)]
-    //     [TestCase(0,Rank.Eight,Rank.Seven)]
-    //     [TestCase(0,Rank.Six,Rank.Five)]
-    //     [TestCase(0,Rank.Five,Rank.Four)]
-    //     [TestCase(0,Rank.Three,Rank.Two)]
-    //     //特殊無効時の勝利の得点加算テスト
-    //     public void AddPointWininvalidTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Six);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(2,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Jack,Rank.Nine)]
-    //     [TestCase(0,Rank.Jack,Rank.Seven)]
-    //     [TestCase(0,Rank.Jack,Rank.Five)]
-    //     [TestCase(0,Rank.Jack,Rank.Four)]
-    //     [TestCase(0,Rank.Jack,Rank.Two)]
-    //     //特殊無効時のJの勝利の得点加算テスト
-    //     public void AddPointWinJackinvalidTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Six);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(2,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Seven,Rank.Six)]
-    //     [TestCase(0,Rank.Seven,Rank.Five)]
-    //     [TestCase(0,Rank.Seven,Rank.Four)]
-    //     [TestCase(0,Rank.Seven,Rank.Three)]
-    //     [TestCase(0,Rank.Seven,Rank.Two)]
-    //     //特殊無効時の7の勝利の得点加算テスト
-    //     public void AddPointWinSeveninvalidTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Six);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         int AddPoint=(int)winCard-(int)loseCard;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(2,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Nine,Rank.Eight)]
-    //     [TestCase(0,Rank.Nine,Rank.Seven)]
-    //     [TestCase(0,Rank.Nine,Rank.Two)]
-    //     //特殊無効時の9の勝利の得点加算テスト
-    //     public void AddPointWinNineinvalidTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Six);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(2,result);
-    //     }
-    //
-    //
-    //     [TestCase(0,Rank.Ace,Rank.King)]
-    //     [TestCase(0,Rank.King,Rank.Queen)]
-    //     [TestCase(0,Rank.Queen,Rank.Jack)]
-    //     [TestCase(0,Rank.Ten,Rank.Nine)]
-    //     [TestCase(0,Rank.Eight,Rank.Seven)]
-    //     [TestCase(0,Rank.Six,Rank.Five)]
-    //     [TestCase(0,Rank.Five,Rank.Four)]
-    //     [TestCase(0,Rank.Three,Rank.Two)]
-    //     //弱体時の勝利の得点加算テスト
-    //     public void AddPointWinWeekTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Ten);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(1,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Jack,Rank.Nine)]
-    //     [TestCase(0,Rank.Jack,Rank.Seven)]
-    //     [TestCase(0,Rank.Jack,Rank.Five)]
-    //     [TestCase(0,Rank.Jack,Rank.Four)]
-    //     [TestCase(0,Rank.Jack,Rank.Two)]
-    //     //弱体時のJの勝利の得点加算テスト
-    //     public void AddPointWinJackWeekTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Ten);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(3,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Seven,Rank.Six)]
-    //     [TestCase(0,Rank.Seven,Rank.Five)]
-    //     [TestCase(0,Rank.Seven,Rank.Four)]
-    //     [TestCase(0,Rank.Seven,Rank.Three)]
-    //     [TestCase(0,Rank.Seven,Rank.Two)]
-    //     //弱体時の7の勝利の得点加算テスト
-    //     public void AddPointWinSevenWeekTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Ten);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         int AddPoint=(int)winCard-(int)loseCard;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(AddPoint,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Nine,Rank.Eight)]
-    //     [TestCase(0,Rank.Nine,Rank.Seven)]
-    //     [TestCase(0,Rank.Nine,Rank.Two)]
-    //     //弱体時の9の勝利の得点加算テスト
-    //     public void AddPointWinNineWeekTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Ten);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(2,result);
-    //     }
-    //
-    //
-    //     [TestCase(1,Rank.Jack,Rank.Ace)]
-    //     [TestCase(1,Rank.Jack,Rank.King)]
-    //     [TestCase(1,Rank.Jack,Rank.Queen)]
-    //     //Jの負けの得点加算テスト
-    //     public void AddPointLoseJackTest(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(0, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(-4,result);
-    //     }
-    //
-    //
-    //     [TestCase(0,Rank.Ace,Rank.King)]
-    //     [TestCase(0,Rank.King,Rank.Queen)]
-    //     [TestCase(0,Rank.Queen,Rank.Jack)]
-    //     [TestCase(0,Rank.Ten,Rank.Nine)]
-    //     [TestCase(0,Rank.Eight,Rank.Seven)]
-    //     [TestCase(0,Rank.Six,Rank.Five)]
-    //     [TestCase(0,Rank.Five,Rank.Four)]
-    //     [TestCase(0,Rank.Three,Rank.Two)]
-    //     //Draw2回時の勝利の得点加算テスト
-    //     public void AddPointWinDarw2Test(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(2, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(6,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Jack,Rank.Nine)]
-    //     [TestCase(0,Rank.Jack,Rank.Seven)]
-    //     [TestCase(0,Rank.Jack,Rank.Five)]
-    //     [TestCase(0,Rank.Jack,Rank.Four)]
-    //     [TestCase(0,Rank.Jack,Rank.Two)]
-    //     //Draw2回時のJの勝利の得点加算テスト
-    //     public void AddPointWinJackDraw2Test(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(2, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(10,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Seven,Rank.Six)]
-    //     [TestCase(0,Rank.Seven,Rank.Five)]
-    //     [TestCase(0,Rank.Seven,Rank.Four)]
-    //     [TestCase(0,Rank.Seven,Rank.Three)]
-    //     [TestCase(0,Rank.Seven,Rank.Two)]
-    //     //Draw2回時の7の勝利の得点加算テスト
-    //     public void AddPointWinSevenDarw2Test(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(2, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         int AddPoint=(int)winCard-(int)loseCard;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(2*3*AddPoint,result);
-    //     }
-    //
-    //     [TestCase(0,Rank.Nine,Rank.Eight)]
-    //     [TestCase(0,Rank.Nine,Rank.Seven)]
-    //     [TestCase(0,Rank.Nine,Rank.Two)]
-    //     //Draw2回時の9の勝利の得点加算テスト
-    //     public void AddPointWinNineDraw2Test(int id,Rank winCard,Rank loseCard)
-    //     {
-    //         var cards = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
-    //         _mockConditionModel.SetCondition(id,Condition.Normal);
-    //
-    //         var battleResult = BattleResult.Result(new PlayerId(id), cards);
-    //         var resultAndDrawCount = new ResultAndDrawCount(2, battleResult);
-    //         _mockJudgeEventModel.InvokeJudgeEndEvent(resultAndDrawCount);
-    //
-    //         var result = _mockPlayerScoreModel.Addscore;
-    //
-    //         Assert.IsNotNull(result);
-    //         Assert.AreEqual(8,result);
-    //     }
-    // }
+    public class AddPointTest
+    {
+        [SetUp]
+        public void SetUp()
+        {
+            _mockPlayerCountModel = new MockPlayerCountModel();
+            _mockResultModel = new MockResultModel();
+            _mockScoreModel = new MockScoreModel(2);
+            _mockConditionModel = new MockConditionModel(2);
+            _addPointCase = new AddPointCase(_mockPlayerCountModel,_mockScoreModel,_mockResultModel,_mockConditionModel);
+        }
+
+        private AddPointCase _addPointCase;
+        private MockScoreModel _mockScoreModel;
+        private MockResultModel _mockResultModel;
+        private MockPlayerCountModel _mockPlayerCountModel;
+        private MockConditionModel _mockConditionModel;
+
+        [TestCase(0,Rank.Ace,Rank.King)]
+        [TestCase(0,Rank.King,Rank.Queen)]
+        [TestCase(0,Rank.Ten,Rank.Nine)]
+        [TestCase(0,Rank.Eight,Rank.Seven)]
+        [TestCase(0,Rank.Six,Rank.Five)]
+        [TestCase(0,Rank.Five,Rank.Four)]
+        [TestCase(0,Rank.Three,Rank.Two)]
+        //通常時の勝利の得点加算テスト
+        public void AddPointWinTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {2,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(1,Rank.King,Rank.Ace)]
+        [TestCase(1,Rank.Two,Rank.Three)]
+        //通常時の負けの得点加算テスト
+        public void AddPointLoseTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {0,2};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Jack,Rank.Nine)]
+        [TestCase(0,Rank.Jack,Rank.Seven)]
+        [TestCase(0,Rank.Jack,Rank.Five)]
+        [TestCase(0,Rank.Jack,Rank.Four)]
+        [TestCase(0,Rank.Jack,Rank.Two)]
+        //Jの勝利の得点加算テスト
+        public void AddPointWinJackTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {6,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Seven,Rank.Six)]
+        [TestCase(0,Rank.Seven,Rank.Five)]
+        [TestCase(0,Rank.Seven,Rank.Four)]
+        [TestCase(0,Rank.Seven,Rank.Three)]
+        [TestCase(0,Rank.Seven,Rank.Two)]
+        //7の勝利の得点加算テスト
+        public void AddPointWinSevenTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+            int AddPoint=(int)winCard-(int)loseCard;
+
+            int[] Result = {2*AddPoint,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Nine,Rank.Eight)]
+        [TestCase(0,Rank.Nine,Rank.Seven)]
+        [TestCase(0,Rank.Nine,Rank.Two)]
+        //9の勝利の得点加算テスト
+        public void AddPointWinNineTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {4,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+
+        [TestCase(0,Rank.Ace,Rank.King)]
+        [TestCase(0,Rank.King,Rank.Queen)]
+        [TestCase(0,Rank.Ten,Rank.Nine)]
+        [TestCase(0,Rank.Eight,Rank.Seven)]
+        [TestCase(0,Rank.Six,Rank.Five)]
+        [TestCase(0,Rank.Five,Rank.Four)]
+        [TestCase(0,Rank.Three,Rank.Two)]
+        //特殊無効時の勝利の得点加算テスト
+        public void AddPointWinWeakTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Six);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {2,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Jack,Rank.Nine)]
+        [TestCase(0,Rank.Jack,Rank.Seven)]
+        [TestCase(0,Rank.Jack,Rank.Five)]
+        [TestCase(0,Rank.Jack,Rank.Four)]
+        [TestCase(0,Rank.Jack,Rank.Two)]
+        //特殊無効時のJの勝利の得点加算テスト
+        public void AddPointWinWeakJackTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Six);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {2,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Seven,Rank.Six)]
+        [TestCase(0,Rank.Seven,Rank.Five)]
+        [TestCase(0,Rank.Seven,Rank.Four)]
+        [TestCase(0,Rank.Seven,Rank.Three)]
+        [TestCase(0,Rank.Seven,Rank.Two)]
+        //特殊無効時の7の勝利の得点加算テスト
+        public void AddPointWinWeakSevenTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Six);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {2,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Nine,Rank.Eight)]
+        [TestCase(0,Rank.Nine,Rank.Seven)]
+        [TestCase(0,Rank.Nine,Rank.Two)]
+        //特殊無効時の9の勝利の得点加算テスト
+        public void AddPointWinWeakNineTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Six);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {2,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+
+        [TestCase(0,Rank.Ace,Rank.King)]
+        [TestCase(0,Rank.King,Rank.Queen)]
+        [TestCase(0,Rank.Ten,Rank.Nine)]
+        [TestCase(0,Rank.Eight,Rank.Seven)]
+        [TestCase(0,Rank.Six,Rank.Five)]
+        [TestCase(0,Rank.Five,Rank.Four)]
+        [TestCase(0,Rank.Three,Rank.Two)]
+        //弱体時の勝利の得点加算テスト
+        public void AddPointWinHarfTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Ten);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {1,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Jack,Rank.Nine)]
+        [TestCase(0,Rank.Jack,Rank.Seven)]
+        [TestCase(0,Rank.Jack,Rank.Five)]
+        [TestCase(0,Rank.Jack,Rank.Four)]
+        [TestCase(0,Rank.Jack,Rank.Two)]
+        //弱体時のJの勝利の得点加算テスト
+        public void AddPointWinHarfJackTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Ten);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {3,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+
+        [TestCase(0,Rank.Seven,Rank.Six)]
+        [TestCase(0,Rank.Seven,Rank.Five)]
+        [TestCase(0,Rank.Seven,Rank.Four)]
+        [TestCase(0,Rank.Seven,Rank.Three)]
+        [TestCase(0,Rank.Seven,Rank.Two)]
+        //弱体時の7の勝利の得点加算テスト
+        public void AddPointWinHarfSevenTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Ten);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+            int AddPoint=(int)winCard-(int)loseCard;
+            int[] Result = {AddPoint,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Nine,Rank.Eight)]
+        [TestCase(0,Rank.Nine,Rank.Seven)]
+        [TestCase(0,Rank.Nine,Rank.Two)]
+        //弱体時の9の勝利の得点加算テスト
+        public void AddPointWinHarfNineTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Ten);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {2,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+
+        [TestCase(1,Rank.Jack,Rank.Ace)]
+        [TestCase(1,Rank.Jack,Rank.King)]
+        [TestCase(1,Rank.Jack,Rank.Queen)]
+        //Jの負けの得点加算テスト
+        public void AddPointLoseJackTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(0);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {-4,2};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+
+        [TestCase(0,Rank.Ace,Rank.King)]
+        [TestCase(0,Rank.King,Rank.Queen)]
+        [TestCase(0,Rank.Ten,Rank.Nine)]
+        [TestCase(0,Rank.Eight,Rank.Seven)]
+        [TestCase(0,Rank.Six,Rank.Five)]
+        [TestCase(0,Rank.Five,Rank.Four)]
+        [TestCase(0,Rank.Three,Rank.Two)]
+        //Draw2回時の勝利の得点加算テスト
+        public void AddPointWinDrawTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(2);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {6,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Jack,Rank.Nine)]
+        [TestCase(0,Rank.Jack,Rank.Seven)]
+        [TestCase(0,Rank.Jack,Rank.Five)]
+        [TestCase(0,Rank.Jack,Rank.Four)]
+        [TestCase(0,Rank.Jack,Rank.Two)]
+        //Draw2回時のJの勝利の得点加算テスト
+        public void AddPointWinDrawJackTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(2);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {10,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Seven,Rank.Six)]
+        [TestCase(0,Rank.Seven,Rank.Five)]
+        [TestCase(0,Rank.Seven,Rank.Four)]
+        [TestCase(0,Rank.Seven,Rank.Three)]
+        [TestCase(0,Rank.Seven,Rank.Two)]
+        //Draw2回時の7の勝利の得点加算テスト
+        public void AddPointWinDrawSevenTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(2);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+            int AddPoint=(int)winCard-(int)loseCard;
+
+            int[] Result = {2*3*AddPoint,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+
+        [TestCase(0,Rank.Nine,Rank.Eight)]
+        [TestCase(0,Rank.Nine,Rank.Seven)]
+        [TestCase(0,Rank.Nine,Rank.Two)]
+        //Draw2回時の9の勝利の得点加算テスト
+        public void AddPointWinDrawNineTest(int id,Rank winCard,Rank loseCard)
+        {
+            _mockConditionModel.SetCondition(id,Condition.Normal);
+            var card = new List<Card> {new(Suit.Clubs,winCard),new(Suit.Clubs,loseCard)};
+            var cards = new List<PlayerCard> {new(new PlayerId(0),card[0]),new(new PlayerId(1),card[1])};
+            _mockPlayerCountModel.SetPlayerCount(2);
+            var battleResult = BattleResult.Result(new PlayerId(id), cards);
+            _mockResultModel.SetUpBattleResults(battleResult);
+            _mockResultModel.SetUpLastResults(2);
+            _addPointCase.AddPoint();
+            var result = _mockScoreModel.Scores;
+
+
+            int[] Result = {8,0};
+            Assert.IsNotNull(result);
+            Assert.AreEqual(Result,result);
+        }
+    }
 }

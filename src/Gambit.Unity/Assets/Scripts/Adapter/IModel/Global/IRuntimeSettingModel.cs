@@ -11,4 +11,12 @@ namespace Gambit.Unity.Adapter.IModel.Global
     {
         public int PlayerCount { get; }
     }
+        public class MockPlayerCountModel : IMutPlayerCountModel
+    {
+        public int PlayerCount{get;private set;}
+        public void SetPlayerCount(int count)
+        {
+            PlayerCount = count;
+        }
+    }
 }

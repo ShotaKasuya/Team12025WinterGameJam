@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Gambit.Unity.Structure.Utility.InGame;
+using System.Linq;
 
 namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
 {
@@ -51,6 +52,20 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
         public void StoreJudgeResult(BattleResult result)
         {
             StoredResult = result;
+        }
+    }
+        public class MockResultModel : IJudgeResultModel
+    {
+        private List<BattleResult> battleResults {get;} = new List<BattleResult>(13);
+        public IReadOnlyList<BattleResult> BattleResults =>battleResults;
+        public ResultAndDrawCount LastResults{get;private set;}
+        public void SetUpLastResults(int count)
+        {
+           LastResults = new ResultAndDrawCount(count,BattleResults.Last());
+        }
+        public void SetUpBattleResults(BattleResult battleResult)
+        {
+            battleResults.Add(battleResult);
         }
     }
 }
