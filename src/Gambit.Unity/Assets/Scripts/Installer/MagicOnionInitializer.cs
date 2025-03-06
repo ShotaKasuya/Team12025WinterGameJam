@@ -29,9 +29,10 @@ namespace Gambit.Unity.Installer
         {
             try
             {
-                var channel = GrpcChannelx.ForAddress("http://localhost:5263");
+                var channel = GrpcChannelx.ForAddress("http://43.207.40.138:5263");
                 var client = MagicOnionClient.Create<IMyFirstService>(channel);
 
+                Debug.Log("send 100 + 200");
                 var result = await client.SumAsync(100, 200);
                 Debug.Log($"100 + 200 = {result}");
             }
