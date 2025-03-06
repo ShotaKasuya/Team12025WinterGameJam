@@ -10,7 +10,7 @@ namespace Gambit.Unity.Adapter.View.Communication
         PlayerCard PlayerCard;
         public void SendSelectedCard(SentPlayerCard sentPlayerCard)
         {
-            PlayerCard = PlayerCard.ConversionSentPlayerCard(sentPlayerCard);
+            PlayerCard.ConversionSentPlayerCard(sentPlayerCard);
         }
         
         private ISelectedCardSender _selectedCardSender;
