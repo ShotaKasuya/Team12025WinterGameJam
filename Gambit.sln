@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambit.Server", "src\Gambit.Server\Gambit.Server.csproj", "{4059599A-89E3-4FA4-8841-7CC3960BECAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambit.Shared", "src\Gambit.Shared\Gambit.Shared.csproj", "{7777238A-44C4-4496-BA3D-CFEB7E04C234}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4059599A-89E3-4FA4-8841-7CC3960BECAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4059599A-89E3-4FA4-8841-7CC3960BECAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4059599A-89E3-4FA4-8841-7CC3960BECAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4059599A-89E3-4FA4-8841-7CC3960BECAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7777238A-44C4-4496-BA3D-CFEB7E04C234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7777238A-44C4-4496-BA3D-CFEB7E04C234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7777238A-44C4-4496-BA3D-CFEB7E04C234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7777238A-44C4-4496-BA3D-CFEB7E04C234}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
