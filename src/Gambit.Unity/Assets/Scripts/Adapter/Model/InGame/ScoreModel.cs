@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Adapter.IModel.Global;
 using Adapter.IModel.InGame;
 
@@ -20,5 +21,8 @@ namespace Adapter.Model.InGame
         {
             Scores[playerId] = score;
         }
+
+        public IReadOnlyList<int> GetPlayerScore => Scores;
+        
     }
 }

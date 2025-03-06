@@ -1,9 +1,14 @@
 
+using System.Collections.Generic;
+
 namespace Adapter.IModel.InGame
 {
     public interface IScoreModel
     {
         public int GetScore(int playerId);
         public void AddScore(int playerId, int score);
+
+        public IReadOnlyList<int> GetPlayerScore { get; }
+
     }
 }
