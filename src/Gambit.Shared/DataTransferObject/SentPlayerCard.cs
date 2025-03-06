@@ -12,7 +12,7 @@
             private Card card;
             public PlayerId PlayerId => playerId;
             public Card Card => card;
-            public Rank Rank => Card.Rank;
-            public Suit Suit => Card.Suit;
+            public RankTransObj Rank => Card.Rank;
+            public SuitTransObj Suit => Card.Suit;
         }
 }

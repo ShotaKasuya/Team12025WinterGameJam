@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.CompilerServices;
+using Gambit.Shared.DataTransferObject;
 using UnityEngine;
 
 namespace Gambit.Unity.Structure.Utility.InGame
@@ -7,7 +9,7 @@ namespace Gambit.Unity.Structure.Utility.InGame
     /// トランプのカード
     /// </summary>
     [Serializable]
-    public struct Card: IEquatable<Card>
+    public struct Card : IEquatable<Card>
     {
         [SerializeField] private Suit suit;
         [SerializeField] private Rank rank;
@@ -102,16 +104,16 @@ namespace Gambit.Unity.Structure.Utility.InGame
         {
             return left.Equals(right);
         }
+
         public static bool operator !=(Card left, Card right)
         {
             return !(left == right);
         }
 
-        public Card ConversationCard(int rank, int suit)
+        public static Card ConversationCard(RankTransObj rank, SuitTransObj suit)
         {
-            return this;
+            return new Card(suit.Conversion(), rank.Conversion());
         }
-            
     }
 
     public enum Suit
@@ -137,5 +139,78 @@ namespace Gambit.Unity.Structure.Utility.InGame
         Queen,
         King,
         Ace,
+    }
+
+    public static class CardExtension
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Rank Conversion(this RankTransObj rankTransObj)
+        {
+            return rankTransObj switch
+            {
+                RankTransObj.Two => Rank.Two,
+                RankTransObj.Three => Rank.Three,
+                RankTransObj.Four => Rank.Four,
+                RankTransObj.Five => Rank.Five,
+                RankTransObj.Six => Rank.Six,
+                RankTransObj.Seven => Rank.Seven,
+                RankTransObj.Eight => Rank.Eight,
+                RankTransObj.Nine => Rank.Nine,
+                RankTransObj.Ten => Rank.Ten,
+                RankTransObj.Jack => Rank.Jack,
+                RankTransObj.Queen => Rank.Queen,
+                RankTransObj.King => Rank.King,
+                RankTransObj.Ace => Rank.Ace,
+                _ => throw new ArgumentOutOfRangeException(nameof(rankTransObj), rankTransObj, null)
+            };
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static RankTransObj Conversion(this Rank rank)
+        {
+            return rank switch
+            {
+                Rank.Two => RankTransObj.Two,
+                Rank.Three => RankTransObj.Three,
+                Rank.Four => RankTransObj.Four,
+                Rank.Five => RankTransObj.Five,
+                Rank.Six => RankTransObj.Six,
+                Rank.Seven => RankTransObj.Seven,
+                Rank.Eight => RankTransObj.Eight,
+                Rank.Nine => RankTransObj.Nine,
+                Rank.Ten => RankTransObj.Ten,
+                Rank.Jack => RankTransObj.Jack,
+                Rank.Queen => RankTransObj.Queen,
+                Rank.King => RankTransObj.King,
+                Rank.Ace => RankTransObj.Ace,
+                _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, null)
+            };
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Suit Conversion(this SuitTransObj suitTransObj)
+        {
+            return suitTransObj switch
+            {
+                SuitTransObj.Spades => Suit.Spades,
+                SuitTransObj.Hearts => Suit.Hearts,
+                SuitTransObj.Diamonds => Suit.Diamonds,
+                SuitTransObj.Clubs => Suit.Clubs,
+                _ => throw new ArgumentOutOfRangeException(nameof(suitTransObj), suitTransObj, null)
+            };
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static SuitTransObj Conversion(this Suit suit)
+        {
+            return suit switch
+            {
+                Suit.Spades => SuitTransObj.Spades,
+                Suit.Hearts => SuitTransObj.Hearts,
+                Suit.Diamonds => SuitTransObj.Diamonds,
+                Suit.Clubs => SuitTransObj.Clubs,
+                _ => throw new ArgumentOutOfRangeException(nameof(suit), suit, null)
+            };
+        }
     }
 }

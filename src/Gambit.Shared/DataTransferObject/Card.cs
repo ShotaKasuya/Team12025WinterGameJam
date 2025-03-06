@@ -3,22 +3,23 @@
     public struct Card
     {
             
-        private Suit suit;
-        private Rank rank;
-        public Suit Suit => suit;
-        public Rank Rank => rank;
+        private SuitTransObj suit;
+        private RankTransObj rank;
+        public SuitTransObj Suit => suit;
+        public RankTransObj Rank => rank;
         
         public Card
         (
-            Suit suit,
-            Rank rank
+            SuitTransObj suit,
+            RankTransObj rank
         )
         {
             this.suit = suit;
             this.rank = rank;
         }
     }
-    public enum Suit
+    
+    public enum SuitTransObj
     {
         Spades, // ♠
         Hearts, // ♥
@@ -26,7 +27,7 @@
         Clubs, // ♣
     }
 
-    public enum Rank
+    public enum RankTransObj
     {
         Two,
         Three,
