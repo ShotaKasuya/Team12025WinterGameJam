@@ -106,6 +106,11 @@ namespace Gambit.Unity.Structure.Utility.InGame
         {
             return !(left == right);
         }
+
+        public Card ConversationCard(int rank, int suit)
+        {
+            return this;
+        }
             
     }
 
@@ -132,35 +137,5 @@ namespace Gambit.Unity.Structure.Utility.InGame
         Queen,
         King,
         Ace,
-    }
-
-    [Serializable]
-    public struct PlayerCard
-    {
-        public PlayerCard(PlayerId playerId, Card card)
-        {
-            this.playerId = playerId;
-            this.card = card;
-        }
-
-        [SerializeField] private PlayerId playerId;
-        [SerializeField] private Card card;
-        public PlayerId PlayerId => playerId;
-        public Card Card => card;
-        public Rank Rank => Card.Rank;
-        public Suit Suit => Card.Suit;
-
-        public bool IsGreater(PlayerCard other)
-        {
-            return Card.IsGreater(other.Card);
-        }
-
-        public override string ToString()
-        {
-            return $"(\n" +
-                   $"{playerId}\n" +
-                   $"Card: {card}\n" +
-                   $")";
-        }
     }
 }

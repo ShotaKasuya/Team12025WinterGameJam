@@ -5,6 +5,8 @@
             
         private Suit suit;
         private Rank rank;
+        public Suit Suit => suit;
+        public Rank Rank => rank;
         
         public Card
         (
