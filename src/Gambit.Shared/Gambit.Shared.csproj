@@ -9,8 +9,4 @@
     <PackageReference Include="MagicOnion.Abstractions" Version="7.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Gambit.Unity\Structure.csproj" />
-  </ItemGroup>
-
 </Project>
