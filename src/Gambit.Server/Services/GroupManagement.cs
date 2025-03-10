@@ -4,18 +4,43 @@ namespace Gambit.Server.Services;
 
 public class GroupManagement
 {
-    public void AddPlayer(GroupId groupId, PlayerId playerId)
+    private const uint PLAYER_MAX = 2;
+
+    /// <summary>
+    /// ランダムにプレイヤーを追加
+    /// </summary>
+    /// <returns></returns>
+    public GroupId AddPlayer()
     {
-        if (Groups.TryGetValue(groupId, out var group))
+        GroupId groupId;
+        var group = Groups.Values.FirstOrDefault(x => x.PlayerCount <= PLAYER_MAX);
+        if (group is not null)
         {
-            group.AddPlayer(playerId);
+            groupId = group.AddPlayer();
         }
         else
         {
-            uint value = BitConverter.ToUInt32(Guid.NewGuid().ToByteArray(), 0);
-            var newId = new GroupId(value);
-            var newGroup = new Group(newId);
-            Groups.Add(newId, newGroup);
+            var value = BitConverter.ToUInt32(Guid.NewGuid().ToByteArray(), 0);
+            groupId = new GroupId(value);
+            var newGroup = new Group(groupId);
+            Groups.Add(groupId, newGroup);
+        }
+
+        return groupId;
+    }
+
+    public void LeavePlayer(PlayerId playerId)
+    {
+        var group = Groups.Values.FirstOrDefault(x => x.Has(playerId));
+        if (group is null)
+        {
+            throw new Exception("Group not has the player");
+        }
+
+        group.RemovePlayer(playerId);
+        if (group.PlayerCount == 0)
+        {
+            Groups.Remove(group.Id);
         }
     }
 

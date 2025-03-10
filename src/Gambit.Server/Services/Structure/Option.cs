@@ -1,12 +1,16 @@
+using System.Runtime.CompilerServices;
+
 namespace Gambit.Server.Services.Structure;
 
 public readonly struct Option<T>
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Option<T> Some(T value)
     {
         return new Option<T>(true, value);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Option<T> None()
     {
         return new Option<T>(false, default);
@@ -15,12 +19,13 @@ public readonly struct Option<T>
     public readonly bool IsSome;
     private readonly T? _value;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryGetValue(out T value)
     {
         var result = false;
         if (IsSome)
         {
-            value = _value;
+            value = _value!;
             result = true;
         }
         else
@@ -31,6 +36,7 @@ public readonly struct Option<T>
         return result;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public T Unwrap()
     {
         if (!IsSome)
@@ -38,7 +44,7 @@ public readonly struct Option<T>
             throw new Exception("unwrap none value");
         }
 
-        return _value;
+        return _value!;
     }
 
     private Option(bool isSome, T value)

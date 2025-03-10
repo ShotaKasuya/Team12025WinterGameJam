@@ -1,33 +1,40 @@
 namespace Gambit.Server.Services.Structure;
 
-public class Group(GroupId groupId)
+public class Group(GroupId id)
 {
-    public readonly GroupId GroupId = groupId;
+    public readonly GroupId Id = id;
 
     public int PlayerCount { get; private set; }
-    private List<PlayerId> Players { get; } = [];
-    public IReadOnlyCollection<PlayerId> GroupPlayers => Players;
+    private List<PlayerId> Players { get; } = new(2);
+    private IReadOnlyCollection<PlayerId> GroupPlayers => Players;
 
-    public void AddPlayer(PlayerId playerId)
+    public GroupId AddPlayer()
     {
-        Players.Add(playerId);
+        var id = (uint)Players.Count;
+        Players.Add(new PlayerId(id));
         PlayerCount++;
+        return Id;
     }
 
     public void RemovePlayer(PlayerId playerId)
     {
         Players.Remove(playerId);
-        PlayerCount++;
+        PlayerCount--;
+    }
+
+    public bool Has(PlayerId id)
+    {
+        return GroupPlayers.Contains(id);
     }
 }
 
 public readonly struct GroupId(uint groupId) : IEquatable<GroupId>
 {
-    public readonly uint Id = groupId;
+    private readonly uint _id = groupId;
 
     public bool Equals(GroupId other)
     {
-        return Id == other.Id;
+        return _id == other._id;
     }
 
     public override bool Equals(object? obj)
@@ -37,6 +44,21 @@ public readonly struct GroupId(uint groupId) : IEquatable<GroupId>
 
     public override int GetHashCode()
     {
-        return (int)Id;
+        return (int)_id;
+    }
+
+    public static bool operator ==(GroupId lhs, GroupId rhs)
+    {
+        return lhs.Equals(rhs);
+    }
+
+    public static bool operator !=(GroupId lhs, GroupId rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+    public override string ToString()
+    {
+        return _id.ToString();
     }
 }

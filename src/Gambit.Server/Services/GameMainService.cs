@@ -6,9 +6,11 @@ namespace Gambit.Server.Services;
 
 public class GameMainService: StreamingHubBase<IGameMainCommunication, IGameMainReceiver>, IGameMainCommunication
 {
-    public ValueTask JoinAsync(string userName)
+    public async ValueTask JoinAsync(string userName)
     {
-        throw new NotImplementedException();
+        var groupId = GroupManagement.Instance.AddPlayer();
+        var group = await Group.AddAsync(groupId.ToString());
+        
     }
 
     public ValueTask MatchResultAsync(string result)
