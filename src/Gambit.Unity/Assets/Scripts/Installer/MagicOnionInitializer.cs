@@ -6,6 +6,7 @@ using MagicOnion;
 using MagicOnion.Client;
 using MagicOnion.Unity;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Gambit.Unity.Installer
 {
@@ -29,9 +30,10 @@ namespace Gambit.Unity.Installer
         {
             try
             {
-                var channel = GrpcChannelx.ForAddress("http://localhost:5263");
+                var channel = GrpcChannelx.ForAddress("http://game.gambit-server.com:5001");
                 var client = MagicOnionClient.Create<IMyFirstService>(channel);
 
+                Debug.Log("send 100 + 200");
                 var result = await client.SumAsync(100, 200);
                 Debug.Log($"100 + 200 = {result}");
             }
