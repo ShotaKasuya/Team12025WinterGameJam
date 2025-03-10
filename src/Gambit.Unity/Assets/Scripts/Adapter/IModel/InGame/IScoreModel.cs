@@ -9,9 +9,11 @@ namespace Gambit.Unity.Adapter.IModel.InGame
 
         public IReadOnlyList<int> GetPlayerScore { get; }
     }
+
     public class MockScoreModel : IScoreModel
     {
-        public int[] Scores {get;private set;}
+        public int[] Scores { get; private set; }
+
         public MockScoreModel
         (
             int playerCount
@@ -19,13 +21,17 @@ namespace Gambit.Unity.Adapter.IModel.InGame
         {
             Scores = new int[playerCount];
         }
+
         public int GetScore(int id)
         {
             return Scores[id];
         }
-        public void AddScore(int id,int score)
+
+        public void AddScore(int id, int score)
         {
             Scores[id] = score;
         }
+
+        public IReadOnlyList<int> GetPlayerScore => Scores;
     }
 }
