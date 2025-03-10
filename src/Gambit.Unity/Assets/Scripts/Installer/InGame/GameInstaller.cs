@@ -73,6 +73,7 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<AddPointCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<DrawCardCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<CardJudgeCase>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<IsPlayerWinCase>(Lifetime.Singleton).AsImplementedInterfaces();
 
             // Flow
             builder.Register<AddPointStateFlow>(Lifetime.Singleton).AsImplementedInterfaces();

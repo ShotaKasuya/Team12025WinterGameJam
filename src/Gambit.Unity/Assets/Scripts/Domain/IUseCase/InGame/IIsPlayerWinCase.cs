@@ -1,4 +1,4 @@
-﻿namespace Domain.IUseCase.InGame
+﻿namespace Gambit.Unity.Domain.IUseCase.InGame
 {
     public interface IIsPlayerWinCase
     {

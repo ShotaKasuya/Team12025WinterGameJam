@@ -1,6 +1,7 @@
 ﻿using System.Linq;
-using Domain.IUseCase.InGame;
+using Gambit.Unity.Adapter.IModel.InGame;
 using Gambit.Unity.Adapter.IModel.InGame.Player;
+using Gambit.Unity.Domain.IUseCase.InGame;
 
 namespace Gambit.Unity.Domain.UseCase.InGame
 {

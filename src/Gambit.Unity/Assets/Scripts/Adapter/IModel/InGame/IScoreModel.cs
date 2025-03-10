@@ -1,7 +1,6 @@
-
-namespace Gambit.Unity.Adapter.IModel.InGame
 using System.Collections.Generic;
 
+namespace Gambit.Unity.Adapter.IModel.InGame
 {
     public interface IScoreModel
     {
@@ -9,6 +8,5 @@ using System.Collections.Generic;
         public void AddScore(int playerId, int score);
 
         public IReadOnlyList<int> GetPlayerScore { get; }
-
     }
 }

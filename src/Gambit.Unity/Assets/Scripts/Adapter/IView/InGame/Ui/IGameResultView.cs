@@ -1,6 +1,4 @@
-﻿using CodiceApp.Gravatar;
-
-namespace Adapter.IView.InGame.Ui
+﻿namespace Gambit.Unity.Adapter.IView.InGame.Ui
 {
     public interface IGameResultView
     {

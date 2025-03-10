@@ -1,7 +1,7 @@
-﻿using Adapter.IView.InGame.Ui;
+﻿using Gambit.Unity.Adapter.IView.InGame.Ui;
 using UnityEngine;
 
-namespace Adapter.View.InGame.Ui
+namespace Gambit.Unity.Adapter.View.InGame.Ui
 {
     public class GameResultView : MonoBehaviour, IGameResultView
     {

@@ -1,12 +1,12 @@
 ﻿using System;
-using Adapter.IModel.InGame.Judgement;
-using Adapter.IModel.InGame.Player;
-using Adapter.IView.InGame;
-using Utility.Module.Option;
-using Utility.Structure.InGame;
+using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Adapter.IView.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Module.Utility.Module.Option;
+using Gambit.Unity.Structure.Utility.InGame;
 using VContainer.Unity;
 
-namespace Adapter.Linker.InGame
+namespace Gambit.Unity.Adapter.Linker.InGame
 {
     public class DebugSelectionLinker : IInitializable, IDisposable
     {
