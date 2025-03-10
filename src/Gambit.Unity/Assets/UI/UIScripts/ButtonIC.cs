@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public GameObject MatchWaitingConfpanel; // 開閉するPanel
     public Sprite highlightedSprite; // カーソルが重なったときの画像
     private Image buttonImage;
     private Sprite normalSprite; // ボタンの通常の画像
@@ -47,12 +48,28 @@ public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // ボタンがクリックされたときの処理
     public void OnDecideButtonClick()
     {
-        SEManager.Instance.Play(SEPath.DECISION_SE, 0.3f);
+        SEManager.Instance.Play(SEPath.DECISION_SE, 0.1f);
     }
 
     public void OnCancelButtonClick()
     {
-        SEManager.Instance.Play(SEPath.CANCEL_SE2);
+        SEManager.Instance.Play(SEPath.CANCEL_SE2, 0.2f);
     }
 
+    public void ToRuleScene()
+    {
+        SceneManager.LoadScene("RuleScene");
+    }
+
+    public void OnMatchButtonClick()
+    {
+        SEManager.Instance.Play(SEPath.PUSH_GAME_START_BUTTON_SE, 0.1f);
+        MatchWaitingConfpanel.SetActive(true);
+    }
+
+    //対戦相手が見つかって対戦画面に移行する際に呼び出してほしい関数です
+    public void CloseMatchWaitingConfPanel()
+    {
+        MatchWaitingConfpanel.SetActive(false);
+    }
 }
