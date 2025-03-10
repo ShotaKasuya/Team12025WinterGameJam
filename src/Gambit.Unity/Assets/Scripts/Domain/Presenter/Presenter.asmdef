@@ -9,7 +9,9 @@
         "VContainer",
         "UniTask",
         "DOTween.Modules",
-        "UniTask.DOTween"
+        "UniTask.DOTween",
+        "Gambit.Shared.Unity",
+        "AudioManager"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

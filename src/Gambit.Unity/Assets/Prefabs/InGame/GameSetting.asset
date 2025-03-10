@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42be350622344198876e0e10dc54833f, type: 3}
   m_Name: GameSetting
   m_EditorClassIdentifier: 
-  initHandCard: 4
+  initHandCard: 7

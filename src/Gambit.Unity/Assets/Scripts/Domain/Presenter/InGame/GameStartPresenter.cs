@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Gambit.Unity.Adapter.IView.InGame.Ui;
 using Gambit.Unity.Domain.IPresenter.InGame;
+using KanKikuchi.AudioManager;
 
 namespace Gambit.Unity.Domain.Presenter.InGame
 {
@@ -12,23 +13,24 @@ namespace Gambit.Unity.Domain.Presenter.InGame
     {
         public GameStartPresenter
         (
-            IStartTextView startTextView
+            IStartImageView startImageView
         )
         {
-            StartTextView = startTextView;
+            StartImageView = startImageView;
         }
 
         public async UniTask GameStart()
         {
-            var endPos = StartTextView.CenterPosition;
-            var moveDuration = StartTextView.MoveDuration;
-            var fadeDuration = StartTextView.FadeDuration;
+            var endPos = StartImageView.CenterPosition;
+            var moveDuration = StartImageView.MoveDuration;
+            var fadeDuration = StartImageView.FadeDuration;
 
-            await StartTextView.ModelTransform.DOMove(endPos, moveDuration).AsyncWaitForCompletion();
+            SEManager.Instance.Play(SEPath.GAME_START_SE, 0.3f);
+            await StartImageView.ModelTransform.DOMove(endPos, moveDuration).AsyncWaitForCompletion();
 
-            await StartTextView.Text.DOFade(0, fadeDuration).AsyncWaitForCompletion();
+            await StartImageView.Image.DOFade(0, fadeDuration).AsyncWaitForCompletion();
         }
 
-        private IStartTextView StartTextView { get; }
+        private IStartImageView StartImageView { get; }
     }
 }
