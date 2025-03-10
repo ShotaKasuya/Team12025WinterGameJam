@@ -10,6 +10,7 @@
         "UniTask",
         "DOTween.Modules",
         "UniTask.DOTween",
+        "Gambit.Shared.Unity"
         "AudioManager"
     ],
     "includePlatforms": [],

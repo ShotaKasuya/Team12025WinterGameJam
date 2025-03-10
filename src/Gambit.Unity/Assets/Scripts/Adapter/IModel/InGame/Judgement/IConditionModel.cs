@@ -15,4 +15,21 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
     {
         public IReadOnlyList<Condition> ConditionReader { get; }
     }
+        public class MockConditionModel : IMutConditionModel
+    {
+        public IReadOnlyList<Condition> ConditionReader => Conditions;
+        public Condition[] Conditions {get;}
+
+        public MockConditionModel
+        (
+            int playerCount
+        )
+        {
+            Conditions = new Condition[playerCount];
+        }
+        public void SetCondition(int id,Condition condition)
+        {
+            Conditions[id] = condition;
+        }
+    }
 }

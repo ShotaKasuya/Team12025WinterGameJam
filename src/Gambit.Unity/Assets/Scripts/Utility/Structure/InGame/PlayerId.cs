@@ -43,5 +43,10 @@ namespace Gambit.Unity.Structure.Utility.InGame
         {
             return $"PlayerId: {Id}";
         }
+
+        public static PlayerId ConversationId(Shared.DataTransferObject.PlayerId id)
+        {
+            return new PlayerId(id.Id);
+        }
     }
 }
