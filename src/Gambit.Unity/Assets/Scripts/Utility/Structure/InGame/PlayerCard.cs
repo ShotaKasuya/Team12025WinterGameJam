@@ -33,10 +33,10 @@ namespace Gambit.Unity.Structure.Utility.InGame
                    $")";
         }
 
-        public static PlayerCard ConversionSentPlayerCard(SentPlayerCard sentPlayerCard)
+        public static PlayerCard ConversionSentPlayerCard(PlayerCardTransferObject playerCardTransferObject)
         {
-            var card = Card.ConversationCard(sentPlayerCard.Card.Rank, sentPlayerCard.Card.Suit);
-            var playerId = PlayerId.ConversationId(sentPlayerCard.PlayerId);
+            var card = Card.ConversationCard(playerCardTransferObject.Card.Rank, playerCardTransferObject.Card.Suit);
+            var playerId = PlayerId.ConversationId(playerCardTransferObject.PlayerId);
             return new PlayerCard(playerId, card);
         }
     }

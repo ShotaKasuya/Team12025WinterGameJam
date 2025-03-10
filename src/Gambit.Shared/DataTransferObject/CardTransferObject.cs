@@ -1,25 +1,22 @@
 ﻿namespace Gambit.Shared.DataTransferObject
 {
-    public struct Card
+    public readonly struct CardTransferObject
     {
-            
-        private SuitTransObj suit;
-        private RankTransObj rank;
-        public SuitTransObj Suit => suit;
-        public RankTransObj Rank => rank;
-        
-        public Card
+        public CardTransferObject
         (
-            SuitTransObj suit,
-            RankTransObj rank
+            SuitTransferObject suit,
+            RankTransferObject rank
         )
         {
-            this.suit = suit;
-            this.rank = rank;
+            Suit = suit;
+            Rank = rank;
         }
+            
+        public readonly SuitTransferObject Suit;
+        public readonly RankTransferObject Rank;
     }
     
-    public enum SuitTransObj
+    public enum SuitTransferObject
     {
         Spades, // ♠
         Hearts, // ♥
@@ -27,7 +24,7 @@
         Clubs, // ♣
     }
 
-    public enum RankTransObj
+    public enum RankTransferObject
     {
         Two,
         Three,

@@ -1,12 +1,12 @@
 ﻿using System;
 using Gambit.Shared;
+using Gambit.Shared.DataTransferObject;
 
 namespace Gambit.Unity.Adapter.View.Communication
 {
-    
-    public class SearchRoomReceiver : ISearchRoomReceiver
+    public class GameMainReceiverView : IGameMainReceiver
     {
-        public void Join(string userName)
+        public void OnJoin(string userName)
         {
             Console.WriteLine($"{userName} joined");
         }
@@ -14,6 +14,11 @@ namespace Gambit.Unity.Adapter.View.Communication
         public void MatchResult(string machResult)
         {
             Console.WriteLine($" VS {machResult}");
+        }
+
+        public void SendSelectedCard(PlayerCardTransferObject playerCardTransferObject)
+        {
+            // todo
         }
     }
 }
