@@ -10,23 +10,26 @@ public class GroupManagement
     /// ランダムにプレイヤーを追加
     /// </summary>
     /// <returns></returns>
-    public GroupId AddPlayer()
+    public (GroupId, PlayerId) AddPlayer()
     {
         GroupId groupId;
+        var random = Guid.NewGuid().ToByteArray();
+        var playerId = new PlayerId(BitConverter.ToUInt32(random, 0));
+
         var group = Groups.Values.FirstOrDefault(x => x.PlayerCount <= PLAYER_MAX);
         if (group is not null)
         {
-            groupId = group.AddPlayer();
+            groupId = group.AddPlayer(playerId);
         }
         else
         {
-            var value = BitConverter.ToUInt32(Guid.NewGuid().ToByteArray(), 0);
-            groupId = new GroupId(value);
-            var newGroup = new Group(groupId);
+            var newGroupId = BitConverter.ToUInt32(random, 1);
+            groupId = new GroupId(newGroupId);
+            var newGroup = new Group(groupId, playerId);
             Groups.Add(groupId, newGroup);
         }
 
-        return groupId;
+        return (groupId, playerId);
     }
 
     public void LeavePlayer(PlayerId playerId)
@@ -51,6 +54,7 @@ public class GroupManagement
             : Option<int>.None();
     }
 
+    public IReadOnlyDictionary<GroupId, Group> GroupReader => Groups;
     private Dictionary<GroupId, Group> Groups { get; } = new();
 
     static GroupManagement()

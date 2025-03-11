@@ -8,9 +8,9 @@ public class GameMainService: StreamingHubBase<IGameMainCommunication, IGameMain
 {
     public async ValueTask JoinAsync(string userName)
     {
-        var groupId = GroupManagement.Instance.AddPlayer();
+        var (groupId, playerId) = GroupManagement.Instance.AddPlayer();
         var group = await Group.AddAsync(groupId.ToString());
-        
+        GroupManagement.Instance.GroupReader[groupId].SetGroup(group);
     }
 
     public ValueTask MatchResultAsync(string result)

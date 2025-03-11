@@ -1,30 +1,39 @@
+using Gambit.Shared;
+using MagicOnion.Server.Hubs;
+
 namespace Gambit.Server.Services.Structure;
 
-public class Group(GroupId id)
+public class Group(GroupId id, PlayerId playerId)
 {
     public readonly GroupId Id = id;
-
+    public readonly PlayerId Owner = playerId;
+    
+    public IGroup<IGameMainReceiver>? PairGroup { get; private set; }
     public int PlayerCount { get; private set; }
     private List<PlayerId> Players { get; } = new(2);
     private IReadOnlyCollection<PlayerId> GroupPlayers => Players;
 
-    public GroupId AddPlayer()
+    public GroupId AddPlayer(PlayerId newPlayerId)
     {
-        var id = (uint)Players.Count;
-        Players.Add(new PlayerId(id));
+        Players.Add(newPlayerId);
         PlayerCount++;
         return Id;
     }
 
-    public void RemovePlayer(PlayerId playerId)
+    public void RemovePlayer(PlayerId removePlayerId)
     {
-        Players.Remove(playerId);
+        Players.Remove(removePlayerId);
         PlayerCount--;
     }
 
     public bool Has(PlayerId id)
     {
         return GroupPlayers.Contains(id);
+    }
+
+    public void SetGroup(IGroup<IGameMainReceiver> group)
+    {
+        PairGroup = group;
     }
 }
 
