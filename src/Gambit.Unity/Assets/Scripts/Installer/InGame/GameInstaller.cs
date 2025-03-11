@@ -58,6 +58,7 @@ namespace Gambit.Unity.Installer.InGame
 
             // Linker
             builder.RegisterEntryPoint<SelectionLinker>();
+            builder.RegisterEntryPoint<PlayerCardTransferObjectLinker>();
 
             // Presenter
             builder.Register<DrawPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
