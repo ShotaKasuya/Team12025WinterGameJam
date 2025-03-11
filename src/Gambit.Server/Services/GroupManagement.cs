@@ -47,6 +47,11 @@ public class GroupManagement
         }
     }
 
+    public Group GetGroup(PlayerId playerId)
+    {
+        return GroupReader.Values.First(x => x.Has(playerId));
+    }
+
     public Option<int> GroupPlayerCount(GroupId id)
     {
         return Groups.TryGetValue(id, out var group)

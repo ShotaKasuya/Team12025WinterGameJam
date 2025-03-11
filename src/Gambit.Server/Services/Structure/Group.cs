@@ -7,6 +7,7 @@ public class Group(GroupId id, PlayerId playerId)
 {
     public readonly GroupId Id = id;
     public readonly PlayerId Owner = playerId;
+    public readonly int GroupSeed = Random.Shared.Next();
     
     public IGroup<IGameMainReceiver>? PairGroup { get; private set; }
     public int PlayerCount { get; private set; }

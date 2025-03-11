@@ -13,8 +13,7 @@ namespace Gambit.Shared
         /// <summary>
         /// 部屋に入室した際の処理
         /// </summary>
-        /// <param name="userName"></param>
-        ValueTask JoinAsync(string userName);
+        ValueTask<PlayerInitInfoTransferObject> JoinAsync();
         
         ValueTask MatchResultAsync(string result);
         
