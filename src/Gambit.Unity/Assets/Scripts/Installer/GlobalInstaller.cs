@@ -1,6 +1,7 @@
 using Cysharp.Net.Http;
 using Gambit.Unity.Adapter.Model.Global;
 using Gambit.Unity.Adapter.Model.InGame;
+using Gambit.Unity.Adapter.View.Communication;
 using Grpc.Net.Client;
 using MagicOnion;
 using MagicOnion.Unity;
@@ -25,6 +26,7 @@ namespace Gambit.Unity.Installer
             var channel = GrpcChannelx.ForAddress("http://game.gambit-server.com:5001");
 
             builder.RegisterInstance(channel);
+            builder.Register<GameMainReceiverView>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerIdModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<RoomInfoModel>(Lifetime.Singleton).AsImplementedInterfaces();
         }

@@ -6,10 +6,10 @@ using Gambit.Unity.Adapter.IView.InGame;
 
 namespace Gambit.Unity.Adapter.View.Communication
 {
-    public class GameMainReceiverView : IGameMainReceiver,IGetSentCardStateView
+    public class GameMainReceiverView : IGameMainReceiver, IGetSentCardStateView
     {
         public Action<PlayerCard> GetSentCard { get; set; }
-        
+
         public void OnJoin(string userName)
         {
             Console.WriteLine($"{userName} joined");
