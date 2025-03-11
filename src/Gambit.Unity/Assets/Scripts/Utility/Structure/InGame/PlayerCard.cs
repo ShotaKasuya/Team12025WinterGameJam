@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Gambit.Shared.DataTransferObject;
 using UnityEngine;
 
@@ -33,11 +34,20 @@ namespace Gambit.Unity.Structure.Utility.InGame
                    $")";
         }
 
-        public static PlayerCard ConversionSentPlayerCard(SentPlayerCard sentPlayerCard)
+        public static PlayerCard ConversionSentPlayerCard(PlayerCardTransferObject playerCardTransferObject)
         {
-            var card = Card.ConversationCard(sentPlayerCard.Card.Rank, sentPlayerCard.Card.Suit);
-            var playerId = PlayerId.ConversationId(sentPlayerCard.PlayerId);
+            var card = Card.ConversationCard(playerCardTransferObject.Card.Rank, playerCardTransferObject.Card.Suit);
+            var playerId = PlayerId.ConversationId(playerCardTransferObject.PlayerId);
             return new PlayerCard(playerId, card);
+        }
+    }
+    
+    public static partial class Converter
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static PlayerCardTransferObject Convert(this PlayerCard playerCard)
+        {
+            return new PlayerCardTransferObject(playerCard.PlayerId.Convert(), playerCard.Card.Convert());
         }
     }
 }

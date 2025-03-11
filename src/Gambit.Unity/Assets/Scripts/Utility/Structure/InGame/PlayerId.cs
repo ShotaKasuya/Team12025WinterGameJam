@@ -1,4 +1,5 @@
 using System;
+using Gambit.Shared.DataTransferObject;
 using UnityEngine;
 
 namespace Gambit.Unity.Structure.Utility.InGame
@@ -44,9 +45,17 @@ namespace Gambit.Unity.Structure.Utility.InGame
             return $"PlayerId: {Id}";
         }
 
-        public static PlayerId ConversationId(Shared.DataTransferObject.PlayerId id)
+        public static PlayerId ConversationId(Shared.DataTransferObject.PlayerIdTransferObject idTransferObject)
         {
-            return new PlayerId(id.Id);
+            return new PlayerId(idTransferObject.Id);
+        }
+    }
+    
+    public static partial class Converter
+    {
+        public static PlayerIdTransferObject Convert(this PlayerId playerId)
+        {
+            return new PlayerIdTransferObject(playerId.Id);
         }
     }
 }

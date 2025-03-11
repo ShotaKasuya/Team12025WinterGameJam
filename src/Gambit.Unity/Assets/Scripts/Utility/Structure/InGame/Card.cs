@@ -110,9 +110,9 @@ namespace Gambit.Unity.Structure.Utility.InGame
             return !(left == right);
         }
 
-        public static Card ConversationCard(RankTransObj rank, SuitTransObj suit)
+        public static Card ConversationCard(RankTransferObject rank, SuitTransferObject suit)
         {
-            return new Card(suit.Conversion(), rank.Conversion());
+            return new Card(suit.Convert(), rank.Convert());
         }
     }
 
@@ -141,74 +141,80 @@ namespace Gambit.Unity.Structure.Utility.InGame
         Ace,
     }
 
-    public static class CardExtension
+    public static partial class Converter
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Rank Conversion(this RankTransObj rankTransObj)
+        public static CardTransferObject Convert(this Card card)
         {
-            return rankTransObj switch
+            return new CardTransferObject(card.Suit.Convert(), card.Rank.Convert());
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Rank Convert(this RankTransferObject rankTransferObject)
+        {
+            return rankTransferObject switch
             {
-                RankTransObj.Two => Rank.Two,
-                RankTransObj.Three => Rank.Three,
-                RankTransObj.Four => Rank.Four,
-                RankTransObj.Five => Rank.Five,
-                RankTransObj.Six => Rank.Six,
-                RankTransObj.Seven => Rank.Seven,
-                RankTransObj.Eight => Rank.Eight,
-                RankTransObj.Nine => Rank.Nine,
-                RankTransObj.Ten => Rank.Ten,
-                RankTransObj.Jack => Rank.Jack,
-                RankTransObj.Queen => Rank.Queen,
-                RankTransObj.King => Rank.King,
-                RankTransObj.Ace => Rank.Ace,
-                _ => throw new ArgumentOutOfRangeException(nameof(rankTransObj), rankTransObj, null)
+                RankTransferObject.Two => Rank.Two,
+                RankTransferObject.Three => Rank.Three,
+                RankTransferObject.Four => Rank.Four,
+                RankTransferObject.Five => Rank.Five,
+                RankTransferObject.Six => Rank.Six,
+                RankTransferObject.Seven => Rank.Seven,
+                RankTransferObject.Eight => Rank.Eight,
+                RankTransferObject.Nine => Rank.Nine,
+                RankTransferObject.Ten => Rank.Ten,
+                RankTransferObject.Jack => Rank.Jack,
+                RankTransferObject.Queen => Rank.Queen,
+                RankTransferObject.King => Rank.King,
+                RankTransferObject.Ace => Rank.Ace,
+                _ => throw new ArgumentOutOfRangeException(nameof(rankTransferObject), rankTransferObject, null)
             };
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static RankTransObj Conversion(this Rank rank)
+        public static RankTransferObject Convert(this Rank rank)
         {
             return rank switch
             {
-                Rank.Two => RankTransObj.Two,
-                Rank.Three => RankTransObj.Three,
-                Rank.Four => RankTransObj.Four,
-                Rank.Five => RankTransObj.Five,
-                Rank.Six => RankTransObj.Six,
-                Rank.Seven => RankTransObj.Seven,
-                Rank.Eight => RankTransObj.Eight,
-                Rank.Nine => RankTransObj.Nine,
-                Rank.Ten => RankTransObj.Ten,
-                Rank.Jack => RankTransObj.Jack,
-                Rank.Queen => RankTransObj.Queen,
-                Rank.King => RankTransObj.King,
-                Rank.Ace => RankTransObj.Ace,
+                Rank.Two => RankTransferObject.Two,
+                Rank.Three => RankTransferObject.Three,
+                Rank.Four => RankTransferObject.Four,
+                Rank.Five => RankTransferObject.Five,
+                Rank.Six => RankTransferObject.Six,
+                Rank.Seven => RankTransferObject.Seven,
+                Rank.Eight => RankTransferObject.Eight,
+                Rank.Nine => RankTransferObject.Nine,
+                Rank.Ten => RankTransferObject.Ten,
+                Rank.Jack => RankTransferObject.Jack,
+                Rank.Queen => RankTransferObject.Queen,
+                Rank.King => RankTransferObject.King,
+                Rank.Ace => RankTransferObject.Ace,
                 _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, null)
             };
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Suit Conversion(this SuitTransObj suitTransObj)
+        public static Suit Convert(this SuitTransferObject suitTransferObject)
         {
-            return suitTransObj switch
+            return suitTransferObject switch
             {
-                SuitTransObj.Spades => Suit.Spades,
-                SuitTransObj.Hearts => Suit.Hearts,
-                SuitTransObj.Diamonds => Suit.Diamonds,
-                SuitTransObj.Clubs => Suit.Clubs,
-                _ => throw new ArgumentOutOfRangeException(nameof(suitTransObj), suitTransObj, null)
+                SuitTransferObject.Spades => Suit.Spades,
+                SuitTransferObject.Hearts => Suit.Hearts,
+                SuitTransferObject.Diamonds => Suit.Diamonds,
+                SuitTransferObject.Clubs => Suit.Clubs,
+                _ => throw new ArgumentOutOfRangeException(nameof(suitTransferObject), suitTransferObject, null)
             };
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static SuitTransObj Conversion(this Suit suit)
+        public static SuitTransferObject Convert(this Suit suit)
         {
             return suit switch
             {
-                Suit.Spades => SuitTransObj.Spades,
-                Suit.Hearts => SuitTransObj.Hearts,
-                Suit.Diamonds => SuitTransObj.Diamonds,
-                Suit.Clubs => SuitTransObj.Clubs,
+                Suit.Spades => SuitTransferObject.Spades,
+                Suit.Hearts => SuitTransferObject.Hearts,
+                Suit.Diamonds => SuitTransferObject.Diamonds,
+                Suit.Clubs => SuitTransferObject.Clubs,
                 _ => throw new ArgumentOutOfRangeException(nameof(suit), suit, null)
             };
         }

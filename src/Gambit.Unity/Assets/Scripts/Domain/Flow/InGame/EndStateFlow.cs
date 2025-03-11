@@ -2,6 +2,7 @@ using Gambit.Unity.Module.Utility.Module.StateMachine;
 using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 using Cysharp.Threading.Tasks;
 using Gambit.Unity.Domain.IUseCase.InGame;
+using UnityEngine;
 
 namespace Gambit.Unity.Domain.Flow.InGame
 {
