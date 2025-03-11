@@ -18,7 +18,8 @@
         "IUseCase",
         "Linker",
         "Presenter",
-        "View"
+        "View",
+        "AudioManager"
     ],
     "includePlatforms": [
         "Editor"
