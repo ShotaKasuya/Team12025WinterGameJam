@@ -1,7 +1,11 @@
-﻿namespace Domain.IUseCase.InGame
+﻿using CodiceApp.Gravatar;
+using Utility.Structure.InGame;
+
+namespace Domain.IUseCase.InGame
 {
     public interface IIsPlayerWinCase
     {
-        public bool IsPlayerWin { get; }
+        public Result IsPlayerWin { get; }
+        
     }
 }

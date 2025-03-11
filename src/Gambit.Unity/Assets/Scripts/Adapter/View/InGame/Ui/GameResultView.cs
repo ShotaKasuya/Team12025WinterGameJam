@@ -1,5 +1,6 @@
 ﻿using Adapter.IView.InGame.Ui;
 using UnityEngine;
+using Utility.Structure.InGame;
 
 namespace Adapter.View.InGame.Ui
 {
@@ -15,24 +16,24 @@ namespace Adapter.View.InGame.Ui
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         }
         
-        public void Enable(IGameResultView.Result result)
+        public void Enable(Result result)
         {
             switch (result)
             {
-                case IGameResultView.Result.Win:
+                case Result.Win:
                     spriteRenderer.sprite = Win;
                     break;
-                case IGameResultView.Result.Lose:
+                case Result.Lose:
                     spriteRenderer.sprite = lose;
                     break;
-                case IGameResultView.Result.Draw:
+                case Result.Draw:
                     spriteRenderer.sprite = draw;
                     break;
             }
             gameObject.SetActive(true);
         }
         
-        public void DisEnable(IGameResultView.Result result)
+        public void DisEnable()
         {
             gameObject.SetActive(false);
         }
