@@ -68,7 +68,7 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<GameStartPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // UseCase
-            builder.Register<DeckHandCardInitialize>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<DeckHandCardInitializeCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IsGameEndCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IsReadyJudgeCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<AddPointCase>(Lifetime.Singleton).AsImplementedInterfaces();
