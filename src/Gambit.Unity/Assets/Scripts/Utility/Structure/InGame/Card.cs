@@ -112,7 +112,7 @@ namespace Gambit.Unity.Structure.Utility.InGame
 
         public static Card ConversationCard(RankTransferObject rank, SuitTransferObject suit)
         {
-            return new Card(suit.Conversion(), rank.Conversion());
+            return new Card(suit.Convert(), rank.Convert());
         }
     }
 
@@ -141,10 +141,16 @@ namespace Gambit.Unity.Structure.Utility.InGame
         Ace,
     }
 
-    public static class CardExtension
+    public static partial class Converter
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Rank Conversion(this RankTransferObject rankTransferObject)
+        public static CardTransferObject Convert(this Card card)
+        {
+            return new CardTransferObject(card.Suit.Convert(), card.Rank.Convert());
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Rank Convert(this RankTransferObject rankTransferObject)
         {
             return rankTransferObject switch
             {
@@ -166,7 +172,7 @@ namespace Gambit.Unity.Structure.Utility.InGame
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static RankTransferObject Conversion(this Rank rank)
+        public static RankTransferObject Convert(this Rank rank)
         {
             return rank switch
             {
@@ -188,7 +194,7 @@ namespace Gambit.Unity.Structure.Utility.InGame
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Suit Conversion(this SuitTransferObject suitTransferObject)
+        public static Suit Convert(this SuitTransferObject suitTransferObject)
         {
             return suitTransferObject switch
             {
@@ -201,7 +207,7 @@ namespace Gambit.Unity.Structure.Utility.InGame
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static SuitTransferObject Conversion(this Suit suit)
+        public static SuitTransferObject Convert(this Suit suit)
         {
             return suit switch
             {
