@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject MatchWaitingConfpanel; // 開閉するPanel
+    public GameObject DeclarationPanel;
     public Sprite highlightedSprite; // カーソルが重なったときの画像
     private Image buttonImage;
     private Sprite normalSprite; // ボタンの通常の画像
@@ -67,9 +68,24 @@ public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         MatchWaitingConfpanel.SetActive(true);
     }
 
+    public void OnDeclarationButtonClick()
+    {
+        DeclarationPanel.SetActive(true);
+        SEManager.Instance.Play(SEPath.DECLARATION_BUTTON_SE, 0.2f);
+
+    }
+
+    public void BackDeclarationButtonClick()
+    {
+        DeclarationPanel.SetActive(false);
+        SEManager.Instance.Play(SEPath.CANCEL_SE2, 0.2f);
+    }
+
     //対戦相手が見つかって対戦画面に移行する際に呼び出してほしい関数です
     public void CloseMatchWaitingConfPanel()
     {
         MatchWaitingConfpanel.SetActive(false);
     }
+
+
 }

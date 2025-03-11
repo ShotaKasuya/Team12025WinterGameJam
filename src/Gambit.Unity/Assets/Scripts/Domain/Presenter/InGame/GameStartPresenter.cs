@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Gambit.Unity.Adapter.IView.InGame.Ui;
@@ -29,6 +32,7 @@ namespace Gambit.Unity.Domain.Presenter.InGame
             await StartImageView.ModelTransform.DOMove(endPos, moveDuration).AsyncWaitForCompletion();
 
             await StartImageView.Image.DOFade(0, fadeDuration).AsyncWaitForCompletion();
+            
         }
 
         private IStartImageView StartImageView { get; }
