@@ -4,9 +4,9 @@ namespace Gambit.Unity.Structure.Utility.InGame
 {
     public struct HandCard
     {
-        public List<Card> Cards { get; set; }
+        public List<PlayerCard> Cards { get; set; }
 
-        public HandCard(List<Card> cards)
+        public HandCard(List<PlayerCard> cards)
         {
             Cards = cards;
         }

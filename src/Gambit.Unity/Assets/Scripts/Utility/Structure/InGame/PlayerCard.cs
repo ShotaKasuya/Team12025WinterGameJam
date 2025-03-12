@@ -11,12 +11,22 @@ namespace Gambit.Unity.Structure.Utility.InGame
         public PlayerCard(PlayerId playerId, Card card)
         {
             this.playerId = playerId;
+            playerIndex = 0;
+            this.card = card;
+        }
+
+        public PlayerCard(PlayerId playerId, int playerIndex, Card card)
+        {
+            this.playerId = playerId;
+            this.playerIndex = playerIndex;
             this.card = card;
         }
 
         [SerializeField] private PlayerId playerId;
+        [SerializeField] private int playerIndex;
         [SerializeField] private Card card;
         public PlayerId PlayerId => playerId;
+        public int PlayerIndex => playerIndex;
         public Card Card => card;
         public Rank Rank => Card.Rank;
         public Suit Suit => Card.Suit;
@@ -34,20 +44,22 @@ namespace Gambit.Unity.Structure.Utility.InGame
                    $")";
         }
 
+
         public static PlayerCard ConversionSentPlayerCard(PlayerCardTransferObject playerCardTransferObject)
         {
             var card = Card.ConversationCard(playerCardTransferObject.Card.Rank, playerCardTransferObject.Card.Suit);
             var playerId = playerCardTransferObject.PlayerId.Convert();
-            return new PlayerCard(playerId, card);
+            return new PlayerCard(playerId, playerCardTransferObject.PlayerIndex, card);
         }
     }
-    
+
     public static partial class Converter
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static PlayerCardTransferObject Convert(this PlayerCard playerCard)
         {
-            return new PlayerCardTransferObject(playerCard.PlayerId.Convert(), playerCard.Card.Convert());
+            return new PlayerCardTransferObject(playerCard.PlayerId.Convert(), playerCard.PlayerIndex,
+                playerCard.Card.Convert());
         }
     }
 }

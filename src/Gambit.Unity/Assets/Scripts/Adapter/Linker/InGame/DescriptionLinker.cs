@@ -10,7 +10,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
     {
         public DescriptionLinker
         (
-            IPlayerIndexModel playerIdModel,
+            IPlayerIdModel playerIdModel,
             ISelectedCardModel selectedCardModel,
             ICardDescriptionModel cardDescriptionModel,
             ICardDescriptionView cardDescriptionView
@@ -34,7 +34,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
             }
         }
 
-        private IPlayerIndexModel PlayerIdModel { get; }
+        private IPlayerIdModel PlayerIdModel { get; }
         private ISelectedCardModel SelectedCardModel { get; }
         private ICardDescriptionModel CardDescriptionModel { get; }
         private ICardDescriptionView CardDescriptionView { get; }

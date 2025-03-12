@@ -10,7 +10,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
         public CardFactory
         (
             ProductCardView cardView,
-            IPlayerIndexModel playerIdModel
+            IPlayerIdModel playerIdModel
         )
         {
             CardView = cardView;
@@ -22,7 +22,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
             var product = Object.Instantiate(CardView);
             product.Inject(playerCard);
             
-            if (PlayerIdModel.PlayerIndex == playerCard.PlayerId)
+            if (PlayerIdModel.PlayerId == playerCard.PlayerId)
             {
                 product.ShowFace();
             }
@@ -35,6 +35,6 @@ namespace Gambit.Unity.Adapter.Linker.InGame
         }
         
         private ProductCardView CardView { get; }
-        private IPlayerIndexModel PlayerIdModel { get; }
+        private IPlayerIdModel PlayerIdModel { get; }
     }
 }

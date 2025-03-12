@@ -5,7 +5,7 @@ namespace Gambit.Unity.Domain.IUseCase.InGame
 {
     public interface IDrawCase
     {
-        public Option<Card[]> DrawCard();
+        public Option<PlayerCard[]> DrawCard();
     }
 
     public interface IInitHandCardCase

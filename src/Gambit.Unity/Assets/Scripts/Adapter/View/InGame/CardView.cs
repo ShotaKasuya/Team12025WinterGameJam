@@ -1,3 +1,4 @@
+using System;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
 using Gambit.Unity.Adapter.View.CardFactory;
 using UnityEngine;
@@ -33,6 +34,11 @@ namespace Gambit.Unity.Adapter.View.InGame
         {
             ModelTransform.localScale = selectedScale;
         }
+
+        // private void OnMouseEnter()
+        // {
+        //     OnMouseEvent?.Invoke(Card);
+        // }
 
         public override void TurnOff()
         {
