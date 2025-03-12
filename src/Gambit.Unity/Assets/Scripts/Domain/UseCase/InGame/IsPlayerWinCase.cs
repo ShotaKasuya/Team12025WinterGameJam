@@ -10,19 +10,19 @@ namespace Gambit.Unity.Domain.UseCase.InGame
         public IsPlayerWinCase
         (
             IScoreModel scoreModel,
-            IPlayerIndexModel playerIdModel
+            IPlayerIdModel playerIdModel
         )
         {
             ScoreModel = scoreModel;
             PlayerIdModel = playerIdModel;
         }
 
-        public IScoreModel ScoreModel { get; }
-        public IPlayerIndexModel PlayerIdModel { get; }
+        private IScoreModel ScoreModel { get; }
+        private IPlayerIdModel PlayerIdModel { get; }
 
         public bool IsPlayerWin
         {
-            get { return (ScoreModel.GetScore(PlayerIdModel.PlayerIndex.Id) == ScoreModel.GetPlayerScore.Max()); }
+            get { return (ScoreModel.GetScore(PlayerIdModel.PlayerIndex) == ScoreModel.GetPlayerScore.Max()); }
         }
     }
 }

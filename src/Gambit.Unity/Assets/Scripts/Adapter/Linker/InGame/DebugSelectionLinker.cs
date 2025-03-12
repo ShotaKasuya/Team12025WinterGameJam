@@ -38,7 +38,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
 
         private void OnSelect(PlayerCard selectedCard)
         {
-            var currentSelect = SelectedCardModel.GetSelection(selectedCard.PlayerId);
+            var currentSelect = SelectedCardModel.GetSelection(selectedCard.PlayerIndex);
             var apply = Option<PlayerCard>.Some(selectedCard);
 
             if (currentSelect.TryGetValue(out var card))

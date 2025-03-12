@@ -15,10 +15,10 @@ namespace Gambit.Unity.Installer.InGame.Mock
         [SerializeField] private CardView cardView;
         [SerializeField] private HandCardPoolView handCardPoolView;
 
-        [SerializeField] private Card[] cards0;
-        [SerializeField] private Card[] cards1;
-        [SerializeField] private Card[] cards2;
-        [SerializeField] private Card[] cards3;
+        [SerializeField] private PlayerCard[] cards0;
+        [SerializeField] private PlayerCard[] cards1;
+        [SerializeField] private PlayerCard[] cards2;
+        [SerializeField] private PlayerCard[] cards3;
 
         protected override void Configure(IContainerBuilder builder)
         {

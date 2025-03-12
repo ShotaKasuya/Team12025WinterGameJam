@@ -8,7 +8,7 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
     /// </summary>
     public interface IMutHandCardModel : IHandCardModel
     {
-        public void StoreNewCard(int playerId, Card card);
+        public void StoreNewCard(PlayerCard playerCard);
     }
 
     public interface IHandCardModel

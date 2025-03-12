@@ -13,18 +13,17 @@ namespace Gambit.Unity.Adapter.Model.InGame.Judgement
             HandCards = new HandCard[playerCountModel.PlayerCount];
             for (int i = 0; i < playerCountModel.PlayerCount; i++)
             {
-                HandCards[i] = new HandCard(new List<Card>());
+                HandCards[i] = new HandCard(new List<PlayerCard>());
             }
         }
 
         public IReadOnlyList<HandCard> HandCardReader => HandCards;
 
-        public void StoreNewCard(int playerId, Card card)
+        public void StoreNewCard(PlayerCard playerCard)
         {
-            HandCards[playerId].Cards.Add(card);
+            HandCards[playerCard.PlayerIndex].Cards.Add(playerCard);
         }
 
         private HandCard[] HandCards { get; }
-        public Action<PlayerHandCard> AddNewCardEvent { get; set; }
     }
 }

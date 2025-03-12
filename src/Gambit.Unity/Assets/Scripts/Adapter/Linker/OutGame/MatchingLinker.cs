@@ -4,7 +4,6 @@ using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IView.InGame;
 using Gambit.Unity.Adapter.IView.OutGame.Title;
 using Gambit.Unity.Adapter.IView.UseCommunication;
-using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
@@ -38,7 +37,7 @@ namespace Gambit.Unity.Adapter.Linker.OutGame
         {
             var result = await ConnectView.Connect();
             RoomInfoModel.Init(result.RoomSeed, result.PlayerId);
-            IdInitializableModel.SetPlayerId(result.PlayerId, new PlayerId(result.PlayerIndex));
+            IdInitializableModel.SetPlayerId(result.PlayerId, result.PlayerIndex);
         }
 
         private IMatchConfPanelView MatchConfPanelView { get; }

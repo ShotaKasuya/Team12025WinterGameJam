@@ -11,7 +11,7 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
     public interface ISelectedCardModel
     {
         public Option<PlayerCard>[] SelectedCards { get; }
-        public Option<PlayerCard> GetSelection(PlayerId playerId);
+        public Option<PlayerCard> GetSelection(int playerId);
 
         public void Clear();
     }
