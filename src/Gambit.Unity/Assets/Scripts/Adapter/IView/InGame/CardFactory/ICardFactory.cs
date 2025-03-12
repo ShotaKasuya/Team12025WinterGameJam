@@ -19,6 +19,7 @@ namespace Gambit.Unity.Adapter.IView.InGame.CardFactory
     {
         public Transform ModelTransform { get; private set; }
         public Action<PlayerCard> SelectionEvent { get; set; }
+        //public Action<PlayerCard> OnMouseEvent { get; set; }
         public abstract void TurnOn();
         public abstract void TurnOff();
 

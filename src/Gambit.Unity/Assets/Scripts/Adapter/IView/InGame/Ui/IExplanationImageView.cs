@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+﻿using Gambit.Shared.DataTransferObject;
+using UnityEngine.UI;
 
 namespace Gambit.Unity.Adapter.IView.InGame.Ui
 {
@@ -7,6 +8,9 @@ namespace Gambit.Unity.Adapter.IView.InGame.Ui
         public Image  Image { get; }
         public float FadeInDuration { get; }
         public float FadeOutDuration { get; }
+
+        
+        public void Face();
 
     }
 }

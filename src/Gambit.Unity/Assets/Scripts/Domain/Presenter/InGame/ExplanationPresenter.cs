@@ -17,6 +17,8 @@ namespace Gambit.Unity.Domain.Presenter.InGame
 
         public async UniTask OnMouseEnter()
         {
+            
+            ExplanationImageView.Face();
             var fadeInDuration = ExplanationImageView.FadeInDuration;
             var explanationImageView = ExplanationImageView.Image;
             
