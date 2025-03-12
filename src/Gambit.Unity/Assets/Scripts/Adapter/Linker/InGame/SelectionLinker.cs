@@ -14,12 +14,14 @@ namespace Gambit.Unity.Adapter.Linker.InGame
     {
         public SelectionLinker
         (
-            IPlayerIndexModel playerIdModel,
+            IPlayerIndexModel playerIndexModel,
+            IPlayerIdModel playerIdModel,
             IHandCardPoolView handCardPoolView,
             ISendSelectedCardView sendSelectedCardView,
             IMutSelectedCardModel selectedCardModel
         )
         {
+            PlayerIndexModel = playerIndexModel;
             PlayerIdModel = playerIdModel;
             HandCardPoolView = handCardPoolView;
             SendSelectedCardView = sendSelectedCardView;
@@ -47,7 +49,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
             var currentSelect = SelectedCardModel.GetSelection(selectedCard.PlayerId);
             var apply = Option<PlayerCard>.Some(selectedCard);
 
-            if (PlayerIdModel.PlayerIndex != selectedCard.PlayerId)
+            if (PlayerIndexModel.PlayerIndex != selectedCard.PlayerId)
             {
                 return;
             }
@@ -60,7 +62,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
                 }
             }
 
-            SendSelectedCardView.SendPlayerCard(selectedCard);
+            SendSelectedCardView.SendPlayerCard(new PlayerCard(PlayerIdModel.PlayerId, selectedCard.Card));
             SelectedCardModel.StorePlayerSelection(selectedCard.PlayerId.Id, apply);
             ApplyView(selectedCard.PlayerId, apply);
         }
@@ -90,7 +92,8 @@ namespace Gambit.Unity.Adapter.Linker.InGame
         private IHandCardPoolView HandCardPoolView { get; }
         private IMutSelectedCardModel SelectedCardModel { get; }
         private ISendSelectedCardView SendSelectedCardView { get; }
-        private IPlayerIndexModel PlayerIdModel { get; }
+        private IPlayerIdModel PlayerIdModel { get; }
+        private IPlayerIndexModel PlayerIndexModel { get; }
 
         public void Dispose()
         {
