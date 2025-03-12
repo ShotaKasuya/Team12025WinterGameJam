@@ -1,5 +1,8 @@
-﻿namespace Gambit.Shared.DataTransferObject
+﻿using MessagePack;
+
+namespace Gambit.Shared.DataTransferObject
 {
+    [MessagePackObject]
     public readonly struct CardTransferObject
     {
         public CardTransferObject
@@ -12,7 +15,9 @@
             Rank = rank;
         }
             
+        [Key(0)]
         public readonly SuitTransferObject Suit;
+        [Key(1)]
         public readonly RankTransferObject Rank;
     }
     
