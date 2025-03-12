@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MatchWaitingConfpanel: {fileID: 0}
+  DeclarationPanel: {fileID: 0}
   highlightedSprite: {fileID: 21300000, guid: cbfd4890cdb962f4abab351056533a51, type: 3}
   onClickEvents:
     m_PersistentCalls:
@@ -450,6 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MatchWaitingConfpanel: {fileID: 1603293241}
+  DeclarationPanel: {fileID: 0}
   highlightedSprite: {fileID: 21300000, guid: e650d1961fe5ee84fb6a31b0fb3c400b, type: 3}
   onClickEvents:
     m_PersistentCalls:
@@ -669,6 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MatchWaitingConfpanel: {fileID: 0}
+  DeclarationPanel: {fileID: 0}
   highlightedSprite: {fileID: 21300000, guid: a778c6c40b90e0a4ab3c0df9dc053896, type: 3}
   onClickEvents:
     m_PersistentCalls:
@@ -748,12 +751,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1047,6 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MatchWaitingConfpanel: {fileID: 0}
+  DeclarationPanel: {fileID: 0}
   highlightedSprite: {fileID: 21300000, guid: ebd9270fe12935744b4b976d92815888, type: 3}
   onClickEvents:
     m_PersistentCalls:
