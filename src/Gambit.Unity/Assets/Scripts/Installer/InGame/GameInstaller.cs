@@ -26,6 +26,7 @@ namespace Gambit.Unity.Installer.InGame
         [SerializeField] private SelectedCardPoolView selectedCardPoolView;
         [SerializeField] private WinCardPoolView winCardPoolView;
         [SerializeField] private DrawCardPoolView drawCardPoolView;
+        [SerializeField] private ExplanationImageView explanationImageView;
 
         [SerializeField] private SettingModel settingModel;
 
@@ -38,6 +39,7 @@ namespace Gambit.Unity.Installer.InGame
             builder.RegisterComponent(drawCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(winCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(startImageView).AsImplementedInterfaces();
+            builder.RegisterComponent(explanationImageView).AsImplementedInterfaces();
             builder.RegisterComponent(addPointTextView).AsImplementedInterfaces();
             builder.RegisterComponent(cardPositionsView).AsImplementedInterfaces();
             builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
@@ -66,6 +68,7 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<AddPointPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<DecisionPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<GameStartPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<ExplanationPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // UseCase
             builder.Register<DeckHandCardInitialize>(Lifetime.Singleton).AsImplementedInterfaces();

@@ -9,8 +9,8 @@ namespace Gambit.Unity.Adapter.View.ExplanationFactory
     public class ExplanationSprites:ScriptableObject,IExplanationSprites
     {
         [SerializeField,EnumList(typeof(Rank))]
-        private EnumArray<Image>  rankSprites;
-        public Image GetImage(Card card)
+        private EnumArray<Sprite>  rankSprites;
+        public Sprite GetImage(Card card)
         {
             var index = (int)card.Rank;
             return rankSprites.Array[index];

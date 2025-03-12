@@ -6,6 +6,6 @@ namespace Gambit.Unity.Adapter.IView.InGame.IExplanationFactory
 {
     public interface IExplanationSprites
     {
-        public Image GetImage(Card  card);
+        public Sprite GetImage(Card  card);
     }
 }
