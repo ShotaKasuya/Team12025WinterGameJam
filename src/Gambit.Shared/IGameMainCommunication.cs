@@ -14,8 +14,11 @@ namespace Gambit.Shared
         /// 部屋に入室した際の処理
         /// </summary>
         ValueTask<PlayerInitInfoTransferObject> JoinAsync();
-        
-        ValueTask MatchResultAsync(string result);
+
+        /// <summary>
+        /// 退室する際の処理
+        /// </summary>
+        ValueTask LeaveAsync(PlayerIdTransferObject playerIdTransferObject);
         
         /// <summary>
         /// ゲーム中、カードを選択した際に呼ばれる
@@ -26,10 +29,9 @@ namespace Gambit.Shared
     public interface IGameMainReceiver 
     {
         /// <summary>
-        /// 入室が完了した際に呼ばれる
+        /// マッチングが完了した際に呼ばれる
         /// </summary>
-        /// <param name="userName"></param>
-        void OnJoin(string userName);
+        void OnMatch();
         
         void MatchResult(string machResult);
         

@@ -4,21 +4,23 @@ namespace Gambit.Server.Services;
 
 public class GroupManagement
 {
-    private const uint PLAYER_MAX = 2;
+    public const uint PlayerMax = 1;
 
     /// <summary>
     /// ランダムにプレイヤーを追加
     /// </summary>
     /// <returns></returns>
-    public (GroupId, PlayerId) AddPlayer()
+    public (GroupId, PlayerId, int) AddPlayer()
     {
         GroupId groupId;
         var random = Guid.NewGuid().ToByteArray();
         var playerId = new PlayerId(BitConverter.ToUInt32(random, 0));
+        var playerIndex = 0;
 
-        var group = Groups.Values.FirstOrDefault(x => x.PlayerCount <= PLAYER_MAX);
+        var group = Groups.Values.FirstOrDefault(x => x.GroupPlayers.Count < PlayerMax);
         if (group is not null)
         {
+            playerIndex = 1;
             groupId = group.AddPlayer(playerId);
         }
         else
@@ -29,10 +31,16 @@ public class GroupManagement
             Groups.Add(groupId, newGroup);
         }
 
-        return (groupId, playerId);
+        Console.Out.WriteLineAsync();
+        foreach (var value in Groups.Values)
+        {
+            Console.Out.WriteLineAsync(value.ToString());
+        }
+
+        return (groupId, playerId, playerIndex);
     }
 
-    public void LeavePlayer(PlayerId playerId)
+    public Group LeavePlayer(PlayerId playerId)
     {
         var group = Groups.Values.FirstOrDefault(x => x.Has(playerId));
         if (group is null)
@@ -41,22 +49,17 @@ public class GroupManagement
         }
 
         group.RemovePlayer(playerId);
-        if (group.PlayerCount == 0)
+        if (group.GroupPlayers.Count == 0)
         {
             Groups.Remove(group.Id);
         }
+
+        return group;
     }
 
     public Group GetGroup(PlayerId playerId)
     {
         return GroupReader.Values.First(x => x.Has(playerId));
-    }
-
-    public Option<int> GroupPlayerCount(GroupId id)
-    {
-        return Groups.TryGetValue(id, out var group)
-            ? Option<int>.Some(group.PlayerCount)
-            : Option<int>.None();
     }
 
     public IReadOnlyDictionary<GroupId, Group> GroupReader => Groups;

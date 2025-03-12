@@ -10,21 +10,18 @@ public class Group(GroupId id, PlayerId playerId)
     public readonly int GroupSeed = Random.Shared.Next();
     
     public IGroup<IGameMainReceiver>? PairGroup { get; private set; }
-    public int PlayerCount { get; private set; }
     private List<PlayerId> Players { get; } = new(2);
-    private IReadOnlyCollection<PlayerId> GroupPlayers => Players;
+    public IReadOnlyCollection<PlayerId> GroupPlayers => Players;
 
     public GroupId AddPlayer(PlayerId newPlayerId)
     {
         Players.Add(newPlayerId);
-        PlayerCount++;
         return Id;
     }
 
     public void RemovePlayer(PlayerId removePlayerId)
     {
         Players.Remove(removePlayerId);
-        PlayerCount--;
     }
 
     public bool Has(PlayerId id)
@@ -35,6 +32,11 @@ public class Group(GroupId id, PlayerId playerId)
     public void SetGroup(IGroup<IGameMainReceiver> group)
     {
         PairGroup = group;
+    }
+
+    public override string ToString()
+    {
+        return $"id: {Id}, ownerId: {Owner}, groupSeed: {GroupSeed}, playerCount: {Players.Count}";
     }
 }
 

@@ -3,6 +3,7 @@ using Gambit.Unity.Adapter.IModel.Global;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
 using Gambit.Unity.Adapter.IModel.InGame.Setting;
 using Gambit.Unity.Domain.IUseCase.InGame;
+using Gambit.Unity.Module.Utility.Module.Option;
 using Gambit.Unity.Structure.Utility.InGame;
 
 namespace Gambit.Unity.Domain.UseCase.InGame
@@ -33,7 +34,7 @@ namespace Gambit.Unity.Domain.UseCase.InGame
 
             for (int i = 0; i < HandCardSettingModel.InitHandCard; i++)
             {
-                var cards = DrawCard();
+                var cards = DrawCard().Unwrap();
                 for (int j = 0; j < cards.Length; j++)
                 {
                     handCards[j].Cards.Add(cards[j]);
@@ -43,8 +44,13 @@ namespace Gambit.Unity.Domain.UseCase.InGame
             return handCards;
         }
 
-        public Card[] DrawCard()
+        public Option<Card[]> DrawCard()
         {
+            if (DeckModel.DeckReader[0].Cards.Count == 0)
+            {
+                return Option<Card[]>.None();
+            }
+            
             var cards = new Card[PlayerCountModel.PlayerCount];
             for (var i = 0; i < PlayerCountModel.PlayerCount; i++)
             {
@@ -55,7 +61,7 @@ namespace Gambit.Unity.Domain.UseCase.InGame
                 }
             }
 
-            return cards;
+            return Option<Card[]>.Some(cards);
         }
 
         private IPlayerCountModel PlayerCountModel { get; }

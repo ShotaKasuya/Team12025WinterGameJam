@@ -16,7 +16,7 @@ using VContainer.Unity;
 
 namespace Gambit.Unity.Installer.InGame
 {
-    public class GameInstaller : LifetimeScope
+    public class GameTestInstaller: LifetimeScope
     {
         [SerializeField] private CardView baseCardView;
         [SerializeField] private StartImageView startImageView;
@@ -40,7 +40,7 @@ namespace Gambit.Unity.Installer.InGame
             builder.RegisterComponent(addPointTextView).AsImplementedInterfaces();
             builder.RegisterComponent(cardPositionsView).AsImplementedInterfaces();
             builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
-            builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<DebugCardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // Model
             builder.RegisterInstance(settingModel).AsImplementedInterfaces();
@@ -55,7 +55,7 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<ScoreModel>(Lifetime.Singleton).AsImplementedInterfaces();
 
             // Linker
-            builder.RegisterEntryPoint<SelectionLinker>();
+            builder.RegisterEntryPoint<DebugSelectionLinker>();
             builder.RegisterEntryPoint<PlayerCardTransferObjectLinker>();
 
             // Presenter
@@ -86,5 +86,6 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<GameState>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.RegisterEntryPoint<InGameStateMachine>();
         }
+        
     }
 }

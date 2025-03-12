@@ -3,6 +3,7 @@ using Gambit.Unity.Adapter.IModel.InGame.Judgement;
 using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IView.InGame;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Adapter.IView.UseCommunication;
 using Gambit.Unity.Module.Utility.Module.Option;
 using Gambit.Unity.Structure.Utility.InGame;
 using VContainer.Unity;
@@ -13,13 +14,15 @@ namespace Gambit.Unity.Adapter.Linker.InGame
     {
         public SelectionLinker
         (
-            IPlayerIdModel playerIdModel,
+            IPlayerIndexModel playerIdModel,
             IHandCardPoolView handCardPoolView,
+            ISendSelectedCardView sendSelectedCardView,
             IMutSelectedCardModel selectedCardModel
         )
         {
             PlayerIdModel = playerIdModel;
             HandCardPoolView = handCardPoolView;
+            SendSelectedCardView = sendSelectedCardView;
             SelectedCardModel = selectedCardModel;
         }
 
@@ -44,7 +47,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
             var currentSelect = SelectedCardModel.GetSelection(selectedCard.PlayerId);
             var apply = Option<PlayerCard>.Some(selectedCard);
 
-            if (PlayerIdModel.PlayerId != selectedCard.PlayerId)
+            if (PlayerIdModel.PlayerIndex != selectedCard.PlayerId)
             {
                 return;
             }
@@ -57,6 +60,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
                 }
             }
 
+            SendSelectedCardView.SendPlayerCard(selectedCard);
             SelectedCardModel.StorePlayerSelection(selectedCard.PlayerId.Id, apply);
             ApplyView(selectedCard.PlayerId, apply);
         }
@@ -85,7 +89,8 @@ namespace Gambit.Unity.Adapter.Linker.InGame
 
         private IHandCardPoolView HandCardPoolView { get; }
         private IMutSelectedCardModel SelectedCardModel { get; }
-        private IPlayerIdModel PlayerIdModel { get; }
+        private ISendSelectedCardView SendSelectedCardView { get; }
+        private IPlayerIndexModel PlayerIdModel { get; }
 
         public void Dispose()
         {
