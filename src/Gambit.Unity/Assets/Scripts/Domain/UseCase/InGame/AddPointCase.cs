@@ -78,6 +78,7 @@ namespace Gambit.Unity.Domain.UseCase.InGame
 
             return targetCard.Rank switch
             {
+                Rank.Two => (basePoint + 8)/Debuf,
                 Rank.Seven => basePoint * RankDifference(target, resultAndDrawCount)/Debuf,
                 Rank.Nine => (basePoint + 2)/Debuf,
                 Rank.Jack => (basePoint + 4)/Debuf,

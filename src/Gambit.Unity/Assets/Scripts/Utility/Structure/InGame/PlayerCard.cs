@@ -44,6 +44,7 @@ namespace Gambit.Unity.Structure.Utility.InGame
                    $")";
         }
 
+
         public static PlayerCard ConversionSentPlayerCard(PlayerCardTransferObject playerCardTransferObject)
         {
             var card = Card.ConversationCard(playerCardTransferObject.Card.Rank, playerCardTransferObject.Card.Suit);
