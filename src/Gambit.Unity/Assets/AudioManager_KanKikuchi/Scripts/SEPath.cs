@@ -15,6 +15,7 @@ public static class SEPath{
 	public const string GAME_START_SE             = "SE/GameStartSE";
 	public const string JINGLE10                  = "SE/Jingle/jingle10";
 	public const string LOSE_SE                   = "SE/LoseSE";
+	public const string POINT_SE                  = "SE/PointSE";
 	public const string PUSH_GAME_START_BUTTON_SE = "SE/PushGameStartButtonSE";
 	public const string SELECTED_SE               = "SE/SelectedSE";
 	public const string SYSTEM20                  = "SE/system20";
