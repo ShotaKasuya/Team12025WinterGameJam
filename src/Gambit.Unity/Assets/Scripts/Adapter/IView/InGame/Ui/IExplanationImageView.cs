@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using UnityEngine.UI;
-using UnityEngine;
+﻿using UnityEngine.UI;
 
 namespace Gambit.Unity.Adapter.IView.InGame.Ui
 {

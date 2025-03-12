@@ -15,15 +15,23 @@ namespace Gambit.Unity.Domain.Presenter.InGame
             ExplanationImageView = explanationImageView;
         }
 
-        public async UniTask OnCursor()
+        public async UniTask OnMouseEnter()
         {
             var fadeInDuration = ExplanationImageView.FadeInDuration;
-            var fadeOutDuration = ExplanationImageView.FadeOutDuration;
             var explanationImageView = ExplanationImageView.Image;
             
             await explanationImageView.DOFade(1, fadeInDuration).AsyncWaitForCompletion();
+
+        }
+
+        public async UniTask OnMouseExit()
+        {
+            var fadeOutDuration = ExplanationImageView.FadeOutDuration;
+            var explanationImageView = ExplanationImageView.Image;
+            
             await explanationImageView.DOFade(0, fadeOutDuration).AsyncWaitForCompletion();
         }
+        
         private IExplanationImageView ExplanationImageView { get; }
     }
 }

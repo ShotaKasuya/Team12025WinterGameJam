@@ -1,7 +1,6 @@
 ﻿using Gambit.Unity.Adapter.IView.InGame.IExplanationFactory;
 using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Gambit.Unity.Adapter.View.ExplanationFactory
 {
