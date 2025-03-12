@@ -34,8 +34,10 @@ namespace Gambit.Unity.Adapter.View.Communication
 
         public async void SendPlayerCard(PlayerCard playerCard)
         {
+            Debug.Log($"send card: {playerCard.ToString()}");
             await UniTask.WaitUntil(() => _gameMainCommunication is not null);
             await _gameMainCommunication.SendSelectedCardAsync(playerCard.Convert());
+            Debug.Log("send completed");
         }
 
         private GrpcChannelx Channel { get; }

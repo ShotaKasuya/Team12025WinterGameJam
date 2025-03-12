@@ -71,5 +71,10 @@ namespace Gambit.Unity.Structure.Utility.InGame
                 return row;
             }
         }
+
+        public override string ToString()
+        {
+            return $"deck : {string.Join(",\n", Cards)}";
+        }
     }
 }

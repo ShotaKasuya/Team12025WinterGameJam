@@ -9,7 +9,6 @@ using Gambit.Unity.Adapter.View.InGame.Ui;
 using Gambit.Unity.Domain.Flow.InGame;
 using Gambit.Unity.Domain.Presenter.InGame;
 using Gambit.Unity.Domain.UseCase.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
 using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 using UnityEngine;
 using VContainer;
@@ -44,7 +43,6 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // Model
-            builder.RegisterInstance(new PlayerIdModel(new PlayerId(0))).AsImplementedInterfaces();
             builder.RegisterInstance(settingModel).AsImplementedInterfaces();
             builder.Register<GameStateModel>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<JudgeResultModel>(Lifetime.Singleton).AsImplementedInterfaces();

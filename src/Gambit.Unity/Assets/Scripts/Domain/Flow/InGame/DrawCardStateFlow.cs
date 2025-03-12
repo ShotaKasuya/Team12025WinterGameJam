@@ -6,7 +6,7 @@ using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 
 namespace Gambit.Unity.Domain.Flow.InGame
 {
-    public class DrawCardStateFlow: IStateBehaviour<GameStateType>
+    public class DrawCardStateFlow : IStateBehaviour<GameStateType>
     {
         public DrawCardStateFlow
         (
@@ -19,7 +19,7 @@ namespace Gambit.Unity.Domain.Flow.InGame
             DrawPresenter = drawPresenter;
             GameState = gameState;
         }
-        
+
         public void OnEnter(GameStateType prev)
         {
             var _ = DrawCardFlow();
@@ -36,13 +36,16 @@ namespace Gambit.Unity.Domain.Flow.InGame
         private async UniTask DrawCardFlow()
         {
             var cards = DrawCase.DrawCard();
-            await DrawPresenter.PresentDraw(cards);
-            
+            if (cards.TryGetValue(out var value))
+            {
+                await DrawPresenter.PresentDraw(value);
+            }
+
             GameState.ChangeState(GameStateType.DecisionCard);
         }
 
         public GameStateType TargetStateMask { get; } = GameStateType.DrawCard;
-        
+
         private IDrawCase DrawCase { get; }
         private IDrawPresenter DrawPresenter { get; }
         private IMutState<GameStateType> GameState { get; }

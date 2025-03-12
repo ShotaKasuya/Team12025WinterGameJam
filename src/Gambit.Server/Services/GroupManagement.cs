@@ -4,7 +4,7 @@ namespace Gambit.Server.Services;
 
 public class GroupManagement
 {
-    private const uint PLAYER_MAX = 1;
+    public const uint PlayerMax = 1;
 
     /// <summary>
     /// ランダムにプレイヤーを追加
@@ -17,7 +17,7 @@ public class GroupManagement
         var playerId = new PlayerId(BitConverter.ToUInt32(random, 0));
         var playerIndex = 0;
 
-        var group = Groups.Values.FirstOrDefault(x => x.GroupPlayers.Count < PLAYER_MAX);
+        var group = Groups.Values.FirstOrDefault(x => x.GroupPlayers.Count < PlayerMax);
         if (group is not null)
         {
             playerIndex = 1;

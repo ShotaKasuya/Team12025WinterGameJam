@@ -2,14 +2,19 @@ using Gambit.Unity.Structure.Utility.InGame;
 
 namespace Gambit.Unity.Adapter.IModel.InGame.Player
 {
-    public interface IIdInitializableMode
+    public interface IIdInitializableModel
     {
-        public void SetPlayerId(PlayerId playerId);
+        public void SetPlayerId(PlayerId playerId, PlayerId playerIndex);
     }
 
     public interface IPlayerIdModel
     {
         public PlayerId PlayerId { get; }
+    }
+
+    public interface IPlayerIndexModel
+    {
+        public PlayerId PlayerIndex { get; }
     }
 
     public class MockPlayerIdModel : IPlayerIdModel

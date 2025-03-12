@@ -29,10 +29,9 @@ namespace Gambit.Shared
     public interface IGameMainReceiver 
     {
         /// <summary>
-        /// 入室が完了した際に呼ばれる
+        /// マッチングが完了した際に呼ばれる
         /// </summary>
-        /// <param name="userName"></param>
-        void OnJoin(string userName);
+        void OnMatch();
         
         void MatchResult(string machResult);
         

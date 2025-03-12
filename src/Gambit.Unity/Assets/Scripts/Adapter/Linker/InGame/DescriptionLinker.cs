@@ -10,7 +10,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
     {
         public DescriptionLinker
         (
-            IPlayerIdModel playerIdModel,
+            IPlayerIndexModel playerIdModel,
             ISelectedCardModel selectedCardModel,
             ICardDescriptionModel cardDescriptionModel,
             ICardDescriptionView cardDescriptionView
@@ -24,7 +24,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
 
         public void Tick()
         {
-            var selectedCard = SelectedCardModel.GetSelection(PlayerIdModel.PlayerId);
+            var selectedCard = SelectedCardModel.GetSelection(PlayerIdModel.PlayerIndex);
             
             if (selectedCard.TryGetValue(out var card))
             {
@@ -34,7 +34,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
             }
         }
 
-        private IPlayerIdModel PlayerIdModel { get; }
+        private IPlayerIndexModel PlayerIdModel { get; }
         private ISelectedCardModel SelectedCardModel { get; }
         private ICardDescriptionModel CardDescriptionModel { get; }
         private ICardDescriptionView CardDescriptionView { get; }

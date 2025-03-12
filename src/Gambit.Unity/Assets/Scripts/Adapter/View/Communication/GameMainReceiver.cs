@@ -6,13 +6,14 @@ using Gambit.Unity.Adapter.IView.InGame;
 
 namespace Gambit.Unity.Adapter.View.Communication
 {
-    public class GameMainReceiverView : IGameMainReceiver, IGetSentCardStateView
+    public class GameMainReceiverView : IGameMainReceiver, IGetSentCardStateView, IMatchEventView
     {
         public Action<PlayerCard> GetSentCard { get; set; }
+        public Action OnMatched { get; set; }
 
-        public void OnJoin(string userName)
+        public void OnMatch()
         {
-            Console.WriteLine($"{userName} joined");
+            OnMatched?.Invoke();
         }
 
         public void MatchResult(string machResult)
