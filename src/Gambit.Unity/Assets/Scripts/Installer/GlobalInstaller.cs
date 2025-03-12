@@ -37,8 +37,8 @@ namespace Gambit.Unity.Installer
 
         private void Start()
         {
-            var sender = Container.Resolve<IConnectView>();
-            sender.Connect();
+            // var sender = Container.Resolve<IConnectView>();
+            // sender.Connect();
         }
     }
 }
