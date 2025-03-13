@@ -2,9 +2,9 @@ using Gambit.Shared.DataTransferObject;
 
 namespace Gambit.Server.Services.Structure;
 
-public readonly struct PlayerId(uint playerId) : IEquatable<PlayerId>
+public readonly struct PlayerId(int playerId) : IEquatable<PlayerId>
 {
-    public readonly uint Id = playerId;
+    public readonly int Id = playerId;
 
     public bool Equals(PlayerId other)
     {
@@ -41,11 +41,11 @@ public static partial class Converter
 {
     public static PlayerId Convert(this PlayerIdTransferObject transferObject)
     {
-        return new PlayerId((uint)transferObject.Id);
+        return new PlayerId(transferObject.Id);
     }
 
     public static PlayerIdTransferObject Convert(this PlayerId playerId)
     {
-        return new PlayerIdTransferObject((int)playerId.Id);
+        return new PlayerIdTransferObject(playerId.Id);
     }
 }

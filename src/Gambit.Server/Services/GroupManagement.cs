@@ -14,7 +14,7 @@ public class GroupManagement
     {
         GroupId groupId;
         var random = Guid.NewGuid().ToByteArray();
-        var playerId = new PlayerId(BitConverter.ToUInt32(random, 0));
+        var playerId = new PlayerId(BitConverter.ToInt32(random, 0));
         var playerIndex = 0;
 
         var group = Groups.Values.FirstOrDefault(x => x.GroupPlayers.Count < PlayerMax);
