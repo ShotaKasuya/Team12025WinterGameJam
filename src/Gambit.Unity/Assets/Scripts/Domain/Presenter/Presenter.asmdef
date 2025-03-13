@@ -1,0 +1,24 @@
+{
+    "name": "Presenter",
+    "rootNamespace": "Gambit.Unity.Domain.Presenter",
+    "references": [
+        "IPresenter",
+        "IView",
+        "Structure",
+        "Module",
+        "VContainer",
+        "UniTask",
+        "DOTween.Modules",
+        "UniTask.DOTween",
+        "AudioManager"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

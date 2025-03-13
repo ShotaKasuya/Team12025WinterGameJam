@@ -1,0 +1,30 @@
+{
+    "name": "Installer",
+    "rootNamespace": "Gambit.Unity.Installer",
+    "references": [
+        "GUID:81c9d96952474f63b8a6b9282e184881",
+        "GUID:f28afd6ca6f97335494225adf4c8ec48",
+        "GUID:8534a750999d468db1e7f7ca9097cc61",
+        "GUID:87a3e935c4b707e7d868cc7f19a32318",
+        "GUID:86d852e67921ee8c0b6c0fff78dd13b0",
+        "GUID:9482436bb96d1d2668638812aa46d700",
+        "GUID:d7cbd70c3c95f01ad8ae1d3052581f71",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:0ac64af7308f86c82b436e532cded9e8",
+        "GUID:5177cff2dbb36d7bb9dd1e7b76af830f",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:f2424c65877522b56a5994f04411e9ba",
+        "GUID:c3bc0afe4a069b54aa23296f3c18a871",
+        "GUID:350d0af80fb7b7947a59de66ab477547",
+        "GUID:ec0c10fcf40a275d1a59dbf33aed1c55"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

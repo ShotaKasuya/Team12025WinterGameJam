@@ -1,0 +1,16 @@
+{
+    "name": "IUseCase",
+    "rootNamespace": "Gambit.Unity.Domain.IUseCase",
+    "references": [
+        "GUID:d7cbd70c3c95f01ad8ae1d3052581f71"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
