@@ -11,11 +11,11 @@ namespace Gambit.Unity.Adapter.View.InGame.Ui
         [SerializeField] private Sprite lose;
         [SerializeField] private Sprite draw;
 
-        public GameResultView()
+        private void Awake()
         {
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         }
-        
+
         public void Enable(Result result)
         {
             switch (result)
