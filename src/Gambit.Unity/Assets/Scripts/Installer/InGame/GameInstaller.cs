@@ -59,6 +59,7 @@ namespace Gambit.Unity.Installer.InGame
             // Linker
             builder.RegisterEntryPoint<SelectionLinker>();
             builder.RegisterEntryPoint<PlayerCardTransferObjectLinker>();
+            builder.RegisterEntryPoint<CardExplanationLinker>();
 
             // Presenter
             builder.Register<DrawPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
@@ -66,7 +67,6 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<AddPointPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<DecisionPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<GameStartPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
-            builder.Register<ExplanationPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // UseCase
             builder.Register<DeckHandCardInitializeCase>(Lifetime.Singleton).AsImplementedInterfaces();

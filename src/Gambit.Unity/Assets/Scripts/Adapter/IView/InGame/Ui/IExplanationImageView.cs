@@ -1,4 +1,4 @@
-﻿using Gambit.Shared.DataTransferObject;
+﻿using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine.UI;
 
 namespace Gambit.Unity.Adapter.IView.InGame.Ui
@@ -9,8 +9,7 @@ namespace Gambit.Unity.Adapter.IView.InGame.Ui
         public float FadeInDuration { get; }
         public float FadeOutDuration { get; }
 
-        
-        public void Face();
-
+        public Card PrevCard { get; }
+        public void Face(Card card);
     }
 }

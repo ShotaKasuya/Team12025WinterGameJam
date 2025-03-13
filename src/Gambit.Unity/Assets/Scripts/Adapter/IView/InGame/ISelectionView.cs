@@ -12,4 +12,10 @@ namespace Gambit.Unity.Adapter.IView.InGame
         public void TurnOn();
         public void TurnOff();
     }
+
+    public interface ICursorOverrideEventView
+    {
+        public Action<PlayerCard> CursorOverrideEvent { get; set; }
+        public Action<PlayerCard> CursorExitEvent { get; set; }
+    }
 }
