@@ -61,7 +61,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
             }
 
             SendSelectedCardView.SendPlayerCard(selectedCard);
-            SelectedCardModel.StorePlayerSelection(selectedCard.PlayerId.Id, apply);
+            SelectedCardModel.StorePlayerSelection(selectedCard.PlayerIndex, apply);
             ApplyView(selectedCard.PlayerId, apply);
         }
 

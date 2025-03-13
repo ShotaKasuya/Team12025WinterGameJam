@@ -30,7 +30,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
         private void SetSentCard(PlayerCard playerCard)
         {
             var apply = Option<PlayerCard>.Some(playerCard);
-            SelectedCardModel.StorePlayerSelection(playerCard.PlayerId.Id, apply);
+            SelectedCardModel.StorePlayerSelection(playerCard.PlayerIndex, apply);
         }
         
         private IMutSelectedCardModel SelectedCardModel{get;}
