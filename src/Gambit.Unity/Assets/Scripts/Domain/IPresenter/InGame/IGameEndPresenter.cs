@@ -1,5 +1,4 @@
-﻿using CodiceApp.Gravatar;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Utility.Structure.InGame;
 
 namespace Domain.IPresenter.InGame
