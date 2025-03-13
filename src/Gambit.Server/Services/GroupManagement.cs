@@ -28,6 +28,7 @@ public class GroupManagement
             var newGroupId = BitConverter.ToUInt32(random, 1);
             groupId = new GroupId(newGroupId);
             var newGroup = new Group(groupId, playerId);
+            newGroup.AddPlayer(playerId);
             Groups.Add(groupId, newGroup);
         }
 
