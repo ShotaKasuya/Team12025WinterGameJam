@@ -62,12 +62,12 @@ namespace Gambit.Unity.Adapter.Linker.InGame
 
             SendSelectedCardView.SendPlayerCard(selectedCard);
             SelectedCardModel.StorePlayerSelection(selectedCard.PlayerIndex, apply);
-            ApplyView(selectedCard.PlayerId, apply);
+            ApplyView(selectedCard.PlayerIndex, apply);
         }
 
-        private void ApplyView(PlayerId playerId, Option<PlayerCard> selected)
+        private void ApplyView(int index, Option<PlayerCard> selected)
         {
-            var views = HandCardPoolView.GetViewList(playerId);
+            var views = HandCardPoolView.GetViewList(index);
             
             foreach (var cardView in views)
             {

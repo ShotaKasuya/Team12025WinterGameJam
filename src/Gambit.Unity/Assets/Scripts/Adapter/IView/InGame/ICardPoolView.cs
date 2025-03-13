@@ -58,7 +58,7 @@ namespace Gambit.Unity.Adapter.IView.InGame
     {
         public UniTask FixPosition();
         public UniTask StoreNewCard(ProductCardView cardView);
-        public IReadOnlyList<ProductCardView> GetViewList(PlayerId playerId);
+        public IReadOnlyList<ProductCardView> GetViewList(int index);
 
         /// <summary>
         /// 指定したカードを取り出す

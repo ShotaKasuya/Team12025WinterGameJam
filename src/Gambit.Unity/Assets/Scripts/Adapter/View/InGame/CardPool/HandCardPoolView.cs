@@ -21,9 +21,9 @@ namespace Gambit.Unity.Adapter.View.InGame.CardPool
             OnStore?.Invoke(cardView);
         }
 
-        public IReadOnlyList<ProductCardView> GetViewList(PlayerId playerId)
+        public IReadOnlyList<ProductCardView> GetViewList(int index)
         {
-            return handCardPositionsViews[playerId.Id].CardViewList;
+            return handCardPositionsViews[index].CardViewList;
         }
 
         public ProductCardView PopCardView(PlayerCard playerCard)
