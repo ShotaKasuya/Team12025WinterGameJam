@@ -9,7 +9,6 @@ using Gambit.Unity.Adapter.View.InGame.Ui;
 using Gambit.Unity.Domain.Flow.InGame;
 using Gambit.Unity.Domain.Presenter.InGame;
 using Gambit.Unity.Domain.UseCase.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
 using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 using UnityEngine;
 using VContainer;
@@ -26,6 +25,7 @@ namespace Gambit.Unity.Installer.InGame
         [SerializeField] private SelectedCardPoolView selectedCardPoolView;
         [SerializeField] private WinCardPoolView winCardPoolView;
         [SerializeField] private DrawCardPoolView drawCardPoolView;
+        [SerializeField] private ExplanationImageView explanationImageView;
 
         [SerializeField] private SettingModel settingModel;
 
@@ -38,13 +38,13 @@ namespace Gambit.Unity.Installer.InGame
             builder.RegisterComponent(drawCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(winCardPoolView).AsImplementedInterfaces();
             builder.RegisterComponent(startImageView).AsImplementedInterfaces();
+            builder.RegisterComponent(explanationImageView).AsImplementedInterfaces();
             builder.RegisterComponent(addPointTextView).AsImplementedInterfaces();
             builder.RegisterComponent(cardPositionsView).AsImplementedInterfaces();
             builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
             builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // Model
-            builder.RegisterInstance(new PlayerIdModel(new PlayerId(0))).AsImplementedInterfaces();
             builder.RegisterInstance(settingModel).AsImplementedInterfaces();
             builder.Register<GameStateModel>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<JudgeResultModel>(Lifetime.Singleton).AsImplementedInterfaces();
@@ -58,6 +58,8 @@ namespace Gambit.Unity.Installer.InGame
 
             // Linker
             builder.RegisterEntryPoint<SelectionLinker>();
+            builder.RegisterEntryPoint<PlayerCardTransferObjectLinker>();
+            builder.RegisterEntryPoint<CardExplanationLinker>();
 
             // Presenter
             builder.Register<DrawPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
@@ -67,12 +69,13 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<GameStartPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // UseCase
-            builder.Register<DeckHandCardInitialize>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<DeckHandCardInitializeCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IsGameEndCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IsReadyJudgeCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<AddPointCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<DrawCardCase>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<CardJudgeCase>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<IsPlayerWinCase>(Lifetime.Singleton).AsImplementedInterfaces();
 
             // Flow
             builder.Register<AddPointStateFlow>(Lifetime.Singleton).AsImplementedInterfaces();

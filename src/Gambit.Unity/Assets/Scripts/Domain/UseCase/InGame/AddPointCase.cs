@@ -45,6 +45,7 @@ namespace Gambit.Unity.Domain.UseCase.InGame
             var basePoint = 2 * (resultAndDrawCount.DrawCount + 1);     // カードの枚数
             var targetCondition = ConditionModel.ConditionReader[target];
             var targetCard = resultAndDrawCount.BattleResult.Cards[target];
+            int Debuf = 1;
 
             // 勝者なし
             if (!resultAndDrawCount.BattleResult.Winner.TryGetValue(out var winner))
@@ -66,7 +67,7 @@ namespace Gambit.Unity.Domain.UseCase.InGame
             // 自身が弱体化しているかの確認
             if ((targetCondition & Condition.Ten) != 0)
             {
-                basePoint /= 2;
+                Debuf = 2;
             }
 
             // 特殊効果が無効化されているときの処理
@@ -77,10 +78,11 @@ namespace Gambit.Unity.Domain.UseCase.InGame
 
             return targetCard.Rank switch
             {
-                Rank.Seven => basePoint * RankDifference(target, resultAndDrawCount),
-                Rank.Nine => basePoint + 2,
-                Rank.Jack => basePoint + 4,
-                _ => basePoint
+                Rank.Two => (basePoint + 8)/Debuf,
+                Rank.Seven => basePoint * RankDifference(target, resultAndDrawCount)/Debuf,
+                Rank.Nine => (basePoint + 2)/Debuf,
+                Rank.Jack => (basePoint + 4)/Debuf,
+                _ => basePoint/Debuf
             };
         }
 

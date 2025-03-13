@@ -5,7 +5,7 @@ namespace Gambit.Unity.Domain.IPresenter.InGame
 {
     public interface IDrawPresenter
     {
-        public UniTask PresentDraw(Card[] cards);
+        public UniTask PresentDraw(PlayerCard[] cards);
     }
     public interface IInitHandPresenter
     {

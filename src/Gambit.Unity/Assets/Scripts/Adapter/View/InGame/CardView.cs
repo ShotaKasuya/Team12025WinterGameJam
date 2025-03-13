@@ -29,6 +29,16 @@ namespace Gambit.Unity.Adapter.View.InGame
             SelectionEvent?.Invoke(Card);
         }
 
+        private void OnMouseEnter()
+        {
+            CursorOverrideEvent?.Invoke(Card);
+        }
+
+        private void OnMouseExit()
+        {
+            CursorExitEvent?.Invoke(Card);
+        }
+
         public override void TurnOn()
         {
             ModelTransform.localScale = selectedScale;

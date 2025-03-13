@@ -10,7 +10,16 @@
         "Installer",
         "Model",
         "Module",
-        "Structure"
+        "Structure",
+        "DOTween.Modules",
+        "Flow",
+        "Gambit.Shared.Unity",
+        "IPresenter",
+        "IUseCase",
+        "Linker",
+        "Presenter",
+        "View",
+        "AudioManager"
     ],
     "includePlatforms": [
         "Editor"

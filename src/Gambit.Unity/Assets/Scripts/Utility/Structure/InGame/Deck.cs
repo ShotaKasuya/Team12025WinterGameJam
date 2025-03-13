@@ -31,13 +31,14 @@ namespace Gambit.Unity.Structure.Utility.InGame
             return deck;
         }
 
-        public static Deck[] RandomDecks(int deckNum)
+        public static Deck[] RandomDecks(int deckNum, int seed)
         {
             var suitNum = Enum.GetValues(typeof(Suit)).Length;
             var rankNum = Enum.GetValues(typeof(Rank)).Length;
 
             var decks = new Card[deckNum, suitNum * rankNum / deckNum];
             var cards = Card.AllCards().ToList();
+            Random.InitState(seed);
             for (int i = 0; i < deckNum; i++)
             {
                 for (int j = 0; j < suitNum * rankNum / deckNum; j++)
@@ -69,6 +70,11 @@ namespace Gambit.Unity.Structure.Utility.InGame
 
                 return row;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"deck : {string.Join(",\n", Cards)}";
         }
     }
 }

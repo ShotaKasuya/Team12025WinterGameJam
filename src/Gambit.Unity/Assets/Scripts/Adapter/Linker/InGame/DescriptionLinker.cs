@@ -24,7 +24,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
 
         public void Tick()
         {
-            var selectedCard = SelectedCardModel.GetSelection(PlayerIdModel.PlayerId);
+            var selectedCard = SelectedCardModel.GetSelection(PlayerIdModel.PlayerIndex);
             
             if (selectedCard.TryGetValue(out var card))
             {

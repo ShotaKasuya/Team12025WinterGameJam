@@ -1,7 +1,6 @@
 using Gambit.Unity.Adapter.IView.InGame.Ui;
 using UnityEngine;
 using UnityEngine.UI;
-using KanKikuchi.AudioManager;
 
 namespace Gambit.Unity.Adapter.View.InGame.Ui
 {

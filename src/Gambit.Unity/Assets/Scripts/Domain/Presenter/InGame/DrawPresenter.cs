@@ -22,12 +22,12 @@ namespace Gambit.Unity.Domain.Presenter.InGame
             HandCardPoolView = handCardPoolView;
         }
 
-        public async UniTask PresentDraw(Card[] cards)
+        public async UniTask PresentDraw(PlayerCard[] cards)
         {
             var lastTask = UniTask.CompletedTask;
             for (var i = 0; i < cards.Length; i++)
             {
-                lastTask = Draw(new PlayerCard(new PlayerId(i), cards[i]));
+                lastTask = Draw(cards[i]);
             }
 
             await lastTask;
@@ -43,13 +43,11 @@ namespace Gambit.Unity.Domain.Presenter.InGame
                 var lastTask = UniTask.CompletedTask;
                 for (int j = 0; j < handCard.Count; j++)
                 {
-                    lastTask = Draw(new PlayerCard(new PlayerId(i), handCard[j]));
+                    lastTask = Draw(handCard[j]);
                 }
                 SEManager.Instance.Play(SEPath.DEAL_CARDS_SE, 0.5f);
                 await lastTask;
             }
-            
-
         }
 
         private UniTask Draw(PlayerCard playerCard)

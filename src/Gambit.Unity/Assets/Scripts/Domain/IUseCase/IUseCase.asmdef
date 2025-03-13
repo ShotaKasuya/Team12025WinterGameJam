@@ -2,7 +2,9 @@
     "name": "IUseCase",
     "rootNamespace": "Gambit.Unity.Domain.IUseCase",
     "references": [
-        "GUID:d7cbd70c3c95f01ad8ae1d3052581f71"
+        "GUID:d7cbd70c3c95f01ad8ae1d3052581f71",
+        "GUID:9482436bb96d1d2668638812aa46d700",
+        "GUID:ec0c10fcf40a275d1a59dbf33aed1c55"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

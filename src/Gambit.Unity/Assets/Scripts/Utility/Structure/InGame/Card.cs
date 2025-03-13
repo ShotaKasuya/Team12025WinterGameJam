@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.CompilerServices;
+using Gambit.Shared.DataTransferObject;
 using UnityEngine;
 
 namespace Gambit.Unity.Structure.Utility.InGame
@@ -7,7 +9,7 @@ namespace Gambit.Unity.Structure.Utility.InGame
     /// トランプのカード
     /// </summary>
     [Serializable]
-    public struct Card: IEquatable<Card>
+    public struct Card : IEquatable<Card>
     {
         [SerializeField] private Suit suit;
         [SerializeField] private Rank rank;
@@ -102,11 +104,16 @@ namespace Gambit.Unity.Structure.Utility.InGame
         {
             return left.Equals(right);
         }
+
         public static bool operator !=(Card left, Card right)
         {
             return !(left == right);
         }
-            
+
+        public static Card ConversationCard(RankTransferObject rank, SuitTransferObject suit)
+        {
+            return new Card(suit.Convert(), rank.Convert());
+        }
     }
 
     public enum Suit
@@ -134,33 +141,82 @@ namespace Gambit.Unity.Structure.Utility.InGame
         Ace,
     }
 
-    [Serializable]
-    public struct PlayerCard
+    public static partial class Converter
     {
-        public PlayerCard(PlayerId playerId, Card card)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static CardTransferObject Convert(this Card card)
         {
-            this.playerId = playerId;
-            this.card = card;
+            return new CardTransferObject(card.Suit.Convert(), card.Rank.Convert());
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Rank Convert(this RankTransferObject rankTransferObject)
+        {
+            return rankTransferObject switch
+            {
+                RankTransferObject.Two => Rank.Two,
+                RankTransferObject.Three => Rank.Three,
+                RankTransferObject.Four => Rank.Four,
+                RankTransferObject.Five => Rank.Five,
+                RankTransferObject.Six => Rank.Six,
+                RankTransferObject.Seven => Rank.Seven,
+                RankTransferObject.Eight => Rank.Eight,
+                RankTransferObject.Nine => Rank.Nine,
+                RankTransferObject.Ten => Rank.Ten,
+                RankTransferObject.Jack => Rank.Jack,
+                RankTransferObject.Queen => Rank.Queen,
+                RankTransferObject.King => Rank.King,
+                RankTransferObject.Ace => Rank.Ace,
+                _ => throw new ArgumentOutOfRangeException(nameof(rankTransferObject), rankTransferObject, null)
+            };
         }
 
-        [SerializeField] private PlayerId playerId;
-        [SerializeField] private Card card;
-        public PlayerId PlayerId => playerId;
-        public Card Card => card;
-        public Rank Rank => Card.Rank;
-        public Suit Suit => Card.Suit;
-
-        public bool IsGreater(PlayerCard other)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static RankTransferObject Convert(this Rank rank)
         {
-            return Card.IsGreater(other.Card);
+            return rank switch
+            {
+                Rank.Two => RankTransferObject.Two,
+                Rank.Three => RankTransferObject.Three,
+                Rank.Four => RankTransferObject.Four,
+                Rank.Five => RankTransferObject.Five,
+                Rank.Six => RankTransferObject.Six,
+                Rank.Seven => RankTransferObject.Seven,
+                Rank.Eight => RankTransferObject.Eight,
+                Rank.Nine => RankTransferObject.Nine,
+                Rank.Ten => RankTransferObject.Ten,
+                Rank.Jack => RankTransferObject.Jack,
+                Rank.Queen => RankTransferObject.Queen,
+                Rank.King => RankTransferObject.King,
+                Rank.Ace => RankTransferObject.Ace,
+                _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, null)
+            };
         }
 
-        public override string ToString()
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Suit Convert(this SuitTransferObject suitTransferObject)
         {
-            return $"(\n" +
-                   $"{playerId}\n" +
-                   $"Card: {card}\n" +
-                   $")";
+            return suitTransferObject switch
+            {
+                SuitTransferObject.Spades => Suit.Spades,
+                SuitTransferObject.Hearts => Suit.Hearts,
+                SuitTransferObject.Diamonds => Suit.Diamonds,
+                SuitTransferObject.Clubs => Suit.Clubs,
+                _ => throw new ArgumentOutOfRangeException(nameof(suitTransferObject), suitTransferObject, null)
+            };
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static SuitTransferObject Convert(this Suit suit)
+        {
+            return suit switch
+            {
+                Suit.Spades => SuitTransferObject.Spades,
+                Suit.Hearts => SuitTransferObject.Hearts,
+                Suit.Diamonds => SuitTransferObject.Diamonds,
+                Suit.Clubs => SuitTransferObject.Clubs,
+                _ => throw new ArgumentOutOfRangeException(nameof(suit), suit, null)
+            };
         }
     }
 }

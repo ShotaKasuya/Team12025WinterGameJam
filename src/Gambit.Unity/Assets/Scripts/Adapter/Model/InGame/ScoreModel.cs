@@ -1,5 +1,6 @@
 using Gambit.Unity.Adapter.IModel.Global;
 using Gambit.Unity.Adapter.IModel.InGame;
+using System.Collections.Generic;
 
 namespace Gambit.Unity.Adapter.Model.InGame
 {
@@ -20,5 +21,8 @@ namespace Gambit.Unity.Adapter.Model.InGame
         {
             Scores[playerId] = score;
         }
+
+        public IReadOnlyList<int> GetPlayerScore => Scores;
+        
     }
 }
