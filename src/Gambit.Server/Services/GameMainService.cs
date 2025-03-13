@@ -14,11 +14,11 @@ public class GameMainService : StreamingHubBase<IGameMainCommunication, IGameMai
         var newGroup = GroupManagement.Instance.GroupReader[groupId];
         newGroup.SetGroup(group);
 
-        if (newGroup.GroupPlayers.Count == GroupManagement.PlayerMax)
+        if (newGroup.GroupPlayers.Count == GroupManagement.PlayerMax + 1)
         {
             group.All.OnMatch();
         }
-        
+
         await Console.Out.WriteLineAsync($"new player: {playerId}, groupId: {groupId}");
         var playerIdTransfer = playerId.Convert();
         return new PlayerInitInfoTransferObject(playerIdTransfer, index, newGroup.GroupSeed);
@@ -36,7 +36,8 @@ public class GameMainService : StreamingHubBase<IGameMainCommunication, IGameMai
         var playerId = playerCardTransferObject.PlayerId.Convert();
         var group = GroupManagement.Instance.GetGroup(playerId);
 
-        Console.Out.WriteLineAsync($"player {playerId.ToString()} select ({playerCardTransferObject.Card.Suit}, {playerCardTransferObject.Card.Rank})");
+        Console.Out.WriteLineAsync(
+            $"player {playerId.ToString()} select ({playerCardTransferObject.Card.Suit}, {playerCardTransferObject.Card.Rank})");
         group.PairGroup!.All.SendSelectedCard(playerCardTransferObject);
         return CompletedTask;
     }
