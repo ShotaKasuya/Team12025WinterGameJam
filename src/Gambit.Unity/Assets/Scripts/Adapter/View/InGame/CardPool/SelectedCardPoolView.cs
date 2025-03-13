@@ -18,13 +18,12 @@ namespace Gambit.Unity.Adapter.View.InGame.CardPool
 
         public async UniTask StoreNewCard(ProductCardView cardView)
         {
-            var playerId = cardView.Card.PlayerId;
             var storeTo = transformableViews[cardView.Card.PlayerIndex];
 
             await cardView.ModelTransform
                 .DOMove(storeTo.ModelTransform.position, tweenTime)
                 .AsyncWaitForCompletion();
-            _cardViews[playerId.Id] = cardView;
+            _cardViews[cardView.Card.PlayerIndex] = cardView;
         }
 
         public IReadOnlyList<ProductCardView> PopAllCardViews()
