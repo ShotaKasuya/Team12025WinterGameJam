@@ -1,23 +1,29 @@
 using Gambit.Unity.Module.Utility.Module.StateMachine;
 using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 using Cysharp.Threading.Tasks;
+using Domain.IPresenter.InGame;
 using Gambit.Unity.Domain.IUseCase.InGame;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Utility.Structure.InGame;
 
 namespace Gambit.Unity.Domain.Flow.InGame
 {
-    public class EndStateFlow: IStateBehaviour<GameStateType>
+    public class EndStateFlow : IStateBehaviour<GameStateType>
     {
         public EndStateFlow
         (
-            IIsPlayerWinCase isPlayerWinCase
+            IIsPlayerWinCase isPlayerWinCase,
+            IGameEndPresenter gameEndPresenter
         )
         {
             IsPlayerWinCase = isPlayerWinCase;
+            GameEndPresenter = gameEndPresenter;
         }
-        
-        public IIsPlayerWinCase IsPlayerWinCase{ get; }
-        
+
+        public IIsPlayerWinCase IsPlayerWinCase { get; }
+        public IGameEndPresenter GameEndPresenter { get; }
+
         public void OnEnter(GameStateType prev)
         {
             var _ = EndFlow();
@@ -25,10 +31,21 @@ namespace Gambit.Unity.Domain.Flow.InGame
 
         private async UniTask EndFlow()
         {
-            if (IsPlayerWinCase.IsPlayerWin)
+            if (IsPlayerWinCase.IsPlayerWin == Result.Win)
             {
-                
+                GameEndPresenter.GameEnd(Result.Win);
             }
+            else if (IsPlayerWinCase.IsPlayerWin == Result.Lose)
+            {
+                GameEndPresenter.GameEnd(Result.Lose);
+            }
+            else
+            {
+                GameEndPresenter.GameEnd(Result.Draw);
+            }
+
+            await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+            SceneManager.LoadScene("TitleScene");
         }
 
         public void OnExit(GameStateType next)

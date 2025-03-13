@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Gambit.Unity.Adapter.IView.InGame.CardFactory
 {
-    public interface ICardProduct: IHandCardView, ITransformableView
+    public interface ICardProduct: IHandCardView, ICursorOverrideEventView, ITransformableView
     {
     }
     /// <summary>
@@ -19,7 +19,8 @@ namespace Gambit.Unity.Adapter.IView.InGame.CardFactory
     {
         public Transform ModelTransform { get; private set; }
         public Action<PlayerCard> SelectionEvent { get; set; }
-        //public Action<PlayerCard> OnMouseEvent { get; set; }
+        public Action<PlayerCard> CursorOverrideEvent { get; set; }
+        public Action<PlayerCard> CursorExitEvent { get; set; }
         public abstract void TurnOn();
         public abstract void TurnOff();
 
@@ -36,6 +37,5 @@ namespace Gambit.Unity.Adapter.IView.InGame.CardFactory
 
         public abstract void ShowFace();
         public abstract void HideFace();
-    
     }
 }

@@ -14,16 +14,16 @@ namespace Gambit.Unity.Adapter.View.InGame.CardPool
 
         public async UniTask StoreNewCard(ProductCardView cardView)
         {
-            var targetPlayer = cardView.Card.PlayerId.Id;
+            var targetPlayer = cardView.Card.PlayerIndex;
             handCardPositionsViews[targetPlayer].StoreNewCard(cardView);
 
             await handCardPositionsViews[targetPlayer].FixPosition();
             OnStore?.Invoke(cardView);
         }
 
-        public IReadOnlyList<ProductCardView> GetViewList(PlayerId playerId)
+        public IReadOnlyList<ProductCardView> GetViewList(int index)
         {
-            return handCardPositionsViews[playerId.Id].CardViewList;
+            return handCardPositionsViews[index].CardViewList;
         }
 
         public ProductCardView PopCardView(PlayerCard playerCard)

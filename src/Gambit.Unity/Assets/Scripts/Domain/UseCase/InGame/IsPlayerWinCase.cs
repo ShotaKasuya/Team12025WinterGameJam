@@ -2,6 +2,7 @@
 using Gambit.Unity.Adapter.IModel.InGame;
 using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Domain.IUseCase.InGame;
+using Utility.Structure.InGame;
 
 namespace Gambit.Unity.Domain.UseCase.InGame
 {
@@ -20,9 +21,28 @@ namespace Gambit.Unity.Domain.UseCase.InGame
         private IScoreModel ScoreModel { get; }
         private IPlayerIdModel PlayerIdModel { get; }
 
-        public bool IsPlayerWin
+        public Result IsPlayerWin
         {
-            get { return (ScoreModel.GetScore(PlayerIdModel.PlayerIndex) == ScoreModel.GetPlayerScore.Max()); }
+            get
+            {
+                var score = ScoreModel.GetScore(PlayerIdModel.PlayerId.Id);
+                var max = ScoreModel.GetPlayerScore.Max();
+                var maxcount = ScoreModel.GetPlayerScore.Count(x => x == max);
+
+                if (score == max)
+                {
+                    if (maxcount != 1)
+                    {
+                        return Result.Draw;
+                    }
+                    
+                    return Result.Win;
+                }
+                else
+                {
+                    return Result.Lose;
+                }
+            }
         }
     }
 }

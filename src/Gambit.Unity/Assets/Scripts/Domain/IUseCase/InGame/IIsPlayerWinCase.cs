@@ -1,7 +1,9 @@
-﻿namespace Gambit.Unity.Domain.IUseCase.InGame
+using Utility.Structure.InGame;
+
+namespace Gambit.Unity.Domain.IUseCase.InGame
 {
     public interface IIsPlayerWinCase
     {
-        public bool IsPlayerWin { get; }
+        public Result IsPlayerWin { get; }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-using Gambit.Shared;
-using Gambit.Unity.Adapter.IModel.InGame.Player;
-using Gambit.Unity.Adapter.IView.InGame.CardFactory;
 using Gambit.Unity.Structure.Utility.InGame;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
 using Gambit.Unity.Module.Utility.Module.Option;
@@ -30,7 +27,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
         private void SetSentCard(PlayerCard playerCard)
         {
             var apply = Option<PlayerCard>.Some(playerCard);
-            SelectedCardModel.StorePlayerSelection(playerCard.PlayerId.Id, apply);
+            SelectedCardModel.StorePlayerSelection(playerCard.PlayerIndex, apply);
         }
         
         private IMutSelectedCardModel SelectedCardModel{get;}
