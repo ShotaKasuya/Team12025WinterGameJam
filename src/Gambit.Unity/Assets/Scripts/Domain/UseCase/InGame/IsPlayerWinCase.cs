@@ -1,7 +1,8 @@
-using System.Linq;
+﻿using System.Linq;
 using Gambit.Unity.Adapter.IModel.InGame;
 using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Domain.IUseCase.InGame;
+using Utility.Structure.InGame;
 
 namespace Gambit.Unity.Domain.UseCase.InGame
 {

@@ -1,12 +1,9 @@
-﻿using Adapter.IView.InGame.Ui;
-using CodiceApp.Gravatar;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Domain.IPresenter.InGame;
-using UnityEngine;
+using Gambit.Unity.Adapter.IView.InGame.Ui;
 using Utility.Structure.InGame;
-using Input = UnityEngine.Windows.Input;
 
-namespace Domain.Presenter.InGame
+namespace Gambit.Unity.Domain.Presenter.InGame
 {
     public class GameEndPresenter : IGameEndPresenter
     {
