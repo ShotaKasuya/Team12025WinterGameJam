@@ -14,7 +14,7 @@ namespace Gambit.Unity.Adapter.View.InGame.CardPool
 
         public async UniTask StoreNewCard(ProductCardView cardView)
         {
-            var targetPlayer = cardView.Card.PlayerId.Id;
+            var targetPlayer = cardView.Card.PlayerIndex;
             handCardPositionsViews[targetPlayer].StoreNewCard(cardView);
 
             await handCardPositionsViews[targetPlayer].FixPosition();
