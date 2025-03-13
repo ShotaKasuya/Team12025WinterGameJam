@@ -59,7 +59,25 @@ public class GroupManagement
 
     public Group GetGroup(PlayerId playerId)
     {
-        return GroupReader.Values.First(x => x.Has(playerId));
+        var result = GroupReader.Values.FirstOrDefault(x => x.Has(playerId));
+
+        if (result is null)
+        {
+            Console.Out.WriteLineAsync("player not found");
+            var groups = GroupReader.Values.ToArray();
+            for (int i = 0; i < groups.Count(); i++)
+            {
+                Console.Out.WriteLineAsync($"group {i} player");
+
+                var players = groups[i].GroupPlayers;
+                foreach (var player in players)
+                {
+                    Console.Out.WriteLineAsync($"player id: {player.Id}");
+                }
+            }
+        }
+
+        return result!;
     }
 
     public IReadOnlyDictionary<GroupId, Group> GroupReader => Groups;

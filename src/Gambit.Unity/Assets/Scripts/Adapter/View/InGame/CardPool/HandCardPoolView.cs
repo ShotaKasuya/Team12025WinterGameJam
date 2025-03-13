@@ -28,7 +28,7 @@ namespace Gambit.Unity.Adapter.View.InGame.CardPool
 
         public ProductCardView PopCardView(PlayerCard playerCard)
         {
-            var popCardView = handCardPositionsViews[playerCard.PlayerId.Id].PopCardView(playerCard.Card);
+            var popCardView = handCardPositionsViews[playerCard.PlayerIndex].PopCardView(playerCard.Card);
             OnPop?.Invoke(popCardView);
             return popCardView;
         }
