@@ -14,7 +14,7 @@ public class GameMainService : StreamingHubBase<IGameMainCommunication, IGameMai
         var newGroup = GroupManagement.Instance.GroupReader[groupId];
         newGroup.SetGroup(group);
 
-        if (newGroup.GroupPlayers.Count == GroupManagement.PlayerMax + 1)
+        if (newGroup.GroupPlayers.Count == GroupManagement.PlayerMax)
         {
             group.All.OnMatch();
         }

@@ -4,7 +4,7 @@ namespace Gambit.Server.Services;
 
 public class GroupManagement
 {
-    public const uint PlayerMax = 1;
+    public const uint PlayerMax = 2;
 
     /// <summary>
     /// ランダムにプレイヤーを追加
