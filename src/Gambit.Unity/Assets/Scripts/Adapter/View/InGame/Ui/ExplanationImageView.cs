@@ -1,5 +1,4 @@
 ﻿using Gambit.Unity.Adapter.IView.InGame.Ui;
-using Gambit.Unity.Adapter.View.ExplanationFactory;
 using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
 using UnityEngine.UI;

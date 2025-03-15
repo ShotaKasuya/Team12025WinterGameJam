@@ -48,7 +48,6 @@ namespace Gambit.Unity.Installer.InGame
             builder.RegisterInstance(settingModel).AsImplementedInterfaces();
             builder.Register<GameStateModel>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<JudgeResultModel>(Lifetime.Singleton).AsImplementedInterfaces();
-            builder.Register<IdProvideModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerCountModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<SelectedCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<ConditionModel>(Lifetime.Singleton).AsImplementedInterfaces();

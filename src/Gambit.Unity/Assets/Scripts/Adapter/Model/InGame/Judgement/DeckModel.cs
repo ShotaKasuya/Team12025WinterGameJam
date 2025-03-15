@@ -11,8 +11,17 @@ namespace Gambit.Unity.Adapter.Model.InGame.Judgement
         {
             Decks = new Deck[playerCountModel.PlayerCount];
         }
+        
+        public Deck[] Decks { get; }
+        public void DrawCards(Card[] buffer)
+        {
+            for (var i = 0; i < buffer.Length; i++)
+            {
+                buffer[i] = DeckReader[i].Cards.Pop();
+            }
+        }
 
         public IReadOnlyList<Deck> DeckReader => Decks;
-        public Deck[] Decks { get; }
+        public bool IsRemain => DeckReader[0].Cards.Count != 0;
     }
 }

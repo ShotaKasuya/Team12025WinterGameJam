@@ -1,9 +1,11 @@
 ﻿using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Gambit.Unity.Adapter.IView.InGame.IExplanationFactory
+namespace Gambit.Unity.Adapter.IView.InGame.Ui
 {
+    /// <summary>
+    /// カード効果の説明を行う画像を取得できる
+    /// </summary>
     public interface IExplanationSprites
     {
         public Sprite GetImage(Card  card);

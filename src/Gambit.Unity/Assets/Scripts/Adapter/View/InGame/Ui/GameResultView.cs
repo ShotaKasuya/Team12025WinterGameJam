@@ -1,6 +1,6 @@
 ﻿using Gambit.Unity.Adapter.IView.InGame.Ui;
+using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
-using Utility.Structure.InGame;
 
 namespace Gambit.Unity.Adapter.View.InGame.Ui
 {

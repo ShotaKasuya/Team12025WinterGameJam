@@ -1,4 +1,4 @@
-﻿namespace Utility.Structure.InGame
+﻿namespace Gambit.Unity.Structure.Utility.InGame
 {
     public enum Result
     {

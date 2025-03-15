@@ -1,8 +1,8 @@
-﻿using Gambit.Unity.Adapter.IView.InGame.IExplanationFactory;
+﻿using Gambit.Unity.Adapter.IView.InGame.Ui;
 using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
 
-namespace Gambit.Unity.Adapter.View.ExplanationFactory
+namespace Gambit.Unity.Adapter.View.InGame.Ui
 {
     [CreateAssetMenu(fileName = "ExplanationSprites", menuName = "ExplanationSpritesAsset", order = 0)]
     public class ExplanationSprites:ScriptableObject,IExplanationSprites

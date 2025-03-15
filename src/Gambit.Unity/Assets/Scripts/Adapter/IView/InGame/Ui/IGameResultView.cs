@@ -1,4 +1,4 @@
-using Utility.Structure.InGame;
+using Gambit.Unity.Structure.Utility.InGame;
 
 namespace Gambit.Unity.Adapter.IView.InGame.Ui
 {

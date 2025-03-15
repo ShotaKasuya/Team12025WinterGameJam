@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using Gambit.Unity.Domain.UseCase.InGame;
-using NUnit.Framework;
 using Gambit.Unity.Adapter.IModel.Global;
 using Gambit.Unity.Adapter.IModel.InGame;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Domain.UseCase.InGame;
 using Gambit.Unity.Structure.Utility.InGame;
+using NUnit.Framework;
 
-
-namespace Tests.EditModeTest.InGame
+namespace Gambit.Unity.Test.EditMode.Tests.EditModeTest.InGame
 {
     public class AddPointTest
     {

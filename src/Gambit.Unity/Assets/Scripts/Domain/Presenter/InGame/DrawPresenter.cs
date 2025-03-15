@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Gambit.Unity.Adapter.IView.InGame;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Adapter.IView.InGame.Ui;
 using Gambit.Unity.Domain.IPresenter.InGame;
 using Gambit.Unity.Structure.Utility.InGame;
 using KanKikuchi.AudioManager;
@@ -15,11 +16,13 @@ namespace Gambit.Unity.Domain.Presenter.InGame
         public DrawPresenter
         (
             ICardFactory cardFactory,
-            IHandCardPoolView handCardPoolView
+            IHandCardPoolView handCardPoolView,
+            IRemainCardView remainCardView
         )
         {
             CardFactory = cardFactory;
             HandCardPoolView = handCardPoolView;
+            RemainCardView = remainCardView;
         }
 
         public async UniTask PresentDraw(PlayerCard[] cards)
@@ -59,5 +62,6 @@ namespace Gambit.Unity.Domain.Presenter.InGame
 
         private ICardFactory CardFactory { get; }
         private IHandCardPoolView HandCardPoolView { get; }
+        private IRemainCardView RemainCardView { get; }
     }
 }
