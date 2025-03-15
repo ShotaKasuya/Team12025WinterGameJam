@@ -68,6 +68,12 @@ public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         MatchWaitingConfpanel.SetActive(true);
     }
 
+    public void CloseMatchingWaitingPanel()
+    {
+        SEManager.Instance.Play(SEPath.CANCEL_SE2,0.2f);
+        MatchWaitingConfpanel.SetActive(false);
+    }
+
     public void OnDeclarationButtonClick()
     {
         DeclarationPanel.SetActive(true);
@@ -80,12 +86,5 @@ public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         DeclarationPanel.SetActive(false);
         SEManager.Instance.Play(SEPath.CANCEL_SE2, 0.2f);
     }
-
-    //‘Îí‘Šè‚ªŒ©‚Â‚©‚Á‚Ä‘Îí‰æ–Ê‚ÉˆÚs‚·‚éÛ‚ÉŒÄ‚Ño‚µ‚Ä‚Ù‚µ‚¢ŠÖ”‚Å‚·
-    public void CloseMatchWaitingConfPanel()
-    {
-        MatchWaitingConfpanel.SetActive(false);
-    }
-
 
 }
