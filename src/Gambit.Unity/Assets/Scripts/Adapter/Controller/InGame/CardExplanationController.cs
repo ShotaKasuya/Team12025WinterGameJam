@@ -8,11 +8,14 @@ using Gambit.Unity.Adapter.IView.InGame.Ui;
 using Gambit.Unity.Structure.Utility.InGame;
 using VContainer.Unity;
 
-namespace Gambit.Unity.Adapter.Linker.InGame
+namespace Gambit.Unity.Adapter.Controller.InGame
 {
-    public class CardExplanationLinker : IInitializable, IDisposable
+    /// <summary>
+    /// カーソルが上に存在するカードの効果説明を表示する
+    /// </summary>
+    public class CardExplanationController : IInitializable, IDisposable
     {
-        public CardExplanationLinker
+        public CardExplanationController
         (
             IPlayerIdModel playerIdModel,
             IHandCardPoolView handCardPoolView,

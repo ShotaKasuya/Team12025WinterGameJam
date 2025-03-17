@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Gambit.Unity.Adapter.IModel.Global;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
@@ -5,7 +6,7 @@ using Gambit.Unity.Structure.Utility.InGame;
 
 namespace Gambit.Unity.Adapter.Model.InGame.Judgement
 {
-    public class DeckModel: IMutDeckModel
+    public class DeckModel: IMutDeckModel, IDeckChangeEventModel
     {
         public DeckModel(IPlayerCountModel playerCountModel)
         {
@@ -13,15 +14,20 @@ namespace Gambit.Unity.Adapter.Model.InGame.Judgement
         }
         
         public Deck[] Decks { get; }
-        public void DrawCards(Card[] buffer)
+        public void DrawCards(PlayerCard[] buffer)
         {
             for (var i = 0; i < buffer.Length; i++)
             {
-                buffer[i] = DeckReader[i].Cards.Pop();
+                var card = DeckReader[i].Pop();
+                var context = new IDeckChangeEventModel.Context(card.PlayerId, DeckReader[i].Cards.Count);
+                
+                buffer[i] = card;
+                OnChange?.Invoke(context);
             }
         }
 
         public IReadOnlyList<Deck> DeckReader => Decks;
         public bool IsRemain => DeckReader[0].Cards.Count != 0;
+        public Action<IDeckChangeEventModel.Context> OnChange { get; set; }
     }
 }

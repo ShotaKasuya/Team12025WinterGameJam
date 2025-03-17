@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Gambit.Unity.Structure.Utility.InGame;
 
@@ -9,13 +10,33 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
     public interface IMutDeckModel: IDeckModel
     {
         public Deck[] Decks { get; }
-        public void DrawCards(Card[] buffer);
+        public void DrawCards(PlayerCard[] buffer);
     }
     
     public interface IDeckModel
     {
         public IReadOnlyList<Deck> DeckReader { get; }
         public bool IsRemain { get; }
+    }
+
+    public interface IDeckChangeEventModel
+    {
+        /// <summary>
+        /// デッキの中身が変化したイベント
+        /// `int` : デッキの残りカード数
+        /// </summary>
+        public Action<Context> OnChange { get; set; }
+        public readonly struct Context
+        {
+            public PlayerId PlayerId { get; }
+            public int RemainCardCount { get; }
+
+            public Context(PlayerId playerId, int remainCardCount)
+            {
+                PlayerId = playerId;
+                RemainCardCount = remainCardCount;
+            }
+        }
     }
 
     public class MockDeckModel : IMutDeckModel
@@ -25,12 +46,7 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
         public bool IsRemain => DeckReader[0].Cards.Count == 0;
         public IReadOnlyList<Deck> DeckReader => Decks;
 
-        public void SetUpDeck(Deck[] decks)
-        {
-            Decks = decks;
-        }
-
-        public void DrawCards(Card[] buffer)
+        public void DrawCards(PlayerCard[] buffer)
         {
             throw new System.NotImplementedException();
         }

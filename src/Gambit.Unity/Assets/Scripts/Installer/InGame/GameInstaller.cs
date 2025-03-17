@@ -1,5 +1,5 @@
+using Gambit.Unity.Adapter.Controller.InGame;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
-using Gambit.Unity.Adapter.Linker.InGame;
 using Gambit.Unity.Adapter.Model.Global;
 using Gambit.Unity.Adapter.Model.InGame;
 using Gambit.Unity.Adapter.Model.InGame.Judgement;
@@ -27,6 +27,8 @@ namespace Gambit.Unity.Installer.InGame
         [SerializeField] private DrawCardPoolView drawCardPoolView;
         [SerializeField] private ExplanationImageView explanationImageView;
         [SerializeField] private GameResultView gameResultView;
+        [SerializeField] private RemainCardView remainCardView;
+        [SerializeField] private ScoreView scoreView;
 
         [SerializeField] private SettingModel settingModel;
 
@@ -35,15 +37,20 @@ namespace Gambit.Unity.Installer.InGame
             Debug.Log("configure");
             
             // View
-            builder.RegisterComponent(gameResultView).AsImplementedInterfaces();
-            builder.RegisterComponent(baseCardView).As<ProductCardView>();
-            builder.RegisterComponent(drawCardPoolView).AsImplementedInterfaces();
-            builder.RegisterComponent(winCardPoolView).AsImplementedInterfaces();
-            builder.RegisterComponent(startImageView).AsImplementedInterfaces();
-            builder.RegisterComponent(explanationImageView).AsImplementedInterfaces();
-            builder.RegisterComponent(addPointTextView).AsImplementedInterfaces();
-            builder.RegisterComponent(cardPositionsView).AsImplementedInterfaces();
-            builder.RegisterComponent(selectedCardPoolView).AsImplementedInterfaces();
+            builder.UseComponents(componentsBuilder =>
+            {
+                componentsBuilder.AddInstance(gameResultView).AsImplementedInterfaces();
+                componentsBuilder.AddInstance(baseCardView).As<ProductCardView>();
+                componentsBuilder.AddInstance(drawCardPoolView).AsImplementedInterfaces();
+                componentsBuilder.AddInstance(winCardPoolView).AsImplementedInterfaces();
+                componentsBuilder.AddInstance(startImageView).AsImplementedInterfaces();
+                componentsBuilder.AddInstance(explanationImageView).AsImplementedInterfaces();
+                componentsBuilder.AddInstance(addPointTextView).AsImplementedInterfaces();
+                componentsBuilder.AddInstance(cardPositionsView).AsImplementedInterfaces();
+                componentsBuilder.AddInstance(selectedCardPoolView).AsImplementedInterfaces();
+                componentsBuilder.AddInstance(remainCardView).AsImplementedInterfaces();
+                componentsBuilder.AddInstance(scoreView).AsImplementedInterfaces();
+            });
             builder.Register<CardFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             
             // Model
@@ -57,10 +64,15 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<HandCardModel>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<ScoreModel>(Lifetime.Singleton).AsImplementedInterfaces();
 
-            // Linker
-            builder.RegisterEntryPoint<SelectionLinker>();
-            builder.RegisterEntryPoint<PlayerCardTransferObjectLinker>();
-            builder.RegisterEntryPoint<CardExplanationLinker>();
+            // Controller
+            builder.UseEntryPoints(pointsBuilder =>
+            {
+                pointsBuilder.Add<SelectionController>();
+                pointsBuilder.Add<ReceiveOtherPlayerCardController>();
+                pointsBuilder.Add<CardExplanationController>();
+                pointsBuilder.Add<RemainCardController>();
+                pointsBuilder.Add<ScoreController>();
+            });
 
             // Presenter
             builder.Register<DrawPresenter>(Lifetime.Singleton).AsImplementedInterfaces();

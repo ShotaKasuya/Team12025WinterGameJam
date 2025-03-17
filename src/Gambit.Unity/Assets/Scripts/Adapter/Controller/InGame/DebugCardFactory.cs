@@ -2,7 +2,7 @@ using Gambit.Unity.Adapter.IView.InGame.CardFactory;
 using Gambit.Unity.Structure.Utility.InGame;
 using UnityEngine;
 
-namespace Gambit.Unity.Adapter.Linker.InGame
+namespace Gambit.Unity.Adapter.Controller.InGame
 {
     /// <summary>
     /// デバッグ用に相手のカードも表示する

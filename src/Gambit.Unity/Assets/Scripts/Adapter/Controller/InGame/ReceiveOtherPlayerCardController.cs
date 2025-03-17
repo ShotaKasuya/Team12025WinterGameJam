@@ -1,15 +1,15 @@
 ﻿using System;
-using Gambit.Unity.Structure.Utility.InGame;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
-using Gambit.Unity.Module.Utility.Module.Option;
 using Gambit.Unity.Adapter.IView.InGame;
+using Gambit.Unity.Module.Utility.Module.Option;
+using Gambit.Unity.Structure.Utility.InGame;
 using VContainer.Unity;
 
-namespace Gambit.Unity.Adapter.Linker.InGame
+namespace Gambit.Unity.Adapter.Controller.InGame
 {
-    public class PlayerCardTransferObjectLinker:IInitializable,IDisposable
+    public class ReceiveOtherPlayerCardController:IInitializable,IDisposable
     {
-        public PlayerCardTransferObjectLinker
+        public ReceiveOtherPlayerCardController
         (
             IMutSelectedCardModel selectedCardModel,
             IGetSentCardStateView getSentCardStateView

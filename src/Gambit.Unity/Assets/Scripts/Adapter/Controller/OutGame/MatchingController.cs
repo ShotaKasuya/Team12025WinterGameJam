@@ -7,11 +7,11 @@ using Gambit.Unity.Adapter.IView.UseCommunication;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
-namespace Gambit.Unity.Adapter.Linker.OutGame
+namespace Gambit.Unity.Adapter.Controller.OutGame
 {
-    public class MatchingLinker : IInitializable, IDisposable
+    public class MatchingController : IInitializable, IDisposable
     {
-        public MatchingLinker
+        public MatchingController
         (
             IMatchConfPanelView matchConfPanelView,
             IMatchEventView matchEventView,

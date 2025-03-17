@@ -1,5 +1,5 @@
+using Gambit.Unity.Adapter.Controller.InGame;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
-using Gambit.Unity.Adapter.Linker.InGame;
 using Gambit.Unity.Adapter.Model.Global;
 using Gambit.Unity.Adapter.Model.InGame;
 using Gambit.Unity.Adapter.Model.InGame.Judgement;
@@ -56,9 +56,9 @@ namespace Gambit.Unity.Installer.InGame
             builder.Register<ScoreModel>(Lifetime.Singleton).AsImplementedInterfaces();
 
             // Linker
-            builder.RegisterEntryPoint<DebugSelectionLinker>();
-            builder.RegisterEntryPoint<PlayerCardTransferObjectLinker>();
-            builder.RegisterEntryPoint<CardExplanationLinker>();
+            builder.RegisterEntryPoint<DebugSelectionController>();
+            builder.RegisterEntryPoint<ReceiveOtherPlayerCardController>();
+            builder.RegisterEntryPoint<CardExplanationController>();
 
             // Presenter
             builder.Register<DrawPresenter>(Lifetime.Singleton).AsImplementedInterfaces();

@@ -1,22 +1,28 @@
-﻿using System;
+using System;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
+using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IView.InGame;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
+using Gambit.Unity.Adapter.IView.UseCommunication;
 using Gambit.Unity.Module.Utility.Module.Option;
 using Gambit.Unity.Structure.Utility.InGame;
 using VContainer.Unity;
 
-namespace Gambit.Unity.Adapter.Linker.InGame
+namespace Gambit.Unity.Adapter.Controller.InGame
 {
-    public class DebugSelectionLinker : IInitializable, IDisposable
+    public class SelectionController : IInitializable, IDisposable
     {
-        public DebugSelectionLinker
+        public SelectionController
         (
+            IPlayerIdModel playerIdModel,
             IHandCardPoolView handCardPoolView,
+            ISendSelectedCardView sendSelectedCardView,
             IMutSelectedCardModel selectedCardModel
         )
         {
+            PlayerIdModel = playerIdModel;
             HandCardPoolView = handCardPoolView;
+            SendSelectedCardView = sendSelectedCardView;
             SelectedCardModel = selectedCardModel;
         }
 
@@ -41,6 +47,11 @@ namespace Gambit.Unity.Adapter.Linker.InGame
             var currentSelect = SelectedCardModel.GetSelection(selectedCard.PlayerIndex);
             var apply = Option<PlayerCard>.Some(selectedCard);
 
+            if (PlayerIdModel.PlayerId != selectedCard.PlayerId)
+            {
+                return;
+            }
+
             if (currentSelect.TryGetValue(out var card))
             {
                 if (card.Card == selectedCard.Card)
@@ -49,6 +60,7 @@ namespace Gambit.Unity.Adapter.Linker.InGame
                 }
             }
 
+            SendSelectedCardView.SendPlayerCard(selectedCard);
             SelectedCardModel.StorePlayerSelection(selectedCard.PlayerIndex, apply);
             ApplyView(selectedCard.PlayerIndex, apply);
         }
@@ -74,8 +86,11 @@ namespace Gambit.Unity.Adapter.Linker.InGame
             }
         }
 
+
         private IHandCardPoolView HandCardPoolView { get; }
         private IMutSelectedCardModel SelectedCardModel { get; }
+        private ISendSelectedCardView SendSelectedCardView { get; }
+        private IPlayerIdModel PlayerIdModel { get; }
 
         public void Dispose()
         {
