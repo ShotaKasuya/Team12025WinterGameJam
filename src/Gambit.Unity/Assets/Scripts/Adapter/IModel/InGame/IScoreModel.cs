@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Gambit.Unity.Structure.Utility.InGame;
 
 namespace Gambit.Unity.Adapter.IModel.InGame
 {

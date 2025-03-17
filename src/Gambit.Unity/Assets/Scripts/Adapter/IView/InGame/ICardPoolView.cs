@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Adapter.IView.InGame
 {

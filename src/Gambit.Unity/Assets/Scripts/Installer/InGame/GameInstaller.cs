@@ -9,7 +9,7 @@ using Gambit.Unity.Adapter.View.InGame.Ui;
 using Gambit.Unity.Domain.Flow.InGame;
 using Gambit.Unity.Domain.Presenter.InGame;
 using Gambit.Unity.Domain.UseCase.InGame;
-using Gambit.Unity.Structure.Utility.InGame.StateMachine;
+using Gambit.Unity.Utility.Structure.InGame.StateMachine;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

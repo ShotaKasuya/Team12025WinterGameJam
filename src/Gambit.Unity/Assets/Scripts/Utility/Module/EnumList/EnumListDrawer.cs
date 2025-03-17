@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Gambit.Unity.Structure.Utility.InGame
+namespace Gambit.Unity.Utility.Module.EnumList
 {
     [CustomPropertyDrawer(typeof(EnumListAttribute))]
     public class EnumListDrawer : PropertyDrawer

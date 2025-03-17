@@ -2,7 +2,7 @@
 using Gambit.Unity.Adapter.IModel.InGame;
 using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Domain.IUseCase.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Domain.UseCase.InGame
 {

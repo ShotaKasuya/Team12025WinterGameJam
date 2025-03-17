@@ -2,8 +2,8 @@
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
 using Gambit.Unity.Adapter.IView.InGame;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
-using Gambit.Unity.Module.Utility.Module.Option;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Module.Option;
+using Gambit.Unity.Utility.Structure.InGame;
 using VContainer.Unity;
 
 namespace Gambit.Unity.Adapter.Controller.InGame

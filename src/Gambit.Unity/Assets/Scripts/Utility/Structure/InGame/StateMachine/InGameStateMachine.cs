@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Gambit.Unity.Module.Utility.Module.StateMachine;
+using Gambit.Unity.Utility.Module.StateMachine;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace Gambit.Unity.Structure.Utility.InGame.StateMachine
+namespace Gambit.Unity.Utility.Structure.InGame.StateMachine
 {
     public class InGameStateMachine : AbstractStateMachine<GameStateType>, IStartable, ITickable
     {

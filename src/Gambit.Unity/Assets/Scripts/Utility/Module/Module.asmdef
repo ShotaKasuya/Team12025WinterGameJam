@@ -1,6 +1,6 @@
 {
     "name": "Module",
-    "rootNamespace": "Gambit.Unity.Module",
+    "rootNamespace": "Gambit.Unity.Utility.Module",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

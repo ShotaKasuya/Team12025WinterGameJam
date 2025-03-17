@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Gambit.Shared.DataTransferObject;
 using UnityEngine;
 
-namespace Gambit.Unity.Structure.Utility.InGame
+namespace Gambit.Unity.Utility.Structure.InGame
 {
     [Serializable]
     public struct PlayerId: IEquatable<PlayerId>

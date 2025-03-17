@@ -1,7 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Gambit.Unity.Adapter.IView.InGame.Ui;
 using Gambit.Unity.Domain.IPresenter.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Domain.Presenter.InGame
 {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Gambit.Unity.Module.Utility.Module.Option;
+using Gambit.Unity.Utility.Module.Option;
 using UnityEngine;
 
-namespace Gambit.Unity.Structure.Utility.InGame
+namespace Gambit.Unity.Utility.Structure.InGame
 {
     [Serializable]
     public struct BattleResult

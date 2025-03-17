@@ -1,8 +1,8 @@
 ﻿using System;
 using Gambit.Shared;
 using Gambit.Shared.DataTransferObject;
-using Gambit.Unity.Structure.Utility.InGame;
 using Gambit.Unity.Adapter.IView.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Adapter.View.Communication
 {

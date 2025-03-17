@@ -3,7 +3,7 @@ using Gambit.Unity.Adapter.IView.InGame.CardFactory;
 using Gambit.Unity.Adapter.View.InGame;
 using Gambit.Unity.Adapter.View.InGame.CardPool;
 using Gambit.Unity.Domain.Presenter.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

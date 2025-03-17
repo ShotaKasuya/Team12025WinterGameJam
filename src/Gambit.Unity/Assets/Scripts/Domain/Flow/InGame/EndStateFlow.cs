@@ -1,9 +1,9 @@
-using Gambit.Unity.Module.Utility.Module.StateMachine;
-using Gambit.Unity.Structure.Utility.InGame.StateMachine;
 using Cysharp.Threading.Tasks;
 using Gambit.Unity.Domain.IPresenter.InGame;
 using Gambit.Unity.Domain.IUseCase.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Module.StateMachine;
+using Gambit.Unity.Utility.Structure.InGame;
+using Gambit.Unity.Utility.Structure.InGame.StateMachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

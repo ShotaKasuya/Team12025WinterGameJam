@@ -1,5 +1,6 @@
 ﻿using Gambit.Unity.Adapter.IView.InGame.Ui;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Module.EnumList;
+using Gambit.Unity.Utility.Structure.InGame;
 using UnityEngine;
 
 namespace Gambit.Unity.Adapter.View.InGame.Ui
@@ -12,7 +13,7 @@ namespace Gambit.Unity.Adapter.View.InGame.Ui
         public Sprite GetImage(Card card)
         {
             var index = (int)card.Rank;
-            return rankSprites.Array[index];
+            return rankSprites.Get(index);
         }
     }
 }

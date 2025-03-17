@@ -1,6 +1,6 @@
 using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 using UnityEngine;
 
 namespace Gambit.Unity.Adapter.Controller.InGame

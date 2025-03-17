@@ -1,6 +1,6 @@
 using System;
 
-namespace Gambit.Unity.Module.Utility.Module.StateMachine
+namespace Gambit.Unity.Utility.Module.StateMachine
 {
     /// <summary>
     /// ステートの振る舞いを行うインターフェース

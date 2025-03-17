@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Gambit.Unity.Structure.Utility.InGame
-
+namespace Gambit.Unity.Utility.Module.EnumList
 {
     public class EnumListAttribute : PropertyAttribute
     {
@@ -18,6 +17,10 @@ namespace Gambit.Unity.Structure.Utility.InGame
     public class EnumArray<T>
     {
         [SerializeField] private T[] array;
-        public T[] Array => array;
+
+        public T Get(int index)
+        {
+            return array[index];
+        }
     }
 }

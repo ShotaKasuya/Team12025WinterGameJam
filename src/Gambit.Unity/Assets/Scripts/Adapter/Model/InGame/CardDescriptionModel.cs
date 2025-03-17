@@ -1,6 +1,7 @@
 using System;
 using Gambit.Unity.Adapter.IModel.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Module.EnumList;
+using Gambit.Unity.Utility.Structure.InGame;
 using UnityEngine;
 using UnityEngine.UI;
 

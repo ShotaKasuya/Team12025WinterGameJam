@@ -1,5 +1,5 @@
 using Gambit.Unity.Adapter.IModel.Global;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Adapter.Model.Global
 {

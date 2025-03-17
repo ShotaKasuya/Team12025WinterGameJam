@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using Gambit.Shared;
 using Gambit.Unity.Adapter.IView.UseCommunication;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 using MagicOnion;
 using MagicOnion.Client;
 using UnityEngine;
