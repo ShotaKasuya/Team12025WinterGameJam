@@ -11,7 +11,6 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Player
     public interface IPlayerIdModel
     {
         public PlayerId PlayerId { get; }
-        public int PlayerIndex { get; }
     }
 
     public interface IPlayerDictionaryModel

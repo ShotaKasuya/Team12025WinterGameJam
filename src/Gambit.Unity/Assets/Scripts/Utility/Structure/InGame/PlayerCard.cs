@@ -38,10 +38,11 @@ namespace Gambit.Unity.Utility.Structure.InGame
 
         public override string ToString()
         {
-            return $"(\n" +
+            return "(\n" +
                    $"{playerId}\n" +
+                   $"PlayerIndex: {playerIndex}\n" +
                    $"Card: {card}\n" +
-                   $")";
+                   ")";
         }
 
 

@@ -35,7 +35,7 @@ namespace Gambit.Unity.Adapter.Controller.InGame
                 return;
             }
             
-            RemainCardView.RemainCardCount(context.RemainCardCount);
+            RemainCardView.SetRemainCardCount(context.RemainCardCount);
         }
         
         private IPlayerIdModel PlayerIdModel { get; }

@@ -46,19 +46,19 @@ namespace Gambit.Unity.Domain.UseCase.InGame
 
         public Option<PlayerCard[]> DrawCard()
         {
-            if (DeckModel.IsRemain)
+            if (!DeckModel.IsRemain)
             {
                 return Option<PlayerCard[]>.None();
             }
             
-            var cards = new PlayerCard[PlayerCountModel.PlayerCount];
-            DeckModel.DrawCards(cards);
-            foreach (var playerCard in cards)
+            var buffer = new PlayerCard[PlayerCountModel.PlayerCount];
+            DeckModel.DrawCards(buffer);
+            foreach (var playerCard in buffer)
             {
                 HandCardModel.StoreNewCard(playerCard);
             }
 
-            return Option<PlayerCard[]>.Some(cards);
+            return Option<PlayerCard[]>.Some(buffer);
         }
 
         private IPlayerCountModel PlayerCountModel { get; }

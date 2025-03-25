@@ -5,6 +5,6 @@ namespace Gambit.Unity.Adapter.IView.InGame.Ui
     /// </summary>
     public interface IRemainCardView
     {
-        public void RemainCardCount(int cardCount);
+        public void SetRemainCardCount(int cardCount);
     }
 }

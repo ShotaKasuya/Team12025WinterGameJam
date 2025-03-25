@@ -63,7 +63,7 @@ namespace Gambit.Unity.Domain.UseCase.InGame
             for (var i = 0; i < deckNum; i++)
             {
                 var deck = GetRow(i);
-                result[i] = new Deck(deck, PlayerDictionaryModel.PlayerIds[i]);
+                result[i] = new Deck(deck, PlayerDictionaryModel.PlayerIds[i], i);
             }
 
             return result;

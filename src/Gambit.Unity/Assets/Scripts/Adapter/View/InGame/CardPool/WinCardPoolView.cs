@@ -10,27 +10,28 @@ namespace Gambit.Unity.Adapter.View.InGame.CardPool
 {
     public class WinCardPoolView : MonoBehaviour, IWinCardPoolView
     {
-        [SerializeField] private Transform newProductCardsViewsPosition;
+        [SerializeField] private Transform[] cardPositions;
         [SerializeField] private float moveDuration;
 
-        private List<ProductCardView> winCardViews = new List<ProductCardView>();
-        private List<ProductCardView> swapWinCardViews = new List<ProductCardView>();
-        private Vector3 NewProductCardsViewsPosition => newProductCardsViewsPosition.position;
+        private List<ProductCardView> _winCardViews = new List<ProductCardView>();
+        private List<ProductCardView> _bufferCards = new List<ProductCardView>();
+        private Vector3 Positions(int index) => cardPositions[index].position;
         private float MoveDuration => moveDuration;
 
         public async UniTask StoreNewCard(ProductCardView cardView)
         {
-            winCardViews.Add(cardView);
-            await cardView.ModelTransform.DOMove(NewProductCardsViewsPosition, MoveDuration).AsyncWaitForCompletion();
+            _winCardViews.Add(cardView);
+            await cardView.ModelTransform.DOMove(Positions(cardView.Card.PlayerIndex), MoveDuration)
+                .AsyncWaitForCompletion();
         }
 
         public IReadOnlyList<ProductCardView> PopAllCardViews(PlayerId playerId)
         {
-            var tmp = winCardViews;
-            swapWinCardViews.Clear();
-            winCardViews = swapWinCardViews;
-            swapWinCardViews = tmp;
-            return swapWinCardViews;
+            var tmp = _winCardViews;
+            _bufferCards.Clear();
+            _winCardViews = _bufferCards;
+            _bufferCards = tmp;
+            return _bufferCards;
         }
     }
 }

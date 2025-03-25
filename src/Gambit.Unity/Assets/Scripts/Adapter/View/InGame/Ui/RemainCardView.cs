@@ -8,7 +8,7 @@ namespace Gambit.Unity.Adapter.View.InGame.Ui
     {
         [SerializeField] private Text remainCardText;
 
-        public void RemainCardCount(int cardCount)
+        public void SetRemainCardCount(int cardCount)
         {
             remainCardText.text = cardCount.ToString();
         }
