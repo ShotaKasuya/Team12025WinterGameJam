@@ -15,6 +15,7 @@ public class ButtonIC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Image buttonImage;
     private Sprite normalSprite; // ƒ{ƒ^ƒ“‚Ì’Êí‚Ì‰æ‘œ
 
+
     public UnityEvent onClickEvents;
 
     void Start()
