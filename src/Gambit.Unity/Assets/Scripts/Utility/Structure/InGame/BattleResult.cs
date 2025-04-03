@@ -23,6 +23,20 @@ namespace Gambit.Unity.Utility.Structure.InGame
         public Option<PlayerId> Winner => winner;
         public IReadOnlyList<PlayerCard> Cards => userCards;
 
+        public bool IsResult(out PlayerId winnerId)
+        {
+            if (winner.TryGetValue(out PlayerId value))
+            {
+                winnerId = value;
+                return true;
+            }
+
+            winnerId = default;
+            return false;
+        }
+
+        public bool IsDraw() => Winner.IsNone;
+
         private BattleResult(Option<PlayerId> winner, List<PlayerCard> userCards)
         {
             this.winner = winner;

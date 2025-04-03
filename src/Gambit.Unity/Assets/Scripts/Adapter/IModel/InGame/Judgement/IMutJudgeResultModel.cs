@@ -12,16 +12,19 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
     {
         Action<ResultAndDrawCount> JudgeEndEvent { get; set; }
     }
+
     public struct ResultAndDrawCount
     {
-        public ResultAndDrawCount(int drawCount,BattleResult battleResult)
+        public ResultAndDrawCount(int drawCount, BattleResult battleResult)
         {
             DrawCount = drawCount;
             BattleResult = battleResult;
         }
-        public int DrawCount {get;}
-        public BattleResult BattleResult{get;}
+
+        public int DrawCount { get; }
+        public BattleResult BattleResult { get; }
     }
+
     public class MockJudgeEventModel : IJudgeEventModel
     {
         public Action<ResultAndDrawCount> JudgeEndEvent { get; set; }
@@ -39,12 +42,13 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
     {
         public void StoreJudgeResult(BattleResult battleResult);
     }
+
     public interface IJudgeResultModel
     {
         public IReadOnlyList<BattleResult> BattleResults { get; }
         public ResultAndDrawCount LastResults { get; }
     }
-    
+
     public class MockJudgeResultModel : IMutJudgeResultModel
     {
         public BattleResult StoredResult { get; private set; }
@@ -54,18 +58,21 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
             StoredResult = result;
         }
     }
-        public class MockResultModel : IJudgeResultModel
+
+    public class MockResultModel : IJudgeResultModel
     {
-        private List<BattleResult> battleResults {get;} = new List<BattleResult>(13);
-        public IReadOnlyList<BattleResult> BattleResults =>battleResults;
-        public ResultAndDrawCount LastResults{get;private set;}
+        private List<BattleResult> InnerBattleResults { get; } = new List<BattleResult>(13);
+        public IReadOnlyList<BattleResult> BattleResults => InnerBattleResults;
+        public ResultAndDrawCount LastResults { get; private set; }
+
         public void SetUpLastResults(int count)
         {
-           LastResults = new ResultAndDrawCount(count,BattleResults.Last());
+            LastResults = new ResultAndDrawCount(count, BattleResults.Last());
         }
+
         public void SetUpBattleResults(BattleResult battleResult)
         {
-            battleResults.Add(battleResult);
+            InnerBattleResults.Add(battleResult);
         }
     }
 }

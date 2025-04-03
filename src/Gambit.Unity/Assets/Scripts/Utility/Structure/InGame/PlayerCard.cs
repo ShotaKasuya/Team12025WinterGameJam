@@ -52,6 +52,17 @@ namespace Gambit.Unity.Utility.Structure.InGame
             var playerId = playerCardTransferObject.PlayerId.Convert();
             return new PlayerCard(playerId, playerCardTransferObject.PlayerIndex, card);
         }
+
+        public static PlayerCard[] MakeMockCards(Card[] cards)
+        {
+            var playerCards = new PlayerCard[cards.Length];
+            for (int i = 0; i < playerCards.Length; i++)
+            {
+                playerCards[i] = new PlayerCard(new PlayerId(i), i, cards[i]);
+            }
+
+            return playerCards;
+        }
     }
 
     public static partial class Converter
