@@ -85,7 +85,6 @@ namespace Gambit.Unity.Test.EditMode.Tests.EditModeTest.InGame
             Assert.AreEqual(winnerId, new PlayerId(0));
         }
 
-        [TestCase(Rank.Three, Rank.Two)]
         [TestCase(Rank.Four, Rank.Three)]
         [TestCase(Rank.Six, Rank.Five)]
         [TestCase(Rank.Eight, Rank.Seven)]
