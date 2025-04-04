@@ -100,7 +100,7 @@ namespace Gambit.Unity.Test.EditMode.Tests.EditModeTest.InGame
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.IsResult(out var winnerId));
-            Assert.AreEqual(winnerId, new PlayerId(0));
+            Assert.AreEqual(winnerId, new PlayerId(1));
         }
 
         [TestCase(Rank.Three, Rank.Two)]

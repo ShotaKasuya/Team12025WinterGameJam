@@ -31,6 +31,10 @@ namespace Gambit.Unity.Utility.Structure.InGame
         public Rank Rank => Card.Rank;
         public Suit Suit => Card.Suit;
 
+        public void SetDebuff(int buff)
+        {
+            card.SetDebuff(buff);
+        }
         public bool IsGreater(PlayerCard other)
         {
             return Card.IsGreater(other.Card);

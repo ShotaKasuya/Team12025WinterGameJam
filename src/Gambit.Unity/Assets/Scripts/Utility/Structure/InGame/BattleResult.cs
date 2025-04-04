@@ -9,13 +9,13 @@ namespace Gambit.Unity.Utility.Structure.InGame
     public struct BattleResult
     {
         [SerializeField] private Option<PlayerId> winner;
-        [SerializeField] private List<PlayerCard> userCards;
-        public static BattleResult Result(PlayerId winner, List<PlayerCard> userCards)
+        [SerializeField] private PlayerCard[] userCards;
+        public static BattleResult Result(PlayerId winner, PlayerCard[] userCards)
         {
             return new BattleResult(Option<PlayerId>.Some(winner), userCards);
         }
 
-        public static BattleResult Draw(List<PlayerCard> userCards)
+        public static BattleResult Draw(PlayerCard[] userCards)
         {
             return new BattleResult(Option<PlayerId>.None(), userCards);
         }
@@ -37,7 +37,7 @@ namespace Gambit.Unity.Utility.Structure.InGame
 
         public bool IsDraw() => Winner.IsNone;
 
-        private BattleResult(Option<PlayerId> winner, List<PlayerCard> userCards)
+        private BattleResult(Option<PlayerId> winner, PlayerCard[] userCards)
         {
             this.winner = winner;
             this.userCards = userCards;
