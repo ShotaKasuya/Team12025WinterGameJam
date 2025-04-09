@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using Gambit.Unity.Adapter.IModel.Global;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
-using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IModel.InGame.Setting;
 using Gambit.Unity.Domain.IUseCase.InGame;
-using Gambit.Unity.Module.Utility.Module.Option;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Module.Option;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Domain.UseCase.InGame
 {
@@ -14,14 +13,12 @@ namespace Gambit.Unity.Domain.UseCase.InGame
         public DrawCardCase
         (
             IPlayerCountModel playerCountModel,
-            IPlayerDictionaryModel playerDictionaryModel,
             IHandCardSettingModel handCardSettingModel,
             IMutDeckModel deckModel,
             IMutHandCardModel handCardModel
         )
         {
             PlayerCountModel = playerCountModel;
-            PlayerDictionaryModel = playerDictionaryModel;
             HandCardSettingModel = handCardSettingModel;
             DeckModel = deckModel;
             HandCardModel = handCardModel;
@@ -49,28 +46,22 @@ namespace Gambit.Unity.Domain.UseCase.InGame
 
         public Option<PlayerCard[]> DrawCard()
         {
-            if (DeckModel.DeckReader[0].Cards.Count == 0)
+            if (!DeckModel.IsRemain)
             {
                 return Option<PlayerCard[]>.None();
             }
             
-            var cards = new PlayerCard[PlayerCountModel.PlayerCount];
-            for (var i = 0; i < PlayerCountModel.PlayerCount; i++)
+            var buffer = new PlayerCard[PlayerCountModel.PlayerCount];
+            DeckModel.DrawCards(buffer);
+            foreach (var playerCard in buffer)
             {
-                if (DeckModel.DeckReader[i].Cards.TryPop(out var card))
-                {
-                    var playerId = PlayerDictionaryModel.PlayerIds[i];
-                    var playerCard = new PlayerCard(playerId, i, card);
-                    cards[i] = playerCard;
-                    HandCardModel.StoreNewCard(playerCard);
-                }
+                HandCardModel.StoreNewCard(playerCard);
             }
 
-            return Option<PlayerCard[]>.Some(cards);
+            return Option<PlayerCard[]>.Some(buffer);
         }
 
         private IPlayerCountModel PlayerCountModel { get; }
-        private IPlayerDictionaryModel PlayerDictionaryModel { get; }
         private IHandCardSettingModel HandCardSettingModel { get; }
         private IMutDeckModel DeckModel { get; }
         private IMutHandCardModel HandCardModel { get; }

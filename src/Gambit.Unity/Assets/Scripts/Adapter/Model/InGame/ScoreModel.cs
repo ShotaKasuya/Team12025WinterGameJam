@@ -1,10 +1,11 @@
+using System;
 using Gambit.Unity.Adapter.IModel.Global;
 using Gambit.Unity.Adapter.IModel.InGame;
 using System.Collections.Generic;
 
 namespace Gambit.Unity.Adapter.Model.InGame
 {
-    public class ScoreModel: IScoreModel
+    public class ScoreModel: IScoreModel, IScoreEventModel
     {
         public ScoreModel(IPlayerCountModel playerCountModel)
         {
@@ -23,6 +24,7 @@ namespace Gambit.Unity.Adapter.Model.InGame
         }
 
         public IReadOnlyList<int> GetPlayerScore => Scores;
-        
+
+        public Action<IScoreEventModel.Context> OnScoreChange { get; set; }
     }
 }

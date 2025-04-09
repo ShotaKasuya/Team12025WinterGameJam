@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
 using Gambit.Unity.Adapter.IModel.InGame.Player;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 using VContainer.Unity;
 
 namespace Gambit.Unity.Domain.UseCase.InGame.Player

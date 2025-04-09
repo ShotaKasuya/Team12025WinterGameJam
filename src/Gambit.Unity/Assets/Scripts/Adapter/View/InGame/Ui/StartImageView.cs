@@ -1,11 +1,14 @@
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Gambit.Unity.Adapter.IView.InGame.Ui;
+using KanKikuchi.AudioManager;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Gambit.Unity.Adapter.View.InGame.Ui
 {
     [RequireComponent(typeof(Image))]
-    public class StartImageView : MonoBehaviour, IStartImageView
+    public class StartImageView : MonoBehaviour, IStartImageView, IStartEffectView
     {
         public Transform ModelTransform { get; private set; }
         public Image Image { get; private set; }
@@ -21,6 +24,15 @@ namespace Gambit.Unity.Adapter.View.InGame.Ui
         {
             ModelTransform = transform;
             Image = GetComponent<Image>();
+        }
+
+
+        public async UniTask ShowStart()
+        {
+            SEManager.Instance.Play(SEPath.GAME_START_SE, 0.3f);
+            await ModelTransform.DOMove(centerPosition, moveDuration).AsyncWaitForCompletion();
+
+            await Image.DOFade(0, fadeDuration).AsyncWaitForCompletion();
         }
     }
 }

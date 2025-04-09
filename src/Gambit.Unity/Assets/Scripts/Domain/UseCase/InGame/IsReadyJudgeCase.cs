@@ -1,7 +1,7 @@
 using System.Linq;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
 using Gambit.Unity.Domain.IUseCase.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Domain.UseCase.InGame
 {

@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using Gambit.Unity.Adapter.IView.InGame;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
 using Gambit.Unity.Domain.IPresenter.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 using KanKikuchi.AudioManager;
 
 namespace Gambit.Unity.Domain.Presenter.InGame

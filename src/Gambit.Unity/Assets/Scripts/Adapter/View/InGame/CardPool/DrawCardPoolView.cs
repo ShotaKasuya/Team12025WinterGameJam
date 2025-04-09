@@ -14,22 +14,22 @@ namespace Gambit.Unity.Adapter.View.InGame.CardPool
         
         private Vector3 DrawCardsPosition => drawCardsPosition.position;
         private float MoveDuration => moveDuration;
-        private List<ProductCardView> drawCards  = new List<ProductCardView>();
-        private List<ProductCardView> swapDrawCards  = new List<ProductCardView>();
+        private List<ProductCardView> _drawCards  = new List<ProductCardView>();
+        private List<ProductCardView> _bufferCards  = new List<ProductCardView>();
 
         public async UniTask StoreNewCard(ProductCardView cardView)
         {
-            drawCards.Add(cardView);
+            _drawCards.Add(cardView);
             await cardView.ModelTransform.DOMove(DrawCardsPosition, MoveDuration).AsyncWaitForCompletion();
         }
 
         public IReadOnlyList<ProductCardView> PopAllCardViews()
         {
-            var tmp = drawCards;
-            swapDrawCards.Clear();
-            drawCards = swapDrawCards;
-            swapDrawCards = tmp;
-            return swapDrawCards;
+            var tmp = _drawCards;
+            _bufferCards.Clear();
+            _drawCards = _bufferCards;
+            _bufferCards = tmp;
+            return _bufferCards;
         }
     }
 }

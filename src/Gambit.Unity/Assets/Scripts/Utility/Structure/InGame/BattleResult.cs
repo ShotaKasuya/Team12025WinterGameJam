@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
-using Gambit.Unity.Module.Utility.Module.Option;
+using Gambit.Unity.Utility.Module.Option;
 using UnityEngine;
 
-namespace Gambit.Unity.Structure.Utility.InGame
+namespace Gambit.Unity.Utility.Structure.InGame
 {
     [Serializable]
     public struct BattleResult
     {
         [SerializeField] private Option<PlayerId> winner;
-        [SerializeField] private List<PlayerCard> userCards;
-        public static BattleResult Result(PlayerId winner, List<PlayerCard> userCards)
+        [SerializeField] private PlayerCard[] userCards;
+        public static BattleResult Result(PlayerId winner, PlayerCard[] userCards)
         {
             return new BattleResult(Option<PlayerId>.Some(winner), userCards);
         }
 
-        public static BattleResult Draw(List<PlayerCard> userCards)
+        public static BattleResult Draw(PlayerCard[] userCards)
         {
             return new BattleResult(Option<PlayerId>.None(), userCards);
         }
@@ -23,7 +23,21 @@ namespace Gambit.Unity.Structure.Utility.InGame
         public Option<PlayerId> Winner => winner;
         public IReadOnlyList<PlayerCard> Cards => userCards;
 
-        private BattleResult(Option<PlayerId> winner, List<PlayerCard> userCards)
+        public bool IsResult(out PlayerId winnerId)
+        {
+            if (winner.TryGetValue(out PlayerId value))
+            {
+                winnerId = value;
+                return true;
+            }
+
+            winnerId = default;
+            return false;
+        }
+
+        public bool IsDraw() => Winner.IsNone;
+
+        private BattleResult(Option<PlayerId> winner, PlayerCard[] userCards)
         {
             this.winner = winner;
             this.userCards = userCards;

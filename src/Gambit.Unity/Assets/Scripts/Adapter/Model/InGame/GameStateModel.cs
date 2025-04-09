@@ -1,5 +1,5 @@
 using Gambit.Unity.Adapter.IModel.InGame;
-using Gambit.Unity.Structure.Utility.InGame.StateMachine;
+using Gambit.Unity.Utility.Structure.InGame.StateMachine;
 using R3;
 using UnityEngine;
 

@@ -2,8 +2,9 @@ using System;
 using System.Runtime.CompilerServices;
 using Gambit.Shared.DataTransferObject;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-namespace Gambit.Unity.Structure.Utility.InGame
+namespace Gambit.Unity.Utility.Structure.InGame
 {
     /// <summary>
     /// トランプのカード
@@ -19,11 +20,13 @@ namespace Gambit.Unity.Structure.Utility.InGame
 
         public void SetBuff(int x)
         {
+            Assert.IsTrue(x > 0);
             _buffDebuff = x;
         }
 
         public void SetDebuff(int x)
         {
+            Assert.IsTrue(x > 0);
             _buffDebuff = -x;
         }
 
@@ -62,7 +65,7 @@ namespace Gambit.Unity.Structure.Utility.InGame
 
         public override string ToString()
         {
-            return $"(suit, rank) => ({Suit}, {Rank})";
+            return $"(suit, rank, buffed rank) => ({Suit}, {Rank}, {BuffRank()})";
         }
 
         public static Card[] AllCards()

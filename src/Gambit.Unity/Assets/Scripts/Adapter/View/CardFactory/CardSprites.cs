@@ -1,6 +1,7 @@
 using System;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Module.EnumList;
+using Gambit.Unity.Utility.Structure.InGame;
 using UnityEngine;
 
 namespace Gambit.Unity.Adapter.View.CardFactory
@@ -29,10 +30,10 @@ namespace Gambit.Unity.Adapter.View.CardFactory
             var index = (int)card.Rank;
             return card.Suit switch
             {
-                Suit.Clubs => clubSprites.Array[index],
-                Suit.Spades => spadeSprites.Array[index],
-                Suit.Hearts => heartSprites.Array[index],
-                Suit.Diamonds => diamondSprites.Array[index],
+                Suit.Clubs => clubSprites.Get(index),
+                Suit.Spades => spadeSprites.Get(index),
+                Suit.Hearts => heartSprites.Get(index),
+                Suit.Diamonds => diamondSprites.Get(index),
                 _ => throw new ArgumentException()
             };
         }

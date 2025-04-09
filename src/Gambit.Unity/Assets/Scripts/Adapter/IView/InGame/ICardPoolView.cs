@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Gambit.Unity.Adapter.IView.InGame.CardFactory;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Adapter.IView.InGame
 {
@@ -58,7 +58,7 @@ namespace Gambit.Unity.Adapter.IView.InGame
     {
         public UniTask FixPosition();
         public UniTask StoreNewCard(ProductCardView cardView);
-        public IReadOnlyList<ProductCardView> GetViewList(int index);
+        public IReadOnlyList<ProductCardView> GetViewList(PlayerId index);
 
         /// <summary>
         /// 指定したカードを取り出す

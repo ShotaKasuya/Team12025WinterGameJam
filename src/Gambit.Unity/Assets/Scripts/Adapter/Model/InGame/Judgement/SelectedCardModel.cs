@@ -1,11 +1,11 @@
 using Gambit.Unity.Adapter.IModel.Global;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
-using Gambit.Unity.Module.Utility.Module.Option;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Module.Option;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Adapter.Model.InGame.Judgement
 {
-    public class SelectedCardModel : IMutSelectedCardModel, ISelectedCardModel
+    public class SelectedCardModel : IMutSelectedCardModel
     {
         public SelectedCardModel(IPlayerCountModel playerCountModel)
         {
@@ -17,9 +17,14 @@ namespace Gambit.Unity.Adapter.Model.InGame.Judgement
             SelectedCards[playerId] = selection;
         }
 
-        public Option<PlayerCard> GetSelection(int index)
+        public Option<PlayerCard> GetSelection(PlayerId playerId)
         {
-            return SelectedCards[index];
+            return SelectedCards[playerId.Id];
+        }
+
+        public void StorePlayerSelection(PlayerId playerId, Option<PlayerCard> selection)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void Clear()

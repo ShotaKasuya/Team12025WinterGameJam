@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Gambit.Server.Services.Structure;
 using Gambit.Shared;
 using Gambit.Shared.DataTransferObject;
@@ -9,7 +11,7 @@ public class GameMainService : StreamingHubBase<IGameMainCommunication, IGameMai
 {
     public async ValueTask<PlayerInitInfoTransferObject> JoinAsync()
     {
-        var (groupId, playerId, index) = GroupManagement.Instance.AddPlayer();
+        var (groupId, playerId, _) = GroupManagement.Instance.AddPlayer();
         var group = await Group.AddAsync(groupId.ToString());
         var newGroup = GroupManagement.Instance.GroupReader[groupId];
         newGroup.SetGroup(group);
@@ -21,7 +23,7 @@ public class GameMainService : StreamingHubBase<IGameMainCommunication, IGameMai
 
         await Console.Out.WriteLineAsync($"new player: {playerId}, groupId: {groupId}");
         var playerIdTransfer = playerId.Convert();
-        return new PlayerInitInfoTransferObject(playerIdTransfer, index, newGroup.GroupSeed);
+        return new PlayerInitInfoTransferObject(playerIdTransfer, newGroup.GroupSeed);
     }
 
     public async ValueTask LeaveAsync(PlayerIdTransferObject playerIdTransferObject)

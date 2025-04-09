@@ -3,7 +3,7 @@ using Gambit.Unity.Adapter.IModel.Global;
 using Gambit.Unity.Adapter.IModel.InGame;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
 using Gambit.Unity.Domain.IUseCase.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 using UnityEngine;
 
 namespace Gambit.Unity.Domain.UseCase.InGame

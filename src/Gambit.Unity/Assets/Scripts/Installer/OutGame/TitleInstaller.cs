@@ -1,4 +1,4 @@
-using Gambit.Unity.Adapter.Linker.OutGame;
+using Gambit.Unity.Adapter.Controller.OutGame;
 using Gambit.Unity.Adapter.View.OutGame.Title;
 using UnityEngine;
 using VContainer;
@@ -14,7 +14,7 @@ namespace Gambit.Unity.Installer.OutGame
         {
             builder.RegisterComponent(matchConfPanelView).AsImplementedInterfaces();
 
-            builder.RegisterEntryPoint<MatchingLinker>();
+            builder.RegisterEntryPoint<MatchingController>();
         }
     }
 }

@@ -1,8 +1,9 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
 using Gambit.Unity.Domain.IUseCase.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
+using UnityEngine;
 
 namespace Gambit.Unity.Domain.UseCase.InGame
 {
@@ -26,24 +27,27 @@ namespace Gambit.Unity.Domain.UseCase.InGame
         public BattleResult Judge()
         {
             var selectedCards = SelectedCardModels
-                .SelectedCards.Select(x => x.Unwrap()).ToList();
+                .SelectedCards.Select(x => x.Unwrap()).ToArray();
+            // Span<PlayerCard> cards = selectedCards; 
             SelectedCardModels.Clear();
             
-            for (var i = 0; i < selectedCards.Count; i++)
+            for (var i = 0; i < selectedCards.Length; i++)
             {
                 var condition = ConditionModel.ConditionReader[i];
                 if ((condition & Condition.Five) != 0)
                 {
-                    selectedCards[i].Card.SetDebuff(5);
+                    selectedCards[i].SetDebuff(5);
+                    // cards[i].SetDebuff(5);
                 }
             }
 
             var result = Judge(selectedCards);
+            Debug.Log(result);
             JudgeResultModel.StoreJudgeResult(result);
             return result;
         }
 
-        private BattleResult Judge(List<PlayerCard> playerCard)
+        private static BattleResult Judge(PlayerCard[] playerCard)
         {
             if (playerCard[0].Card.Rank == Rank.Two && playerCard[1].Card.Rank == Rank.Ace)
                 return BattleResult.Result(new PlayerId(0), playerCard);

@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Gambit.Shared.DataTransferObject;
 using UnityEngine;
 
-namespace Gambit.Unity.Structure.Utility.InGame
+namespace Gambit.Unity.Utility.Structure.InGame
 {
     [Serializable]
     public struct PlayerCard
@@ -11,25 +11,19 @@ namespace Gambit.Unity.Structure.Utility.InGame
         public PlayerCard(PlayerId playerId, Card card)
         {
             this.playerId = playerId;
-            playerIndex = 0;
-            this.card = card;
-        }
-
-        public PlayerCard(PlayerId playerId, int playerIndex, Card card)
-        {
-            this.playerId = playerId;
-            this.playerIndex = playerIndex;
             this.card = card;
         }
 
         [SerializeField] private PlayerId playerId;
-        [SerializeField] private int playerIndex;
         [SerializeField] private Card card;
         public PlayerId PlayerId => playerId;
-        public int PlayerIndex => playerIndex;
         public Card Card => card;
         public Rank Rank => Card.Rank;
-        public Suit Suit => Card.Suit;
+
+        public void SetDebuff(int buff)
+        {
+            card.SetDebuff(buff);
+        }
 
         public bool IsGreater(PlayerCard other)
         {
@@ -38,10 +32,10 @@ namespace Gambit.Unity.Structure.Utility.InGame
 
         public override string ToString()
         {
-            return $"(\n" +
+            return "(\n" +
                    $"{playerId}\n" +
                    $"Card: {card}\n" +
-                   $")";
+                   ")";
         }
 
 
@@ -49,7 +43,18 @@ namespace Gambit.Unity.Structure.Utility.InGame
         {
             var card = Card.ConversationCard(playerCardTransferObject.Card.Rank, playerCardTransferObject.Card.Suit);
             var playerId = playerCardTransferObject.PlayerId.Convert();
-            return new PlayerCard(playerId, playerCardTransferObject.PlayerIndex, card);
+            return new PlayerCard(playerId, card);
+        }
+
+        public static PlayerCard[] MakeMockCards(Card[] cards)
+        {
+            var playerCards = new PlayerCard[cards.Length];
+            for (int i = 0; i < playerCards.Length; i++)
+            {
+                playerCards[i] = new PlayerCard(new PlayerId(i), cards[i]);
+            }
+
+            return playerCards;
         }
     }
 
@@ -58,7 +63,7 @@ namespace Gambit.Unity.Structure.Utility.InGame
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static PlayerCardTransferObject Convert(this PlayerCard playerCard)
         {
-            return new PlayerCardTransferObject(playerCard.PlayerId.Convert(), playerCard.PlayerIndex,
+            return new PlayerCardTransferObject(playerCard.PlayerId.Convert(),
                 playerCard.Card.Convert());
         }
     }

@@ -1,15 +1,13 @@
-namespace Gambit.Unity.Structure.Utility.InGame
+namespace Gambit.Unity.Utility.Structure.InGame
 {
     public struct InitSetting
     {
-        public InitSetting(int roomSeed, PlayerId playerId, int playerIndex)
+        public InitSetting(int roomSeed, PlayerId playerId)
         {
             RoomSeed = roomSeed;
             PlayerId = playerId;
-            PlayerIndex = playerIndex;
         }
         public readonly int RoomSeed;
         public readonly PlayerId PlayerId;
-        public readonly int PlayerIndex;
     }
 }

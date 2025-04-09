@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Gambit.Unity.Adapter.IView.InGame;
 using Gambit.Unity.Domain.IPresenter.InGame;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Domain.Presenter.InGame
 {
@@ -24,6 +24,7 @@ namespace Gambit.Unity.Domain.Presenter.InGame
             foreach (var selectedCardInfo in cards)
             {
                 var handCard = HandCardPoolView.PopCardView(selectedCardInfo);
+                handCard.ShowFace();
 
                 var storeTask = SelectedCardPoolView.StoreNewCard(handCard);
                 tasks.Add(storeTask);

@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using Gambit.Shared;
 using Gambit.Unity.Adapter.IView.UseCommunication;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 using MagicOnion;
 using MagicOnion.Client;
 using UnityEngine;
@@ -28,8 +28,8 @@ namespace Gambit.Unity.Adapter.View.Communication
             Debug.Log("connected");
             var result = await _gameMainCommunication.JoinAsync();
             Debug.Log("join complete\n" +
-                      $"seed: {result.RandomSeed}, player id: {result.PlayerId}, index: {result.PlayerIndex}");
-            return new InitSetting(result.RandomSeed, result.PlayerId.Convert(), result.PlayerIndex);
+                      $"seed: {result.RandomSeed}, player id: {result.PlayerId} ");
+            return new InitSetting(result.RandomSeed, result.PlayerId.Convert());
         }
 
         public async void SendPlayerCard(PlayerCard playerCard)

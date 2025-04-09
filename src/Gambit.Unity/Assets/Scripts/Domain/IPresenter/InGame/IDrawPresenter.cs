@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using Gambit.Unity.Structure.Utility.InGame;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Domain.IPresenter.InGame
 {

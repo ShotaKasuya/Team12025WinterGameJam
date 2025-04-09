@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Gambit.Unity.Module.Utility.Module.StateMachine
+namespace Gambit.Unity.Utility.Module.StateMachine
 {
     public abstract class AbstractStateMachine<TState>: IDisposable where TState: struct, Enum
     {

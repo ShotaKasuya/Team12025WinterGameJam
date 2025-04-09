@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Gambit.Unity.Adapter.IModel.InGame
@@ -8,6 +9,23 @@ namespace Gambit.Unity.Adapter.IModel.InGame
         public void AddScore(int playerId, int score);
 
         public IReadOnlyList<int> GetPlayerScore { get; }
+    }
+
+    public interface IScoreEventModel
+    {
+        public Action<Context> OnScoreChange { get; set; }
+        
+        public readonly struct Context
+        {
+            public int PlayerIndex { get; }
+            public int CurrentScore { get; }
+
+            public Context(int playerIndex, int currentScore)
+            {
+                PlayerIndex = playerIndex;
+                CurrentScore = currentScore;
+            }
+        }
     }
 
     public class MockScoreModel : IScoreModel
