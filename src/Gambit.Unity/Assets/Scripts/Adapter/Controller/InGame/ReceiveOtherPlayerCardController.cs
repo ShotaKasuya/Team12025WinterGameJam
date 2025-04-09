@@ -27,7 +27,7 @@ namespace Gambit.Unity.Adapter.Controller.InGame
         private void SetSentCard(PlayerCard playerCard)
         {
             var apply = Option<PlayerCard>.Some(playerCard);
-            SelectedCardModel.StorePlayerSelection(playerCard.PlayerIndex, apply);
+            SelectedCardModel.StorePlayerSelection(playerCard.PlayerId, apply);
         }
         
         private IMutSelectedCardModel SelectedCardModel{get;}

@@ -47,7 +47,7 @@ namespace Gambit.Unity.Adapter.Controller.InGame
 
         private void OnOverride(PlayerCard card)
         {
-            var id = PlayerIdModel.PlayerId;
+            var id = PlayerIdModel.LocalPlayerId;
             if (card.PlayerId == id)
             {
                 var _ = FadeInExplain(card.Card);
@@ -56,7 +56,7 @@ namespace Gambit.Unity.Adapter.Controller.InGame
 
         private void OnExit(PlayerCard card)
         {
-            var id = PlayerIdModel.PlayerId;
+            var id = PlayerIdModel.LocalPlayerId;
             if (card.PlayerId == id)
             {
                 var _ = FadeOutExplain(card.Card);

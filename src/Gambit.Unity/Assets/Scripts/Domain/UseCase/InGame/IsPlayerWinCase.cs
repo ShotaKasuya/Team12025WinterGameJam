@@ -25,7 +25,7 @@ namespace Gambit.Unity.Domain.UseCase.InGame
         {
             get
             {
-                var score = ScoreModel.GetScore(PlayerIdModel.PlayerId.Id);
+                var score = ScoreModel.GetScore(PlayerIdModel.LocalPlayerId.Id);
                 var max = ScoreModel.GetPlayerScore.Max();
                 var maxcount = ScoreModel.GetPlayerScore.Count(x => x == max);
 

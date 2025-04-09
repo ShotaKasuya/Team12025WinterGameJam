@@ -5,12 +5,12 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Player
 {
     public interface IIdInitializableModel
     {
-        public void SetPlayerId(PlayerId playerId, int playerIndex);
+        public void SetPlayerId(PlayerId playerId);
     }
 
     public interface IPlayerIdModel
     {
-        public PlayerId PlayerId { get; }
+        public PlayerId LocalPlayerId { get; }
     }
 
     public interface IPlayerDictionaryModel
@@ -20,12 +20,12 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Player
 
     public class MockPlayerIdModel : IPlayerIdModel
     {
-        public PlayerId PlayerId { set; get; } = new PlayerId();
+        public PlayerId LocalPlayerId { set; get; } = new PlayerId();
         public int PlayerIndex { get; }
 
         public void SetUpId(PlayerId playerId)
         {
-            PlayerId = playerId;
+            LocalPlayerId = playerId;
         }
     }
 }

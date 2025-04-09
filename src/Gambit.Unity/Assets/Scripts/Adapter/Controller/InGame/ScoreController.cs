@@ -30,7 +30,7 @@ namespace Gambit.Unity.Adapter.Controller.InGame
         private void ChangeScore(IScoreEventModel.Context context)
         {
             var id = PlayerDictionaryModel.PlayerIds[context.PlayerIndex];
-            if (id != PlayerIdModel.PlayerId)
+            if (id != PlayerIdModel.LocalPlayerId)
             {
                 return;
             }

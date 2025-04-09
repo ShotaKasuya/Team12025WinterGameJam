@@ -5,13 +5,13 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
 {
     public interface IMutSelectedCardModel : ISelectedCardModel
     {
-        public void StorePlayerSelection(int playerId, Option<PlayerCard> selection);
+        public void StorePlayerSelection(PlayerId playerId, Option<PlayerCard> selection);
     }
 
     public interface ISelectedCardModel
     {
         public Option<PlayerCard>[] SelectedCards { get; }
-        public Option<PlayerCard> GetSelection(int playerId);
+        public Option<PlayerCard> GetSelection(PlayerId playerId);
 
         public void Clear();
     }
@@ -33,9 +33,9 @@ namespace Gambit.Unity.Adapter.IModel.InGame.Judgement
             }
         }
 
-        public Option<PlayerCard> GetSelection(int playerId)
+        public Option<PlayerCard> GetSelection(PlayerId playerId)
         {
-            return SelectedCards[playerId];
+            return SelectedCards[playerId.Id];
         }
 
         public void Clear()

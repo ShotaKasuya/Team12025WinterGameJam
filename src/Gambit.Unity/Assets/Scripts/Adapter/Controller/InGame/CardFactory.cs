@@ -22,7 +22,7 @@ namespace Gambit.Unity.Adapter.Controller.InGame
             var product = Object.Instantiate(CardView);
             product.Inject(playerCard);
             
-            if (PlayerIdModel.PlayerId == playerCard.PlayerId)
+            if (PlayerIdModel.LocalPlayerId == playerCard.PlayerId)
             {
                 product.ShowFace();
             }

@@ -44,10 +44,10 @@ namespace Gambit.Unity.Adapter.Controller.InGame
 
         private void OnSelect(PlayerCard selectedCard)
         {
-            var currentSelect = SelectedCardModel.GetSelection(selectedCard.PlayerIndex);
+            var currentSelect = SelectedCardModel.GetSelection(selectedCard.PlayerId);
             var apply = Option<PlayerCard>.Some(selectedCard);
 
-            if (PlayerIdModel.PlayerId != selectedCard.PlayerId)
+            if (PlayerIdModel.LocalPlayerId != selectedCard.PlayerId)
             {
                 return;
             }
@@ -61,11 +61,11 @@ namespace Gambit.Unity.Adapter.Controller.InGame
             }
 
             SendSelectedCardView.SendPlayerCard(selectedCard);
-            SelectedCardModel.StorePlayerSelection(selectedCard.PlayerIndex, apply);
-            ApplyView(selectedCard.PlayerIndex, apply);
+            SelectedCardModel.StorePlayerSelection(selectedCard.PlayerId, apply);
+            ApplyView(selectedCard.PlayerId, apply);
         }
 
-        private void ApplyView(int index, Option<PlayerCard> selected)
+        private void ApplyView(PlayerId index, Option<PlayerCard> selected)
         {
             var views = HandCardPoolView.GetViewList(index);
             

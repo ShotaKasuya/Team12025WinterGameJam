@@ -30,7 +30,7 @@ namespace Gambit.Unity.Adapter.Controller.InGame
 
         private void OnChange(IDeckChangeEventModel.Context context)
         {
-            if (PlayerIdModel.PlayerId != context.PlayerId)
+            if (PlayerIdModel.LocalPlayerId != context.PlayerId)
             {
                 return;
             }

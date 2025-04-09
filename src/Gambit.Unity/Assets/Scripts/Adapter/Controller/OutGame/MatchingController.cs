@@ -37,7 +37,7 @@ namespace Gambit.Unity.Adapter.Controller.OutGame
         {
             var result = await ConnectView.Connect();
             RoomInfoModel.Init(result.RoomSeed, result.PlayerId);
-            IdInitializableModel.SetPlayerId(result.PlayerId, result.PlayerIndex);
+            IdInitializableModel.SetPlayerId(result.PlayerId);
         }
 
         private IMatchConfPanelView MatchConfPanelView { get; }

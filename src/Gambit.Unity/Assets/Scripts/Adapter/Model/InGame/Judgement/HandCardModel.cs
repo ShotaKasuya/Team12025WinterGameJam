@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Gambit.Unity.Adapter.IModel.Global;
 using Gambit.Unity.Adapter.IModel.InGame.Judgement;
@@ -21,7 +20,7 @@ namespace Gambit.Unity.Adapter.Model.InGame.Judgement
 
         public void StoreNewCard(PlayerCard playerCard)
         {
-            HandCards[playerCard.PlayerIndex].Cards.Add(playerCard);
+            HandCards[playerCard.PlayerId.Id].Cards.Add(playerCard);
         }
 
         private HandCard[] HandCards { get; }

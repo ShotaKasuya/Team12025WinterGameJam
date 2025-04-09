@@ -7,16 +7,15 @@ namespace Gambit.Unity.Adapter.Model.InGame
     public class DebugPlayerIdModel : IIdInitializableModel, IPlayerIdModel, IPlayerDictionaryModel
     {
         public IReadOnlyList<PlayerId> PlayerIds => Players;
-        public PlayerId PlayerId => Players[0];
-
-        public void SetPlayerId(PlayerId playerId, int playerIndex)
+        public PlayerId LocalPlayerId => Players[0];
+        public void SetPlayerId(PlayerId playerId)
         {
-            Players[playerIndex] = playerId;
+            Players[0] = playerId;
         }
 
-        private PlayerId[] Players { get; } = new PlayerId[2]
+        private PlayerId[] Players { get; } = new PlayerId[]
         {
-            new PlayerId(0), new PlayerId(1)
+            new (0), new (1)
         };
     }
 }

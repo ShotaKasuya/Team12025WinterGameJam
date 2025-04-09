@@ -28,7 +28,7 @@ namespace Gambit.Unity.Domain.UseCase.InGame
         {
             var selectedCards = SelectedCardModels
                 .SelectedCards.Select(x => x.Unwrap()).ToArray();
-            Span<PlayerCard> cards = selectedCards; 
+            // Span<PlayerCard> cards = selectedCards; 
             SelectedCardModels.Clear();
             
             for (var i = 0; i < selectedCards.Length; i++)
@@ -36,7 +36,8 @@ namespace Gambit.Unity.Domain.UseCase.InGame
                 var condition = ConditionModel.ConditionReader[i];
                 if ((condition & Condition.Five) != 0)
                 {
-                    cards[i].SetDebuff(5);
+                    selectedCards[i].SetDebuff(5);
+                    // cards[i].SetDebuff(5);
                 }
             }
 

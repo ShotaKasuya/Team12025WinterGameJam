@@ -15,13 +15,13 @@ namespace Gambit.Unity.Adapter.View.InGame.CardPool
 
         private List<ProductCardView> _winCardViews = new List<ProductCardView>();
         private List<ProductCardView> _bufferCards = new List<ProductCardView>();
-        private Vector3 Positions(int index) => cardPositions[index].position;
+        private Vector3 Positions(PlayerId index) => cardPositions[index.Id].position;
         private float MoveDuration => moveDuration;
 
         public async UniTask StoreNewCard(ProductCardView cardView)
         {
             _winCardViews.Add(cardView);
-            await cardView.ModelTransform.DOMove(Positions(cardView.Card.PlayerIndex), MoveDuration)
+            await cardView.ModelTransform.DOMove(Positions(cardView.Card.PlayerId), MoveDuration)
                 .AsyncWaitForCompletion();
         }
 
