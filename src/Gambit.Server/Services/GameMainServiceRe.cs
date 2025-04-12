@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Gambit.Server.Services.Interface;
+﻿using Gambit.Server.Services.Interface;
 using Gambit.Server.Services.Structure;
 using Gambit.Shared;
 using Gambit.Shared.DataTransferObject;
@@ -10,7 +8,7 @@ namespace Gambit.Server.Services;
 
 public class GameMainServiceRe(IGroupManagement groupManagement): StreamingHubBase<IGameMainCommunication, IGameMainReceiver>, IGameMainCommunication
 {
-    private const int PlayerMax = 2;
+    private const int PLAYER_MAX = 2;
     private IGroupManagement GroupManagement { get; } = groupManagement;
     
     public async ValueTask<PlayerInitInfoTransferObject> JoinAsync()
@@ -20,7 +18,7 @@ public class GameMainServiceRe(IGroupManagement groupManagement): StreamingHubBa
         var newGroup = GroupManagement.GetGroup(result.PlayerId);
         newGroup.SetGroup(group);
 
-        if (newGroup.GroupPlayers.Count == PlayerMax)
+        if (newGroup.GroupPlayers.Count == PLAYER_MAX)
         {
             group.All.OnMatch();
         }

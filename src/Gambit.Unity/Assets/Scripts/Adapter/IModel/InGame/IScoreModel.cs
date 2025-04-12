@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Gambit.Unity.Utility.Structure.InGame;
 
 namespace Gambit.Unity.Adapter.IModel.InGame
 {
     public interface IScoreModel
     {
-        public int GetScore(int playerId);
-        public void AddScore(int playerId, int score);
+        public int GetScore(PlayerId playerId);
+        public void AddScore(PlayerId playerId, int score);
 
         public IReadOnlyList<int> GetPlayerScore { get; }
     }
@@ -17,10 +18,10 @@ namespace Gambit.Unity.Adapter.IModel.InGame
         
         public readonly struct Context
         {
-            public int PlayerIndex { get; }
+            public PlayerId PlayerIndex { get; }
             public int CurrentScore { get; }
 
-            public Context(int playerIndex, int currentScore)
+            public Context(PlayerId playerIndex, int currentScore)
             {
                 PlayerIndex = playerIndex;
                 CurrentScore = currentScore;
@@ -48,6 +49,16 @@ namespace Gambit.Unity.Adapter.IModel.InGame
         public void AddScore(int id, int score)
         {
             Scores[id] = score;
+        }
+
+        public int GetScore(PlayerId playerId)
+        {
+            return Scores[playerId.Id];
+        }
+
+        public void AddScore(PlayerId playerId, int score)
+        {
+            Scores[playerId.Id] += score;
         }
 
         public IReadOnlyList<int> GetPlayerScore => Scores;

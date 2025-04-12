@@ -29,13 +29,13 @@ namespace Gambit.Unity.Adapter.Controller.InGame
 
         private void ChangeScore(IScoreEventModel.Context context)
         {
-            var id = PlayerDictionaryModel.PlayerIds[context.PlayerIndex];
+            var id = PlayerDictionaryModel.PlayerIds[context.PlayerIndex.Id];
             if (id != PlayerIdModel.LocalPlayerId)
             {
                 return;
             }
 
-            ScoreView.SetScore(context.CurrentScore);
+            ScoreView.SetScore(context.PlayerIndex, context.CurrentScore);
         }
 
         private IPlayerIdModel PlayerIdModel { get; }

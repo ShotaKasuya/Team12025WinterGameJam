@@ -1,26 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Gambit.Server.Services.Interface;
 using Gambit.Server.Services.Structure;
 
 namespace Gambit.Server.Services;
 
-public class GroupManagement
+public class GroupManagement : IGroupManagement
 {
-    public const uint PlayerMax = 2;
+    private const uint PLAYER_MAX = 2;
 
     /// <summary>
     /// ランダムにプレイヤーを追加
     /// </summary>
     /// <returns></returns>
-    public (GroupId, PlayerId, int) AddPlayer()
+    public AddPlayerResult AddPlayer()
     {
         GroupId groupId;
         var random = Guid.NewGuid().ToByteArray();
         var playerId = new PlayerId(BitConverter.ToInt32(random, 0));
         var playerIndex = 0;
 
-        var group = Groups.Values.FirstOrDefault(x => x.GroupPlayers.Count < PlayerMax);
+        var group = Groups.Values.FirstOrDefault(x => x.GroupPlayers.Count < PLAYER_MAX);
         if (group is not null)
         {
             playerIndex = 1;
@@ -41,10 +39,12 @@ public class GroupManagement
             Console.Out.WriteLineAsync(value.ToString());
         }
 
-        return (groupId, playerId, playerIndex);
+        var result = new AddPlayerResult(groupId, playerId);
+
+        return result;
     }
 
-    public Group LeavePlayer(PlayerId playerId)
+    public Group RemovePlayer(PlayerId playerId)
     {
         var group = Groups.Values.FirstOrDefault(x => x.Has(playerId));
         if (group is null)
@@ -61,36 +61,43 @@ public class GroupManagement
         return group;
     }
 
+    public GroupId GetGroupId(PlayerId playerId)
+    {
+        var innerGroup = GroupReader.Values
+            .FirstOrDefault(x => x.GroupPlayers.Contains(playerId));
+
+        if (innerGroup is null)
+        {
+            throw new Exception("Group Not Found");
+        }
+
+        return innerGroup.Id;
+    }
+
     public Group GetGroup(PlayerId playerId)
     {
         var result = GroupReader.Values.FirstOrDefault(x => x.Has(playerId));
 
-        if (result is null)
+        if (result is not null)
         {
-            Console.Out.WriteLineAsync("player not found");
-            var groups = GroupReader.Values.ToArray();
-            for (int i = 0; i < groups.Count(); i++)
-            {
-                Console.Out.WriteLineAsync($"group {i} player");
+            return result;
+        }
 
-                var players = groups[i].GroupPlayers;
-                foreach (var player in players)
-                {
-                    Console.Out.WriteLineAsync($"player id: {player.Id}");
-                }
+        var groups = GroupReader.Values.ToArray();
+        for (int i = 0; i < groups.Count(); i++)
+        {
+            Console.Out.WriteLineAsync($"group {i} player");
+
+            var players = groups[i].GroupPlayers;
+            foreach (var player in players)
+            {
+                Console.Out.WriteLineAsync($"player id: {player.Id}");
             }
         }
 
-        return result!;
+        throw new Exception("Player Not Found");
     }
 
-    public IReadOnlyDictionary<GroupId, Group> GroupReader => Groups;
+    private IReadOnlyDictionary<GroupId, Group> GroupReader => Groups;
     private Dictionary<GroupId, Group> Groups { get; } = new();
-
-    static GroupManagement()
-    {
-        Instance = new GroupManagement();
-    }
-
-    public static GroupManagement Instance { get; }
 }

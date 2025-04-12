@@ -32,7 +32,7 @@ namespace Gambit.Unity.Domain.UseCase.InGame
             {
                 var point = CalcPoint(i, result);
                 points[i] = point;
-                ScoreModel.AddScore(i, point);
+                ScoreModel.AddScore(new PlayerId(i), point);
             }
 
             Debug.Log($"1: {points[0]}, 2: {points[1]}");
