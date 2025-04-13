@@ -39,13 +39,6 @@ namespace Gambit.Unity.Utility.Structure.InGame
         }
 
 
-        public static PlayerCard ConversionSentPlayerCard(PlayerCardTransferObject playerCardTransferObject)
-        {
-            var card = Card.ConversationCard(playerCardTransferObject.Card.Rank, playerCardTransferObject.Card.Suit);
-            var playerId = playerCardTransferObject.PlayerId.Convert();
-            return new PlayerCard(playerId, card);
-        }
-
         public static PlayerCard[] MakeMockCards(Card[] cards)
         {
             var playerCards = new PlayerCard[cards.Length];

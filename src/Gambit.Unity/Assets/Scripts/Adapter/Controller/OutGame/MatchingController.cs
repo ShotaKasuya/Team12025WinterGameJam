@@ -4,6 +4,7 @@ using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IView.InGame;
 using Gambit.Unity.Adapter.IView.OutGame.Title;
 using Gambit.Unity.Adapter.IView.UseCommunication;
+using Gambit.Unity.Utility.Structure.InGame;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
@@ -17,14 +18,14 @@ namespace Gambit.Unity.Adapter.Controller.OutGame
             IMatchEventView matchEventView,
             IConnectView connectView,
             IMutRoomInfoModel roomInfoModel,
-            IIdInitializableModel playerIdModel
+            IIdInitializableModel idInitializableModel
         )
         {
             MatchConfPanelView = matchConfPanelView;
             MatchEventView = matchEventView;
             ConnectView = connectView;
             RoomInfoModel = roomInfoModel;
-            IdInitializableModel = playerIdModel;
+            IdInitializableModel = idInitializableModel;
         }
 
         public void Initialize()
@@ -37,7 +38,7 @@ namespace Gambit.Unity.Adapter.Controller.OutGame
         {
             var result = await ConnectView.Connect();
             RoomInfoModel.Init(result.RoomSeed, result.PlayerId);
-            IdInitializableModel.SetPlayerId(result.PlayerId);
+            IdInitializableModel.SetPlayerId(new PlayerId(result.PlayerIndex - 1));
         }
 
         private IMatchConfPanelView MatchConfPanelView { get; }
@@ -49,7 +50,6 @@ namespace Gambit.Unity.Adapter.Controller.OutGame
         public void Dispose()
         {
             MatchConfPanelView.OnStartGame -= Connect;
-            MatchEventView.OnMatched -= () => SceneManager.LoadScene("GameScene");
         }
     }
 }

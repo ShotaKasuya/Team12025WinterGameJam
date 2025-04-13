@@ -31,7 +31,7 @@ namespace Gambit.Shared
         /// <summary>
         /// マッチングが完了した際に呼ばれる
         /// </summary>
-        void OnMatch();
+        void OnMatch(PlayersInfoTransferObject playersInfo);
         
         void MatchResult(string machResult);
         

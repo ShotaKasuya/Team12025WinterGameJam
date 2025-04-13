@@ -20,12 +20,6 @@ namespace Gambit.Unity.Utility.Structure.InGame.StateMachine
             Init(GameStateType.Init);
         }
 
-        protected override void OnChangeState(StatePair<GameStateType> statePair)
-        {
-            Debug.Log($"state change: (prev, next) => ({statePair.PrevState}, {statePair.NextState})");
-            base.OnChangeState(statePair);
-        }
-
         public void Tick()
         {
             base.Tick(Time.deltaTime);

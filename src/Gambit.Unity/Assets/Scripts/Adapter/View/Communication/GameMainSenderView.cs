@@ -1,6 +1,7 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Gambit.Shared;
+using Gambit.Shared.DataTransferObject;
 using Gambit.Unity.Adapter.IView.UseCommunication;
 using Gambit.Unity.Utility.Structure.InGame;
 using MagicOnion;
@@ -14,11 +15,13 @@ namespace Gambit.Unity.Adapter.View.Communication
         public GameMainSenderView
         (
             GrpcChannelx channel,
-            IGameMainReceiver receiver
+            IGameMainReceiver receiver,
+            IPlayerIdView playerIdView
         )
         {
             Channel = channel;
             Receiver = receiver;
+            PlayerIdView = playerIdView;
         }
 
         public async UniTask<InitSetting> Connect()
@@ -29,20 +32,25 @@ namespace Gambit.Unity.Adapter.View.Communication
             var result = await _gameMainCommunication.JoinAsync();
             Debug.Log("join complete\n" +
                       $"seed: {result.RandomSeed}, player id: {result.PlayerId} ");
-            return new InitSetting(result.RandomSeed, result.PlayerId.Convert());
+            return new InitSetting(result.RandomSeed, result.PlayerIndex, result.PlayerId.Convert());
         }
 
-        public async void SendPlayerCard(PlayerCard playerCard)
+        public async UniTask SendPlayerCard(PlayerCard playerCard)
         {
             Debug.Log($"send card: {playerCard.ToString()}");
             await UniTask.WaitUntil(() => _gameMainCommunication is not null);
-            await _gameMainCommunication.SendSelectedCardAsync(playerCard.Convert());
+            var sendCard = new PlayerCardTransferObject(
+                PlayerIdView.GetPlayerId(playerCard.PlayerId),
+                playerCard.Card.Convert()
+            );
+            await _gameMainCommunication.SendSelectedCardAsync(sendCard);
             Debug.Log("send completed");
         }
 
         private GrpcChannelx Channel { get; }
         private IGameMainReceiver Receiver { get; }
         private IGameMainCommunication _gameMainCommunication;
+        private IPlayerIdView PlayerIdView { get; }
 
         public void Dispose()
         {

@@ -33,6 +33,7 @@ namespace Gambit.Unity.Installer
             builder.RegisterInstance(channel);
             builder.Register<GameMainReceiverView>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<GameMainSenderView>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<PlayerIdView>(Lifetime.Singleton).AsImplementedInterfaces();
             if (isLocal)
             {
                 builder.Register<DebugPlayerIdModel>(Lifetime.Singleton).AsImplementedInterfaces();

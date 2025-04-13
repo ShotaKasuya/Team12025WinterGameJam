@@ -12,11 +12,6 @@ namespace Gambit.Unity.Adapter.Model.InGame.Judgement
             SelectedCards = new Option<PlayerCard>[playerCountModel.PlayerCount];
         }
 
-        public void StorePlayerSelection(int playerId, Option<PlayerCard> selection)
-        {
-            SelectedCards[playerId] = selection;
-        }
-
         public Option<PlayerCard> GetSelection(PlayerId playerId)
         {
             return SelectedCards[playerId.Id];
@@ -24,7 +19,7 @@ namespace Gambit.Unity.Adapter.Model.InGame.Judgement
 
         public void StorePlayerSelection(PlayerId playerId, Option<PlayerCard> selection)
         {
-            throw new System.NotImplementedException();
+            SelectedCards[playerId.Id] = selection;
         }
 
         public void Clear()
