@@ -1,4 +1,3 @@
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gambit.Unity.Domain.IPresenter.InGame;
 using Gambit.Unity.Domain.IUseCase.InGame;
@@ -34,7 +33,7 @@ namespace Gambit.Unity.Domain.Flow.InGame
         {
         }
 
-        private async UniTask JudgeFlow(CancellationToken cancellation = new CancellationToken())
+        private async UniTask JudgeFlow()
         {
             var result = JudgeCase.Judge();
             

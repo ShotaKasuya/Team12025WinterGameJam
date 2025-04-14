@@ -1,5 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Cysharp.Threading.Tasks;
 using Gambit.Unity.Adapter.IView.InGame;
+using Gambit.Unity.Adapter.IView.InGame.CardFactory;
 using Gambit.Unity.Domain.IPresenter.InGame;
 using Gambit.Unity.Utility.Structure.InGame;
 
@@ -18,31 +22,50 @@ namespace Gambit.Unity.Domain.Presenter.InGame
             WinCardPoolView = winCardPoolView;
             SelectedCardPoolView = selectedCardPoolView;
         }
-        
+
         public async UniTask PresentResult(BattleResult result)
         {
             var views = SelectedCardPoolView.PopAllCardViews();
-            // 勝者あり
-            if (result.Winner.IsSome)
+            foreach (var cardView in views)
             {
-                foreach (var cardView in views)
-                {
-                    await WinCardPoolView.StoreNewCard(cardView);
-                }
+                cardView.ShowFace();
+            }
 
-                foreach (var cardView in DrawCardPoolView.PopAllCardViews())
-                {
-                    await WinCardPoolView.StoreNewCard(cardView);
-                }
+            await UniTask.WaitForSeconds(0.5f);
+            // 引き分け
+            if (result.Winner.IsNone)
+            {
+                await StoreCards(views, async view => { await DrawCardPoolView.StoreNewCard(view); });
 
                 return;
             }
 
-            // 引き分け
-            foreach (var cardView in views)
+            // 勝者あり
+            await StoreCards(views, async view =>
             {
-                await DrawCardPoolView.StoreNewCard(cardView);
+                view.ChangeOwner(result.Winner.Unwrap());
+                await UniTask.WaitForSeconds(0.1f);
+                WinCardPoolView.StoreNewCard(view);
+            });
+            await StoreCards(DrawCardPoolView.PopAllCardViews(), async view =>
+            {
+                view.ChangeOwner(result.Winner.Unwrap());
+                await UniTask.WaitForSeconds(0.1f);
+                WinCardPoolView.StoreNewCard(view);
+            });
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private async UniTask StoreCards(IEnumerable<ProductCardView> cardViews,
+            Func<ProductCardView, UniTask> storeFunc)
+        {
+            var lastTask = UniTask.CompletedTask;
+            foreach (var cardView in cardViews)
+            {
+                lastTask = storeFunc.Invoke(cardView);
             }
+
+            await lastTask;
         }
 
         private IDrawCardPoolView DrawCardPoolView { get; }

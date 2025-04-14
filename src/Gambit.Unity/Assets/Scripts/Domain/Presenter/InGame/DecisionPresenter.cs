@@ -24,7 +24,7 @@ namespace Gambit.Unity.Domain.Presenter.InGame
             foreach (var selectedCardInfo in cards)
             {
                 var handCard = HandCardPoolView.PopCardView(selectedCardInfo);
-                handCard.ShowFace();
+                handCard.TurnOff();
 
                 var storeTask = SelectedCardPoolView.StoreNewCard(handCard);
                 tasks.Add(storeTask);

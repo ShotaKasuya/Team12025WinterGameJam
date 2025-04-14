@@ -30,6 +30,11 @@ namespace Gambit.Unity.Adapter.IView.InGame.CardFactory
             Card = card;
         }
 
+        public void ChangeOwner(PlayerId playerId)
+        {
+            Card = new PlayerCard(playerId, Card.Card);
+        }
+
         protected virtual void Awake()
         {
             ModelTransform = transform;
