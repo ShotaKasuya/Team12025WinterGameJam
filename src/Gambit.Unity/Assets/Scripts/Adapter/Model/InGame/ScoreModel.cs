@@ -22,7 +22,9 @@ namespace Gambit.Unity.Adapter.Model.InGame
 
         public void AddScore(PlayerId playerId, int score)
         {
-            Scores[playerId.Id] += score;
+            var addedScore = Scores[playerId.Id] + score;
+            Scores[playerId.Id] = addedScore;
+            OnScoreChange?.Invoke(new IScoreEventModel.Context(playerId, addedScore));
         }
 
         public IReadOnlyList<int> GetPlayerScore => Scores;

@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Gambit.Unity.Adapter.View.Communication
 {
-    public class GameMainSenderView : IConnectView, ISendSelectedCardView, IDisposable
+    public class GameMainSenderView : IConnectView, ISendSelectedCardView, ILeaveRoomView, IDisposable
     {
         public GameMainSenderView
         (
@@ -32,6 +32,8 @@ namespace Gambit.Unity.Adapter.View.Communication
             var result = await _gameMainCommunication.JoinAsync();
             Debug.Log("join complete\n" +
                       $"seed: {result.RandomSeed}, player id: {result.PlayerId} ");
+            _isConnected = true;
+            _localPlayer = new PlayerId(result.PlayerIndex);
             return new InitSetting(result.RandomSeed, result.PlayerIndex, result.PlayerId.Convert());
         }
 
@@ -47,6 +49,14 @@ namespace Gambit.Unity.Adapter.View.Communication
             Debug.Log("send completed");
         }
 
+        public async UniTask LeaveAsync()
+        {
+            var playerId = PlayerIdView.GetPlayerId(_localPlayer);
+            await _gameMainCommunication.LeaveAsync(playerId);
+        }
+
+        private bool _isConnected;
+        private PlayerId _localPlayer;
         private GrpcChannelx Channel { get; }
         private IGameMainReceiver Receiver { get; }
         private IGameMainCommunication _gameMainCommunication;
@@ -54,7 +64,12 @@ namespace Gambit.Unity.Adapter.View.Communication
 
         public void Dispose()
         {
-            Channel?.Dispose();
+            if (_isConnected)
+            {
+                var playerId = PlayerIdView.GetPlayerId(_localPlayer);
+                _gameMainCommunication.LeaveAsync(playerId);
+            }
+            Channel.Dispose();
         }
     }
 }

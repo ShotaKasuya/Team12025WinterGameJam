@@ -1,6 +1,5 @@
 using System;
 using Gambit.Unity.Adapter.IModel.InGame;
-using Gambit.Unity.Adapter.IModel.InGame.Player;
 using Gambit.Unity.Adapter.IView.InGame.Ui;
 using VContainer.Unity;
 
@@ -10,14 +9,10 @@ namespace Gambit.Unity.Adapter.Controller.InGame
     {
         public ScoreController
         (
-            IPlayerIdModel playerIdModel,
-            IPlayerDictionaryModel playerDictionaryModel,
             IScoreEventModel scoreEventModel,
             IScoreView scoreView
         )
         {
-            PlayerIdModel = playerIdModel;
-            PlayerDictionaryModel = playerDictionaryModel;
             ScoreEventModel = scoreEventModel;
             ScoreView = scoreView;
         }
@@ -29,17 +24,9 @@ namespace Gambit.Unity.Adapter.Controller.InGame
 
         private void ChangeScore(IScoreEventModel.Context context)
         {
-            var id = PlayerDictionaryModel.PlayerIds[context.PlayerIndex.Id];
-            if (id != PlayerIdModel.LocalPlayerId)
-            {
-                return;
-            }
-
             ScoreView.SetScore(context.PlayerIndex, context.CurrentScore);
         }
 
-        private IPlayerIdModel PlayerIdModel { get; }
-        private IPlayerDictionaryModel PlayerDictionaryModel { get; }
         private IScoreEventModel ScoreEventModel { get; }
         private IScoreView ScoreView { get; }
 

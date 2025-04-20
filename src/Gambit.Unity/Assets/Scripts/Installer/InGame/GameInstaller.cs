@@ -72,6 +72,7 @@ namespace Gambit.Unity.Installer.InGame
                 pointsBuilder.Add<CardExplanationController>();
                 pointsBuilder.Add<RemainCardController>();
                 pointsBuilder.Add<ScoreController>();
+                pointsBuilder.Add<UseHandCardController>();
             });
 
             // Presenter
