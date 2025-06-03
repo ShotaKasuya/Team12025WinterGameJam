@@ -32,7 +32,6 @@ namespace Gambit.Unity.Adapter.View.Communication
             var result = await _gameMainCommunication.JoinAsync();
             Debug.Log("join complete\n" +
                       $"seed: {result.RandomSeed}, player id: {result.PlayerId} ");
-            _isConnected = true;
             _localPlayer = new PlayerId(result.PlayerIndex);
             return new InitSetting(result.RandomSeed, result.PlayerIndex, result.PlayerId.Convert());
         }
@@ -55,7 +54,6 @@ namespace Gambit.Unity.Adapter.View.Communication
             await _gameMainCommunication.LeaveAsync(playerId);
         }
 
-        private bool _isConnected;
         private PlayerId _localPlayer;
         private GrpcChannelx Channel { get; }
         private IGameMainReceiver Receiver { get; }
@@ -64,11 +62,6 @@ namespace Gambit.Unity.Adapter.View.Communication
 
         public void Dispose()
         {
-            if (_isConnected)
-            {
-                var playerId = PlayerIdView.GetPlayerId(_localPlayer);
-                _gameMainCommunication.LeaveAsync(playerId);
-            }
             Channel.Dispose();
         }
     }

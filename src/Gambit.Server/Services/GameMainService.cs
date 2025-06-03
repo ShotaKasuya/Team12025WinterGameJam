@@ -46,7 +46,16 @@ public class GameMainService(IGroupManagement groupManagement)
 
         Console.Out.WriteLineAsync(
             $"player {playerId.ToString()} select ({playerCardTransferObject.Card.Suit}, {playerCardTransferObject.Card.Rank})");
-        group.PairGroup!.All.SendSelectedCard(playerCardTransferObject);
+        group.PairGroup!.All.ReceiveSelectedCard(playerCardTransferObject);
+        return CompletedTask;
+    }
+
+    public ValueTask DeclarationCardAsync(PlayerIdTransferObject playerIdTransferObject, RankTransferObject rankTransferObject)
+    {
+        var playerId = playerIdTransferObject.Convert();
+        var group = GroupManagement.GetGroup(playerId);
+        
+        group.PairGroup!.All.ReceiveDeclarationCardAsync(playerIdTransferObject, rankTransferObject);
         return CompletedTask;
     }
 }

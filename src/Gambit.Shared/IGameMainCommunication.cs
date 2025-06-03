@@ -14,30 +14,49 @@ namespace Gambit.Shared
         /// <summary>
         /// 部屋に入室する
         /// </summary>
-        ValueTask<PlayerInitInfoTransferObject> JoinAsync();
+        public ValueTask<PlayerInitInfoTransferObject> JoinAsync();
 
         /// <summary>
         /// 退室する
         /// </summary>
-        ValueTask LeaveAsync(PlayerIdTransferObject playerIdTransferObject);
-        
+        public ValueTask LeaveAsync(PlayerIdTransferObject playerIdTransferObject);
+
         /// <summary>
         /// カードを選択した際に呼ぶ
         /// </summary>
         /// <param name="playerCardTransferObject">カードの情報</param>
-        ValueTask SendSelectedCardAsync(PlayerCardTransferObject playerCardTransferObject);
+        public ValueTask SendSelectedCardAsync(PlayerCardTransferObject playerCardTransferObject);
+
+        /// <summary>
+        /// カードの宣言をした際に呼ぶ
+        /// </summary>
+        public ValueTask DeclarationCardAsync
+        (
+            PlayerIdTransferObject playerIdTransferObject,
+            RankTransferObject rankTransferObject
+        );
     }
-    public interface IGameMainReceiver 
+
+    public interface IGameMainReceiver
     {
         /// <summary>
         /// マッチングが完了した際に呼ばれる
         /// </summary>
-        void OnMatch(PlayersInfoTransferObject playersInfo);
-        
+        public void OnMatch(PlayersInfoTransferObject playersInfo);
+
         /// <summary>
         /// 他プレイヤーがカードを選択した際に呼ばれる
         /// </summary>
         /// <param name="playerCardTransferObject"></param>
-        void SendSelectedCard(PlayerCardTransferObject playerCardTransferObject);
+        public void ReceiveSelectedCard(PlayerCardTransferObject playerCardTransferObject);
+
+        /// <summary>
+        /// 他プレイヤーが宣言を行った際に呼ばれる
+        /// </summary>
+        public void ReceiveDeclarationCardAsync
+        (
+            PlayerIdTransferObject playerIdTransferObject,
+            RankTransferObject rankTransferObject
+        );
     }
 }
