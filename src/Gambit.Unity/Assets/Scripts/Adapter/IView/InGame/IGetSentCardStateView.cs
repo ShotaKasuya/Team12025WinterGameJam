@@ -5,7 +5,12 @@ namespace Gambit.Unity.Adapter.IView.InGame
 {
     public interface IGetSentCardStateView
     {
-        Action<PlayerCard> GetSentCard { get; set; }
+        public Action<PlayerCard> GetSentCard { get; set; }
+    }
+
+    public interface IGetDeclarationView
+    {
+        public Action<PlayerId, Rank> OtherPlayerDeclaration { get; set; }
     }
 
     public interface IMatchEventView

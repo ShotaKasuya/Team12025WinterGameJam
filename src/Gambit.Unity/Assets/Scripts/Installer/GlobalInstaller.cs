@@ -27,12 +27,13 @@ namespace Gambit.Unity.Installer
                 DisposeHttpClient = true,
             }));
 
-            // var channel = GrpcChannelx.ForAddress("http://localhost:5001");
-            var channel = GrpcChannelx.ForAddress("http://game.gambit-server.com:5001");
+            var channel = GrpcChannelx.ForAddress("http://localhost:5001");
+            // var channel = GrpcChannelx.ForAddress("http://game.gambit-server.com:5001");
 
             builder.RegisterInstance(channel);
             builder.Register<GameMainReceiverView>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<GameMainSenderView>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<PlayerIdView>(Lifetime.Singleton).AsImplementedInterfaces();
             if (isLocal)
             {
                 builder.Register<DebugPlayerIdModel>(Lifetime.Singleton).AsImplementedInterfaces();

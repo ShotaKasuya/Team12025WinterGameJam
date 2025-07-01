@@ -9,22 +9,23 @@ using UnityEngine.SceneManagement;
 
 namespace Gambit.Unity.Domain.Flow.InGame
 {
-    public class EndStateFlow : IStateBehaviour<GameStateType>
+    public class EndStateFlow : StateBehaviour<GameStateType>
     {
         public EndStateFlow
         (
             IIsPlayerWinCase isPlayerWinCase,
-            IGameEndPresenter gameEndPresenter
-        )
+            IGameEndPresenter gameEndPresenter,
+            IMutState<GameStateType> gameState
+        ) : base(GameStateType.End, gameState)
         {
             IsPlayerWinCase = isPlayerWinCase;
             GameEndPresenter = gameEndPresenter;
         }
 
-        public IIsPlayerWinCase IsPlayerWinCase { get; }
-        public IGameEndPresenter GameEndPresenter { get; }
+        private IIsPlayerWinCase IsPlayerWinCase { get; }
+        private IGameEndPresenter GameEndPresenter { get; }
 
-        public void OnEnter(GameStateType prev)
+        public override void OnEnter(GameStateType prev)
         {
             var _ = EndFlow();
         }
@@ -45,17 +46,9 @@ namespace Gambit.Unity.Domain.Flow.InGame
             }
 
             await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+            
+            
             SceneManager.LoadScene("TitleScene");
         }
-
-        public void OnExit(GameStateType next)
-        {
-        }
-
-        public void StateUpdate(float deltaTime)
-        {
-        }
-
-        public GameStateType TargetStateMask { get; } = GameStateType.End;
     }
 }

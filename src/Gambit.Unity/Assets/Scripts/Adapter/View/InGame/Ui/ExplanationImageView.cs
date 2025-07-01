@@ -20,6 +20,8 @@ namespace Gambit.Unity.Adapter.View.InGame.Ui
         private void Awake()
         {
             Image = GetComponent<Image>();
+            var color = Image.color;
+            Image.color = new Color(color.r, color.g, color.b, 0f);
         }
 
         public void Face(Card card)

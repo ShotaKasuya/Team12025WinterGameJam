@@ -151,6 +151,11 @@ namespace Gambit.Unity.Utility.Structure.InGame
         {
             return new CardTransferObject(card.Suit.Convert(), card.Rank.Convert());
         }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Card Convert(this CardTransferObject card)
+        {
+            return new Card(card.Suit.Convert(), card.Rank.Convert());
+        }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Rank Convert(this RankTransferObject rankTransferObject)

@@ -1,5 +1,7 @@
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
+using Gambit.Server.Services;
+using Gambit.Server.Services.Interface;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 namespace Gambit.Server
@@ -17,12 +19,13 @@ namespace Gambit.Server
                     endpointOptions.Protocols = HttpProtocols.Http2;
                 });
 
+                const string endPoint = "127.0.0.1";
                 // HTTP/1.1エンドポイントの設定
-                options.Listen(IPAddress.Parse("0.0.0.0"), 5000,
+                options.Listen(IPAddress.Parse(endPoint), 5000,
                     listenOptions => { listenOptions.Protocols = HttpProtocols.Http1; });
 
                 // HTTP/2, HTTPSエンドポイントの設定
-                options.Listen(IPAddress.Parse("0.0.0.0"), 5001, listenOptions =>
+                options.Listen(IPAddress.Parse(endPoint), 5001, listenOptions =>
                 {
                     // --load-cert=true が指定されていたら証明書を読み込む
                     if (args.Any(arg => arg == "--load-cert=true"))
@@ -35,6 +38,7 @@ namespace Gambit.Server
 
             builder.Services.AddGrpc();
             builder.Services.AddMagicOnion();
+            builder.Services.AddSingleton<IGroupManagement, GroupManagement>();
             var app = builder.Build();
 
             // テスト用エンドポイント

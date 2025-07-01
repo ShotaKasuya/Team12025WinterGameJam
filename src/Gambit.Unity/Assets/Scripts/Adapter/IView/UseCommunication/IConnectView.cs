@@ -10,6 +10,11 @@ namespace Gambit.Unity.Adapter.IView.UseCommunication
 
     public interface ISendSelectedCardView
     {
-        public void SendPlayerCard(PlayerCard playerCard);
+        public UniTask SendPlayerCard(PlayerCard playerCard);
+    }
+
+    public interface ILeaveRoomView
+    {
+        public UniTask LeaveAsync();
     }
 }

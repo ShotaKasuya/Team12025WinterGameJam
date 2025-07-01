@@ -8,10 +8,12 @@ namespace Gambit.Shared.DataTransferObject
         public PlayerInitInfoTransferObject
         (
             PlayerIdTransferObject playerId,
+            int playerIndex,
             int randomSeed
         )
         {
             PlayerId = playerId;
+            PlayerIndex = playerIndex;
             RandomSeed = randomSeed;
         }
         
@@ -20,6 +22,12 @@ namespace Gambit.Shared.DataTransferObject
         /// </summary>
         [Key(0)]
         public readonly PlayerIdTransferObject PlayerId;
+
+        /// <summary>
+        /// 入室者の何人目か
+        /// </summary>
+        [Key(1)]
+        public readonly int PlayerIndex;
 
         /// <summary>
         /// デッキ生成で使用するシード

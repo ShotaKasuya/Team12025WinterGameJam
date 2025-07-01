@@ -47,7 +47,8 @@ namespace Gambit.Unity.Adapter.Model.InGame.Judgement
 
             BattleResults.Add(battleResult);
 
-            Debug.Log($"current : {battleResult}");
+            Debug.Log($"current : draw count {drawCount}\n" +
+                      $"{battleResult}");
 
             JudgeEndEvent?.Invoke(new ResultAndDrawCount(drawCount, battleResult));
         }
